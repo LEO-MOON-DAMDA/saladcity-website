@@ -41,19 +41,39 @@ const menuItems = [
 
 export default function SaladcityHome() {
   return (
-    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#fdfdfd', minHeight: '100vh' }}>
-      <header style={{ display: 'flex', alignItems: 'center', padding: '24px 32px' }}>
-        <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '60px' }} />
-        {/* 오른쪽 텍스트 제거됨 */}
-      </header>
+    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8' }}>
+      {/* 배경 + 로고 */}
+      <div style={{
+        position: 'relative',
+        height: '400px',
+        backgroundImage: 'url(/images/farm-bg.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#fff',
+        textAlign: 'center'
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(to bottom, rgba(34, 82, 41, 0.6), rgba(0, 0, 0, 0.2))',
+          backdropFilter: 'blur(2px)'
+        }}></div>
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <img src="/images/saladcity_origin.png" alt="샐러드시티 로고" style={{ height: '80px', marginBottom: '16px' }} />
+          <h1 style={{ fontSize: '36px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
+          <p style={{ fontSize: '16px', color: '#e4ffe6', marginTop: '8px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
+        </div>
+      </div>
 
-      <section style={{ textAlign: 'center', padding: '48px 24px', backgroundColor: '#f4fdf7' }}>
-        <h1 style={{ fontSize: '36px', marginBottom: '16px', fontWeight: 700 }}>건강하고 맛있는 샐러드</h1>
-        <p style={{ fontSize: '16px', color: '#555' }}>매일 새롭고 신선하게, 샐러드시티와 함께하는 식단.</p>
-      </section>
-
-      <section style={{ padding: '40px 24px' }}>
-        <h2 style={{ textAlign: 'center', fontSize: '24px', marginBottom: '32px' }}>메뉴 소개</h2>
+      {/* 메뉴 섹션 */}
+      <section style={{ padding: '60px 24px' }}>
+        <h2 style={{ textAlign: 'center', fontSize: '28px', marginBottom: '40px', color: '#275f3a' }}>메뉴 소개</h2>
         <div style={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -65,15 +85,19 @@ export default function SaladcityHome() {
           {menuItems.map((item, index) => (
             <div key={index} style={{
               width: '280px',
-              border: '1px solid #ddd',
               borderRadius: '16px',
               overflow: 'hidden',
               backgroundColor: '#fff',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
-            }}>
+              boxShadow: '0 8px 16px rgba(0,0,0,0.07)',
+              transition: 'transform 0.3s ease',
+              cursor: 'pointer'
+            }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
               <img src={item.image} alt={item.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
               <div style={{ padding: '16px' }}>
-                <h3 style={{ margin: '0 0 8px' }}>{item.name}</h3>
+                <h3 style={{ margin: '0 0 8px', fontSize: '18px' }}>{item.name}</h3>
                 <p style={{ fontSize: '14px', color: '#666', margin: '0 0 8px' }}>{item.description}</p>
                 <strong>{item.price}</strong>
               </div>
@@ -82,7 +106,16 @@ export default function SaladcityHome() {
         </div>
       </section>
 
-      <footer style={{ textAlign: 'center', marginTop: '80px', padding: '32px 0', color: '#888', borderTop: '1px solid #eee' }}>
+      {/* 푸터 */}
+      <footer style={{
+        textAlign: 'center',
+        padding: '40px 0',
+        backgroundColor: '#eaf5ec',
+        color: '#444',
+        fontSize: '14px',
+        borderTop: '1px solid #cfe3d5',
+        marginTop: '60px'
+      }}>
         <p>#Saladcity_Global</p>
         <p>© 2025 Saladcity. All rights reserved.</p>
       </footer>
