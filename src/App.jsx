@@ -108,7 +108,7 @@ export default function SaladcityHome() {
       height: '100%',
       objectFit: 'cover',
       objectPosition: 'center',
-      transform: 'scale(1.12)',
+      transform: 'scale(1.4)',
       transition: 'transform 0.3s ease'
     }}
   />
