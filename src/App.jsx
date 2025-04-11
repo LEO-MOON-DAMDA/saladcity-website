@@ -45,15 +45,16 @@ export default function SaladcityHome() {
       {/* 배경 + 로고 */}
       <div style={{
         position: 'relative',
-        height: '400px',
+        height: '800px',
         backgroundImage: 'url(/images/farm-bg.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        textAlign: 'center',
         color: '#fff',
-        textAlign: 'center'
       }}>
         <div style={{
           position: 'absolute',
@@ -61,15 +62,18 @@ export default function SaladcityHome() {
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'linear-gradient(to bottom, rgba(34, 82, 41, 0.6), rgba(0, 0, 0, 0.2))',
-          backdropFilter: 'blur(2px)'
-        }}></div>
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          <img src="/images/saladcity_origin.png" alt="샐러드시티 로고" style={{ height: '80px', marginBottom: '16px' }} />
-          <h1 style={{ fontSize: '36px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
-          <p style={{ fontSize: '16px', color: '#e4ffe6', marginTop: '8px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
-        </div>
-      </div>
+          background: 'linear-gradient(to bottom, rgba(36, 70, 44, 0.65), rgba(36, 70, 44, 0.15))',
+          backdropFilter: 'blur(3px)',
+          opacity: 0.85,
+          zIndex: 1
+  }}></div>
+      <div style={{ position: 'relative', zIndex: 2 }}>
+          <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '100px', marginBottom: '20px' }} />
+          <h1 style={{ fontSize: '40px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
+          <p style={{ fontSize: '18px', marginTop: '8px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
+          <p style={{ fontSize: '14px', color: '#e0e0e0' }}>Fresh ingredients, made daily with care.</p>
+     </div>
+</div>
 
       {/* 메뉴 섹션 */}
       <section style={{ padding: '60px 24px' }}>
