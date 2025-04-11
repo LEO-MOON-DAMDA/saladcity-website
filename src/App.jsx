@@ -99,7 +99,7 @@ export default function SaladcityHome() {
               onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'}
               onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
-              <img src={item.image} alt={item.name} style={{ width: '100%', height: '360px', objectFit: 'cover' }} />
+              <img src={item.image} alt={item.name} style={{ width: '100%', height: '360px', objectFit: 'cover',  transform: 'scale(1.40)' }} />
               <div style={{ padding: '16px' }}>
                 <h3 style={{ margin: '0 0 8px', fontSize: '18px' }}>{item.name}</h3>
                 <p style={{ fontSize: '14px', color: '#666', margin: '0 0 8px' }}>{item.description}</p>
