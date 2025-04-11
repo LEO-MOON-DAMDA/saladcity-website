@@ -1,6 +1,4 @@
 import React from "react";
-import { Card, CardContent } from "./components/ui/card";
-import { Instagram } from "lucide-react";
 
 const menuItems = [
   {
@@ -43,49 +41,45 @@ const menuItems = [
 
 export default function SaladcityHome() {
   return (
-    <div className="min-h-screen bg-[#f9fafb] text-[#1a1a1a] font-sans">
-      <header className="flex items-center justify-between px-6 py-4 bg-white shadow-sm">
-        <div className="flex items-center gap-3">
-          <img src="/images/saladcity_origin.png" alt="Saladcity Logo" className="h-8" />
-          <span className="text-xl font-semibold">샐러드시티</span>
+    <div style={{ fontFamily: 'sans-serif', padding: '20px' }}>
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '40px' }} />
+          <h1 style={{ fontSize: '24px', margin: 0 }}>샐러드시티</h1>
         </div>
-        <nav className="hidden md:flex gap-5 text-sm">
-          <a href="#menu" className="hover:underline">메뉴</a>
-          <a href="#shop" className="hover:underline">굿즈</a>
-          <a href="#subscribe" className="hover:underline">정기식</a>
-          <a href="#locations" className="hover:underline">매장</a>
-          <a href="https://www.instagram.com/saladcity_global" target="_blank" rel="noreferrer">
-            <Instagram className="w-5 h-5" />
-          </a>
+        <nav style={{ display: 'flex', gap: '16px' }}>
+          <a href="#menu">메뉴</a>
+          <a href="#shop">굿즈</a>
+          <a href="#subscribe">정기식</a>
+          <a href="#locations">매장</a>
         </nav>
       </header>
 
-      <section className="text-center py-16 px-6 bg-gradient-to-b from-[#e0f3e5] to-[#ffffff]">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">건강하고 맛있는 샐러드</h1>
-        <p className="text-lg text-gray-600">매일 새롭게, 신선하게. 샐러드시티와 함께하는 식단.</p>
+      <section style={{ textAlign: 'center', marginBottom: '40px' }}>
+        <h2 style={{ fontSize: '32px' }}>건강하고 맛있는 샐러드</h2>
+        <p style={{ color: '#555' }}>매일 새롭고 신선하게, 샐러드시티와 함께하는 식단.</p>
       </section>
 
-      <section id="menu" className="py-12 px-6 max-w-7xl mx-auto">
-        <h2 className="text-2xl font-bold mb-8 text-center">메뉴 소개</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section id="menu">
+        <h3 style={{ fontSize: '24px', textAlign: 'center', marginBottom: '20px' }}>메뉴 소개</h3>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px' }}>
           {menuItems.map((item, index) => (
-            <Card key={index} className="rounded-xl overflow-hidden border bg-white">
-              <img src={item.image} alt={item.name} className="w-full h-60 object-cover" />
-              <CardContent className="p-4">
-                <h3 className="text-lg font-semibold mb-1">{item.name}</h3>
-                <p className="text-sm text-gray-600 mb-2">{item.description}</p>
-                <span className="text-base font-bold">{item.price}</span>
-              </CardContent>
-            </Card>
+            <div key={index} style={{ width: '300px', border: '1px solid #ddd', borderRadius: '12px', overflow: 'hidden', backgroundColor: '#fff' }}>
+              <img src={item.image} alt={item.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+              <div style={{ padding: '16px' }}>
+                <h4 style={{ margin: '0 0 8px' }}>{item.name}</h4>
+                <p style={{ fontSize: '14px', color: '#666', margin: '0 0 8px' }}>{item.description}</p>
+                <strong>{item.price}</strong>
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
-      <footer className="text-center py-8 border-t text-sm text-gray-500 bg-white mt-16">
+      <footer style={{ textAlign: 'center', marginTop: '60px', padding: '20px 0', color: '#777', borderTop: '1px solid #ddd' }}>
         <p>#Saladcity_Global</p>
         <p>© 2025 Saladcity. All rights reserved.</p>
       </footer>
     </div>
   );
 }
-
