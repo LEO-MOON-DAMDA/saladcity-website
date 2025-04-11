@@ -41,33 +41,39 @@ const menuItems = [
 
 export default function SaladcityHome() {
   return (
-    <div style={{ fontFamily: 'sans-serif', padding: '20px' }}>
-      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '40px' }} />
-          <h1 style={{ fontSize: '24px', margin: 0 }}>샐러드시티</h1>
-        </div>
-        <nav style={{ display: 'flex', gap: '16px' }}>
-          <a href="#menu">메뉴</a>
-          <a href="#shop">굿즈</a>
-          <a href="#subscribe">정기식</a>
-          <a href="#locations">매장</a>
-        </nav>
+    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#fdfdfd', minHeight: '100vh' }}>
+      <header style={{ display: 'flex', alignItems: 'center', padding: '24px 32px' }}>
+        <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '60px' }} />
+        {/* 오른쪽 텍스트 제거됨 */}
       </header>
 
-      <section style={{ textAlign: 'center', marginBottom: '40px' }}>
-        <h2 style={{ fontSize: '32px' }}>건강하고 맛있는 샐러드</h2>
-        <p style={{ color: '#555' }}>매일 새롭고 신선하게, 샐러드시티와 함께하는 식단.</p>
+      <section style={{ textAlign: 'center', padding: '48px 24px', backgroundColor: '#f4fdf7' }}>
+        <h1 style={{ fontSize: '36px', marginBottom: '16px', fontWeight: 700 }}>건강하고 맛있는 샐러드</h1>
+        <p style={{ fontSize: '16px', color: '#555' }}>매일 새롭고 신선하게, 샐러드시티와 함께하는 식단.</p>
       </section>
 
-      <section id="menu">
-        <h3 style={{ fontSize: '24px', textAlign: 'center', marginBottom: '20px' }}>메뉴 소개</h3>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px' }}>
+      <section style={{ padding: '40px 24px' }}>
+        <h2 style={{ textAlign: 'center', fontSize: '24px', marginBottom: '32px' }}>메뉴 소개</h2>
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: '32px',
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
           {menuItems.map((item, index) => (
-            <div key={index} style={{ width: '300px', border: '1px solid #ddd', borderRadius: '12px', overflow: 'hidden', backgroundColor: '#fff' }}>
+            <div key={index} style={{
+              width: '280px',
+              border: '1px solid #ddd',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              backgroundColor: '#fff',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+            }}>
               <img src={item.image} alt={item.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
               <div style={{ padding: '16px' }}>
-                <h4 style={{ margin: '0 0 8px' }}>{item.name}</h4>
+                <h3 style={{ margin: '0 0 8px' }}>{item.name}</h3>
                 <p style={{ fontSize: '14px', color: '#666', margin: '0 0 8px' }}>{item.description}</p>
                 <strong>{item.price}</strong>
               </div>
@@ -76,7 +82,7 @@ export default function SaladcityHome() {
         </div>
       </section>
 
-      <footer style={{ textAlign: 'center', marginTop: '60px', padding: '20px 0', color: '#777', borderTop: '1px solid #ddd' }}>
+      <footer style={{ textAlign: 'center', marginTop: '80px', padding: '32px 0', color: '#888', borderTop: '1px solid #eee' }}>
         <p>#Saladcity_Global</p>
         <p>© 2025 Saladcity. All rights reserved.</p>
       </footer>
