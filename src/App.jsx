@@ -75,40 +75,68 @@ export default function SaladcityHome() {
      </div>
 </div>
 
-      {/* 메뉴 섹션 */}
-      <section style={{ padding: '60px 24px' }}>
-        <h2 style={{ textAlign: 'center', fontSize: '28px', marginBottom: '40px', color: '#275f3a' }}>메뉴 소개</h2>
-        <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '32px',
-          maxWidth: '1200px',
-          margin: '0 auto'
-        }}>
-          {menuItems.map((item, index) => (
-            <div key={index} style={{
-              width: '280px',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              backgroundColor: '#fff',
-              boxShadow: '0 8px 16px rgba(0,0,0,0.07)',
-              transition: 'transform 0.3s ease',
-              cursor: 'pointer'
-            }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
-              <img src={item.image} alt={item.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-              <div style={{ padding: '16px' }}>
-                <h3 style={{ margin: '0 0 8px', fontSize: '18px' }}>{item.name}</h3>
-                <p style={{ fontSize: '14px', color: '#666', margin: '0 0 8px' }}>{item.description}</p>
-                <strong>{item.price}</strong>
-              </div>
-            </div>
-          ))}
+<section style={{ padding: '60px 24px', backgroundColor: '#f6fdf8' }}>
+  <h2 style={{
+    textAlign: 'center',
+    fontSize: '28px',
+    marginBottom: '40px',
+    color: '#275f3a'
+  }}>
+    메뉴 소개<br />
+    <span style={{ fontSize: '14px', color: '#8aa88f' }}>
+      Explore our signature salads
+    </span>
+  </h2>
+
+  <div style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: '32px',
+    maxWidth: '1200px',
+    margin: '0 auto'
+  }}>
+    {menuItems.map((item, index) => (
+      <div
+        key={index}
+        style={{
+          width: '280px',
+          borderRadius: '20px',
+          overflow: 'hidden',
+          backgroundColor: '#fff',
+          boxShadow: '0 8px 16px rgba(0,0,0,0.07)',
+          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+          cursor: 'pointer'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'translateY(-8px) scale(1.01)';
+          e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,128,0,0.1)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'translateY(0) scale(1)';
+          e.currentTarget.style.boxShadow = '0 8px 16px rgba(0,0,0,0.07)';
+        }}
+      >
+        <img
+          src={item.image}
+          alt={item.name}
+          style={{
+            width: '100%',
+            height: '230px',
+            objectFit: 'cover',
+            objectPosition: 'center'
+          }}
+        />
+        <div style={{ padding: '20px' }}>
+          <h3 style={{ margin: '0 0 8px', fontSize: '18px' }}>{item.name}</h3>
+          <p style={{ fontSize: '14px', color: '#666', margin: '0 0 8px' }}>{item.description}</p>
+          <strong>{item.price}</strong>
         </div>
-      </section>
+      </div>
+    ))}
+  </div>
+</section>
+
 
       {/* 푸터 */}
       <footer style={{
