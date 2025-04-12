@@ -122,6 +122,82 @@ export default function SaladcityHome() {
           ))}
         </div>
       </section>
+{/* 굿즈 섹션 */}
+<section style={{ padding: '60px 24px', backgroundColor: '#ffffff' }}>
+  <h2 style={{ textAlign: 'center', fontSize: '28px', marginBottom: '12px', color: '#275f3a' }}>
+    샐러드시티 굿즈
+  </h2>
+  <p style={{ textAlign: 'center', fontSize: '16px', color: '#555', marginBottom: '40px' }}>
+    샐러드시티의 감성을 담은 아이템들<br />
+    <span style={{ fontSize: '14px', color: '#9e9e9e' }}>
+      Brand items that reflect the Saladcity lifestyle
+    </span>
+  </p>
+
+  <div style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: '32px',
+    maxWidth: '1200px',
+    margin: '0 auto'
+  }}>
+    {[
+      { name: "브랜드 티셔츠", price: "₩19,000", image: "/images/goods-tshirt.jpg" },
+      { name: "샐러드시티 머그컵", price: "₩12,000", image: "/images/goods-mug.jpg" },
+      { name: "에코백", price: "₩16,000", image: "/images/goods-ecobag.jpg" },
+      { name: "그립톡", price: "₩9,000", image: "/images/goods-griptok.jpg" }
+    ].map((item, index) => (
+      <div key={index} style={{
+        width: '240px',
+        borderRadius: '16px',
+        overflow: 'hidden',
+        backgroundColor: '#fafafa',
+        boxShadow: '0 6px 14px rgba(0,0,0,0.06)',
+        textAlign: 'center',
+        transition: 'transform 0.3s ease',
+        cursor: 'pointer'
+      }}
+        onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'}
+        onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
+        <img src={item.image} alt={item.name} style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+        <div style={{ padding: '16px' }}>
+          <h4 style={{ fontSize: '16px', margin: '0 0 6px' }}>{item.name}</h4>
+          <p style={{ fontSize: '14px', color: '#777' }}>{item.price}</p>
+          <button style={{
+            marginTop: '8px',
+            padding: '6px 14px',
+            backgroundColor: '#3C8050',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            fontSize: '14px'
+          }}>
+            자세히 보기
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+{/* 브랜드 스토리 섹션 */}
+<section style={{ padding: '80px 24px', backgroundColor: '#f2f8f4', textAlign: 'center' }}>
+  <h2 style={{ fontSize: '26px', marginBottom: '16px', color: '#2f5d3c' }}>
+    샐러드가 바꿉니다
+  </h2>
+  <p style={{ maxWidth: '680px', margin: '0 auto', fontSize: '17px', lineHeight: '1.7', color: '#444' }}>
+    우리는 단순한 식사가 아닌<br />
+    더 건강하고 지속가능한 라이프스타일을 제안합니다.<br /><br />
+    매일 샐러드를 먹는다는 것은<br />
+    내 몸을 위한 선택이고,<br />
+    더 나은 식문화에 대한 약속입니다.<br /><br />
+    <span style={{ color: '#7fae85', fontWeight: 'bold' }}>
+      Eat Clean, Eat Smart. With Saladcity.
+    </span>
+  </p>
+</section>
 
       {/* 푸터 */}
       <footer style={{
