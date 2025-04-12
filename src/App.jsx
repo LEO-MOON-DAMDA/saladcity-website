@@ -198,6 +198,86 @@ export default function SaladcityHome() {
     </span>
   </p>
 </section>
+{/* 플래터 메뉴 섹션 */}
+<section style={{ padding: '80px 24px', backgroundColor: '#f9fefb' }}>
+  <h2 style={{ textAlign: 'center', fontSize: '28px', marginBottom: '12px', color: '#275f3a' }}>
+    구운야채 플래터
+  </h2>
+  <p style={{ textAlign: 'center', fontSize: '16px', color: '#555', marginBottom: '40px' }}>
+    샐러드시티에서 제일 든든한 샐러드 플래터<br />
+    <span style={{ fontSize: '14px', color: '#9e9e9e' }}>
+      Grilled vegetable platters with seasonal proteins.
+    </span>
+  </p>
+
+  <div style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: '32px',
+    maxWidth: '1200px',
+    margin: '0 auto'
+  }}>
+    {[
+      {
+        name: "수비드 스테이크 플래터",
+        price: "₩15,500",
+        image: "/images/scttl01.jpg",
+        description: "수비드한 소고기 스테이크와 따뜻한 구운 제철 야채가 듬뿍 담긴 다이어트 플래터."
+      },
+      {
+        name: "수비드 치킨 플래터",
+        price: "₩13,000",
+        image: "/images/scttl02.jpg",
+        description: "부드러운 국내산 닭가슴살과 다양한 슈퍼푸드를 함께 담은 저탄고단백 식사."
+      },
+      {
+        name: "훈제오리 갈릭 플래터",
+        price: "₩13,800",
+        image: "/images/scttl03.jpg",
+        description: "마늘과 함께 구운 훈제오리 고기와 구운야채가 어우러진 풍미 가득한 플래터."
+      },
+      {
+        name: "버섯 불고기 플래터",
+        price: "₩12,000",
+        image: "/images/scttl04.jpg",
+        description: "버섯과 불고기를 함께 구워낸 한국식 웰빙 플래터. 하루 한끼 대체식으로도 추천."
+      }
+    ].map((item, index) => (
+      <div key={index} style={{
+        width: '280px',
+        borderRadius: '16px',
+        overflow: 'hidden',
+        backgroundColor: '#fff',
+        boxShadow: '0 8px 16px rgba(0,0,0,0.07)',
+        transition: 'transform 0.3s ease',
+        cursor: 'pointer'
+      }}
+        onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'}
+        onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
+        <div style={{ width: '100%', height: '230px', overflow: 'hidden' }}>
+          <img
+            src={item.image}
+            alt={item.name}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              transform: 'scale(1.6)',
+              transition: 'transform 0.3s ease'
+            }}
+          />
+        </div>
+        <div style={{ padding: '16px' }}>
+          <h3 style={{ margin: '0 0 8px', fontSize: '18px' }}>{item.name}</h3>
+          <p style={{ fontSize: '14px', color: '#666', margin: '0 0 8px' }}>{item.description}</p>
+          <strong>{item.price}</strong>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* 푸터 */}
       <footer style={{
