@@ -350,6 +350,61 @@ export default function SaladcityHome() {
         </div>
       </section>
       
+           {/* 매장 안내 섹션 */}
+      <section style={{ padding: '80px 24px', backgroundColor: '#f2f8f4' }}>
+        <h2 style={{ textAlign: 'center', fontSize: '28px', marginBottom: '12px', color: '#275f3a' }}>
+          샐러드시티 매장 안내
+        </h2>
+        <p style={{ textAlign: 'center', fontSize: '16px', color: '#555', marginBottom: '40px' }}>
+          오프라인 매장에서 샐러드시티의 신선함을 직접 경험해보세요.<br />
+          <span style={{ fontSize: '14px', color: '#9e9e9e' }}>
+            Visit our locations to taste freshness in person.
+          </span>
+        </p>
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: '32px',
+          maxWidth: '1000px',
+          margin: '0 auto'
+        }}>
+          {[
+            {
+              name: "샐러드시티 강남점",
+              address: "서울 강남구 테헤란로 123",
+              hours: "매일 10:00 - 21:00",
+              map: "https://place.map.kakao.com/123456789"
+            },
+            {
+              name: "샐러드시티 합정점",
+              address: "서울 마포구 양화로 55",
+              hours: "매일 10:30 - 20:30",
+              map: "https://place.map.kakao.com/987654321"
+            }
+          ].map((store, index) => (
+            <div key={index} style={{
+              width: '460px',
+              borderRadius: '14px',
+              backgroundColor: '#fff',
+              boxShadow: '0 6px 14px rgba(0,0,0,0.06)',
+              padding: '20px'
+            }}>
+              <h4 style={{ fontSize: '18px', marginBottom: '8px', color: '#3C8050' }}>{store.name}</h4>
+              <p style={{ fontSize: '14px', margin: '0 0 6px', color: '#555' }}>{store.address}</p>
+              <p style={{ fontSize: '14px', margin: '0 0 12px', color: '#777' }}>{store.hours}</p>
+              <a href={store.map} target="_blank" rel="noopener noreferrer" style={{
+                fontSize: '13px',
+                color: '#3C8050',
+                textDecoration: 'underline'
+              }}>
+                카카오맵에서 보기 →
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* 푸터 */}
       <footer style={{
         textAlign: 'center',
@@ -366,3 +421,4 @@ export default function SaladcityHome() {
     </div>
   );
 }
+
