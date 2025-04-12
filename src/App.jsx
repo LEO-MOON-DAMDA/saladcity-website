@@ -67,7 +67,7 @@ export default function SaladcityHome() {
 }}>
   {/* Video 배경 */}
   <video
-    src="/videos/joyful-healthy-eating.mp4"
+    src="/videos/20250412_1927_Joyful Healthy Eating_storyboard_01jrmrn4ysfwprqnh3y5c50akn.mp4"
     autoPlay
     muted
     loop
