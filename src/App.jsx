@@ -2,47 +2,59 @@ import React from "react";
 
 const menuItems = [
   {
-    name: "수비드 돈목살 샐러드",
-    price: "₩11,900",
-    image: "/images/샐러드돈목살01.jpg",
-    description: "부드럽게 조리된 돈목살과 신선한 채소의 조화"
-  },
-  {
-    name: "로스트 베지 샐러드",
-    price: "₩10,500",
-    image: "/images/샐러드로스트베지01.jpg",
-    description: "다양한 구운 야채와 렌틸콩, 고소한 드레싱"
-  },
-  {
-    name: "머쉬룸 샐러드",
+    name: "로스트베지 샐러드 Vegan",
     price: "₩10,900",
-    image: "/images/샐러드머쉬룸01.jpg",
-    description: "버섯과 아보카도가 어우러진 담백한 샐러드"
+    image: "/images/ABC01.jpg",
+    description: "구운 당근, 브로콜리, 컬리플라워와 렌틸콩 등 샐러드시티 베스트셀러."
   },
   {
-    name: "버섯 불고기 샐러드",
-    price: "₩12,000",
-    image: "/images/샐러드버섯불고기01.jpg",
-    description: "단짠 버섯 불고기와 신선 채소의 푸짐한 구성"
+    name: "생아보카도 렌틸콩 샐러드 Vegan",
+    price: "₩13,900",
+    image: "/images/AKB01.jpg",
+    description: "하프 아보카도 + 바질페스토, 단백질과 슈퍼푸드를 한 번에."
   },
   {
-    name: "비프 스테이크 샐러드",
-    price: "₩13,500",
-    image: "/images/샐러드스테이크01.jpg",
-    description: "소고기 스테이크와 곡물, 채소의 든든한 한 끼"
+    name: "머쉬룸 샐러드 Ovo Vegetarian",
+    price: "₩12,500",
+    image: "/images/CCA01.jpg",
+    description: "버섯구이 + 아보카도 + 유기농 계란의 따뜻한 저탄고단백 샐러드."
   },
   {
-    name: "갈릭 오리 마늘 샐러드",
-    price: "₩12,900",
-    image: "/images/샐러드오리마늘01.jpg",
-    description: "훈제오리와 구운 마늘, 고소한 토핑의 조화"
+    name: "구운두부 샐러드 Ovo Vegetarian",
+    price: "₩11,800",
+    image: "/images/sc리코타01.jpg",
+    description: "오븐에 구운 유기농 두부가 들어간 비건 고단백 샐러드."
+  },
+  {
+    name: "훈제오리 갈릭 샐러드 Pollo Vegetarian",
+    price: "₩13,800",
+    image: "/images/sc부라타01.jpg",
+    description: "훈연한 오리고기와 마늘구이 토핑이 핵심."
+  },
+  {
+    name: "수비드 치킨 샐러드 Pollo Vegetarian",
+    price: "₩13,800",
+    image: "/images/sc모짜렐라01.jpg",
+    description: "수비드한 닭가슴살과 계란 + 렌틸콩으로 균형잡힌 한 끼."
+  },
+  {
+    name: "살몬 샐러드 Pesco Vegetarian",
+    price: "₩15,000",
+    image: "/images/scttl02.jpg",
+    description: "구운 연어와 아보카도, 슈퍼푸드 구성의 고급 단백질 샐러드."
+  },
+  {
+    name: "수비드 스테이크 샐러드 Flexitarian",
+    price: "₩16,500",
+    image: "/images/in_up_수비드돈목살파스타01.jpg",
+    description: "저온 수비드한 스테이크와 제철 채소 조합의 고급 라인."
   }
 ];
 
 export default function SaladcityHome() {
   return (
     <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8' }}>
-      {/* 배경 + 로고 */}
+      {/* 상단 로고 + 배경 */}
       <div style={{
         position: 'relative',
         height: '800px',
@@ -66,14 +78,15 @@ export default function SaladcityHome() {
           backdropFilter: 'blur(3px)',
           opacity: 0.85,
           zIndex: 1
-  }}></div>
-      <div style={{ position: 'relative', zIndex: 2 }}>
+        }}></div>
+        <div style={{ position: 'relative', zIndex: 2 }}>
           <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '200px', marginBottom: '20px' }} />
           <h1 style={{ fontSize: '40px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
           <p style={{ fontSize: '18px', marginTop: '8px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
           <p style={{ fontSize: '14px', color: '#e0e0e0' }}>Fresh ingredients, made daily with care.</p>
-     </div>
-</div>
+        </div>
+      </div>
+
 
       {/* 메뉴 섹션 */}
       <section style={{ padding: '60px 24px' }}>
