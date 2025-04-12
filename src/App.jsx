@@ -54,38 +54,44 @@ const menuItems = [
 export default function SaladcityHome() {
   return (
     <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8' }}>
-      {/* 상단 로고 + 배경 */}
-      <div style={{
-        position: 'relative',
-        height: '800px',
-        backgroundImage: 'url(/images/farm-bg.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        color: '#fff',
-      }}>
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          background: 'linear-gradient(to bottom, rgba(36, 70, 44, 0.65), rgba(36, 70, 44, 0.15))',
-          backdropFilter: 'blur(3px)',
-          opacity: 0.85,
-          zIndex: 1
-        }}></div>
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '200px', marginBottom: '20px' }} />
-          <h1 style={{ fontSize: '40px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
-          <p style={{ fontSize: '18px', marginTop: '8px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
-          <p style={{ fontSize: '14px', color: '#e0e0e0' }}>Fresh ingredients, made daily with care.</p>
-        </div>
-      </div>
+      {/* 상단 Hero 섹션 – Organic 영상 배경 */}
+<div style={{
+  position: 'relative',
+  height: '800px',
+  overflow: 'hidden',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  textAlign: 'center',
+  color: '#fff'
+}}>
+  {/* Video 배경 */}
+  <video
+    src="/videos/joyful-healthy-eating.mp4"
+    autoPlay
+    muted
+    loop
+    playsInline
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      zIndex: 0,
+      filter: 'brightness(0.7) blur(1.5px)'
+    }}
+  />
+  {/* 텍스트 오버레이 */}
+  <div style={{ position: 'relative', zIndex: 1 }}>
+    <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '200px', marginBottom: '20px' }} />
+    <h1 style={{ fontSize: '40px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
+    <p style={{ fontSize: '18px', marginTop: '8px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
+    <p style={{ fontSize: '14px', color: '#e0e0e0' }}>Fresh ingredients, made daily with care.</p>
+  </div>
+</div>
+
 
       {/* 메뉴 섹션 */}
       <section style={{ padding: '60px 24px' }}>
