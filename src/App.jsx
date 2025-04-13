@@ -400,6 +400,57 @@ export default function SaladcityHome() {
         </div>
       </section>
 
+      {/* 인스타그램 피드 섹션 */}
+<section style={{ padding: '80px 24px', backgroundColor: '#ffffff' }}>
+  <h2 style={{ textAlign: 'center', fontSize: '28px', marginBottom: '12px', color: '#275f3a' }}>
+    인스타그램 피드
+  </h2>
+  <p style={{ textAlign: 'center', fontSize: '16px', color: '#555', marginBottom: '40px' }}>
+    @saladcity_global에서 우리의 이야기를 만나보세요.
+  </p>
+
+  <div style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: '24px',
+    maxWidth: '1000px',
+    margin: '0 auto'
+  }}>
+    {[
+      "/images/insta01.jpg",
+      "/images/insta02.jpg",
+      "/images/insta03.jpg",
+      "/images/insta04.jpg"
+    ].map((img, index) => (
+      <div key={index} style={{
+        width: '220px',
+        height: '220px',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+        backgroundColor: '#eee'
+      }}>
+        <img src={img} alt={`instagram-${index}`} style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover'
+        }} />
+      </div>
+    ))}
+  </div>
+
+  <div style={{ textAlign: 'center', marginTop: '40px' }}>
+    <a href="https://www.instagram.com/saladcity_global/" target="_blank" rel="noopener noreferrer" style={{
+      fontSize: '15px',
+      color: '#3C8050',
+      textDecoration: 'underline'
+    }}>
+      인스타그램에서 더 보기 →
+    </a>
+  </div>
+</section>
+
       {/* 푸터 */}
       <footer style={{
         textAlign: 'center',
