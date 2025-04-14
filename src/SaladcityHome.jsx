@@ -5,7 +5,7 @@ import homepageMenuItems from "./data/homepageMenuItems.json"; // ✅ 이 줄 �
 
 export default function SaladcityHome() {
   return (
-    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '10px' }}>
+    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '60px' }}>
       {/* ✅ 상단 Hero 영상 섹션 */}
       <header style={{
         position: 'fixed',
@@ -114,57 +114,6 @@ export default function SaladcityHome() {
         </div>
       </div>
 
-      {/* ✅ 메뉴 카드 섹션 */}
-      <section style={{ padding: '60px 24px' }}>
-        <h2 style={{ textAlign: 'center', fontSize: '28px', marginBottom: '40px', color: '#275f3a' }}>
-          프리미엄 샐러드
-        </h2>
-        <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '32px',
-          maxWidth: '1200px',
-          margin: '0 auto'
-        }}>
-          {menuItems.map((item, index) => (
-            <div key={index} style={{
-              width: '280px',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              backgroundColor: '#fff',
-              boxShadow: '0 8px 16px rgba(0,0,0,0.07)',
-              transition: 'transform 0.3s ease',
-              cursor: 'pointer'
-            }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-              <div style={{ width: '100%', height: '230px', overflow: 'hidden' }}>
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                    transform: 'scale(1.6)',
-                    transition: 'transform 0.3s ease'
-                  }}
-                />
-              </div>
-              <div style={{ padding: '16px' }}>
-                <h3 style={{ margin: '0 0 8px', fontSize: '18px' }}>{item.name}</h3>
-                <p style={{ fontSize: '14px', color: '#666', margin: '0 0 8px' }}>{item.description}</p>
-                <strong>{item.price}</strong>
-                <p style={{ fontSize: '13px', color: '#888', marginTop: '8px' }}>
-                  🥗 {item.kcal} kcal | P {item.protein}g | C {item.carbs}g | F {item.fat}g | CO₂e {item.co2}kg
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
        {/* ✅ 추천메뉴 섹션 (홈화면에 표시되는 6개 메뉴) */}
       <section style={{ padding: '60px 24px' }}>
