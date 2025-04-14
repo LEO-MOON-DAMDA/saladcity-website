@@ -521,8 +521,13 @@ export default function SaladcityHome() {
     ))}
   </div>
 </section>
+
+      
       <CustomPrintableMenu />
-{/* ✅ 푸터 섹션 */}
+    </div>
+  );
+      
+      {/* ✅ 푸터 섹션 */}
 <footer style={{
   textAlign: 'center',
   padding: '40px 0',
@@ -536,9 +541,4 @@ export default function SaladcityHome() {
   <p>© 2025 Saladcity. All rights reserved.</p>
   <p>contact@saladcity.co.kr | 서울시 성동구 성수이로 113, 2층</p>
 </footer>
-
-
-
-    </div>
-  );
 }
