@@ -486,7 +486,7 @@ export default function SaladcityHome() {
         image: "/images/scttl04.jpg",
         description: "버섯과 불고기를 함께 구워낸 웰빙 다이어트 플래터."
       }
-].map((item, index) => (
+    ].map((item, index) => (
       <div key={index} style={{
         width: '280px',
         borderRadius: '16px',
@@ -516,10 +516,10 @@ export default function SaladcityHome() {
           <h3 style={{ margin: '0 0 8px', fontSize: '18px' }}>{item.name}</h3>
           <p style={{ fontSize: '14px', color: '#666', margin: '0 0 8px' }}>{item.description}</p>
           <strong>{item.price}</strong>
-      </div> {/* ✅ 이 줄 추가 */}
-    </div>   {/* ✅ map 내부 카드 전체 닫기 */}
-  ))}        {/* ✅ map 닫기 */}
-</div>       {/* ✅ 카드들 감싸는 wrapper */}
+        </div>
+      </div>
+    ))}
+  </div>
 </section>
 
  {/* 프린트 컴포넌트 */}
