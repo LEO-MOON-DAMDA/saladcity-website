@@ -516,10 +516,10 @@ export default function SaladcityHome() {
           <h3 style={{ margin: '0 0 8px', fontSize: '18px' }}>{item.name}</h3>
           <p style={{ fontSize: '14px', color: '#666', margin: '0 0 8px' }}>{item.description}</p>
           <strong>{item.price}</strong>
-               </div>
-      </div>
-    ))}
-  </div>
+      </div> {/* ✅ 이 줄 추가 */}
+    </div>   {/* ✅ map 내부 카드 전체 닫기 */}
+  ))}        {/* ✅ map 닫기 */}
+</div>       {/* ✅ 카드들 감싸는 wrapper */}
 </section>
 
 {/* ✅ 프린트용 컴포넌트 */}
