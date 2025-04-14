@@ -5,7 +5,7 @@ import homepageMenuItems from "./data/homepageMenuItems.json"; // ✅ 이 줄 �
 
 export default function SaladcityHome() {
   return (
-    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '0px' }}>
+    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '60px' }}>
       {/* ✅ 상단 Hero 영상 섹션 */}
       <header style={{
         position: 'fixed',
@@ -81,7 +81,7 @@ export default function SaladcityHome() {
       {/* ✅ 메인 배경 영상 */}
       <div style={{
         position: 'relative',
-        height: '800px',
+        height: '400px',
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
