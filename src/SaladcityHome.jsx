@@ -1,37 +1,61 @@
+import React from "react";
 import CustomPrintableMenu from "./CustomPrintableMenu";
+
+const menuItems = [
+  {
+    name: "로스트베지 샐러드 Vegan",
+    price: "₩10,900",
+    image: "/images/s_ABC.jpg",
+    description: "구운 당근, 브로콜리, 렌틸콩 등 베스트셀러.",
+    kcal: 320, protein: 10, carbs: 30, fat: 12, co2: 0.9
+  },
+  {
+    name: "머쉬룸 샐러드 Ovo Vegetarian",
+    price: "₩12,500",
+    image: "/images/s_CCA.jpg",
+    description: "국내산 머쉬룸, 단호박, 계란 토핑.",
+    kcal: 430, protein: 17, carbs: 24, fat: 22, co2: 1.0
+  },
+  {
+    name: "수비드 치킨 샐러드",
+    price: "₩13,800",
+    image: "/images/sc모짜렐라01.jpg",
+    description: "국내산 닭가슴살 수비드 + 슈퍼푸드.",
+    kcal: 490, protein: 32, carbs: 22, fat: 18, co2: 1.3
+  },
+  {
+    name: "살몬 샐러드",
+    price: "₩15,000",
+    image: "/images/scttl02.jpg",
+    description: "친환경 연어 + 건강한 샐러드.",
+    kcal: 520, protein: 28, carbs: 20, fat: 25, co2: 2.1
+  },
+  {
+    name: "스테이크 샐러드",
+    price: "₩16,500",
+    image: "/images/in_up_수비드돈목살파스타01.jpg",
+    description: "소등심 스테이크 + 프리미엄 야채.",
+    kcal: 580, protein: 34, carbs: 18, fat: 28, co2: 2.4
+  }
+];
 
 export default function SaladcityHome() {
   return (
-    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '50px' }}>
-      {/* 네비게이션 바 */}
+    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '60px' }}>
+      {/* 헤더 */}
       <header style={{
         position: 'fixed',
         top: 0,
-        left: 0,
         width: '100%',
-        backgroundColor: '#ffffffee',
+        backgroundColor: '#fff',
+        padding: '10px 24px',
         display: 'flex',
-        alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '8px 24px',
+        alignItems: 'center',
         zIndex: 1000,
-        backdropFilter: 'blur(6px)',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
-        height: '60px',
-        boxSizing: 'border-box',
-        gap: '16px',
-        flexWrap: 'wrap'
+        boxShadow: '0 2px 6px rgba(0,0,0,0.05)'
       }}>
-        <nav style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '18px',
-          fontSize: '14px',
-          fontWeight: 500,
-          letterSpacing: '0.3px',
-          flex: 1,
-          minWidth: 0
-        }}>
+        <nav style={{ display: 'flex', gap: '18px' }}>
           {[
             { text: "OUR MENU", href: "/menu" },
             { text: "OUR MISSION", href: "/mission" },
@@ -39,25 +63,9 @@ export default function SaladcityHome() {
             { text: "OUTPOST", href: "/outpost" },
             { text: "CATERING", href: "/catering" },
             { text: "LOCATIONS", href: "/locations" }
-          ].map((link, index) => (
-            <a key={index} href={link.href} style={{
-              textDecoration: 'none',
-              color: '#333',
-              paddingBottom: '2px',
-              borderBottom: '2px solid transparent',
-              transition: 'color 0.2s ease, border-bottom 0.2s ease',
-              whiteSpace: 'nowrap'
-            }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#3C8050';
-                e.currentTarget.style.borderBottom = '2px solid #3C8050';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = '#333';
-                e.currentTarget.style.borderBottom = '2px solid transparent';
-              }}
-            >
-              {link.text}
+          ].map((item, idx) => (
+            <a key={idx} href={item.href} style={{ textDecoration: 'none', color: '#333', fontWeight: 500 }}>
+              {item.text}
             </a>
           ))}
         </nav>
@@ -67,52 +75,102 @@ export default function SaladcityHome() {
           padding: '6px 14px',
           borderRadius: '6px',
           textDecoration: 'none',
-          fontWeight: 600,
-          whiteSpace: 'nowrap',
-          flexShrink: 0
-        }}>
-          ORDER
-        </a>
+          fontWeight: 600
+        }}>ORDER</a>
       </header>
 
-      {/* 상단 Hero 영상 섹션 */}
-      <div style={{
-        position: 'relative',
+      {/* Hero 영상 */}
+      <section style={{
         height: '800px',
-        overflow: 'hidden',
+        position: 'relative',
+        color: '#fff',
+        textAlign: 'center',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        color: '#fff'
+        justifyContent: 'center'
       }}>
-        <video
-          src="/videos/joyful-healthy-eating.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
+        <video src="/videos/joyful-healthy-eating.mp4" autoPlay muted loop playsInline
           style={{
             position: 'absolute',
-            top: 0,
-            left: 0,
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            zIndex: 0,
-            filter: 'brightness(0.7) blur(1.5px)'
-          }}
-        />
+            filter: 'brightness(0.6)'
+          }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
-          <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '200px', marginBottom: '20px' }} />
-          <h1 style={{ fontSize: '40px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
-          <p style={{ fontSize: '18px', marginTop: '8px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
+          <img src="/images/saladcity_origin.png" alt="logo" style={{ height: '180px' }} />
+          <h1 style={{ fontSize: '36px', marginTop: '20px' }}>건강하고 맛있는 샐러드</h1>
+          <p style={{ fontSize: '16px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
           <p style={{ fontSize: '14px', color: '#e0e0e0' }}>Fresh ingredients, made daily with care.</p>
         </div>
-      </div>
+      </section>
 
-      {/* 기타 섹션은 이전 App.jsx에서 복사해서 이어 붙이면 됨 */}
+      {/* 프리미엄 샐러드 */}
+      <section style={{ padding: '60px 24px' }}>
+        <h2 style={{ textAlign: 'center', fontSize: '28px', color: '#275f3a', marginBottom: '40px' }}>
+          프리미엄 샐러드
+        </h2>
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '32px',
+          justifyContent: 'center',
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          {menuItems.map((item, idx) => (
+            <div key={idx} style={{
+              width: '280px',
+              backgroundColor: '#fff',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              boxShadow: '0 8px 16px rgba(0,0,0,0.07)',
+              transition: 'transform 0.3s',
+              cursor: 'pointer'
+            }}
+              onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-6px)'}
+              onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
+              <div style={{ height: '220px', overflow: 'hidden' }}>
+                <img src={item.image} alt={item.name}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    transform: 'scale(1.6)',
+                    objectPosition: 'center'
+                  }} />
+              </div>
+              <div style={{ padding: '16px' }}>
+                <h3 style={{ fontSize: '17px', marginBottom: '6px' }}>{item.name}</h3>
+                <p style={{ fontSize: '14px', color: '#666' }}>{item.description}</p>
+                <strong>{item.price}</strong>
+                <p style={{ fontSize: '13px', color: '#888', marginTop: '8px' }}>
+                  🥗 {item.kcal} kcal | P {item.protein}g | C {item.carbs}g | F {item.fat}g | CO₂e {item.co2}kg
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 이후 섹션 생략 */}
+      {/* TODO: 플래터, 굿즈, 브랜드스토리, 구독, 매장, 인스타 피드 복원 추가 가능 */}
+
       <CustomPrintableMenu />
+
+      <footer style={{
+        textAlign: 'center',
+        padding: '40px 0',
+        backgroundColor: '#eaf5ec',
+        color: '#444',
+        fontSize: '14px',
+        borderTop: '1px solid #cfe3d5',
+        marginTop: '60px'
+      }}>
+        <p>#Saladcity_Global</p>
+        <p>© 2025 Saladcity. All rights reserved.</p>
+        <p>contact@saladcity.co.kr | 서울시 성동구 성수이로 113, 2층</p>
+      </footer>
     </div>
   );
 }
