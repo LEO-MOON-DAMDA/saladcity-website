@@ -516,16 +516,16 @@ export default function SaladcityHome() {
           <h3 style={{ margin: '0 0 8px', fontSize: '18px' }}>{item.name}</h3>
           <p style={{ fontSize: '14px', color: '#666', margin: '0 0 8px' }}>{item.description}</p>
           <strong>{item.price}</strong>
-        </div>
+               </div>
       </div>
     ))}
   </div>
 </section>
 
-      
-      <CustomPrintableMenu />
+{/* ✅ 프린트용 컴포넌트 */}
+<CustomPrintableMenu />
 
-      {/* ✅ 푸터 섹션 */}
+{/* ✅ 푸터 섹션 */}
 <footer style={{
   textAlign: 'center',
   padding: '40px 0',
@@ -539,8 +539,7 @@ export default function SaladcityHome() {
   <p>© 2025 Saladcity. All rights reserved.</p>
   <p>contact@saladcity.co.kr | 서울시 성동구 성수이로 113, 2층</p>
 </footer>
-    </div>
-  );
-      
-      
-      }
+
+</div>   {/* ✅ 가장 바깥 return <div> 닫기 */}
+);        {/* ✅ return 함수 닫기 */}
+}         {/* ✅ export default function 닫기 */}
