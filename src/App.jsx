@@ -1,4 +1,7 @@
-import React from "react";
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+import PrintableMenu from "./PrintableMenu";
+
 
 const menuItems = [
   {
@@ -39,9 +42,31 @@ const menuItems = [
 ];
 
 export default function SaladcityHome() {
+const componentRef = useRef();
+const handlePrint = useReactToPrint({
+  content: () => componentRef.current,
+});
+
   return (
    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '50px'}}>
-
+  <button onClick={handlePrint} style={{
+    backgroundColor: '#3C8050',
+    color: '#fff',
+    padding: '10px 20px',
+    fontSize: '14px',
+    borderRadius: '6px',
+    border: 'none',
+    cursor: 'pointer',
+    margin: '40px auto 20px',
+    display: 'block'
+}}>
+  🖨 메뉴 PDF 다운로드
+</button>
+<PrintableMenu ref={componentRef} />
+    </div>
+  );
+}
+     
      <header style={{
   position: 'fixed',
   top: 0,
@@ -114,9 +139,6 @@ export default function SaladcityHome() {
   </a>
 </header>
 
-
-
-
       
       {/* 상단 Hero 영상 섹션 */}
       <div style={{
@@ -155,7 +177,7 @@ export default function SaladcityHome() {
       </div>
 
       {/* 메뉴 섹션 */}
-      <section style={{ padding: '60px 24px' }}>
+     <section style={{ padding: '60px 24px' }}>
         <h2 style={{ textAlign: 'center', fontSize: '28px', marginBottom: '40px', color: '#275f3a' }}>
           프리미엄 샐러드
         </h2>
