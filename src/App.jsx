@@ -63,7 +63,8 @@ const handlePrint = useReactToPrint({
 }}>
   🖨 메뉴 PDF 다운로드
 </button>
-     
+    <CustomPrintableMenu />
+ 
 
      <header style={{
   position: 'fixed',
@@ -562,6 +563,7 @@ const handlePrint = useReactToPrint({
 }}>
   🖨 메뉴 PDF 다운로드
 </button>
+<CustomPrintableMenu />
 
     
     {/* 푸터 */}
