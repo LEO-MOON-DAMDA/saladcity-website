@@ -486,7 +486,7 @@ export default function SaladcityHome() {
         image: "/images/scttl04.jpg",
         description: "버섯과 불고기를 함께 구워낸 웰빙 다이어트 플래터."
       }
-    ].map((item, index) => (
+].map((item, index) => (
       <div key={index} style={{
         width: '280px',
         borderRadius: '16px',
