@@ -219,6 +219,62 @@ export default function SaladcityHome() {
   </p>
 </section>
 
+{/* ✅ 정기식 구독 섹션 */}
+<section style={{ padding: '80px 24px', backgroundColor: '#ffffff' }}>
+  <h2 style={{ textAlign: 'center', fontSize: '28px', marginBottom: '12px', color: '#275f3a' }}>
+    샐러드시티 정기식 구독
+  </h2>
+  <p style={{ textAlign: 'center', fontSize: '16px', color: '#555', marginBottom: '40px' }}>
+    매주 바뀌는 샐러드 구성을 받아보세요.<br />
+    <span style={{ fontSize: '14px', color: '#9e9e9e' }}>
+      A personalized salad subscription for your healthy routine.
+    </span>
+  </p>
+  <div style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: '32px',
+    maxWidth: '1000px',
+    margin: '0 auto'
+  }}>
+    {[
+      { day: "월요일", name: "그릴드 치킨 샐러드", image: "/images/sub-monday.jpg" },
+      { day: "화요일", name: "연어 아보카도 샐러드", image: "/images/sub-tuesday.jpg" },
+      { day: "수요일", name: "머쉬룸 곡물 샐러드", image: "/images/sub-wednesday.jpg" },
+      { day: "목요일", name: "채소 베지 샐러드", image: "/images/sub-thursday.jpg" },
+      { day: "금요일", name: "스테이크 파워 샐러드", image: "/images/sub-friday.jpg" }
+    ].map((item, index) => (
+      <div key={index} style={{
+        width: '200px',
+        textAlign: 'center',
+        backgroundColor: '#f8fdf9',
+        borderRadius: '16px',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+        overflow: 'hidden'
+      }}>
+        <img src={item.image} alt={item.name} style={{ width: '100%', height: '140px', objectFit: 'cover' }} />
+        <div style={{ padding: '12px 12px 20px' }}>
+          <h4 style={{ fontSize: '15px', marginBottom: '4px', color: '#3C8050' }}>{item.day}</h4>
+          <p style={{ fontSize: '14px', color: '#444' }}>{item.name}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+  <div style={{ textAlign: 'center', marginTop: '40px' }}>
+    <button style={{
+      padding: '12px 24px',
+      fontSize: '15px',
+      backgroundColor: '#3C8050',
+      color: '#fff',
+      border: 'none',
+      borderRadius: '8px',
+      cursor: 'pointer'
+    }}>
+      정기배송 신청하기
+    </button>
+  </div>
+</section>
 
 
 
