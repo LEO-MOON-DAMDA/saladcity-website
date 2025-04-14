@@ -101,7 +101,8 @@ export default function SaladcityHome() {
         paddingTop: '80px'
       }}>
         <video
-         ref={videoRef}
+          key={videoIndex}
+          ref={videoRef}
           src={videoList[videoIndex]}
           autoPlay
           muted
