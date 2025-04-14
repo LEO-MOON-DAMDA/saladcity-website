@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
-import PrintableMenu from "./PrintableMenu";
 import CustomPrintableMenu from "./CustomPrintableMenu";
 
 
