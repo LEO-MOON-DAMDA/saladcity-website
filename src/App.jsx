@@ -547,7 +547,6 @@ const handlePrint = useReactToPrint({
 </section>
 
      <PrintableMenu ref={componentRef} />
-    </div>
 
     <button onClick={handlePrint} style={{
     backgroundColor: '#3C8050',
