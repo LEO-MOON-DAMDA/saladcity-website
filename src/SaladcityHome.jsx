@@ -97,8 +97,7 @@ export default function SaladcityHome() {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        color: '#fff',
-        paddingTop: '80px'
+        color: '#fff'
       }}>
         <video
           key={videoIndex}
