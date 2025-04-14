@@ -1,4 +1,3 @@
-import CustomPrintableMenu from "./CustomPrintableMenu";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MenuPage from "./components/MenuPage"; // 👉 방금 만든 메뉴페이지
 import SaladcityHome from "./SaladcityHome"; // 기존 메인 페이지
