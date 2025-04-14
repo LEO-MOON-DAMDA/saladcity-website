@@ -521,7 +521,7 @@ export default function SaladcityHome() {
     ))}
   </div>
 </section>
-
+      <CustomPrintableMenu />
 {/* ✅ 푸터 섹션 */}
 <footer style={{
   textAlign: 'center',
@@ -538,7 +538,7 @@ export default function SaladcityHome() {
 </footer>
 
 
-      <CustomPrintableMenu />
+
     </div>
   );
 }
