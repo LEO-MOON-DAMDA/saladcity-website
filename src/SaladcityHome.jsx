@@ -3,11 +3,6 @@ import { useLocation } from "react-router-dom";
 import CustomPrintableMenu from "./CustomPrintableMenu";
 import homepageMenuItems from "./data/homepageMenuItems.json";
 
-import React, { useRef, useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import CustomPrintableMenu from "./CustomPrintableMenu";
-import homepageMenuItems from "./data/homepageMenuItems.json";
-
 export default function SaladcityHome() {
   const videoRef = useRef(null);
   const [videoIndex, setVideoIndex] = useState(0);
