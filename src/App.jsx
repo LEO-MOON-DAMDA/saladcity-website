@@ -1,5 +1,3 @@
-import { useRef } from "react";
-import { useReactToPrint } from "react-to-print";
 import CustomPrintableMenu from "./CustomPrintableMenu";
 
 
@@ -42,10 +40,6 @@ const menuItems = [
 ];
 
 export default function SaladcityHome() {
-const componentRef = useRef();
-const handlePrint = useReactToPrint({
-  content: () => componentRef.current,
-});
 
   return (
    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '50px'}}>
@@ -533,23 +527,6 @@ const handlePrint = useReactToPrint({
   </div>
 </section>
      
-<div style={{ display: 'none' }}>
-  <PrintableMenu ref={componentRef} />
-</div>
-
-  <button onClick={handlePrint} style={{
-    backgroundColor: '#3C8050',
-    color: '#fff',
-    padding: '10px 20px',
-    fontSize: '14px',
-    borderRadius: '6px',
-    border: 'none',
-    cursor: 'pointer',
-    margin: '40px auto 20px',
-    display: 'block'
-}}>
-  🖨 메뉴 PDF 다운로드
-</button>
 <CustomPrintableMenu />
 
     
