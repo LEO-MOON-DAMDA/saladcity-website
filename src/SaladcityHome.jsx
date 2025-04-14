@@ -41,7 +41,7 @@ const menuItems = [
 
 export default function SaladcityHome() {
   return (
-    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '50px' }}>
+    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '0px' }}>
       {/* ✅ 상단 Hero 영상 섹션 */}
       <header style={{
         position: 'fixed',
