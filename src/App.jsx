@@ -50,19 +50,6 @@ const handlePrint = useReactToPrint({
 
   return (
    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '50px'}}>
-  <button onClick={handlePrint} style={{
-    backgroundColor: '#3C8050',
-    color: '#fff',
-    padding: '10px 20px',
-    fontSize: '14px',
-    borderRadius: '6px',
-    border: 'none',
-    cursor: 'pointer',
-    margin: '40px auto 20px',
-    display: 'block'
-}}>
-  🖨 메뉴 PDF 다운로드
-</button>
    
 
      <header style={{
@@ -551,7 +538,7 @@ const handlePrint = useReactToPrint({
   <PrintableMenu ref={componentRef} />
 </div>
 
-    <button onClick={handlePrint} style={{
+  <button onClick={handlePrint} style={{
     backgroundColor: '#3C8050',
     color: '#fff',
     padding: '10px 20px',
