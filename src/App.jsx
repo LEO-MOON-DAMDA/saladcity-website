@@ -561,8 +561,7 @@ const handlePrint = useReactToPrint({
         <p>contact@saladcity.co.kr | 서울시 성동구 성수이로 113, 2층</p>
       </footer>
     </div>
-  );
-}
+
 <PrintableMenu ref={componentRef} />
     </div>
   );
