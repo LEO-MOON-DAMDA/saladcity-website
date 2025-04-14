@@ -4,6 +4,16 @@ import homepageMenuItems from "./data/homepageMenuItems.json"; // ✅ 이 줄 �
 
 
 export default function SaladcityHome() {
+  const videoRef = useRef(null);
+  const [videoIndex, setVideoIndex] = useState(0);
+
+  const videoList = ["/videos/joyful-healthy-eating.mp4", "/videos/joyful2.mp4"];
+
+  const handleVideoEnd = () => {
+    // 다음 영상으로 변경
+    setVideoIndex((prev) => (prev + 1) % videoList.length);
+  };
+  
   return (
     <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: 0 }}>
       {/* ✅ 상단 Hero 영상 섹션 */}
@@ -88,14 +98,16 @@ export default function SaladcityHome() {
         justifyContent: 'center',
         textAlign: 'center',
         color: '#fff',
-        paddingTop: '60px'
+        paddingTop: '10px'
       }}>
         <video
-          src="/videos/joyful-healthy-eating.mp4"
+         ref={videoRef}
+          src={videoList[videoIndex]}
           autoPlay
           muted
-          loop
+          loop={false}           // ✅ loop 제거
           playsInline
+          onEnded={handleVideoEnd} // ✅ 끝나면 다음 영상 재생
           style={{
             position: 'absolute',
             top: 0,
@@ -107,7 +119,7 @@ export default function SaladcityHome() {
             filter: 'brightness(0.7) blur(1.5px)'
           }}
         />
-        <div style={{ position: 'relative', zIndex: 1 }}>
+      <div style={{ position: 'relative', zIndex: 1 }}>
           <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '200px', marginBottom: '20px' }} />
           <h1 style={{ fontSize: '40px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
           <p style={{ fontSize: '18px', marginTop: '8px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
