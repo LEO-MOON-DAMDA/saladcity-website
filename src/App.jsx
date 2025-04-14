@@ -40,7 +40,7 @@ const menuItems = [
 
 export default function SaladcityHome() {
   return (
-   <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '100px' }}>
+   <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8'}}>
 
      <header style={{
   position: 'fixed',
@@ -51,16 +51,13 @@ export default function SaladcityHome() {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: '16px 32px',
+  padding: '12px 32px',
   zIndex: 1000,
   backdropFilter: 'blur(6px)',
-  boxShadow: '0 2px 10px rgba(0,0,0,0.05)'
+  boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
+  height: '72px'  // 고정 높이
 }}>
-  <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
-    <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '48px' }} />
-  </a>
-
-  <nav style={{ display: 'flex', gap: '24px', fontSize: '14px', fontWeight: 500, letterSpacing: '0.3px' }}>
+  <nav style={{ display: 'flex', gap: '20px', fontSize: '14px', fontWeight: 500, letterSpacing: '0.3px', flex: 1 }}>
     {[
       { text: "OUR MENU", href: "/menu" },
       { text: "OUR MISSION", href: "/mission" },
@@ -88,18 +85,21 @@ export default function SaladcityHome() {
         {link.text}
       </a>
     ))}
-    <a href="/order" style={{
-      backgroundColor: '#3C8050',
-      color: '#fff',
-      padding: '8px 16px',
-      borderRadius: '6px',
-      textDecoration: 'none',
-      fontWeight: 600
-    }}>
-      ORDER
-    </a>
   </nav>
+
+  <a href="/order" style={{
+    backgroundColor: '#3C8050',
+    color: '#fff',
+    padding: '8px 16px',
+    borderRadius: '6px',
+    textDecoration: 'none',
+    fontWeight: 600,
+    whiteSpace: 'nowrap'
+  }}>
+    ORDER
+  </a>
 </header>
+
 
 
       
