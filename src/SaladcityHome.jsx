@@ -382,6 +382,64 @@ export default function SaladcityHome() {
   </div>
 </section>
 
+            {/* ✅ 굿즈 섹션 */}
+<section style={{ padding: '60px 24px', backgroundColor: '#ffffff' }}>
+  <h2 style={{ textAlign: 'center', fontSize: '28px', marginBottom: '12px', color: '#275f3a' }}>
+    샐러드시티 굿즈
+  </h2>
+  <p style={{ textAlign: 'center', fontSize: '16px', color: '#555', marginBottom: '40px' }}>
+    샐러드시티의 감성을 담은 아이템들<br />
+    <span style={{ fontSize: '14px', color: '#9e9e9e' }}>
+      Brand items that reflect the Saladcity lifestyle
+    </span>
+  </p>
+  <div style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: '32px',
+    maxWidth: '1200px',
+    margin: '0 auto'
+  }}>
+    {[
+      { name: "티셔츠", price: "₩19,000", image: "/images/goods-tshirt.jpg" },
+      { name: "머그컵", price: "₩12,000", image: "/images/goods-mug.jpg" },
+      { name: "에코백", price: "₩16,000", image: "/images/goods-ecobag.jpg" },
+      { name: "그립톡", price: "₩9,000", image: "/images/goods-griptok.jpg" }
+    ].map((item, index) => (
+      <div key={index} style={{
+        width: '240px',
+        borderRadius: '16px',
+        overflow: 'hidden',
+        backgroundColor: '#fafafa',
+        boxShadow: '0 6px 14px rgba(0,0,0,0.06)',
+        textAlign: 'center',
+        transition: 'transform 0.3s ease',
+        cursor: 'pointer'
+      }}
+        onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'}
+        onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
+        <img src={item.image} alt={item.name} style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+        <div style={{ padding: '16px' }}>
+          <h4 style={{ fontSize: '16px', margin: '0 0 6px' }}>{item.name}</h4>
+          <p style={{ fontSize: '14px', color: '#777' }}>{item.price}</p>
+          <button style={{
+            marginTop: '8px',
+            padding: '6px 14px',
+            backgroundColor: '#3C8050',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            fontSize: '14px'
+          }}>
+            자세히 보기
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
       
       {/* ✅ 플래터 메뉴 섹션 */}
 <section style={{ padding: '80px 24px', backgroundColor: '#f9fefb' }}>
@@ -464,64 +522,7 @@ export default function SaladcityHome() {
   </div>
 </section>
 
-      {/* ✅ 굿즈 섹션 */}
-<section style={{ padding: '60px 24px', backgroundColor: '#ffffff' }}>
-  <h2 style={{ textAlign: 'center', fontSize: '28px', marginBottom: '12px', color: '#275f3a' }}>
-    샐러드시티 굿즈
-  </h2>
-  <p style={{ textAlign: 'center', fontSize: '16px', color: '#555', marginBottom: '40px' }}>
-    샐러드시티의 감성을 담은 아이템들<br />
-    <span style={{ fontSize: '14px', color: '#9e9e9e' }}>
-      Brand items that reflect the Saladcity lifestyle
-    </span>
-  </p>
-  <div style={{
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: '32px',
-    maxWidth: '1200px',
-    margin: '0 auto'
-  }}>
-    {[
-      { name: "티셔츠", price: "₩19,000", image: "/images/goods-tshirt.jpg" },
-      { name: "머그컵", price: "₩12,000", image: "/images/goods-mug.jpg" },
-      { name: "에코백", price: "₩16,000", image: "/images/goods-ecobag.jpg" },
-      { name: "그립톡", price: "₩9,000", image: "/images/goods-griptok.jpg" }
-    ].map((item, index) => (
-      <div key={index} style={{
-        width: '240px',
-        borderRadius: '16px',
-        overflow: 'hidden',
-        backgroundColor: '#fafafa',
-        boxShadow: '0 6px 14px rgba(0,0,0,0.06)',
-        textAlign: 'center',
-        transition: 'transform 0.3s ease',
-        cursor: 'pointer'
-      }}
-        onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'}
-        onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-        <img src={item.image} alt={item.name} style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
-        <div style={{ padding: '16px' }}>
-          <h4 style={{ fontSize: '16px', margin: '0 0 6px' }}>{item.name}</h4>
-          <p style={{ fontSize: '14px', color: '#777' }}>{item.price}</p>
-          <button style={{
-            marginTop: '8px',
-            padding: '6px 14px',
-            backgroundColor: '#3C8050',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontSize: '14px'
-          }}>
-            자세히 보기
-          </button>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
+
 
       <CustomPrintableMenu />
     </div>
