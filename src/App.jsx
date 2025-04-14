@@ -8,8 +8,10 @@ export default function App() {
   return (
     <Router>
       <Routes>
+        <Route element={<Layout />}>
         <Route path="/" element={<SaladcityHome />} />
         <Route path="/menu" element={<MenuPage />} /> {/* ✅ 이거 꼭 필요 */}
+        </Route>
       </Routes>
     </Router>
   );
