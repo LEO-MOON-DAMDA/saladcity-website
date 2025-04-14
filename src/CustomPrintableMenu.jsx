@@ -7,7 +7,7 @@ const CustomPrintableMenu = () => {
   const handlePrint = () => {
     const content = printRef.current;
     const printWindow = window.open("", "_blank", "width=800,height=1000");
-    printWindow.document.write(\`
+    printWindow.document.write(`
       <html>
         <head>
           <title>메뉴 인쇄</title>
