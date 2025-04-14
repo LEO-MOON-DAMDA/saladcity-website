@@ -88,6 +88,8 @@ export default function SaladcityHome() {
         </a>
       </header>
 
+      <div style={{ height: '60px' }}></div>
+
       {/* ✅ 메인 배경 영상 */}
       <div style={{
         position: 'relative',
