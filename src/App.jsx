@@ -42,39 +42,65 @@ export default function SaladcityHome() {
   return (
    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '100px' }}>
 
-      <header style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        backgroundColor: '#ffffffee',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '16px 32px',
-        zIndex: 1000,
-        backdropFilter: 'blur(6px)',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.05)'
+     <header style={{
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100%',
+  backgroundColor: '#ffffffee',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '16px 32px',
+  zIndex: 1000,
+  backdropFilter: 'blur(6px)',
+  boxShadow: '0 2px 10px rgba(0,0,0,0.05)'
 }}>
-
-        <a href="/">
+  <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
     <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '48px' }} />
   </a>
-  <nav style={{ display: 'flex', gap: '24px', fontSize: '14px' }}>
-    <a href="/menu">OUR MENU</a>
-    <a href="/mission">OUR MISSION</a>
-    <a href="/market">THE MARKET</a>
-    <a href="/outpost">OUTPOST</a>
-    <a href="/catering">CATERING</a>
-    <a href="/locations">LOCATIONS</a>
+
+  <nav style={{ display: 'flex', gap: '24px', fontSize: '14px', fontWeight: 500, letterSpacing: '0.3px' }}>
+    {[
+      { text: "OUR MENU", href: "/menu" },
+      { text: "OUR MISSION", href: "/mission" },
+      { text: "THE MARKET", href: "/market" },
+      { text: "OUTPOST", href: "/outpost" },
+      { text: "CATERING", href: "/catering" },
+      { text: "LOCATIONS", href: "/locations" }
+    ].map((link, index) => (
+      <a key={index} href={link.href} style={{
+        textDecoration: 'none',
+        color: '#333',
+        paddingBottom: '2px',
+        borderBottom: '2px solid transparent',
+        transition: 'color 0.2s ease, border-bottom 0.2s ease'
+      }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.color = '#3C8050';
+          e.currentTarget.style.borderBottom = '2px solid #3C8050';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.color = '#333';
+          e.currentTarget.style.borderBottom = '2px solid transparent';
+        }}
+      >
+        {link.text}
+      </a>
+    ))}
     <a href="/order" style={{
       backgroundColor: '#3C8050',
       color: '#fff',
       padding: '8px 16px',
-      borderRadius: '6px'
-    }}>ORDER</a>
+      borderRadius: '6px',
+      textDecoration: 'none',
+      fontWeight: 600
+    }}>
+      ORDER
+    </a>
   </nav>
 </header>
+
 
       
       {/* 상단 Hero 영상 섹션 */}
