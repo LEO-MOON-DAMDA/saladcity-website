@@ -62,11 +62,8 @@ const handlePrint = useReactToPrint({
 }}>
   🖨 메뉴 PDF 다운로드
 </button>
-<PrintableMenu ref={componentRef} />
-    </div>
-  );
-}
      
+
      <header style={{
   position: 'fixed',
   top: 0,
@@ -566,5 +563,8 @@ const handlePrint = useReactToPrint({
     </div>
   );
 }
-
+<PrintableMenu ref={componentRef} />
+    </div>
+  );
+}
 
