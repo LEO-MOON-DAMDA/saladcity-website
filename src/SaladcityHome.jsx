@@ -202,6 +202,27 @@ export default function SaladcityHome() {
         </div>
       </section>
 
+{/* ✅ 브랜드 스토리 섹션 */}
+<section style={{ padding: '80px 24px', backgroundColor: '#f2f8f4', textAlign: 'center' }}>
+  <h2 style={{ fontSize: '26px', marginBottom: '16px', color: '#2f5d3c' }}>
+    샐러드가 바꿉니다
+  </h2>
+  <p style={{ maxWidth: '680px', margin: '0 auto', fontSize: '17px', lineHeight: '1.7', color: '#444' }}>
+    우리는 단순한 식사가 아닌<br />
+    더 건강하고 지속가능한 라이프스타일을 제안합니다.<br /><br />
+    매일 샐러드를 먹는다는 것은<br />
+    내 몸을 위한 선택이고,<br />
+    더 나은 식문화에 대한 약속입니다.<br /><br />
+    <span style={{ color: '#7fae85', fontWeight: 'bold' }}>
+      Eat Clean, Eat Smart. With Saladcity.
+    </span>
+  </p>
+</section>
+
+
+
+
+      
       {/* ✅ 플래터 메뉴 섹션 */}
 <section style={{ padding: '80px 24px', backgroundColor: '#f9fefb' }}>
   <h2 style={{ textAlign: 'center', fontSize: '28px', marginBottom: '12px', color: '#275f3a' }}>
