@@ -51,13 +51,25 @@ export default function SaladcityHome() {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: '12px 32px',
+  padding: '8px 24px', // ⬅️ 여백 줄임
   zIndex: 1000,
   backdropFilter: 'blur(6px)',
   boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
-  height: '72px'  // 고정 높이
+  height: '60px', // ⬅️ 높이 조정
+  boxSizing: 'border-box',
+  gap: '16px',
+  flexWrap: 'wrap' // ⬅️ 작은 화면에서 자동 줄바꿈 허용
 }}>
-  <nav style={{ display: 'flex', gap: '20px', fontSize: '14px', fontWeight: 500, letterSpacing: '0.3px', flex: 1 }}>
+  <nav style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '18px',
+    fontSize: '14px',
+    fontWeight: 500,
+    letterSpacing: '0.3px',
+    flex: 1,
+    minWidth: 0
+  }}>
     {[
       { text: "OUR MENU", href: "/menu" },
       { text: "OUR MISSION", href: "/mission" },
@@ -71,7 +83,8 @@ export default function SaladcityHome() {
         color: '#333',
         paddingBottom: '2px',
         borderBottom: '2px solid transparent',
-        transition: 'color 0.2s ease, border-bottom 0.2s ease'
+        transition: 'color 0.2s ease, border-bottom 0.2s ease',
+        whiteSpace: 'nowrap'
       }}
         onMouseEnter={(e) => {
           e.currentTarget.style.color = '#3C8050';
@@ -90,15 +103,17 @@ export default function SaladcityHome() {
   <a href="/order" style={{
     backgroundColor: '#3C8050',
     color: '#fff',
-    padding: '8px 16px',
+    padding: '6px 14px',
     borderRadius: '6px',
     textDecoration: 'none',
     fontWeight: 600,
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    flexShrink: 0
   }}>
     ORDER
   </a>
 </header>
+
 
 
 
