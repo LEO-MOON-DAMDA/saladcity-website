@@ -1,1 +1,11 @@
+/* index.css — 샐러드시티 공통 스타일 초기화 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f6fdf8;
+}
 
