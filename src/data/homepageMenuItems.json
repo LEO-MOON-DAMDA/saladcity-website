@@ -1,1 +1,68 @@
-
+[
+  {
+    "name": "샐시업타운 수비드돈목살파스타샐러드",
+    "price": "₩16,000",
+    "image": "/images/s_prs_prspk",
+    "description": "샐러드로 완성한 건강한 한 끼",
+    "kcal": 500,
+    "protein": 15,
+    "carbs": 20,
+    "fat": 20,
+    "co2": 1.5
+  },
+  {
+    "name": "샐시업타운 로스트베지 포케",
+    "price": "₩14,000",
+    "image": "/images/s_pok_prrv",
+    "description": "포케로 완성한 건강한 한 끼",
+    "kcal": 420,
+    "protein": 12,
+    "carbs": 18,
+    "fat": 18,
+    "co2": 1.0
+  },
+  {
+    "name": "샐시업타운 수비드치킨(닭가슴살) 포케",
+    "price": "₩15,800",
+    "image": "/images/s_pok_prchk",
+    "description": "포케로 완성한 건강한 한 끼",
+    "kcal": 520,
+    "protein": 22,
+    "carbs": 28,
+    "fat": 20,
+    "co2": 1.8
+  },
+  {
+    "name": "샐시업타운 부라타 슈퍼푸드샐러드",
+    "price": "₩26,000",
+    "image": "/images/s_prs_bu",
+    "description": "샐러드로 완성한 건강한 한 끼",
+    "kcal": 500,
+    "protein": 15,
+    "carbs": 20,
+    "fat": 20,
+    "co2": 1.5
+  },
+  {
+    "name": "샐시 AKB (사과 케일 바나나) 수제주스",
+    "price": "₩4,800",
+    "image": "/images/s_AKB",
+    "description": "샐러드시티 시그니처 메뉴",
+    "kcal": 80,
+    "protein": 1,
+    "carbs": 18,
+    "fat": 0,
+    "co2": 0.3
+  },
+  {
+    "name": "샐시업타운 리코타 슈퍼푸드샐러드",
+    "price": "₩24,000",
+    "image": "/images/s_prs_ri",
+    "description": "샐러드로 완성한 건강한 한 끼",
+    "kcal": 500,
+    "protein": 15,
+    "carbs": 20,
+    "fat": 20,
+    "co2": 1.5
+  }
+]
