@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import CustomPrintableMenu from "./CustomPrintableMenu";
-import homepageMenuItems from "./data/homepageMenuItems.json"; // ✅ 이 줄 추가
+import homepageMenuItems from "./data/homepageMenuItems.json";
 
 
 export default function SaladcityHome() {
