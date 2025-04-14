@@ -98,7 +98,7 @@ export default function SaladcityHome() {
         justifyContent: 'center',
         textAlign: 'center',
         color: '#fff',
-        paddingTop: '10px'
+        paddingTop: '80px'
       }}>
         <video
          ref={videoRef}
