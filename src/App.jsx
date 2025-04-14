@@ -63,8 +63,7 @@ const handlePrint = useReactToPrint({
 }}>
   🖨 메뉴 PDF 다운로드
 </button>
-    <CustomPrintableMenu />
- 
+   
 
      <header style={{
   position: 'fixed',
@@ -547,8 +546,10 @@ const handlePrint = useReactToPrint({
     </a>
   </div>
 </section>
-
-     <PrintableMenu ref={componentRef} />
+     
+<div style={{ display: 'none' }}>
+  <PrintableMenu ref={componentRef} />
+</div>
 
     <button onClick={handlePrint} style={{
     backgroundColor: '#3C8050',
