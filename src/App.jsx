@@ -13,69 +13,6 @@ export default function App() {
   );
 }
 
-
-const menuItems = [
-  {
-    name: "로스트베지 샐러드 Vegan",
-    price: "₩10,900",
-    image: "/images/ABC01.jpg",
-    description: "구운 당근, 브로콜리, 컬리플라워와 렌틸콩 등 샐러드시티 베스트셀러.",
-    kcal: 320, protein: 10, carbs: 30, fat: 12, co2: 0.9
-  },
-  {
-    name: "머쉬룸 샐러드 Ovo Vegetarian",
-    price: "₩12,500",
-    image: "/images/CCA01.jpg",
-    description: "쫄깃하게 구워낸 국내산 머쉬룸에 단호박, 아보카도, 유기농 계란까지 더한 든든한 샐러드.",
-    kcal: 430, protein: 17, carbs: 24, fat: 22, co2: 1.0
-  },
-  {
-    name: "수비드 치킨 샐러드",
-    price: "₩13,800",
-    image: "/images/sc모짜렐라01.jpg",
-    description: "국내산 닭가슴살 수비드 + 슈퍼푸드 믹스 샐러드.",
-    kcal: 490, protein: 32, carbs: 22, fat: 18, co2: 1.3
-  },
-  {
-    name: "살몬 샐러드",
-    price: "₩15,000",
-    image: "/images/scttl02.jpg",
-    description: "친환경 연어와 슈퍼푸드가 어우러진 고단백 샐러드.",
-    kcal: 520, protein: 28, carbs: 20, fat: 25, co2: 2.1
-  },
-  {
-    name: "수비드 스테이크 샐러드",
-    price: "₩16,500",
-    image: "/images/in_up_수비드돈목살파스타01.jpg",
-    description: "소등심 스테이크와 채소가 어우러진 프리미엄 고단백 샐러드.",
-    kcal: 580, protein: 34, carbs: 18, fat: 28, co2: 2.4
-  }
-];
-
-export default function SaladcityHome() {
-
-  return (
-   <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '50px'}}>
-   
-
-     <header style={{
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  width: '100%',
-  backgroundColor: '#ffffffee',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: '8px 24px', // ⬅️ 여백 줄임
-  zIndex: 1000,
-  backdropFilter: 'blur(6px)',
-  boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
-  height: '60px', // ⬅️ 높이 조정
-  boxSizing: 'border-box',
-  gap: '16px',
-  flexWrap: 'wrap' // ⬅️ 작은 화면에서 자동 줄바꿈 허용
-}}>
   <nav style={{
     display: 'flex',
     flexWrap: 'wrap',
