@@ -40,7 +40,7 @@ const menuItems = [
 
 export default function SaladcityHome() {
   return (
-   <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8'}}>
+   <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '50px'}}>
 
      <header style={{
   position: 'fixed',
