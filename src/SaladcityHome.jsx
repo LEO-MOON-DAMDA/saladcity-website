@@ -87,7 +87,8 @@ export default function SaladcityHome() {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        color: '#fff'
+        color: '#fff',
+        paddingTop: '60px'
       }}>
         <video
           src="/videos/joyful-healthy-eating.mp4"
