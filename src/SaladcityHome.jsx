@@ -522,24 +522,23 @@ export default function SaladcityHome() {
 </div>       {/* ✅ 카드들 감싸는 wrapper */}
 </section>
 
-{/* ✅ 프린트용 컴포넌트 */}
-<CustomPrintableMenu />
+ {/* 프린트 컴포넌트 */}
+      <CustomPrintableMenu />
 
-{/* ✅ 푸터 섹션 */}
-<footer style={{
-  textAlign: 'center',
-  padding: '40px 0',
-  backgroundColor: '#eaf5ec',
-  color: '#444',
-  fontSize: '14px',
-  borderTop: '1px solid #cfe3d5',
-  marginTop: '60px'
-}}>
-  <p>#Saladcity_Global</p>
-  <p>© 2025 Saladcity. All rights reserved.</p>
-  <p>contact@saladcity.co.kr | 서울시 성동구 성수이로 113, 2층</p>
-</footer>
-
-</div>   {/* ✅ 가장 바깥 return <div> 닫기 */}
-);        {/* ✅ return 함수 닫기 */}
-}         {/* ✅ export default function 닫기 */}
+      {/* 푸터 */}
+      <footer style={{
+        textAlign: 'center',
+        padding: '40px 0',
+        backgroundColor: '#eaf5ec',
+        color: '#444',
+        fontSize: '14px',
+        borderTop: '1px solid #cfe3d5',
+        marginTop: '60px'
+      }}>
+        <p>#Saladcity_Global</p>
+        <p>© 2025 Saladcity. All rights reserved.</p>
+        <p>contact@saladcity.co.kr | 서울시 성동구 성수이로 113, 2층</p>
+      </footer>
+    </div>
+  );
+}
