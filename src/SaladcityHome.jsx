@@ -1,14 +1,14 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
 import CustomPrintableMenu from "./CustomPrintableMenu";
 import homepageMenuItems from "./data/homepageMenuItems.json";
 
 export default function SaladcityHome() {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
   const videoRef = useRef(null);
   const [videoIndex, setVideoIndex] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
-  const isDetailPage = location.pathname.startsWith("/recipe/");
 
   const videoList = ["/videos/joyful-healthy-eating.mp4", "/videos/joyful2.mp4"];
 
@@ -16,82 +16,141 @@ export default function SaladcityHome() {
     setVideoIndex((prev) => (prev + 1) % videoList.length);
   };
 
-  useEffect(() => {
-    setMenuOpen(false); // 페이지 이동 시 메뉴 닫기
-  }, [location.pathname]);
+  // 햄버거 메뉴 토글
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
- return (
-    <div style={{ fontFamily: "sans-serif", backgroundColor: "#f6fdf8", paddingTop: 0 }}>
-      {/* ✅ 상단 헤더 */}
+  return (
+    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: 0 }}>
+      {/* ✅ 헤더 */}
       <header style={{
-        position: "fixed", top: 0, left: 0, width: "100%",
-        backgroundColor: "#ffffffee", display: "flex",
-        alignItems: "center", justifyContent: "space-between",
-        padding: "8px 24px", zIndex: 1000, backdropFilter: "blur(6px)",
-        boxShadow: "0 2px 10px rgba(0,0,0,0.05)", height: "60px", boxSizing: "border-box"
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        backgroundColor: '#ffffffee',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '8px 24px',
+        zIndex: 1000,
+        backdropFilter: 'blur(6px)',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
+        height: '60px',
+        boxSizing: 'border-box'
       }}>
-        {/* ✅ 상세페이지에만 로고 중앙에 표시 */}
-        {isDetailPage && (
-          <div style={{
-            position: "absolute", left: "50%", transform: "translateX(-50%)",
-            top: "50%", transformOrigin: "center", display: "flex", alignItems: "center"
-          }}>
-            <a href="/">
-              <img src="/images/saladcity_origin.png" alt="Home" style={{ height: "40px" }} />
-            </a>
-          </div>
+        {/* ✅ 상세페이지에서만 가운데 로고 */}
+        {!isHome && (
+          <Link to="/" style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
+            <img src="/images/saladcity_origin.png" alt="Home" style={{ height: '40px' }} />
+          </Link>
         )}
 
-        {/* 햄버거 버튼 */}
-        <button onClick={() => setMenuOpen(!menuOpen)} style={{
-          background: "none", border: "none", cursor: "pointer",
-          display: "inline-block", fontSize: "24px", padding: "0", marginRight: "12px"
-        }}>
-          ☰
-        </button>
+        {/* ✅ 햄버거 메뉴 (홈에서만 보임) */}
+        {isHome && (
+          <>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <button onClick={toggleMenu} style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '24px',
+                cursor: 'pointer',
+                color: '#333'
+              }}>
+                ☰
+              </button>
+            </div>
+            {menuOpen && (
+              <div style={{
+                position: 'absolute',
+                top: '60px',
+                left: 0,
+                width: '100%',
+                backgroundColor: '#fff',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                zIndex: 999
+              }}>
+                {[
+                  { text: "OUR MENU", href: "/menu" },
+                  { text: "OUR MISSION", href: "/mission" },
+                  { text: "THE MARKET", href: "/market" },
+                  { text: "OUTPOST", href: "/outpost" },
+                  { text: "CATERING", href: "/catering" },
+                  { text: "LOCATIONS", href: "/locations" }
+                ].map((link, index) => (
+                  <a key={index} href={link.href} style={{
+                    display: 'block',
+                    padding: '12px 24px',
+                    textDecoration: 'none',
+                    color: '#333',
+                    borderBottom: '1px solid #eee'
+                  }}>
+                    {link.text}
+                  </a>
+                ))}
+              </div>
+            )}
+          </>
+        )}
 
-        {/* 메뉴 네비게이션 */}
-        <nav style={{
-          display: menuOpen ? "flex" : "none",
-          flexDirection: "column",
-          position: "absolute",
-          top: "60px",
-          left: 0,
-          width: "100%",
-          backgroundColor: "#fff",
-          boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
-          zIndex: 999,
-          padding: "12px 24px"
-        }}>
-          {[
-            { text: "OUR MENU", href: "/menu" },
-            { text: "OUR MISSION", href: "/mission" },
-            { text: "THE MARKET", href: "/market" },
-            { text: "OUTPOST", href: "/outpost" },
-            { text: "CATERING", href: "/catering" },
-            { text: "LOCATIONS", href: "/locations" }
-          ].map((link, index) => (
-            <a key={index} href={link.href} style={{
-              color: "#333", padding: "8px 0", textDecoration: "none",
-              borderBottom: "1px solid #ddd"
-            }}>
-              {link.text}
-            </a>
-          ))}
-        </nav>
+        {/* ✅ 상세페이지 메뉴 (홈에서는 안 보임) */}
+        {!isHome && (
+          <nav style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '18px',
+            fontSize: '14px',
+            fontWeight: 500,
+            letterSpacing: '0.3px'
+          }}>
+            {[
+              { text: "OUR MENU", href: "/menu" },
+              { text: "OUR MISSION", href: "/mission" },
+              { text: "THE MARKET", href: "/market" },
+              { text: "OUTPOST", href: "/outpost" },
+              { text: "CATERING", href: "/catering" },
+              { text: "LOCATIONS", href: "/locations" }
+            ].map((link, index) => (
+              <a key={index} href={link.href} style={{
+                textDecoration: 'none',
+                color: '#333',
+                paddingBottom: '2px',
+                borderBottom: '2px solid transparent',
+                transition: 'color 0.2s ease, borderBottom 0.2s ease',
+                whiteSpace: 'nowrap'
+              }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#3C8050';
+                  e.currentTarget.style.borderBottom = '2px solid #3C8050';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '#333';
+                  e.currentTarget.style.borderBottom = '2px solid transparent';
+                }}
+              >
+                {link.text}
+              </a>
+            ))}
+          </nav>
+        )}
 
-        {/* 우측 ORDER 버튼 */}
+        {/* ✅ ORDER 버튼 */}
         <a href="/order" style={{
-          backgroundColor: "#3C8050", color: "#fff", padding: "6px 14px",
-          borderRadius: "6px", textDecoration: "none", fontWeight: 600,
-          whiteSpace: "nowrap", flexShrink: 0
+          backgroundColor: '#3C8050',
+          color: '#fff',
+          padding: '6px 14px',
+          borderRadius: '6px',
+          textDecoration: 'none',
+          fontWeight: 600,
+          whiteSpace: 'nowrap',
+          flexShrink: 0
         }}>
           ORDER
         </a>
       </header>
 
-
-      {/* ✅ 메인 배경 영상 */}
+      {/* ✅ 배경 영상 */}
       <div style={{
         position: 'relative',
         height: '800px',
@@ -100,9 +159,11 @@ export default function SaladcityHome() {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        color: '#fff'
+        color: '#fff',
+        paddingTop: '80px'
       }}>
-        <video
+
+       <video
           key={videoIndex}
           ref={videoRef}
           src={videoList[videoIndex]}
