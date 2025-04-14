@@ -1,5 +1,6 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
 import SaladcityHome from "./SaladcityHome";
 import MenuPage from "./components/MenuPage";
 
