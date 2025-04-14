@@ -40,8 +40,43 @@ const menuItems = [
 
 export default function SaladcityHome() {
   return (
-    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8' }}>
+   <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8', paddingTop: '100px' }}>
 
+      <header style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        backgroundColor: '#ffffffee',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '16px 32px',
+        zIndex: 1000,
+        backdropFilter: 'blur(6px)',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.05)'
+}}>
+
+        <a href="/">
+    <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '48px' }} />
+  </a>
+  <nav style={{ display: 'flex', gap: '24px', fontSize: '14px' }}>
+    <a href="/menu">OUR MENU</a>
+    <a href="/mission">OUR MISSION</a>
+    <a href="/market">THE MARKET</a>
+    <a href="/outpost">OUTPOST</a>
+    <a href="/catering">CATERING</a>
+    <a href="/locations">LOCATIONS</a>
+    <a href="/order" style={{
+      backgroundColor: '#3C8050',
+      color: '#fff',
+      padding: '8px 16px',
+      borderRadius: '6px'
+    }}>ORDER</a>
+  </nav>
+</header>
+
+      
       {/* 상단 Hero 영상 섹션 */}
       <div style={{
         position: 'relative',
