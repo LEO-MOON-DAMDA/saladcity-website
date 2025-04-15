@@ -2,11 +2,10 @@ import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./MenuSlider.css";
 
-const sound = new Audio("/sounds/slide.mp3");
-
 export default function MenuSlider({ items }) {
   const containerRef = useRef(null);
   const [centerIndex, setCenterIndex] = useState(0);
+  const [audio] = useState(() => new Audio("/sounds/slide.mp3"));
   const scrollTimeout = useRef(null);
 
   const loopedItems = [...items, ...items, ...items];
@@ -45,8 +44,8 @@ export default function MenuSlider({ items }) {
 
     if (closestIndex !== centerIndex) {
       setCenterIndex(closestIndex);
-      sound.currentTime = 0;
-      sound.play().catch(() => {});
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
     }
 
     if (closestIndex <= originalLength / 2) {
@@ -84,16 +83,18 @@ export default function MenuSlider({ items }) {
     <div className="slider-scroll-wrapper" ref={containerRef}>
       {loopedItems.map((item, index) => {
         const offset = index - centerIndex;
-        const translateX = offset * 30; // 카드가 겹쳐지도록 조절
+        const translate = offset * 20;
 
         return (
           <motion.div
             key={`${item.name}-${index}`}
             className="scroll-card"
+            style={{
+              transform: `translateX(${translate}px)`,
+              zIndex: 10 - Math.abs(offset),
+            }}
             animate={{
               scale: index === centerIndex ? 1.25 : 0.85,
-              zIndex: 10 - Math.abs(offset),
-              x: translateX,
             }}
             transition={{ type: "spring", stiffness: 250, damping: 22 }}
           >
