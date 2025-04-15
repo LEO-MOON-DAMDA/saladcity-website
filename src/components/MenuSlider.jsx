@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./MenuSlider.css";
 
-const sound = new Audio("/sounds/final_loop_slide_click.mp3");
+const sound = new Audio("/sounds/slide.mp3");
 
 export default function MenuSlider({ items }) {
   const containerRef = useRef(null);
