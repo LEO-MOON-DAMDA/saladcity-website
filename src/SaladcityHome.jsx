@@ -26,6 +26,7 @@ export default function SaladcityHome() {
       <div style={{
         position: 'relative',
         height: '800px',
+        marginTop: '-60px',           // ✅ 헤더 높이만큼 겹침 처리
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
