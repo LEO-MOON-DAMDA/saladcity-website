@@ -88,7 +88,7 @@ export default function Header() {
             textDecoration: 'none',
             fontWeight: 600,
             whiteSpace: 'nowrap',
-            flexShrink: 0
+            marginLeft: 'auto' // ✅ PC에서 ORDER는 우측 끝으로 밀어줌
           }}>
             ORDER
           </a>
