@@ -12,10 +12,15 @@
   perspective: 2000px;
 
   /* ✅ 모바일 UX 향상 */
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;  /* iOS inertial scroll */
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
   scrollbar-width: none;
+
+  /* ✅ 추가된 터치 UX 향상 */
+  overscroll-behavior-x: contain;     /* Android에서 스크롤 튐 방지 */
+  scroll-padding: 0 24px;             /* snap 중심 여유 */
+  touch-action: pan-x;                /* 수평 스크롤만 허용 */
 }
 
 .slider-scroll-wrapper::-webkit-scrollbar {
@@ -40,8 +45,8 @@
   position: relative;
   transition: transform 0.3s ease;
 
-  /* ✅ 스크롤 스냅 중심으로 맞추기 */
   scroll-snap-align: center;
+  margin: 0 12px; /* ✅ 좌우 여유 → 더 부드러운 UX */
 }
 
 .card-image {
@@ -106,7 +111,6 @@
   right: 12px;
 }
 
-/* 모바일 화살표 숨김 */
 @media (max-width: 768px) {
   .slider-arrow {
     display: none;
