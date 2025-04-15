@@ -141,19 +141,19 @@ export default function Header() {
           }}>
             <div style={{
               width: '24px', height: '2px',
-              backgroundColor: '#333', marginBottom: '6px',
+              backgroundColor: '#fff', marginBottom: '6px',
               transition: 'all 0.3s ease',
               transform: isOpen ? 'translateY(8px) rotate(45deg)' : 'none'
             }} />
             <div style={{
               width: '24px', height: '2px',
-              backgroundColor: '#333', marginBottom: '6px',
+              backgroundColor: '#fff', marginBottom: '6px',
               opacity: isOpen ? 0 : 1,
               transition: 'opacity 0.3s ease'
             }} />
             <div style={{
               width: '24px', height: '2px',
-              backgroundColor: '#333',
+              backgroundColor: '#fff',
               transition: 'all 0.3s ease',
               transform: isOpen ? 'translateY(-8px) rotate(-45deg)' : 'none'
             }} />
