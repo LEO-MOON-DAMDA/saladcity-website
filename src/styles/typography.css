@@ -1,9 +1,12 @@
-/* src/styles/typography.css */
+/* ✅ 폰트 불러오기 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
+/* ✅ 기본 폰트 설정 */
 * {
   font-family: 'Inter', 'Helvetica Neue', sans-serif;
 }
 
+/* ✅ 타이틀: 큰 제목 (Hero, 섹션 메인) */
 .heading-lg {
   font-size: 32px;
   font-weight: 500;
@@ -12,6 +15,7 @@
   color: #111;
 }
 
+/* ✅ 타이틀: 중간 제목 (카테고리, 리스트) */
 .heading-md {
   font-size: 24px;
   font-weight: 500;
@@ -20,6 +24,7 @@
   color: #111;
 }
 
+/* ✅ 타이틀: 소제목 (카드 제목, 필터) */
 .heading-sm {
   font-size: 18px;
   font-weight: 500;
@@ -28,6 +33,7 @@
   color: #222;
 }
 
+/* ✅ 본문 텍스트 */
 .text-body {
   font-size: 14px;
   font-weight: 400;
@@ -36,6 +42,7 @@
   color: #444;
 }
 
+/* ✅ 설명, 캡션 등 */
 .text-caption {
   font-size: 12px;
   font-weight: 400;
@@ -44,6 +51,7 @@
   color: #666;
 }
 
+/* ✅ 모바일 대응 */
 @media (max-width: 768px) {
   .heading-lg { font-size: 24px; }
   .heading-md { font-size: 20px; }
