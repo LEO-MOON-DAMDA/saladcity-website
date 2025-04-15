@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import menuItems from "../data/menuItems.json";
 import MenuSectionSlider from "./MenuSectionSlider";
-import MenuCategoryNav from "./MenuCategoryNav"; // ✅ 추가
+import MenuCategoryNav from "./MenuCategoryNav"; // ✅ 고정 네비게이션 추가
 import "./MenuPage.css";
 
 export default function MenuPage() {
   const location = useLocation();
 
-  // ✅ 해시(#카테고리명) 이동 처리
+  // ✅ 해시(#카테고리명)로 부드럽게 이동
   useEffect(() => {
     if (location.hash) {
       const sectionId = decodeURIComponent(location.hash.replace("#", ""));
@@ -16,7 +16,7 @@ export default function MenuPage() {
       if (el) {
         setTimeout(() => {
           el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 100); // 렌더링 보장용 딜레이
+        }, 100);
       }
     }
   }, [location]);
@@ -36,7 +36,7 @@ export default function MenuPage() {
         <img src="/images/salad/salcy_menu04.png" alt="kitchen background" />
       </div>
 
-      {/* 🧭 고정 카테고리 네비게이션 */}
+      {/* 🧭 상단 고정 네비게이션 */}
       <MenuCategoryNav />
 
       {/* 🧾 메뉴 콘텐츠 */}
