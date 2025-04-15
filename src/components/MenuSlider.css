@@ -56,7 +56,7 @@
 
 /* 카드 내용 */
 .card-text {
-  padding: 12px 12px 10px;
+  padding: 10px 12px 8px; /* ⬅ 여백 최소화 */
   font-size: 13px;
   color: #333;
   background: rgba(255, 255, 255, 0.95);
@@ -64,48 +64,56 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  line-height: 1.4;
-  gap: 4px;
+  line-height: 1.2;       /* ⬅ 행간 압축 */
+  gap: 2px;               /* ⬅ 요소 간 여백 최소화 */
 }
 
-/* ✅ 카테고리 텍스트 */
+/* 카테고리 텍스트 */
 .card-text .category {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: #2c8f5b;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   margin-bottom: 2px;
+  line-height: 1.1;
 }
 
-/* ✅ 제품명 강조 */
+/* 제품명 */
 .card-text h3 {
-  font-size: 17px;
+  font-size: 15px;
   margin: 0;
   color: #111;
   font-family: 'Inter', sans-serif;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.3px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.2;
 }
 
+/* 설명 */
 .card-text p {
   margin: 0;
-  font-size: 13px;
+  font-size: 12px;
   color: #666;
-  line-height: 1.3;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* 가격 */
 .card-text span {
   font-weight: bold;
   color: #2c8f5b;
   font-size: 13px;
-  margin-top: 2px;
+  margin-top: 1px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.2;
 }
 
 /* 화살표 */
