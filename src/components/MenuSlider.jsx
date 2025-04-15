@@ -122,11 +122,14 @@ export default function MenuSlider({ items }) {
       <div className="slider-scroll-wrapper" ref={containerRef}>
         {loopedItems.map((item, index) => {
           const offset = index - centerIndex;
+          const distance = Math.abs(offset);
           const isCenter = index === centerIndex;
-          const rotateY = offset === 0 ? 0 : offset < 0 ? -35 : 35; // ✅ 반대 방향으로 기울어짐
-          const scale = isCenter ? 1.25 : 0.8;
-          const opacity = isCenter ? 1 : 0.5;
-          const zIndex = isCenter ? 10 : 5 - Math.abs(offset);
+
+          // ✅ 거리 기반 scale/opacity
+          const scale = isCenter ? 1.25 : Math.max(0.7, 1.25 - distance * 0.15);
+          const opacity = isCenter ? 1 : Math.max(0.3, 1 - distance * 0.2);
+          const rotateY = offset === 0 ? 0 : offset < 0 ? -35 : 35;
+          const zIndex = isCenter ? 10 : 5 - distance;
 
           return (
             <motion.div
