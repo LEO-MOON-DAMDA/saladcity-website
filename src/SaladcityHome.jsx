@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import homepageMenuItems from "./data/homepageMenuItems.json";
-import FeaturedMenuSection from "./components/FeaturedMenuSection"; // ✅ 슬라이더 적용
+import FeaturedMenuSection from "./components/FeaturedMenuSection";
 import CustomPrintableMenu from "./CustomPrintableMenu";
 
 export default function SaladcityHome() {
@@ -44,7 +44,16 @@ export default function SaladcityHome() {
   }, []);
 
   return (
-    <div style={{ fontFamily: "sans-serif", backgroundColor: "#f6fdf8", paddingTop: "0px" }}>
+    <div
+      style={{
+        fontFamily: "sans-serif",
+        backgroundColor: "#f6fdf8",
+        paddingTop: "0px",
+        overflow: "visible",       // ✅ 카드 hover 및 하단 콘텐츠 보이게
+        position: "relative",      // ✅ z-index 기준
+        minHeight: "100vh"         // ✅ 푸터까지 공간 확보
+      }}
+    >
       <Header hideLogo={location.pathname === "/"} />
 
       {/* ✅ 메인 비디오 */}
@@ -103,11 +112,10 @@ export default function SaladcityHome() {
         </div>
       </div>
 
-      {/* ✅ 추천메뉴 슬라이더 (NEW) */}
+      {/* ✅ 추천메뉴 슬라이더 */}
       <FeaturedMenuSection items={homepageMenuItems} />
 
-      {/* ✅ 이후 섹션은 그대로 유지 */}
-      {/* 브랜드 스토리, 정기식 구독, 매장 안내, 인스타 피드, 굿즈, 플래터, 프린트 */}
+      {/* ✅ 프린트 섹션 */}
       <CustomPrintableMenu />
 
       {/* ✅ 푸터 */}
