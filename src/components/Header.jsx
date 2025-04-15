@@ -50,7 +50,7 @@ export default function Header() {
           {isDetail && (
             <a href="/" style={{ marginRight: '16px' }}>
               <img src="/images/saladcity_origin.png" alt="home" style={{
-                  height: '60px',
+                  height: '30px',
                   objectFit: 'cover',
                   objectPosition: 'center'
                 }} />
