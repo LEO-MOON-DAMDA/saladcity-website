@@ -5,7 +5,7 @@ import "./MenuSlider.css";
 export default function MenuSlider({ items, onTagClick, selectedTags }) {
   const scrollRef = useRef(null);
 
-  // 카드 중심 확대 효과 적용
+  // ✅ 카드 중심 확대 효과 적용
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -30,17 +30,20 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
     };
 
     container.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // 초기 실행
+    handleScroll(); // ✅ 초기 적용
 
     return () => {
       container.removeEventListener("scroll", handleScroll);
     };
   }, [items]);
 
+  // ✅ 안정화 모드: 카드 10개만 테스트용으로 렌더링
+  const safeItems = items.slice(0, 10); // ← 여기만 나중에 제거하면 전체 렌더링 가능
+
   return (
     <div className="slider-wrapper">
       <div className="slider-scroll-wrapper" ref={scrollRef}>
-        {items.map((item, idx) => (
+        {safeItems.map((item, idx) => (
           <MenuCard
             key={idx}
             item={item}
