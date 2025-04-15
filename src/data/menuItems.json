@@ -312,7 +312,7 @@
     "co2":"0.3kg"
   },
   {
-    "category":"Dressing",
+    "category":"DRESSING",
     "name":"샐시 이탈리안 (시그니처)",
     "summary":"샐러드시티 시그니처 메뉴",
     "price":1100,
@@ -324,7 +324,7 @@
     "co2":"1.5kg"
   },
   {
-    "category":"Dressing",
+    "category":"DRESSING",
     "name":"샐시 스리라차마요",
     "summary":"샐러드시티 시그니처 메뉴",
     "price":1100,
@@ -336,7 +336,7 @@
     "co2":"1.5kg"
   },
   {
-    "category":"Dressing",
+    "category":"DRESSING",
     "name":"샐시 오리엔탈 (시그니처)",
     "summary":"샐러드시티 시그니처 메뉴",
     "price":1100,
@@ -348,7 +348,7 @@
     "co2":"2.1kg"
   },
   {
-    "category":"Dressing",
+    "category":"DRESSING",
     "name":"샐시 오렌지",
     "summary":"샐러드시티 시그니처 메뉴",
     "price":1100,
@@ -360,7 +360,7 @@
     "co2":"1.5kg"
   },
   {
-    "category":"Dressing",
+    "category":"DRESSING",
     "name":"샐시 크림시저",
     "summary":"샐러드시티 시그니처 메뉴",
     "price":1600,
@@ -372,7 +372,7 @@
     "co2":"1.5kg"
   },
   {
-    "category":"Dressing",
+    "category":"DRESSING",
     "name":"샐시 발사믹 (시그니처)",
     "summary":"샐러드시티 시그니처 메뉴",
     "price":1400,
@@ -384,7 +384,7 @@
     "co2":"1.5kg"
   },
   {
-    "category":"Dressing",
+    "category":"DRESSING",
     "name":"샐시 수제 그릭요거트 (프리미엄)",
     "summary":"샐러드시티 시그니처 메뉴",
     "price":1900,
@@ -396,7 +396,7 @@
     "co2":"1.5kg"
   },
   {
-    "category":"Dressing",
+    "category":"DRESSING",
     "name":"샐시 수제 오리엔탈 (프리미엄)",
     "summary":"샐러드시티 시그니처 메뉴",
     "price":1900,
