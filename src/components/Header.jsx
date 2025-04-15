@@ -125,7 +125,7 @@ export default function Header() {
 
           <div onClick={() => setIsOpen(!isOpen)} style={{
             position: 'absolute',
-            top: '50%',
+            top: '25%',
             left: '24px',
             cursor: 'pointer'
           }}>
