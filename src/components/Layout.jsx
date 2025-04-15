@@ -7,13 +7,14 @@ export default function Layout() {
   const isHome = location.pathname === "/";
 
   return (
-    <div style={{ fontFamily: 'sans-serif', backgroundColor: '#f6fdf8' }}>
-      <Header />
+   <div
+  style={{
+    paddingTop: isHome ? '0px' : '80px',
+    backgroundColor: isHome ? 'transparent' : '#f6fdf8'  // ✅ 여기만 수정
+  }}
+>
+  <Outlet />
+</div>
 
-      {/* ✅ 홈화면에서는 padding 제거 */}
-      <div style={{ paddingTop: isHome ? '0px' : '80px' }}>
-        <Outlet />
-      </div>
-    </div>
   );
 }
