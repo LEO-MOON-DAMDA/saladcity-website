@@ -1,155 +1,105 @@
-import React, { useRef, useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import MenuCard from "./MenuCard";
-import "./MenuSlider.css";
+import React, { useState } from "react";
+import MenuSlider from "./MenuSlider";
 
-export default function MenuSlider({ items, onTagClick, selectedTags = [] }) {
-  const containerRef = useRef(null);
-  const [centerIndex, setCenterIndex] = useState(0);
-  const lastLoopTime = useRef(0);
-  const scrolling = useRef(false);
+export default function MenuSectionSlider({ title, items }) {
+  const [activeTags, setActiveTags] = useState([]);
 
-  const loopedItems = [...items, ...items, ...items, ...items, ...items];
-  const originalLength = items.length;
-  const startIndex = originalLength * 2;
-
-  useEffect(() => {
-    const ref = containerRef.current;
-    if (ref) {
-      const middleCard = ref.children[startIndex];
-      if (middleCard) {
-        const cardWidth = middleCard.offsetWidth;
-        const containerWidth = ref.offsetWidth;
-        const computedStyle = window.getComputedStyle(middleCard);
-        const marginLeft = parseInt(computedStyle.marginLeft) || 0;
-        const marginRight = parseInt(computedStyle.marginRight) || 0;
-        const marginOffset = (marginLeft + marginRight) / 2;
-
-        ref.scrollLeft = middleCard.offsetLeft - (containerWidth / 2 - (cardWidth + marginOffset) / 2);
-        setCenterIndex(startIndex);
-      }
-    }
-  }, []);
-
-  const updateCenter = () => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const containerCenter = container.scrollLeft + container.offsetWidth / 2;
-    let closestIndex = 0;
-    let minDistance = Infinity;
-
-    container.childNodes.forEach((node, index) => {
-      const nodeCenter = node.offsetLeft + node.offsetWidth / 2;
-      const distance = Math.abs(containerCenter - nodeCenter);
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestIndex = index;
-      }
-    });
-
-    if (closestIndex !== centerIndex) {
-      setCenterIndex(closestIndex);
-    }
-
-    const now = Date.now();
-    const cardWidth = container.firstChild.offsetWidth;
-    const loopOffset = originalLength * 2;
-
-    if (now - lastLoopTime.current > 500) {
-      if (closestIndex <= loopOffset / 2) {
-        container.scrollLeft += originalLength * cardWidth;
-        lastLoopTime.current = now;
-      }
-      if (closestIndex >= loopedItems.length - loopOffset / 2) {
-        container.scrollLeft -= originalLength * cardWidth;
-        lastLoopTime.current = now;
-      }
-    }
+  const handleTagClick = (tagKey) => {
+    setActiveTags((prev) =>
+      prev.includes(tagKey)
+        ? prev.filter((tag) => tag !== tagKey)
+        : [...prev, tagKey]
+    );
   };
 
-  useEffect(() => {
-    const ref = containerRef.current;
-    if (!ref) return;
-
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          updateCenter();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    ref.addEventListener("scroll", handleScroll);
-    ref.addEventListener("pointerdown", updateCenter);
-    ref.addEventListener("touchstart", updateCenter);
-    return () => {
-      ref.removeEventListener("scroll", handleScroll);
-      ref.removeEventListener("pointerdown", updateCenter);
-      ref.removeEventListener("touchstart", updateCenter);
-    };
-  }, [centerIndex]);
-
-  const scrollByCard = (direction) => {
-    if (scrolling.current) return;
-    scrolling.current = true;
-
-    const container = containerRef.current;
-    if (!container) return;
-
-    const cardWidth = container.firstChild.offsetWidth;
-    container.scrollBy({ left: direction * cardWidth, behavior: "smooth" });
-
-    setTimeout(() => {
-      scrolling.current = false;
-    }, 300);
+  const removeTag = (tagKey) => {
+    setActiveTags((prev) => prev.filter((tag) => tag !== tagKey));
   };
 
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "ArrowLeft") scrollByCard(-1);
-      if (e.key === "ArrowRight") scrollByCard(1);
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  const clearTags = () => {
+    setActiveTags([]);
+  };
+
+  const filteredItems = activeTags.length > 0
+    ? items.filter(item => {
+        const name = item.name.toLowerCase();
+        return activeTags.some(tag => name.includes(tag.toLowerCase()));
+      })
+    : items;
 
   return (
-    <div className="slider-wrapper">
-      <button className="slider-arrow left" onClick={() => scrollByCard(-1)}>‹</button>
+    <div style={{ margin: "60px 0" }}>
+      <h2 style={{ textAlign: "center", fontSize: "2rem", marginBottom: "10px" }}>
+        {title}
+      </h2>
 
-      <div className="slider-scroll-wrapper" ref={containerRef}>
-        {loopedItems.map((item, index) => {
-          const offset = index - centerIndex;
-          const distance = Math.abs(offset);
-          const scale = Math.max(0.6, 1 - distance * 0.15);
-          const opacity = Math.max(0.3, 1 - distance * 0.2);
-          const rotateY = offset === 0 ? 0 : offset < 0 ? -15 : 15;
-          const zIndex = offset === 0 ? 10 : 5 - distance;
-
-          return (
-            <motion.div
-              key={`${item.name}-${index}`}
-              className="scroll-card"
+      {activeTags.length > 0 && (
+        <div
+          style={{
+            textAlign: "center",
+            color: "#2c8f5b",
+            marginBottom: "20px",
+            fontWeight: 500,
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            gap: "8px",
+          }}
+        >
+          선택된 필터:
+          {activeTags.map((tag, idx) => (
+            <span
+              key={idx}
               style={{
-                zIndex,
-                marginLeft: offset < 0 ? -120 : 0,
-                marginRight: offset > 0 ? -120 : 0,
-                transformOrigin: "bottom center",
+                display: "inline-flex",
+                alignItems: "center",
+                padding: "4px 8px",
+                background: "#e6f4eb",
+                border: "1px solid #2c8f5b",
+                borderRadius: "999px",
+                fontSize: "13px",
+                color: "#2c8f5b",
+                textTransform: "capitalize",
               }}
-              animate={{ scale, opacity, rotateY, y: offset === 0 ? 20 : 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <MenuCard item={item} onTagClick={onTagClick} selectedTags={selectedTags} />
-            </motion.div>
-          );
-        })}
-      </div>
+              {tag}
+              <button
+                onClick={() => removeTag(tag)}
+                style={{
+                  marginLeft: "6px",
+                  background: "transparent",
+                  border: "none",
+                  color: "#999",
+                  fontSize: "14px",
+                  cursor: "pointer",
+                  lineHeight: 1,
+                }}
+              >
+                ❌
+              </button>
+            </span>
+          ))}
+          <button
+            onClick={clearTags}
+            style={{
+              marginLeft: "10px",
+              background: "transparent",
+              border: "none",
+              color: "#999",
+              cursor: "pointer",
+              fontSize: "14px",
+            }}
+          >
+            모두 초기화
+          </button>
+        </div>
+      )}
 
-      <button className="slider-arrow right" onClick={() => scrollByCard(1)}>›</button>
+      <MenuSlider
+        items={filteredItems}
+        onTagClick={handleTagClick}
+        selectedTags={activeTags}
+      />
     </div>
   );
 }
