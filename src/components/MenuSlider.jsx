@@ -138,12 +138,13 @@ export default function MenuSlider({ items }) {
                 zIndex,
                 marginLeft: offset < 0 ? -120 : 0,
                 marginRight: offset > 0 ? -120 : 0,
+                transformOrigin: "bottom center", // ✅ 중심 아래로 이동해서 흔들림 제거
               }}
               animate={{
                 scale,
                 opacity,
                 rotateY,
-                y: offset === 0 ? 10 : 0,
+                y: offset === 0 ? 20 : 0, // ✅ 더 안정적인 아래 보정
               }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
