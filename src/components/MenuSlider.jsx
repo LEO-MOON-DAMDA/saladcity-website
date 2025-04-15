@@ -1,4 +1,3 @@
-// MenuSlider.jsx
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./MenuSlider.css";
@@ -80,23 +79,27 @@ export default function MenuSlider({ items }) {
     <div className="slider-scroll-wrapper" ref={containerRef}>
       {loopedItems.map((item, index) => {
         const offset = index - centerIndex;
-        const overlap = Math.abs(offset) <= 2;
         const isCenter = index === centerIndex;
+        const rotateY = offset === 0 ? 0 : offset < 0 ? 35 : -35;
+        const scale = isCenter ? 1.25 : 0.8;
+        const opacity = isCenter ? 1 : 0.6;
+        const zIndex = isCenter ? 10 : 5 - Math.abs(offset);
 
         return (
           <motion.div
             key={`${item.name}-${index}`}
             className="scroll-card"
             style={{
-              marginLeft: offset < 0 ? -40 : 0,
-              marginRight: offset > 0 ? -40 : 0,
-              zIndex: isCenter ? 10 : 5 - Math.abs(offset),
+              marginLeft: offset < 0 ? -80 : 0,
+              marginRight: offset > 0 ? -80 : 0,
+              zIndex,
             }}
             animate={{
-              scale: isCenter ? 1.25 : overlap ? 0.85 : 0.7,
-              opacity: overlap ? 1 : 0.5,
+              scale,
+              opacity,
+              rotateY,
             }}
-            transition={{ type: "spring", stiffness: 260, damping: 24 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
             <img src={item.image} alt={item.name} className="card-image" />
             <div className="card-text">
