@@ -83,20 +83,21 @@ export default function MenuSlider({ items }) {
     <div className="slider-scroll-wrapper" ref={containerRef}>
       {loopedItems.map((item, index) => {
         const offset = index - centerIndex;
-        const translate = offset * 20;
+        const overlap = Math.abs(offset) <= 2;
+        const isCenter = index === centerIndex;
 
         return (
           <motion.div
             key={`${item.name}-${index}`}
-            className="scroll-card"
-            style={{
-              transform: `translateX(${translate}px)`,
-              zIndex: 10 - Math.abs(offset),
-            }}
+            className={`scroll-card ${isCenter ? "center" : ""}`}
             animate={{
-              scale: index === centerIndex ? 1.25 : 0.85,
+              scale: isCenter ? 1.25 : overlap ? 0.85 : 0.7,
+              opacity: overlap ? 1 : 0.5,
+              zIndex: isCenter ? 10 : 5 - Math.abs(offset),
+              marginLeft: offset < 0 ? -40 : 0,
+              marginRight: offset > 0 ? -40 : 0,
             }}
-            transition={{ type: "spring", stiffness: 250, damping: 22 }}
+            transition={{ type: "spring", stiffness: 250, damping: 25 }}
           >
             <img src={item.image} alt={item.name} className="card-image" />
             <div className="card-text">
