@@ -21,11 +21,33 @@
   transition: transform 0.3s ease;
   cursor: pointer;
 }
+.menu-card:hover {
+  transform: translateY(-6px);
+}
 
-/* ✅ 모바일 화면일 때 카드 크기 조정 */
+.menu-image-wrapper {
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+}
+
+.menu-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.6);
+  transition: transform 0.3s ease;
+}
+
+/* ✅ 모바일 화면일 때 카드 및 이미지 크기 조정 */
 @media (max-width: 768px) {
   .menu-card {
     min-width: 85vw;
     max-width: 90vw;
+  }
+
+  .menu-image {
+    transform: scale(1.3);
   }
 }
