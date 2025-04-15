@@ -1,9 +1,9 @@
-/* 공통 폰트 */
+/* src/styles/typography.css */
+
 * {
   font-family: 'Inter', 'Helvetica Neue', sans-serif;
 }
 
-/* 큰 타이틀 */
 .heading-lg {
   font-size: 32px;
   font-weight: 500;
@@ -12,7 +12,6 @@
   color: #111;
 }
 
-/* 중간 타이틀 */
 .heading-md {
   font-size: 24px;
   font-weight: 500;
@@ -21,7 +20,6 @@
   color: #111;
 }
 
-/* 작은 타이틀 */
 .heading-sm {
   font-size: 18px;
   font-weight: 500;
@@ -30,7 +28,6 @@
   color: #222;
 }
 
-/* 본문 텍스트 */
 .text-body {
   font-size: 14px;
   font-weight: 400;
@@ -39,7 +36,6 @@
   color: #444;
 }
 
-/* 캡션, 보조 설명 */
 .text-caption {
   font-size: 12px;
   font-weight: 400;
@@ -48,7 +44,6 @@
   color: #666;
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
   .heading-lg { font-size: 24px; }
   .heading-md { font-size: 20px; }
@@ -56,4 +51,3 @@
   .text-body   { font-size: 13px; }
   .text-caption { font-size: 11px; }
 }
-
