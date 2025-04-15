@@ -64,3 +64,48 @@ export default function MenuSlider({ items }) {
     const handleScroll = () => {
       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
       scrollTimeout.current = setTimeout(() => {
+        updateCenter();
+      }, 80);
+    };
+
+    const handlePointerDown = () => {
+      updateCenter();
+    };
+
+    ref.addEventListener("scroll", handleScroll);
+    ref.addEventListener("pointerdown", handlePointerDown);
+    return () => {
+      ref.removeEventListener("scroll", handleScroll);
+      ref.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, [centerIndex]);
+
+  return (
+    <div className="slider-scroll-wrapper" ref={containerRef}>
+      {loopedItems.map((item, index) => {
+        const offset = index - centerIndex;
+        const translateX = offset * 30; // 카드가 겹쳐지도록 조절
+
+        return (
+          <motion.div
+            key={`${item.name}-${index}`}
+            className="scroll-card"
+            animate={{
+              scale: index === centerIndex ? 1.25 : 0.85,
+              zIndex: 10 - Math.abs(offset),
+              x: translateX,
+            }}
+            transition={{ type: "spring", stiffness: 250, damping: 22 }}
+          >
+            <img src={item.image} alt={item.name} className="card-image" />
+            <div className="card-text">
+              <h3>{item.name}</h3>
+              <p>{item.description}</p>
+              <span>{item.price}원</span>
+            </div>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
