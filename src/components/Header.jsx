@@ -1,16 +1,18 @@
 // src/components/Header.jsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function Header() {
   const location = useLocation();
   const isHome = location.pathname === "/";
-  const isDetail = !isHome;
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  const isMobile = window.innerWidth < 768;
-
-  // 햄버거 메뉴 열림 여부 (추후 토글 로직에 사용 가능)
-  const [isOpen, setIsOpen] = React.useState(false);
+  // ✅ 반응형 체크
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const menuItems = [
     { text: "OUR MENU", href: "/menu" },
@@ -38,11 +40,11 @@ export default function Header() {
       height: '60px',
       boxSizing: 'border-box'
     }}>
-      
-      {/* ✅ PC 버전: 수평 메뉴 + 조건부 좌측 로고 */}
+      {/* ✅ PC - 수평 메뉴 */}
       {!isMobile && (
         <>
-          {isDetail && (
+          {/* 로고는 상세페이지에서만 표시 */}
+          {location.pathname !== "/" && (
             <a href="/" style={{ marginRight: '16px' }}>
               <img src="/images/saladcity_origin.png" alt="home" style={{ height: '38px' }} />
             </a>
@@ -60,7 +62,7 @@ export default function Header() {
                 color: '#333',
                 paddingBottom: '2px',
                 borderBottom: '2px solid transparent',
-                transition: 'color 0.2s ease, border-bottom 0.2s ease'
+                transition: 'color 0.2s ease, borderBottom 0.2s ease'
               }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = '#3C8050';
@@ -82,19 +84,23 @@ export default function Header() {
             borderRadius: '6px',
             textDecoration: 'none',
             fontWeight: 600,
-            whiteSpace: 'nowrap',
-            flexShrink: 0
+            whiteSpace: 'nowrap'
           }}>
             ORDER
           </a>
         </>
       )}
 
-      {/* ✅ 모바일 버전 */}
+      {/* ✅ Mobile - 햄버거 + 로고 (상세페이지에서만) */}
       {isMobile && (
         <>
-          {isDetail && (
-            <a href="/" style={{ position: 'absolute', top: '12px', left: '50%', transform: 'translateX(-50%)' }}>
+          {location.pathname !== "/" && (
+            <a href="/" style={{
+              position: 'absolute',
+              top: '12px',
+              left: '50%',
+              transform: 'translateX(-50%)'
+            }}>
               <img src="/images/saladcity_origin.png" alt="home" style={{ height: '34px' }} />
             </a>
           )}
