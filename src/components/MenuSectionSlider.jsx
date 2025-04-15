@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MenuSlider from "./MenuSlider";
+import "./MenuSectionSlider.css"; // 👈 CSS 분리 추천
 
 export default function MenuSectionSlider({ title, items }) {
   const [activeTags, setActiveTags] = useState([]);
@@ -41,66 +42,17 @@ export default function MenuSectionSlider({ title, items }) {
       </h2>
 
       {activeTags.length > 0 && (
-        <div
-          style={{
-            position: "sticky", // ✅ 고정!
-            top: 0,
-            background: "#fff",
-            padding: "10px 0",
-            zIndex: 999,
-            boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
-            color: "#2c8f5b",
-            fontWeight: 500,
-            display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
-            gap: "8px",
-          }}
-        >
+        <div className="filter-bar">
           선택된 필터:
           {activeTags.map((tag, idx) => (
-            <span
-              key={idx}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                padding: "4px 8px",
-                background: "#e6f4eb",
-                border: "1px solid #2c8f5b",
-                borderRadius: "999px",
-                fontSize: "13px",
-                color: "#2c8f5b",
-                textTransform: "capitalize",
-              }}
-            >
+            <span key={idx} className="filter-tag selected">
               {tag}
-              <button
-                onClick={() => removeTag(tag)}
-                style={{
-                  marginLeft: "6px",
-                  background: "transparent",
-                  border: "none",
-                  color: "#999",
-                  fontSize: "14px",
-                  cursor: "pointer",
-                  lineHeight: 1,
-                }}
-              >
+              <button onClick={() => removeTag(tag)} className="filter-remove">
                 ❌
               </button>
             </span>
           ))}
-          <button
-            onClick={clearTags}
-            style={{
-              marginLeft: "10px",
-              background: "transparent",
-              border: "none",
-              color: "#999",
-              cursor: "pointer",
-              fontSize: "14px",
-            }}
-          >
+          <button onClick={clearTags} className="filter-clear">
             모두 초기화
           </button>
         </div>
