@@ -27,6 +27,10 @@ export default function Header() {
     { text: "LOCATIONS", href: "/locations" }
   ];
 
+
+  const baseColor = isHome ? '#fff' : '#333'; // ✅ 여기 핵심
+  const hoverColor = isHome ? '#A8FFD0' : '#3C8050';
+  
   return (
     <header style={{
       position: 'fixed',
