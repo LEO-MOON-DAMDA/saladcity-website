@@ -14,14 +14,13 @@ export default function MenuSlider({ items }) {
     if (!container) return;
 
     const containerCenter = container.scrollLeft + container.offsetWidth / 2;
-
     let closestIndex = 0;
     let minDistance = Infinity;
 
     container.childNodes.forEach((node, index) => {
-      const nodeRect = node.getBoundingClientRect();
-      const nodeCenter = nodeRect.left + nodeRect.width / 2;
-      const distance = Math.abs(containerCenter - (container.scrollLeft + nodeCenter - container.offsetLeft));
+      const rect = node.getBoundingClientRect();
+      const nodeCenter = rect.left + rect.width / 2;
+      const distance = Math.abs(containerCenter - nodeCenter);
       if (distance < minDistance) {
         minDistance = distance;
         closestIndex = index;
@@ -43,11 +42,20 @@ export default function MenuSlider({ items }) {
       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
       scrollTimeout.current = setTimeout(() => {
         updateCenter();
-      }, 100); // Only update after scroll has stopped for 100ms
+      }, 100);
+    };
+
+    const handlePointerDown = () => {
+      updateCenter(); // 사용자가 누르는 순간 바로 업데이트
     };
 
     ref.addEventListener("scroll", handleScroll);
-    return () => ref.removeEventListener("scroll", handleScroll);
+    ref.addEventListener("pointerdown", handlePointerDown);
+
+    return () => {
+      ref.removeEventListener("scroll", handleScroll);
+      ref.removeEventListener("pointerdown", handlePointerDown);
+    };
   }, [centerIndex]);
 
   return (
@@ -57,10 +65,10 @@ export default function MenuSlider({ items }) {
           key={item.name}
           className="scroll-card"
           animate={{
-            scale: index === centerIndex ? 1.15 : 0.9,
+            scale: index === centerIndex ? 1.25 : 0.85,
             zIndex: index === centerIndex ? 10 : 1,
           }}
-          transition={{ type: "spring", stiffness: 250, damping: 25 }}
+          transition={{ type: "spring", stiffness: 250, damping: 24 }}
         >
           <img src={item.image} alt={item.name} className="card-image" />
           <div className="card-text">
