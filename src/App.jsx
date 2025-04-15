@@ -8,12 +8,12 @@ export default function App() {
   return (
     <Router>
       <Routes>
+        {/* 공통 레이아웃을 적용할 라우트 그룹 */}
         <Route element={<Layout />}>
-        <Route path="/" element={<SaladcityHome />} />
-        <Route path="/menu" element={<MenuPage />} /> {/* ✅ 이거 꼭 필요 */}
+          <Route path="/" element={<SaladcityHome />} />
+          <Route path="/menu" element={<MenuPage />} /> {/* ✅ 메뉴 페이지 연결 */}
         </Route>
       </Routes>
     </Router>
   );
 }
-
