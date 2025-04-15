@@ -125,9 +125,9 @@ export default function MenuSlider({ items }) {
           const distance = Math.abs(offset);
           const isCenter = index === centerIndex;
 
-          // ✅ 거리 기반 scale/opacity
-          const scale = isCenter ? 1.25 : Math.max(0.7, 1.25 - distance * 0.15);
-          const opacity = isCenter ? 1 : Math.max(0.3, 1 - distance * 0.2);
+          // ✅ 중앙 카드는 scale: 1.0, 양쪽은 작아지게
+          const scale = Math.max(0.6, 1 - distance * 0.15);
+          const opacity = Math.max(0.3, 1 - distance * 0.2);
           const rotateY = offset === 0 ? 0 : offset < 0 ? -35 : 35;
           const zIndex = isCenter ? 10 : 5 - distance;
 
