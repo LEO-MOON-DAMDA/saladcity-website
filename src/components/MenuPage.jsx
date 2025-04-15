@@ -1,7 +1,7 @@
-// src/components/MenuPage.jsx
 import React from "react";
 import menuData from "../data/menuItems.json";
 import Header from "./Header";
+import "./MenuPage.css"; // 아래에 CSS 코드도 포함되어 있음
 
 export default function MenuPage() {
   const categories = [...new Set(menuData.map(item => item["카테고리"]))];
@@ -13,47 +13,23 @@ export default function MenuPage() {
       {categories.map((category, idx) => {
         const items = menuData.filter(item => item["카테고리"] === category);
         return (
-          <section key={idx} style={{ marginBottom: "80px" }}>
+          <section key={idx} style={{ marginBottom: "60px" }}>
             <h2 style={{
               fontSize: "26px",
-              marginBottom: "20px",
+              marginBottom: "16px",
               color: "#2f5d3c",
               textAlign: "center"
             }}>
               {category}
             </h2>
-            <div style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              gap: "32px",
-              maxWidth: "1200px",
-              margin: "0 auto"
-            }}>
+            <div className="horizontal-scroll-container">
               {items.map((item, i) => (
-                <div key={i} style={{
-                  width: "280px",
-                  borderRadius: "16px",
-                  overflow: "hidden",
-                  backgroundColor: "#fff",
-                  boxShadow: "0 8px 16px rgba(0,0,0,0.07)",
-                  transition: "transform 0.3s ease",
-                  cursor: "pointer"
-                }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-6px)"}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>
-                  <div style={{ width: "100%", height: "230px", overflow: "hidden" }}>
+                <div key={i} className="menu-card">
+                  <div className="menu-image-wrapper">
                     <img
                       src={item["이미지경로"]}
                       alt={item["메뉴명"]}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                        transform: "scale(1.6)",
-                        transition: "transform 0.3s ease"
-                      }}
+                      className="menu-image"
                     />
                   </div>
                   <div style={{ padding: "16px" }}>
