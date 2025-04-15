@@ -1,12 +1,4 @@
-
-import React, { useRef, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import "./MenuSlider.css";
-import menuItems from "../data/menuItems.json";
-
-const sound = new Audio("/sounds/slide.mp3"); // public/sounds/slide.mp3 에 넣기
-
-export default function MenuSlider() {
+export default function MenuSlider({ items }) {
   const [current, setCurrent] = useState(0);
   const timeoutRef = useRef(null);
 
@@ -17,11 +9,11 @@ export default function MenuSlider() {
   };
 
   const nextSlide = () => {
-    slideTo((current + 1) % menuItems.length);
+    slideTo((current + 1) % items.length);
   };
 
   const prevSlide = () => {
-    slideTo((current - 1 + menuItems.length) % menuItems.length);
+    slideTo((current - 1 + items.length) % items.length);
   };
 
   useEffect(() => {
@@ -34,12 +26,10 @@ export default function MenuSlider() {
 
   return (
     <div className="slider-container">
-      <button className="arrow left" onClick={prevSlide}>
-        ‹
-      </button>
+      <button className="arrow left" onClick={prevSlide}>‹</button>
       <div className="slider-wrapper">
         <AnimatePresence initial={false} mode="wait">
-          {menuItems.map((item, index) => {
+          {items.map((item, index) => {
             const isActive = index === current;
             const offset = index - current;
 
@@ -71,9 +61,7 @@ export default function MenuSlider() {
           })}
         </AnimatePresence>
       </div>
-      <button className="arrow right" onClick={nextSlide}>
-        ›
-      </button>
+      <button className="arrow right" onClick={nextSlide}>›</button>
     </div>
   );
 }
