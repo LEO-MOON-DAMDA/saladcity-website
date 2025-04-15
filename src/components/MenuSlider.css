@@ -4,7 +4,7 @@
   padding: 48px 0;
   height: 480px;
   align-items: center;
-  perspective: 2000px; /* 핵심: 3D 회전 위한 깊이 */
+  perspective: 2000px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -27,6 +27,7 @@
   justify-content: flex-start;
   overflow: hidden;
   position: relative;
+  transition: transform 0.3s ease;
 }
 
 .card-image {
