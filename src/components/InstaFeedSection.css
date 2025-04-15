@@ -1,1 +1,38 @@
+/* src/components/InstaFeedSection.css */
+.insta-section {
+  padding: 60px 24px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.insta-section h2 {
+  font-size: 24px;
+  margin-bottom: 32px;
+  color: #2c8f5b;
+}
+
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.insta-image-wrapper {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.insta-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.insta-image:hover {
+  transform: scale(1.05);
+}
 
