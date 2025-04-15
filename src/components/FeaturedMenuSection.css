@@ -1,6 +1,7 @@
 .featured-menu-section {
   padding: 60px 24px;
   background: #f8fcf9;
+  overflow: visible; /* ✅ hover 시 카드 하단 잘림 방지 */
 }
 
 .featured-title {
@@ -14,16 +15,16 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
 
 .featured-slider-wrapper::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none;
 }
 
 .featured-slider-scroll {
   display: flex;
   gap: 20px;
   padding-bottom: 8px;
-  overflow: visible; /* ✅ 카드 hover 시 잘리는 것 방지 */
+  overflow: visible;
 }
