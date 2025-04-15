@@ -26,11 +26,10 @@ export default function SaladcityHome() {
 <div style={{
   position: 'relative',
   height: '800px',
-  marginTop: '-60px', // 헤더와 겹치게
+  marginTop: '-60px', // 헤더와 자연스럽게 붙게
   overflow: 'hidden'
 }}>
-
-  {/* ✅ 백그라운드 비디오 */}
+  {/* 🎥 백그라운드 비디오 */}
   <video
     key={videoIndex}
     ref={videoRef}
@@ -44,8 +43,6 @@ export default function SaladcityHome() {
       position: 'absolute',
       top: 0,
       left: 0,
-      right: 0,
-      bottom: 0,
       width: '100%',
       height: '100%',
       objectFit: 'cover',
@@ -53,37 +50,48 @@ export default function SaladcityHome() {
     }}
   />
 
-  {/* ✅ 상단 어두운 그라디언트 오버레이 */}
+  {/* 🎨 고급 오버레이 그라디언트 */}
   <div style={{
     position: 'absolute',
     top: 0,
     left: 0,
     width: '100%',
     height: '100%',
+    background: 'linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.1), rgba(0,0,0,0))',
     zIndex: 1,
-    background: 'linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0))',
     pointerEvents: 'none'
   }} />
 
-  {/* ✅ 콘텐츠 */}
+  {/* 📝 텍스트 콘텐츠 */}
   <div style={{
     position: 'relative',
     zIndex: 2,
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
     textAlign: 'center',
-    color: '#fff'
+    color: '#ffffff',
+    padding: '0 16px'
   }}>
-    
-    <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '200px', marginBottom: '20px' }} />
-    <h1 style={{ fontSize: '40px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
-    <p style={{ fontSize: '18px', marginTop: '8px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
-    <p style={{ fontSize: '14px', color: '#e0e0e0' }}>Fresh ingredients, made daily with care.</p>
+    <img
+      src="/images/saladcity_origin.png"
+      alt="Saladcity Logo"
+      style={{ height: '160px', marginBottom: '24px', filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))' }}
+    />
+    <h1 style={{ fontSize: '42px', fontWeight: '600', margin: '0 0 10px' }}>
+      건강하고 맛있는 샐러드
+    </h1>
+    <p style={{ fontSize: '18px', color: '#e0e0e0', marginBottom: '4px' }}>
+      자연에서 온 재료로 매일 새롭게, 신선하게
+    </p>
+    <p style={{ fontSize: '15px', color: '#cccccc' }}>
+      Fresh ingredients, made daily with care.
+    </p>
   </div>
 </div>
+
 
 
 
