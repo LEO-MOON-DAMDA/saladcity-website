@@ -1,4 +1,4 @@
-  import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function Header() {
@@ -99,7 +99,7 @@ export default function Header() {
         </>
       )}
 
-     {/* ✅ Mobile 화면 */}
+   {/* ✅ Mobile 화면 */}
       {isMobile && (
         <>
           {isDetail && (
@@ -126,52 +126,71 @@ export default function Header() {
             </a>
           )}
 
+          {/* 햄버거 버튼 */}
           <div onClick={() => setIsOpen(!isOpen)} style={{
             position: 'absolute',
             top: '29%',
             left: '24px',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            transition: 'transform 0.3s ease-in-out',
+            transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)'
           }}>
-            <div style={{ width: '24px', height: '2px', backgroundColor: '#333', marginBottom: '6px' }} />
-            <div style={{ width: '24px', height: '2px', backgroundColor: '#333', marginBottom: '6px' }} />
-            <div style={{ width: '24px', height: '2px', backgroundColor: '#333' }} />
+            <div style={{
+              width: '24px', height: '2px',
+              backgroundColor: '#333', marginBottom: '6px',
+              transition: 'all 0.3s ease',
+              transform: isOpen ? 'translateY(8px) rotate(45deg)' : 'none'
+            }} />
+            <div style={{
+              width: '24px', height: '2px',
+              backgroundColor: '#333', marginBottom: '6px',
+              opacity: isOpen ? 0 : 1,
+              transition: 'opacity 0.3s ease'
+            }} />
+            <div style={{
+              width: '24px', height: '2px',
+              backgroundColor: '#333',
+              transition: 'all 0.3s ease',
+              transform: isOpen ? 'translateY(-8px) rotate(-45deg)' : 'none'
+            }} />
           </div>
 
-          {/* 햄버거 메뉴 드롭다운 */}
-          {isOpen && (
-            <div style={{
-              position: 'absolute',
-              top: '60px',
-              left: 0,
-              width: '100%',
-              backgroundColor: '#fff',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-              padding: '16px 24px',
-              zIndex: 1500
-            }}>
-              {menuItems.map((link, index) => (
-                <a key={index} href={link.href} style={{
-                  display: 'block',
-                  padding: '10px 0',
-                  fontSize: '15px',
-                  textDecoration: 'none',
-                  color: '#333',
-                  borderBottom: '1px solid #eee'
-                }}>
-                  {link.text}
-                </a>
-              ))}
-              <a href="/order" style={{
+          {/* 드롭다운 메뉴 */}
+          <div style={{
+            maxHeight: isOpen ? '400px' : '0px',
+            overflow: 'hidden',
+            transition: 'max-height 0.5s ease',
+            position: 'absolute',
+            top: '60px',
+            left: 0,
+            width: '100%',
+            backgroundColor: '#fff',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            padding: isOpen ? '16px 24px' : '0px',
+            zIndex: 1500
+          }}>
+            {menuItems.map((link, index) => (
+              <a key={index} href={link.href} style={{
                 display: 'block',
-                marginTop: '12px',
-                fontWeight: 'bold',
-                color: '#3C8050',
-                textDecoration: 'underline'
+                padding: '10px 0',
+                fontSize: '15px',
+                textDecoration: 'none',
+                color: '#333',
+                borderBottom: '1px solid #eee'
               }}>
-                주문하기 →
+                {link.text}
               </a>
-            </div>
-          )}
+            ))}
+            <a href="/order" style={{
+              display: 'block',
+              marginTop: '12px',
+              fontWeight: 'bold',
+              color: '#3C8050',
+              textDecoration: 'underline'
+            }}>
+              주문하기 →
+            </a>
+          </div>
         </>
       )}
     </header>
