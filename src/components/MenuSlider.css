@@ -3,17 +3,18 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  gap: 30px;
-  padding: 40px;
+  gap: 24px;
+  padding: 40px 20px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .scroll-card {
   flex: 0 0 auto;
+  scroll-snap-align: center;
   width: 280px;
   height: 420px;
-  background: white;
   border-radius: 20px;
-  scroll-snap-align: center;
+  background: white;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.3s ease;
@@ -23,7 +24,6 @@
   width: 100%;
   height: 260px;
   object-fit: cover;
-  object-position: center;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
