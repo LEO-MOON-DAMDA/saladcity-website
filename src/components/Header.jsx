@@ -50,7 +50,7 @@ export default function Header() {
           {isDetail && (
             <a href="/" style={{ marginRight: '16px' }}>
               <img src="/images/saladcity_origin.png" alt="home" style={{
-                  height: '50px',
+                  height: '54px',
                   objectFit: 'cover',
                   objectPosition: 'center'
                 }} />
@@ -128,7 +128,7 @@ export default function Header() {
 
           <div onClick={() => setIsOpen(!isOpen)} style={{
             position: 'absolute',
-            top: '30%',
+            top: '28%',
             left: '24px',
             cursor: 'pointer'
           }}>
