@@ -2,9 +2,21 @@ import React, { useRef, useEffect } from "react";
 import MenuCard from "./MenuCard";
 import "./MenuSlider.css";
 
-// ✅ base64 인코딩된 짧은 슬라이드 사운드 (0.3초 whoosh 효과)
+// ✅ base64로 인코딩된 슬라이드 사운드 (짧은 whoosh 효과)
 const slideSound =
-  "data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCAAMEAAAC7nAAA..."; // 👉 실제 base64 길이 줄임처리
+  "data:audio/mp3;base64,//uQZAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCA"
+  + "AT//////+4UBxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
+  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
+  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
+  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
+  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
+  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
+  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
+  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
+  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
+  + "//uQZAAAAAAAAAAAAAAAAAAAAAAAGpAAD///+wAAACkAAAAAAAgICAgICAgICAgICAgICAgICAg"
+  + "ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg"
+  + "ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAA";
 
 export default function MenuSlider({ items, onTagClick, selectedTags }) {
   const scrollRef = useRef(null);
@@ -59,13 +71,13 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
     const currentScroll = container.scrollLeft;
     const targetScroll = currentScroll + direction * cardWidth;
 
-    // 사운드
+    // 🔊 사운드 재생
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.play();
     }
 
-    // 진동
+    // 📳 진동
     if (navigator.vibrate) {
       navigator.vibrate(20);
     }
