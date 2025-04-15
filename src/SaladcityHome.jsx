@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
+import Header from "./components/Header"; // ✅ 추가
 import CustomPrintableMenu from "./CustomPrintableMenu";
 import homepageMenuItems from "./data/homepageMenuItems.json";
 
