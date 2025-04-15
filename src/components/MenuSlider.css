@@ -43,10 +43,12 @@
   justify-content: flex-start;
   overflow: hidden;
   position: relative;
-  transition: transform 0.3s ease;
+  margin: 0 12px;
+
+  /* ✅ 애니메이션 강화 */
+  transition: transform 0.4s ease, opacity 0.4s ease;
 
   scroll-snap-align: center;
-  margin: 0 12px; /* ✅ 좌우 여유 → 더 부드러운 UX */
 }
 
 .card-image {
@@ -66,15 +68,18 @@
   flex-direction: column;
   justify-content: center;
 }
+
 .card-text h3 {
   font-size: 16px;
   margin: 0 0 4px;
   color: #111;
 }
+
 .card-text p {
   margin: 0 0 4px;
   color: #666;
 }
+
 .card-text span {
   font-weight: bold;
   color: #2c8f5b;
@@ -100,17 +105,21 @@
   z-index: 20;
   transition: transform 0.2s ease, background 0.2s ease;
 }
+
 .slider-arrow:hover {
   transform: translateY(-50%) scale(1.1);
   background: rgba(0, 0, 0, 0.5);
 }
+
 .slider-arrow.left {
   left: 12px;
 }
+
 .slider-arrow.right {
   right: 12px;
 }
 
+/* 모바일 화살표 숨김 */
 @media (max-width: 768px) {
   .slider-arrow {
     display: none;
