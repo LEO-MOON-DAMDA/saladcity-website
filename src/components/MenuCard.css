@@ -16,13 +16,15 @@
   justify-content: flex-start;
   overflow: hidden;
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* 배경색 전환 추가 */
 }
 
+/* Hover 효과 */
 .scroll-card:hover {
   transform: scale(1.04);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
   z-index: 20;
+  background-color: rgba(255, 255, 255, 0.8); /* 배경 색상 살짝 밝게 */
 }
 
 /* 이미지 */
