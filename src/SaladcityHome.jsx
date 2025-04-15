@@ -23,39 +23,37 @@ export default function SaladcityHome() {
       <Header hideLogo={location.pathname === "/"} />
 
       {/* ✅ 메인 비디오 영역 */}
-      <div style={{
-        position: 'relative',
-        height: '800px',
-        marginTop: '-60px',           // ✅ 헤더 높이만큼 겹침 처리
-        overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        color: '#fff'
-      }}>
+<div style={{
+  position: 'relative',
+  height: '800px',
+  marginTop: '-60px', // 헤더와 겹치게
+  overflow: 'hidden'
+}}>
 
-       <video
-  key={videoIndex}
-  ref={videoRef}
-  src={videoList[videoIndex]}
-  autoPlay
-  muted
-  loop={false}
-  playsInline
-  onEnded={handleVideoEnd}
-  style={{
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    zIndex: 0,
-   }}
-/>
+  {/* ✅ 백그라운드 비디오 */}
+  <video
+    key={videoIndex}
+    ref={videoRef}
+    src={videoList[videoIndex]}
+    autoPlay
+    muted
+    loop={false}
+    playsInline
+    onEnded={handleVideoEnd}
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      zIndex: 0
+    }}
+  />
 
- {/* ✅ 위쪽 어둡게 덮어주는 overlay */}
+  {/* ✅ 상단 어두운 그라디언트 오버레이 */}
   <div style={{
     position: 'absolute',
     top: 0,
@@ -64,10 +62,29 @@ export default function SaladcityHome() {
     height: '100%',
     zIndex: 1,
     background: 'linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0))',
-    pointerEvents: 'none' // 클릭 방지
+    pointerEvents: 'none'
   }} />
-        
-      <div style={{ position: 'relative', zIndex: 1 }}>
+
+  {/* ✅ 콘텐츠 */}
+  <div style={{
+    position: 'relative',
+    zIndex: 2,
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    color: '#fff'
+  }}>
+    
+    <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '200px', marginBottom: '20px' }} />
+    <h1 style={{ fontSize: '40px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
+    <p style={{ fontSize: '18px', marginTop: '8px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
+    <p style={{ fontSize: '14px', color: '#e0e0e0' }}>Fresh ingredients, made daily with care.</p>
+  </div>
+</div>
+
           <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '200px', marginBottom: '20px' }} />
           <h1 style={{ fontSize: '40px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
           <p style={{ fontSize: '18px', marginTop: '8px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
