@@ -14,16 +14,16 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-
-  scrollbar-width: none; /* ✅ Firefox */
+  scrollbar-width: none; /* Firefox */
 }
 
 .featured-slider-wrapper::-webkit-scrollbar {
-  display: none; /* ✅ Chrome, Safari */
+  display: none; /* Chrome, Safari */
 }
 
 .featured-slider-scroll {
   display: flex;
   gap: 20px;
   padding-bottom: 8px;
+  overflow: visible; /* ✅ 카드 hover 시 잘리는 것 방지 */
 }
