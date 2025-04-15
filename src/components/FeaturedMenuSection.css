@@ -1,7 +1,7 @@
 .featured-menu-section {
   padding: 60px 24px;
   background: #f8fcf9;
-  overflow: visible; /* ✅ hover 시 카드 하단 잘림 방지 */
+  overflow: visible; /* ✅ 카드 hover 시 잘림 방지 */
 }
 
 .featured-title {
@@ -11,20 +11,52 @@
   color: #2c8f5b;
 }
 
+/* 슬라이더 스크롤 영역 */
 .featured-slider-wrapper {
   overflow-x: auto;
+  overflow-y: visible;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  scrollbar-width: none; /* Firefox */
+  scroll-snap-type: x mandatory;  /* ✅ 모바일 감성 UX */
+  scroll-padding: 0 16px;
 }
 
 .featured-slider-wrapper::-webkit-scrollbar {
-  display: none;
+  display: none; /* Chrome, Safari */
 }
 
+/* 카드 리스트 */
 .featured-slider-scroll {
   display: flex;
   gap: 20px;
   padding-bottom: 8px;
   overflow: visible;
+}
+
+/* 카드 자체 (반응형 대응) */
+.featured-card {
+  width: 260px;
+  scroll-snap-align: start; /* ✅ 모바일 터치 UX */
+}
+
+@media (max-width: 480px) {
+  .featured-card {
+    width: 80vw; /* ✅ 모바일에서 더 넓게 */
+  }
+
+  .featured-text h3 {
+    font-size: 14px;
+  }
+
+  .featured-text p,
+  .nutrient {
+    font-size: 12px;
+  }
+
+  .featured-slider-scroll {
+    gap: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }
