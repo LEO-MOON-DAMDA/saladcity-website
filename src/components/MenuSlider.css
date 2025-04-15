@@ -1,28 +1,60 @@
-.keen-slider {
-  margin-bottom: 48px;
-  padding: 0 16px;
+.slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.keen-slider__slide {
-  transform: scale(0.9);
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0.6;
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.keen-slider__slide.keen-slider__slide--active {
-  transform: scale(1.05);
-  opacity: 1;
+.card {
+  position: absolute;
+  width: 280px;
+  height: 420px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.5s ease;
 }
 
-.menu-section {
-  margin-bottom: 64px;
+.card-image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  object-position: center;
 }
 
-.section-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #2f4f2f;
-  margin-bottom: 16px;
-  padding-left: 16px;
+.card-text {
+  padding: 20px;
 }
 
+.arrow {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: #555;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.arrow.left {
+  position: absolute;
+  left: 10px;
+}
+
+.arrow.right {
+  position: absolute;
+  right: 10px;
+}
