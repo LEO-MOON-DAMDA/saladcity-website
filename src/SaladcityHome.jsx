@@ -1,5 +1,5 @@
-// src/SaladcityHome.jsx
 import React, { useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import homepageMenuItems from "./data/homepageMenuItems.json";
 import CustomPrintableMenu from "./CustomPrintableMenu";
@@ -14,11 +14,14 @@ export default function SaladcityHome() {
     setVideoIndex((prev) => (prev + 1) % videoList.length);
   };
 
+  const location = useLocation();
+  
   return (
-    <div style={{ fontFamily: "sans-serif", backgroundColor: "#f6fdf8", paddingTop: "60px" }}>
-      <Header />
+    <div style={{ fontFamily: "sans-serif", backgroundColor: "#f6fdf8", paddingTop: "0px" }}>
+      {/* ✅ 헤더 */}
+      <Header hideLogo={location.pathname === "/"} />
 
-      {/* ✅ 배경 영상 */}
+      {/* ✅ 메인 비디오 영역 */}
       <div style={{
         position: 'relative',
         height: '800px',
