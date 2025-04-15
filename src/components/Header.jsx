@@ -49,7 +49,7 @@ export default function Header() {
         <>
           {isDetail && (
             <a href="/" style={{ marginRight: '16px' }}>
-              <img src="/images/saladcity_origin.png" alt="home" style={{ height: '52px' }} />
+              <img src="/images/saladcity_origin.png" alt="home" style={{ top: '50%', height: '60px' }} />
             </a>
           )}
           <nav style={{
