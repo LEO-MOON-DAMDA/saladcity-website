@@ -9,17 +9,26 @@ export default function MenuSlider({ items }) {
   const originalLength = items.length;
   const startIndex = originalLength;
 
+  // ✅ 초기 가운데 카드 정중앙에 정렬
   useEffect(() => {
     const ref = containerRef.current;
     if (ref) {
       const middleCard = ref.children[startIndex];
       if (middleCard) {
-        middleCard.scrollIntoView({ behavior: "auto", inline: "center" });
+        const cardWidth = middleCard.offsetWidth;
+        const containerWidth = ref.offsetWidth;
+        const computedStyle = window.getComputedStyle(middleCard);
+        const marginLeft = parseInt(computedStyle.marginLeft) || 0;
+        const marginRight = parseInt(computedStyle.marginRight) || 0;
+        const marginOffset = (marginLeft + marginRight) / 2;
+
+        ref.scrollLeft = middleCard.offsetLeft - (containerWidth / 2 - (cardWidth + marginOffset) / 2);
         setCenterIndex(startIndex);
       }
     }
   }, []);
 
+  // ✅ 가운데 카드 인식
   const updateCenter = () => {
     const container = containerRef.current;
     if (!container) return;
@@ -42,6 +51,7 @@ export default function MenuSlider({ items }) {
       setCenterIndex(closestIndex);
     }
 
+    // ✅ loop 보정
     if (closestIndex <= originalLength / 2) {
       container.scrollLeft += originalLength * container.firstChild.offsetWidth;
     }
@@ -50,6 +60,7 @@ export default function MenuSlider({ items }) {
     }
   };
 
+  // ✅ scroll, touch 대응
   useEffect(() => {
     const ref = containerRef.current;
     if (!ref) return;
@@ -82,7 +93,7 @@ export default function MenuSlider({ items }) {
         const isCenter = index === centerIndex;
         const rotateY = offset === 0 ? 0 : offset < 0 ? 35 : -35;
         const scale = isCenter ? 1.25 : 0.8;
-        const opacity = isCenter ? 1 : 0.6;
+        const opacity = isCenter ? 1 : 0.5;
         const zIndex = isCenter ? 10 : 5 - Math.abs(offset);
 
         return (
@@ -90,9 +101,8 @@ export default function MenuSlider({ items }) {
             key={`${item.name}-${index}`}
             className="scroll-card"
             style={{
-              marginLeft: offset < 0 ? -80 : 0,
-              marginRight: offset > 0 ? -80 : 0,
               zIndex,
+              margin: "0 40px", // ✅ margin 겹침 통일
             }}
             animate={{
               scale,
