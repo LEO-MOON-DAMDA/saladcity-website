@@ -1,1 +1,31 @@
+.featured-menu-section {
+  padding: 40px 20px;
+  background: #fafafa;
+}
+
+.featured-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-align: left;
+  color: #222;
+}
+
+.featured-slider-wrapper {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.featured-slider-scroll {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.featured-slider-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 
