@@ -44,7 +44,6 @@ export default function Header() {
       boxSizing: 'border-box'
     }}>
 
-{/* ✅ PC 화면 */}
 {!isMobile && (
   <>
     {isDetail && (
@@ -56,6 +55,8 @@ export default function Header() {
           }} />
       </a>
     )}
+
+    {/* ✅ 메뉴 nav */}
     <nav style={{
       display: 'flex',
       gap: '18px',
@@ -84,6 +85,8 @@ export default function Header() {
         </a>
       ))}
     </nav>
+
+    {/* ✅ ORDER 버튼 */}
     <a href="/order" style={{
       backgroundColor: '#3C8050',
       color: '#fff',
