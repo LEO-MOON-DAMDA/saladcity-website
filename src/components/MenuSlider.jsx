@@ -12,7 +12,6 @@ export default function MenuSlider({ items }) {
   const originalLength = items.length;
   const startIndex = originalLength;
 
-  // 초기 중앙 정렬
   useEffect(() => {
     const ref = containerRef.current;
     if (ref) {
@@ -40,8 +39,7 @@ export default function MenuSlider({ items }) {
     let minDistance = Infinity;
 
     container.childNodes.forEach((node, index) => {
-      const rect = node.getBoundingClientRect();
-      const nodeCenter = rect.left + rect.width / 2;
+      const nodeCenter = node.offsetLeft + node.offsetWidth / 2;
       const distance = Math.abs(containerCenter - nodeCenter);
       if (distance < minDistance) {
         minDistance = distance;
@@ -53,7 +51,6 @@ export default function MenuSlider({ items }) {
       setCenterIndex(closestIndex);
     }
 
-    // ✅ 안전한 loop 보정
     const now = Date.now();
     const cardWidth = container.firstChild.offsetWidth;
 
@@ -69,7 +66,6 @@ export default function MenuSlider({ items }) {
     }
   };
 
-  // scroll/drag 이벤트 바인딩
   useEffect(() => {
     const ref = containerRef.current;
     if (!ref) return;
@@ -95,7 +91,6 @@ export default function MenuSlider({ items }) {
     };
   }, [centerIndex]);
 
-  // ✅ 좌우 클릭 이동
   const scrollByCard = (direction) => {
     if (scrolling.current) return;
     scrolling.current = true;
@@ -108,10 +103,9 @@ export default function MenuSlider({ items }) {
 
     setTimeout(() => {
       scrolling.current = false;
-    }, 300); // 중복 방지
+    }, 300);
   };
 
-  // ✅ 방향키 대응
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "ArrowLeft") scrollByCard(-1);
@@ -140,8 +134,8 @@ export default function MenuSlider({ items }) {
               className="scroll-card"
               style={{
                 zIndex,
-                marginLeft: offset < 0 ? -80 : 0,
-                marginRight: offset > 0 ? -80 : 0,
+                marginLeft: offset < 0 ? -120 : 0,
+                marginRight: offset > 0 ? -120 : 0,
               }}
               animate={{
                 scale,
