@@ -124,11 +124,12 @@ export default function Header() {
 
 
           <div onClick={() => setIsOpen(!isOpen)} style={{
-            position: 'absolute',
-            top: '12px',
-            left: '24px',
-            cursor: 'pointer',
-            zIndex: 2000
+              position: 'absolute',
+              top: '12px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              cursor: 'pointer',
+              zIndex: 1500
           }}>
             <div style={{ width: '24px', height: '2px', backgroundColor: '#333', marginBottom: '6px' }} />
             <div style={{ width: '24px', height: '2px', backgroundColor: '#333', marginBottom: '6px' }} />
