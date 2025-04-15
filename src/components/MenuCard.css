@@ -1,62 +1,93 @@
+/* 카드 전체 */
 .scroll-card {
   flex: 0 0 auto;
-  scroll-snap-align: center;
   width: 260px;
-  height: 420px;
+  min-height: 400px;     /* ✅ 최소 높이만 정하고 */
+  height: auto;          /* ✅ 내용 많으면 자동으로 늘어나게 */
   background: white;
   border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  text-align: left;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transform-style: preserve-3d;
+  transform-origin: bottom center;
+  will-change: transform;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   overflow: hidden;
   position: relative;
   transition: transform 0.3s ease;
 }
 
+/* 이미지 */
 .card-image {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
 
+/* 콘텐츠 래퍼 */
 .card-content {
   padding: 16px;
-  font-size: 14px;
-  color: #333;
-  flex: 1;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  flex-grow: 1;
+  gap: 6px;
 }
 
+/* 제목 */
 .card-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  margin: 0;
+  line-height: 1.3;
 }
 
-.card-description,
-.card-ingredients,
-.card-nutrition {
-  margin-bottom: 6px;
+/* 설명 */
+.card-description {
   font-size: 13px;
   color: #666;
+  line-height: 1.4;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* ✅ 최대 3줄 */
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
+/* 재료 구성 (선택) */
+.card-ingredients {
+  font-size: 12px;
+  color: #888;
+  line-height: 1.4;
+  margin-top: 2px;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 영양 정보 */
+.card-nutrition {
+  font-size: 12px;
+  color: #999;
+  line-height: 1.3;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 가격 */
 .card-price {
-  margin-top: auto;
-  font-weight: 600;
-  font-size: 16px;
-  color: #222;
-  white-space: nowrap;
+  font-size: 15px;
+  font-weight: bold;
+  color: #2c8f5b;
+  margin-top: 4px;
 }
