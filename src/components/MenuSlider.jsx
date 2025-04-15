@@ -8,9 +8,10 @@ export default function MenuSlider({ items }) {
   const lastLoopTime = useRef(0);
   const scrolling = useRef(false);
 
-  const loopedItems = [...items, ...items, ...items];
+  // ✅ 5배 복제 (무한루프처럼 보이게)
+  const loopedItems = [...items, ...items, ...items, ...items, ...items];
   const originalLength = items.length;
-  const startIndex = originalLength;
+  const startIndex = originalLength * 2; // 중앙 위치로 시작
 
   useEffect(() => {
     const ref = containerRef.current;
@@ -51,15 +52,17 @@ export default function MenuSlider({ items }) {
       setCenterIndex(closestIndex);
     }
 
+    // ✅ loop 보정: 더 넓은 범위에서 offset 계산
     const now = Date.now();
     const cardWidth = container.firstChild.offsetWidth;
+    const loopOffset = originalLength * 2;
 
     if (now - lastLoopTime.current > 500) {
-      if (closestIndex <= originalLength / 4) {
+      if (closestIndex <= loopOffset / 2) {
         container.scrollLeft += originalLength * cardWidth;
         lastLoopTime.current = now;
       }
-      if (closestIndex >= loopedItems.length - originalLength / 4) {
+      if (closestIndex >= loopedItems.length - loopOffset / 2) {
         container.scrollLeft -= originalLength * cardWidth;
         lastLoopTime.current = now;
       }
@@ -123,13 +126,11 @@ export default function MenuSlider({ items }) {
         {loopedItems.map((item, index) => {
           const offset = index - centerIndex;
           const distance = Math.abs(offset);
-          const isCenter = index === centerIndex;
 
-          // ✅ 중앙 카드는 scale: 1.0, 양쪽은 작아지게
-          const scale = Math.max(0.6, 1 - distance * 0.15);
+          const scale = Math.max(0.6, 1 - distance * 0.15); // ✅ 가운데 1.0, 멀수록 작아짐
           const opacity = Math.max(0.3, 1 - distance * 0.2);
           const rotateY = offset === 0 ? 0 : offset < 0 ? -35 : 35;
-          const zIndex = isCenter ? 10 : 5 - distance;
+          const zIndex = offset === 0 ? 10 : 5 - distance;
 
           return (
             <motion.div
