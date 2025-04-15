@@ -1,11 +1,17 @@
 import React, { useRef, useEffect } from "react";
 import MenuCard from "./MenuCard";
 import "./MenuSlider.css";
+import slideSound from "../assets/sounds/slide.mp3"; // ✅ 슬라이드 사운드 파일 경로
 
 export default function MenuSlider({ items, onTagClick, selectedTags }) {
   const scrollRef = useRef(null);
+  const audioRef = useRef(null);
 
-  // ✅ 중심 카드 애니메이션 효과
+  useEffect(() => {
+    audioRef.current = new Audio(slideSound);
+  }, []);
+
+  // 중심 카드 애니메이션
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -30,6 +36,7 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
         card.style.transform = `scale(${scale}) rotateY(${cardCenter < containerCenter ? rotateY : -rotateY}deg)`;
         card.style.opacity = opacity;
         card.style.zIndex = zIndex;
+        card.style.filter = `blur(${normalized * 1}px)`; // ✅ 잔상 느낌
       });
     };
 
@@ -41,17 +48,26 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
     };
   }, [items]);
 
-  // ✅ 카드 단위 중심 정렬 이동
+  // 부드러운 중심 이동 + 사운드 + 진동
   const scrollToCard = (direction) => {
-    if (!scrollRef.current) return;
-
     const container = scrollRef.current;
     const card = container.querySelector(".scroll-card");
-    if (!card) return;
+    if (!container || !card) return;
 
-    const cardWidth = card.offsetWidth + 24; // 카드 + margin
+    const cardWidth = card.offsetWidth + 24;
     const currentScroll = container.scrollLeft;
     const targetScroll = currentScroll + direction * cardWidth;
+
+    // ✅ 사운드
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+
+    // ✅ 진동
+    if (navigator.vibrate) {
+      navigator.vibrate(20);
+    }
 
     container.scrollTo({
       left: targetScroll,
