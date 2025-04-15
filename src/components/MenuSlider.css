@@ -6,7 +6,8 @@
   display: flex;
   overflow-x: auto;
   padding: 48px 0;
-  height: 480px;
+  min-height: 480px; /* ✅ 최소 높이만 보장 */
+  height: auto;       /* ✅ 고정 높이 제거해서 scale로 인한 위아래 튐 방지 */
   align-items: center;
   perspective: 2000px;
   -webkit-overflow-scrolling: touch;
@@ -26,6 +27,7 @@
   text-align: center;
   transform-style: preserve-3d;
   transform-origin: center center;
+  will-change: transform; /* ✅ 흔들림 보정용 GPU 최적화 */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
