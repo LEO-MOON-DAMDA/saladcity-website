@@ -1,105 +1,54 @@
-import React, { useState } from "react";
-import MenuSlider from "./MenuSlider";
+import React, { useRef, useEffect } from "react";
+import MenuCard from "./MenuCard";
+import "./MenuSlider.css";
 
-export default function MenuSectionSlider({ title, items }) {
-  const [activeTags, setActiveTags] = useState([]);
+export default function MenuSlider({ items, onTagClick, selectedTags }) {
+  const scrollRef = useRef(null);
 
-  const handleTagClick = (tagKey) => {
-    setActiveTags((prev) =>
-      prev.includes(tagKey)
-        ? prev.filter((tag) => tag !== tagKey)
-        : [...prev, tagKey]
-    );
-  };
+  // 카드 중심 확대 효과 적용
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
 
-  const removeTag = (tagKey) => {
-    setActiveTags((prev) => prev.filter((tag) => tag !== tagKey));
-  };
+    const handleScroll = () => {
+      const cards = container.querySelectorAll(".scroll-card");
+      const containerRect = container.getBoundingClientRect();
+      const containerCenter = containerRect.left + containerRect.width / 2;
 
-  const clearTags = () => {
-    setActiveTags([]);
-  };
+      cards.forEach((card) => {
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.left + cardRect.width / 2;
+        const distance = Math.abs(containerCenter - cardCenter);
+        const scale = Math.max(0.85, 1 - distance / 800);
+        const opacity = Math.max(0.4, 1 - distance / 600);
+        const zIndex = 1000 - Math.floor(distance);
 
-  const filteredItems = activeTags.length > 0
-    ? items.filter(item => {
-        const name = item.name.toLowerCase();
-        return activeTags.some(tag => name.includes(tag.toLowerCase()));
-      })
-    : items;
+        card.style.transform = `scale(${scale})`;
+        card.style.opacity = opacity;
+        card.style.zIndex = zIndex;
+      });
+    };
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // 초기 실행
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+    };
+  }, [items]);
 
   return (
-    <div style={{ margin: "60px 0" }}>
-      <h2 style={{ textAlign: "center", fontSize: "2rem", marginBottom: "10px" }}>
-        {title}
-      </h2>
-
-      {activeTags.length > 0 && (
-        <div
-          style={{
-            textAlign: "center",
-            color: "#2c8f5b",
-            marginBottom: "20px",
-            fontWeight: 500,
-            display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
-            gap: "8px",
-          }}
-        >
-          선택된 필터:
-          {activeTags.map((tag, idx) => (
-            <span
-              key={idx}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                padding: "4px 8px",
-                background: "#e6f4eb",
-                border: "1px solid #2c8f5b",
-                borderRadius: "999px",
-                fontSize: "13px",
-                color: "#2c8f5b",
-                textTransform: "capitalize",
-              }}
-            >
-              {tag}
-              <button
-                onClick={() => removeTag(tag)}
-                style={{
-                  marginLeft: "6px",
-                  background: "transparent",
-                  border: "none",
-                  color: "#999",
-                  fontSize: "14px",
-                  cursor: "pointer",
-                  lineHeight: 1,
-                }}
-              >
-                ❌
-              </button>
-            </span>
-          ))}
-          <button
-            onClick={clearTags}
-            style={{
-              marginLeft: "10px",
-              background: "transparent",
-              border: "none",
-              color: "#999",
-              cursor: "pointer",
-              fontSize: "14px",
-            }}
-          >
-            모두 초기화
-          </button>
-        </div>
-      )}
-
-      <MenuSlider
-        items={filteredItems}
-        onTagClick={handleTagClick}
-        selectedTags={activeTags}
-      />
+    <div className="slider-wrapper">
+      <div className="slider-scroll-wrapper" ref={scrollRef}>
+        {items.map((item, idx) => (
+          <MenuCard
+            key={idx}
+            item={item}
+            onTagClick={onTagClick}
+            selectedTags={selectedTags}
+          />
+        ))}
+      </div>
     </div>
   );
 }
