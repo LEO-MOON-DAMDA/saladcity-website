@@ -104,7 +104,7 @@ export default function Header() {
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              height: '40px',
+              height: '60px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
