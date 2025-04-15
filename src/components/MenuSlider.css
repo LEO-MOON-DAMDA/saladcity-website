@@ -6,13 +6,18 @@
   display: flex;
   overflow-x: auto;
   padding: 48px 0;
-  min-height: 480px; /* ✅ 최소 높이만 보장 */
-  height: auto;       /* ✅ 고정 높이 제거해서 scale로 인한 위아래 튐 방지 */
+  min-height: 480px;
+  height: auto;
   align-items: center;
   perspective: 2000px;
+
+  /* ✅ 모바일 UX 향상 */
   -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   scrollbar-width: none;
 }
+
 .slider-scroll-wrapper::-webkit-scrollbar {
   display: none;
 }
@@ -27,13 +32,16 @@
   text-align: center;
   transform-style: preserve-3d;
   transform-origin: center center;
-  will-change: transform; /* ✅ 흔들림 보정용 GPU 최적화 */
+  will-change: transform;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden;
   position: relative;
   transition: transform 0.3s ease;
+
+  /* ✅ 스크롤 스냅 중심으로 맞추기 */
+  scroll-snap-align: center;
 }
 
 .card-image {
@@ -42,7 +50,7 @@
   object-fit: cover;
 }
 
-/* ✅ 카드 설명 및 가격 스타일링 */
+/* 카드 설명 및 가격 스타일링 */
 .card-text {
   padding: 16px;
   font-size: 14px;
@@ -68,7 +76,7 @@
   margin-top: 6px;
 }
 
-/* ✅ 화살표 버튼 */
+/* 화살표 버튼 */
 .slider-arrow {
   position: absolute;
   top: 50%;
@@ -98,7 +106,7 @@
   right: 12px;
 }
 
-/* ✅ 모바일 화살표 숨김 */
+/* 모바일 화살표 숨김 */
 @media (max-width: 768px) {
   .slider-arrow {
     display: none;
