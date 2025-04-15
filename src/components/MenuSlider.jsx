@@ -5,6 +5,8 @@ import "./MenuSlider.css";
 const sound = new Audio("/sounds/slide.mp3");
 
 export default function MenuSlider({ items }) {
+  console.log("items", items); // props로 넘어온 메뉴 리스트 확인
+
   const [current, setCurrent] = useState(0);
   const timeoutRef = useRef(null);
 
