@@ -6,7 +6,6 @@ import "./MenuSlider.css";
 export default function MenuSlider({ items }) {
   const containerRef = useRef(null);
   const [centerIndex, setCenterIndex] = useState(0);
-  const [audio] = useState(() => new Audio("/sounds/slide.mp3"));
   const loopedItems = [...items, ...items, ...items];
   const originalLength = items.length;
   const startIndex = originalLength;
@@ -42,9 +41,6 @@ export default function MenuSlider({ items }) {
 
     if (closestIndex !== centerIndex) {
       setCenterIndex(closestIndex);
-      audio.pause();
-      audio.currentTime = 0;
-      audio.play().catch((e) => console.warn("Audio play blocked:", e));
     }
 
     if (closestIndex <= originalLength / 2) {
@@ -60,7 +56,6 @@ export default function MenuSlider({ items }) {
     if (!ref) return;
 
     let ticking = false;
-
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
