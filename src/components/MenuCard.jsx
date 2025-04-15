@@ -20,11 +20,11 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
         src={item.image}
         alt={item.name}
         className="card-image"
-        loading="lazy" // ✅ 메모리 최적화
+        loading="lazy"
       />
 
-      <div className="card-content">
-        <div className="card-badges">
+      <div className="card-content animated-fade-in-up">
+        <div className="card-badges animated-badge">
           {tags.map((tag, idx) => (
             <span
               key={idx}
@@ -38,10 +38,10 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
           ))}
         </div>
 
-        <h3 className="card-title">{item.name}</h3>
+        <h3 className="card-title animated-title">{item.name}</h3>
 
         {(item.description || item.summary) && (
-          <p className="card-description">
+          <p className="card-description animated-desc">
             {(item.description || item.summary).length > 40
               ? (item.description || item.summary).slice(0, 40) + "..."
               : (item.description || item.summary)}
@@ -49,14 +49,14 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
         )}
 
         {item.ingredients && (
-          <p className="card-ingredients">
+          <p className="card-ingredients animated-desc">
             {item.ingredients.length > 40
               ? item.ingredients.slice(0, 40) + "..."
               : item.ingredients}
           </p>
         )}
 
-        <div className="card-bottom">
+        <div className="card-bottom animated-bottom">
           <p className="card-nutrition">
             {item.kcal ? `${item.kcal} kcal` : ""}
             {item.protein ? ` | 단백질 ${item.protein}g` : ""}
