@@ -2,11 +2,12 @@ import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./MenuSlider.css";
 
-const sound = new Audio("/sounds/tactile_slide_click.mp3");
+const sound = new Audio("/sounds/final_slide_click.mp3");
 
 export default function MenuSlider({ items }) {
   const containerRef = useRef(null);
   const [centerIndex, setCenterIndex] = useState(0);
+  const scrollTimeout = useRef(null);
 
   const updateCenter = () => {
     const container = containerRef.current;
@@ -18,9 +19,9 @@ export default function MenuSlider({ items }) {
     let minDistance = Infinity;
 
     container.childNodes.forEach((node, index) => {
-      const rect = node.getBoundingClientRect();
-      const nodeCenter = rect.left + rect.width / 2;
-      const distance = Math.abs(containerCenter - nodeCenter);
+      const nodeRect = node.getBoundingClientRect();
+      const nodeCenter = nodeRect.left + nodeRect.width / 2;
+      const distance = Math.abs(containerCenter - (container.scrollLeft + nodeCenter - container.offsetLeft));
       if (distance < minDistance) {
         minDistance = distance;
         closestIndex = index;
@@ -28,17 +29,25 @@ export default function MenuSlider({ items }) {
     });
 
     if (closestIndex !== centerIndex) {
+      setCenterIndex(closestIndex);
       sound.currentTime = 0;
       sound.play().catch(() => {});
-      setCenterIndex(closestIndex);
     }
   };
 
   useEffect(() => {
     const ref = containerRef.current;
     if (!ref) return;
-    ref.addEventListener("scroll", updateCenter, { passive: true });
-    return () => ref.removeEventListener("scroll", updateCenter);
+
+    const handleScroll = () => {
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+      scrollTimeout.current = setTimeout(() => {
+        updateCenter();
+      }, 100); // Only update after scroll has stopped for 100ms
+    };
+
+    ref.addEventListener("scroll", handleScroll);
+    return () => ref.removeEventListener("scroll", handleScroll);
   }, [centerIndex]);
 
   return (
@@ -48,10 +57,10 @@ export default function MenuSlider({ items }) {
           key={item.name}
           className="scroll-card"
           animate={{
-            scale: index === centerIndex ? 1.15 : 0.92,
+            scale: index === centerIndex ? 1.15 : 0.9,
             zIndex: index === centerIndex ? 10 : 1,
           }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          transition={{ type: "spring", stiffness: 250, damping: 25 }}
         >
           <img src={item.image} alt={item.name} className="card-image" />
           <div className="card-text">
