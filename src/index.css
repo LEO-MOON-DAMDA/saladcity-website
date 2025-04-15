@@ -3,10 +3,19 @@
   box-sizing: border-box;
 }
 
+/* ✅ 전체 스크롤 및 카드 hover 정상 동작 위한 설정 */
+html, body, #root {
+  height: auto !important;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* ✅ 본문 기본 스타일 */
 body {
   margin: 0;
   font-family: 'Noto Sans KR', sans-serif;
   background-color: #f6fdf8;
   color: #333;
 }
-
