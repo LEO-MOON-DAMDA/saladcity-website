@@ -34,6 +34,13 @@
   object-fit: cover;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  transition: transform 0.3s ease, filter 0.3s ease; /* 이미지 확대 효과 및 그라데이션 */
+}
+
+/* 이미지 hover 시 확대 및 그라데이션 효과 */
+.card-image:hover {
+  transform: scale(1.05); /* 이미지 확대 */
+  filter: brightness(0.8) contrast(1.2); /* 그라데이션 효과 추가 */
 }
 
 /* 콘텐츠 래퍼 */
@@ -45,6 +52,23 @@
   flex-grow: 1;
   gap: 6px;
   animation: fadeInUp 0.5s ease-out both;
+}
+
+/* 중요한 텍스트 강조 효과 (제목, 가격 등) */
+.card-title, .card-price {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* 제목 강조 (hover 시 밝기와 배경 색상 변경) */
+.scroll-card:hover .card-title {
+  color: #2c8f5b; /* 강조 색상 */
+  transform: scale(1.05); /* 살짝 확대 */
+}
+
+/* 가격 강조 (hover 시 밝기와 배경 색상 변경) */
+.scroll-card:hover .card-price {
+  color: #e09100; /* 강조 색상 */
+  transform: scale(1.05); /* 살짝 확대 */
 }
 
 /* 뱃지 박스 */
