@@ -134,20 +134,22 @@ export default function MenuSlider({ items }) {
 
           return (
             <motion.div
-              key={`${item.name}-${index}`}
-              className="scroll-card"
-              style={{
-                zIndex,
-                marginLeft: offset < 0 ? -120 : 0,
-                marginRight: offset > 0 ? -120 : 0,
-              }}
-              animate={{
-                scale,
-                opacity,
-                rotateY,
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
+  key={`${item.name}-${index}`}
+  className="scroll-card"
+  style={{
+    zIndex,
+    marginLeft: offset < 0 ? -120 : 0,
+    marginRight: offset > 0 ? -120 : 0,
+  }}
+  animate={{
+    scale,
+    opacity,
+    rotateY,
+    y: offset === 0 ? 10 : 0, // ✅ 중심 카드만 살짝 아래로
+  }}
+  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+>
+
               <img src={item.image} alt={item.name} className="card-image" />
               <div className="card-text">
                 <h3>{item.name}</h3>
