@@ -57,7 +57,14 @@ export default function SaladcityHome() {
     left: 0,
     width: '100%',
     height: '100%',
-    background: 'linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.1), rgba(0,0,0,0))',
+    background: linear-gradient(
+  to bottom,
+  rgba(0, 0, 0, 0.6) 0%,
+  rgba(0, 0, 0, 0.35) 30%,
+  rgba(0, 0, 0, 0.15) 60%,
+  rgba(0, 0, 0, 0.05) 85%,
+  rgba(0, 0, 0, 0) 100%
+);
     zIndex: 1,
     pointerEvents: 'none'
   }} />
