@@ -3,8 +3,9 @@
   flex-wrap: nowrap;
   overflow-x: auto;
   scroll-behavior: smooth;
-  gap: 8px;                      /* 🔧 간격 줄임 */
-  padding: 0 8px;                /* 🔧 좌우 여백 줄임 */
+  scroll-snap-type: x mandatory;      /* ✅ 카드 하나씩 스냅 */
+  gap: 8px;
+  padding: 0 8px;
 }
 
 .horizontal-scroll-container::-webkit-scrollbar {
@@ -20,6 +21,7 @@
   box-shadow: 0 8px 16px rgba(0,0,0,0.07);
   transition: transform 0.3s ease;
   cursor: pointer;
+  scroll-snap-align: start;           /* ✅ 스냅 기준점 */
 }
 .menu-card:hover {
   transform: translateY(-6px);
@@ -40,10 +42,10 @@
   transition: transform 0.3s ease;
 }
 
-/* ✅ 모바일 슬라이드 느낌 조정 */
+/* ✅ 모바일용 슬라이드 최적화 */
 @media (max-width: 768px) {
   .menu-card {
-    min-width: 95vw;              /* 🔧 한 화면 거의 다 채우게 */
+    min-width: 95vw;
     max-width: 95vw;
   }
 
@@ -52,7 +54,7 @@
   }
 
   .horizontal-scroll-container {
-    gap: 4px;                     /* 🔧 더 좁게 */
+    gap: 4px;
     padding: 0 4px;
   }
 }
