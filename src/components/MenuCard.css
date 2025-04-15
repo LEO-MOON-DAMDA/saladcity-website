@@ -1,7 +1,7 @@
 /* 카드 전체 */
 .scroll-card {
   flex: 0 0 auto;
-  width: 260px; /* 카드 폭 원상복구 */
+  width: 260px;
   min-height: 400px;
   height: auto;
   background: white;
@@ -19,62 +19,54 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-/* Hover 효과 */
 .scroll-card:hover {
-  transform: scale(1.04) translateY(-5px) rotateX(1deg); /* 미세 회전과 이동 */
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2); /* 강한 그림자 효과 */
+  transform: scale(1.04) translateY(-5px) rotateX(1deg);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
   z-index: 20;
-  background-color: rgba(255, 255, 255, 0.8); /* 배경 색상 살짝 밝게 */
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
-/* 이미지 */
 .card-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  transition: transform 0.3s ease, filter 0.3s ease; /* 이미지 확대 효과 및 그라데이션 */
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* 이미지 hover 시 확대 및 그라데이션 효과 */
 .card-image:hover {
-  transform: scale(1.05); /* 이미지 확대 */
-  filter: brightness(0.8) contrast(1.2); /* 그라데이션 효과 추가 */
+  transform: scale(1.05);
+  filter: brightness(0.8) contrast(1.2);
 }
 
-/* 콘텐츠 래퍼 */
 .card-content {
-  padding: 8px; /* 컬럼 간격 좁히기 */
+  padding: 8px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   flex-grow: 1;
-  gap: 4px; /* 컬럼 간격 좁히기 */
+  gap: 4px;
   animation: fadeInUp 0.5s ease-out both;
 }
 
-/* 글자체 적용 */
 .card-title, .card-price {
-  font-family: 'Inter', sans-serif; /* Sweetgreen 스타일의 모던한 폰트 */
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
-  color: #333; /* 어두운 회색으로 색상 설정 */
+  color: #333;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* 제목 강조 (hover 시 밝기와 배경 색상 변경) */
 .scroll-card:hover .card-title {
-  color: #2c8f5b; /* 강조 색상 */
+  color: #2c8f5b;
   transform: scale(1.05);
 }
 
-/* 가격 강조 (hover 시 밝기와 배경 색상 변경) */
 .scroll-card:hover .card-price {
   color: #e09100;
   transform: scale(1.05);
 }
 
-/* 뱃지 박스 */
 .card-badges {
   display: flex;
   gap: 6px;
@@ -111,7 +103,6 @@
   box-shadow: 0 0 0 2px rgba(44, 143, 91, 0.2);
 }
 
-/* 제목 */
 .card-title {
   font-size: 16px;
   font-weight: 600;
@@ -120,9 +111,10 @@
   line-height: 1.3;
   animation: slideUp 0.4s ease-out both;
   animation-delay: 0.2s;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
 }
 
-/* 설명 */
 .card-description {
   font-family: 'Inter', sans-serif;
   font-size: 13px;
@@ -137,7 +129,6 @@
   animation-delay: 0.3s;
 }
 
-/* 재료 구성 */
 .card-ingredients {
   font-family: 'Inter', sans-serif;
   font-size: 12px;
@@ -153,7 +144,6 @@
   animation-delay: 0.4s;
 }
 
-/* 영양 정보 */
 .card-nutrition {
   font-family: 'Inter', sans-serif;
   font-size: 12px;
@@ -168,7 +158,6 @@
   animation-delay: 0.5s;
 }
 
-/* 가격 */
 .card-price {
   font-family: 'Inter', sans-serif;
   font-size: 15px;
@@ -177,9 +166,9 @@
   margin-top: 4px;
   animation: slideUp 0.4s ease-out both;
   animation-delay: 0.6s;
+  letter-spacing: 0.2px;
 }
 
-/* 하단 정렬용 */
 .card-bottom {
   margin-top: auto;
   display: flex;
@@ -187,34 +176,17 @@
   gap: 4px;
 }
 
-/* 🔥 내부 애니메이션 keyframes */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
