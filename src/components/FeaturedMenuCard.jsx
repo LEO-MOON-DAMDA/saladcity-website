@@ -7,18 +7,18 @@ export default function FeaturedMenuCard({ item }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    const categoryHash = encodeURIComponent(item.카테고리);
+    const categoryHash = encodeURIComponent(item.category);
     navigate(`/menu#${categoryHash}`);
   };
 
   return (
     <div className="featured-card" onClick={handleClick}>
-      <img src={item.이미지경로} alt={item.메뉴명} className="featured-image" />
+      <img src={item.image} alt={item.title} className="featured-image" />
       <div className="featured-text">
-        <h3>{item.메뉴명}</h3>
-        <p>{item.요약설명}</p>
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
         <p className="nutrient">
-          🥗 {item.칼로리} kcal | P {item.단백질}g | C {item.탄수화물}g | F {item.지방}g | CO₂e {item.환경지표}kg
+          🥗 {item.calories} kcal | P {item.protein}g | C {item.carbs}g | F {item.fat}g | CO₂e {item.co2e}kg
         </p>
       </div>
     </div>
