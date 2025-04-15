@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import menuItems from "../data/menuItems.json";
 import MenuSectionSlider from "./MenuSectionSlider";
+import MenuCategoryNav from "./MenuCategoryNav"; // ✅ 추가
 import "./MenuPage.css";
 
 export default function MenuPage() {
@@ -34,6 +35,9 @@ export default function MenuPage() {
       <div className="menu-background">
         <img src="/images/salad/salcy_menu04.png" alt="kitchen background" />
       </div>
+
+      {/* 🧭 고정 카테고리 네비게이션 */}
+      <MenuCategoryNav />
 
       {/* 🧾 메뉴 콘텐츠 */}
       <div className="menu-content">
