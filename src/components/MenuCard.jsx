@@ -2,16 +2,29 @@ import React from "react";
 import "./MenuCard.css";
 
 export default function MenuCard({ item }) {
+  // 태그 자동 감지 (예: Vegan, Flexitarian, Pollo 등)
+  const tags = [];
+  const lowerName = item.name.toLowerCase();
+  if (lowerName.includes("vegan")) tags.push("Vegan");
+  if (lowerName.includes("vegetarian")) tags.push("Vegetarian");
+  if (lowerName.includes("flexitarian")) tags.push("Flexitarian");
+  if (lowerName.includes("pollo")) tags.push("Pollo");
+  if (lowerName.includes("pesco")) tags.push("Pesco");
+
   return (
     <div className="scroll-card">
-      {/* 이미지 */}
       <img src={item.image} alt={item.name} className="card-image" />
 
       <div className="card-content">
-        {/* 메뉴 이름 */}
+        {/* ✅ 태그 뱃지 (상단에 출력) */}
+        <div className="card-badges">
+          {tags.map((tag, idx) => (
+            <span key={idx} className="card-badge">{tag}</span>
+          ))}
+        </div>
+
         <h3 className="card-title">{item.name}</h3>
 
-        {/* 설명 (description 또는 summary 사용) */}
         {(item.description || item.summary) && (
           <p className="card-description">
             {(item.description || item.summary).length > 40
@@ -20,7 +33,6 @@ export default function MenuCard({ item }) {
           </p>
         )}
 
-        {/* 재료 구성 (있을 경우에만) */}
         {item.ingredients && (
           <p className="card-ingredients">
             {item.ingredients.length > 40
@@ -29,7 +41,6 @@ export default function MenuCard({ item }) {
           </p>
         )}
 
-        {/* 영양 정보 */}
         <p className="card-nutrition">
           {item.kcal ? `${item.kcal} kcal` : ""}
           {item.protein ? ` | 단백질 ${item.protein}g` : ""}
@@ -40,7 +51,6 @@ export default function MenuCard({ item }) {
             : ""}
         </p>
 
-        {/* 가격 */}
         <p className="card-price">
           {item.price !== undefined ? `${item.price.toLocaleString()}원` : ""}
         </p>
