@@ -18,6 +18,7 @@ export default function SaladcityHome() {
   
   return (
     <div style={{ fontFamily: "sans-serif", backgroundColor: "#f6fdf8", paddingTop: "0px" }}>
+      <Header />
       {/* ✅ 헤더 */}
       <Header hideLogo={location.pathname === "/"} />
 
