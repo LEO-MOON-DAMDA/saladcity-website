@@ -9,7 +9,6 @@ export default function MenuSlider({ items }) {
   const originalLength = items.length;
   const startIndex = originalLength;
 
-  // 초기 가운데 카드 정렬
   useEffect(() => {
     const ref = containerRef.current;
     if (ref) {
@@ -76,6 +75,7 @@ export default function MenuSlider({ items }) {
     ref.addEventListener("scroll", handleScroll);
     ref.addEventListener("pointerdown", updateCenter);
     ref.addEventListener("touchstart", updateCenter);
+
     return () => {
       ref.removeEventListener("scroll", handleScroll);
       ref.removeEventListener("pointerdown", updateCenter);
@@ -83,41 +83,63 @@ export default function MenuSlider({ items }) {
     };
   }, [centerIndex]);
 
-  return (
-    <div className="slider-scroll-wrapper" ref={containerRef}>
-      {loopedItems.map((item, index) => {
-        const offset = index - centerIndex;
-        const isCenter = index === centerIndex;
-        const rotateY = offset === 0 ? 0 : offset < 0 ? 35 : -35;
-        const scale = isCenter ? 1.25 : 0.8;
-        const opacity = isCenter ? 1 : 0.5;
-        const zIndex = isCenter ? 10 : 5 - Math.abs(offset);
+  // ✅ 좌우 이동 함수
+  const scrollByCard = (direction) => {
+    const container = containerRef.current;
+    if (!container) return;
+    const cardWidth = container.firstChild.offsetWidth;
+    container.scrollBy({ left: direction * cardWidth, behavior: "smooth" });
+  };
 
-        return (
-          <motion.div
-            key={`${item.name}-${index}`}
-            className="scroll-card"
-            style={{
-              zIndex,
-              marginLeft: offset < 0 ? -80 : 0,
-              marginRight: offset > 0 ? -80 : 0,
-            }}
-            animate={{
-              scale,
-              opacity,
-              rotateY,
-            }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          >
-            <img src={item.image} alt={item.name} className="card-image" />
-            <div className="card-text">
-              <h3>{item.name}</h3>
-              <p>{item.description}</p>
-              <span>{item.price}원</span>
-            </div>
-          </motion.div>
-        );
-      })}
+  // ✅ 키보드 대응
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowLeft") scrollByCard(-1);
+      if (e.key === "ArrowRight") scrollByCard(1);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  return (
+    <div className="slider-wrapper">
+      <button className="slider-arrow left" onClick={() => scrollByCard(-1)}>‹</button>
+      <div className="slider-scroll-wrapper" ref={containerRef}>
+        {loopedItems.map((item, index) => {
+          const offset = index - centerIndex;
+          const isCenter = index === centerIndex;
+          const rotateY = offset === 0 ? 0 : offset < 0 ? 35 : -35;
+          const scale = isCenter ? 1.25 : 0.8;
+          const opacity = isCenter ? 1 : 0.5;
+          const zIndex = isCenter ? 10 : 5 - Math.abs(offset);
+
+          return (
+            <motion.div
+              key={`${item.name}-${index}`}
+              className="scroll-card"
+              style={{
+                zIndex,
+                marginLeft: offset < 0 ? -100 : 0,
+                marginRight: offset > 0 ? -100 : 0,
+              }}
+              animate={{
+                scale,
+                opacity,
+                rotateY,
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              <img src={item.image} alt={item.name} className="card-image" />
+              <div className="card-text">
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
+                <span>{item.price}원</span>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+      <button className="slider-arrow right" onClick={() => scrollByCard(1)}>›</button>
     </div>
   );
 }
