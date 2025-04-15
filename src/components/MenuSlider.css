@@ -17,8 +17,8 @@
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 
-  overscroll-behavior-x: auto;
-  touch-action: pan-y pan-x;
+  overscroll-behavior-x: auto;     /* ✅ 수직 스크롤 허용 */
+  touch-action: pan-y pan-x;       /* ✅ 모바일 상하 스크롤 가능하게 */
   scrollbar-width: none;
 }
 
@@ -41,7 +41,7 @@
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  margin: 0 3px; /* ⬅ 카드 간격 더 줄임 */
+  margin: 0 3px; /* ✅ 카드 간격 좁힘 */
 
   scroll-snap-align: center;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
@@ -56,35 +56,46 @@
 
 /* 카드 내용 */
 .card-text {
-  padding: 16px;
-  font-size: 14px;
+  padding: 12px 12px 10px; /* ✅ 상하 간격 최소화 */
+  font-size: 13px;
   color: #333;
   background: rgba(255, 255, 255, 0.95);
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  line-height: 1.4;
+  gap: 3px; /* ✅ 요소 간 여백 최소화 */
 }
 
 .card-text h3 {
-  font-size: 16px;
-  margin: 0 0 4px;
+  font-size: 14px;
+  margin: 0;
   color: #111;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   letter-spacing: 0.3px;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-text p {
-  margin: 0 0 4px;
+  margin: 0;
+  font-size: 13px;
   color: #666;
+  line-height: 1.3;
 }
 
 .card-text span {
   font-weight: bold;
   color: #2c8f5b;
-  margin-top: 6px;
+  font-size: 13px;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 화살표 */
