@@ -1,1 +1,28 @@
+.keen-slider {
+  margin-bottom: 48px;
+  padding: 0 16px;
+}
+
+.keen-slider__slide {
+  transform: scale(0.9);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.6;
+}
+
+.keen-slider__slide.keen-slider__slide--active {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.menu-section {
+  margin-bottom: 64px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2f4f2f;
+  margin-bottom: 16px;
+  padding-left: 16px;
+}
 
