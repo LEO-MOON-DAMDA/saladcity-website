@@ -21,3 +21,11 @@
   transition: transform 0.3s ease;
   cursor: pointer;
 }
+
+/* ✅ 모바일 화면일 때 카드 크기 조정 */
+@media (max-width: 768px) {
+  .menu-card {
+    min-width: 85vw;
+    max-width: 90vw;
+  }
+}
