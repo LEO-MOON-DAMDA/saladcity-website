@@ -5,12 +5,16 @@
   overflow: hidden;
   background-color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  position: relative;     /* ✅ 카드가 위로 올라가도 보이게 */
+  z-index: 1;
 }
 
 .featured-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);     /* ✅ 살짝 더 부드러운 상승 */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* ✅ 살짝 강조 */
+  z-index: 10;                     /* ✅ 위로 겹치게 보이게 */
 }
 
 .featured-image {
