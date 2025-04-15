@@ -66,7 +66,7 @@ export default function Header() {
                 color: '#333',
                 paddingBottom: '2px',
                 borderBottom: '2px solid transparent',
-                transition: 'color 0.2s ease, borderBottom 0.2s ease'
+                transition: 'color 0.2s ease, border-Bottom 0.2s ease'
               }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = '#3C8050';
