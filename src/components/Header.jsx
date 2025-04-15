@@ -27,19 +27,18 @@ export default function Header() {
     { text: "LOCATIONS", href: "/locations" }
   ];
 
-
-  const baseColor = isHome ? '#fff' : '#333'; // ✅ 여기 핵심
+  const baseColor = isHome ? '#fff' : '#333';
   const hoverColor = isHome ? '#A8FFD0' : '#3C8050';
-  
+
   return (
     <header style={{
       position: 'fixed',
       top: 0,
       left: 0,
       width: '100%',
-      backgroundColor: 'transparent',      // ✅ 배경 투명
-      backdropFilter: 'blur(6px)',         // ✅ 배경 흐림 효과 유지
-      WebkitBackdropFilter: 'blur(6px)',   // ✅ 사파리 대응
+      backgroundColor: 'transparent',
+      backdropFilter: 'blur(6px)',
+      WebkitBackdropFilter: 'blur(6px)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: isMobile ? 'space-between' : 'flex-start',
@@ -56,10 +55,10 @@ export default function Header() {
           {isDetail && (
             <a href="/" style={{ marginRight: '16px' }}>
               <img src="/images/saladcity_origin.png" alt="home" style={{
-                  height: '54px',
-                  objectFit: 'cover',
-                  objectPosition: 'center'
-                }} />
+                height: '54px',
+                objectFit: 'cover',
+                objectPosition: 'center'
+              }} />
             </a>
           )}
 
@@ -71,19 +70,22 @@ export default function Header() {
             letterSpacing: '0.3px'
           }}>
             {menuItems.map((link, index) => (
-              <a key={index} href={link.href} style={{
-                textDecoration: 'none',
-                color: '#fff',
-                paddingBottom: '2px',
-                borderBottom: '2px solid transparent',
-                transition: 'color 0.2s ease, border-Bottom 0.2s ease'
-              }}
+              <a
+                key={index}
+                href={link.href}
+                style={{
+                  textDecoration: 'none',
+                  color: baseColor,
+                  paddingBottom: '2px',
+                  borderBottom: '2px solid transparent',
+                  transition: 'color 0.2s ease, border-Bottom 0.2s ease'
+                }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#3C8050';
-                  e.currentTarget.style.borderBottom = '2px solid #3C8050';
+                  e.currentTarget.style.color = hoverColor;
+                  e.currentTarget.style.borderBottom = `2px solid ${hoverColor}`;
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#fff';
+                  e.currentTarget.style.color = baseColor;
                   e.currentTarget.style.borderBottom = '2px solid transparent';
                 }}
               >
@@ -145,19 +147,19 @@ export default function Header() {
           }}>
             <div style={{
               width: '24px', height: '2px',
-              backgroundColor: '#fff', marginBottom: '6px',
+              backgroundColor: baseColor, marginBottom: '6px',
               transition: 'all 0.3s ease',
               transform: isOpen ? 'translateY(8px) rotate(45deg)' : 'none'
             }} />
             <div style={{
               width: '24px', height: '2px',
-              backgroundColor: '#fff', marginBottom: '6px',
+              backgroundColor: baseColor, marginBottom: '6px',
               opacity: isOpen ? 0 : 1,
               transition: 'opacity 0.3s ease'
             }} />
             <div style={{
               width: '24px', height: '2px',
-              backgroundColor: '#fff',
+              backgroundColor: baseColor,
               transition: 'all 0.3s ease',
               transform: isOpen ? 'translateY(-8px) rotate(-45deg)' : 'none'
             }} />
@@ -172,7 +174,7 @@ export default function Header() {
             top: '60px',
             left: 0,
             width: '100%',
-            backgroundColor: 'rgba(0,0,0,0.8)',
+            backgroundColor: isHome ? 'rgba(0,0,0,0.9)' : '#fff',
             boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
             padding: isOpen ? '16px 24px' : '0px',
             zIndex: 1500
@@ -183,8 +185,10 @@ export default function Header() {
                 padding: '10px 0',
                 fontSize: '15px',
                 textDecoration: 'none',
-                color: '#fff',
-                borderBottom: '1px solid #eee'
+                color: baseColor,
+                borderBottom: isHome
+                  ? '1px solid rgba(255,255,255,0.2)'
+                  : '1px solid rgba(0,0,0,0.1)'
               }}>
                 {link.text}
               </a>
@@ -193,7 +197,7 @@ export default function Header() {
               display: 'block',
               marginTop: '12px',
               fontWeight: 'bold',
-              color: '#3C8050',
+              color: hoverColor,
               textDecoration: 'underline'
             }}>
               주문하기 →
