@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+  import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function Header() {
@@ -124,10 +124,10 @@ export default function Header() {
 
 
           <div onClick={() => setIsOpen(!isOpen)} style={{
-       position: 'absolute',
-  top: '12px',
-  left: '24px',
-  cursor: 'pointer'
+            position: 'absolute',
+            top: '50%',
+            left: '24px',
+            cursor: 'pointer'
           }}>
             <div style={{ width: '24px', height: '2px', backgroundColor: '#333', marginBottom: '6px' }} />
             <div style={{ width: '24px', height: '2px', backgroundColor: '#333', marginBottom: '6px' }} />
