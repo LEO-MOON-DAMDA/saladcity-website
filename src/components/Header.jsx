@@ -1,18 +1,12 @@
 // src/components/Header.jsx
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 
 export default function Header() {
   const location = useLocation();
   const isHome = location.pathname === "/";
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
-  // ✅ 반응형 체크
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const isDetail = !isHome;
+  const isMobile = window.innerWidth < 768;
 
   const menuItems = [
     { text: "OUR MENU", href: "/menu" },
@@ -40,11 +34,10 @@ export default function Header() {
       height: '60px',
       boxSizing: 'border-box'
     }}>
-      {/* ✅ PC - 수평 메뉴 */}
+      {/* ✅ PC 버전: 수평 메뉴 + 조건부 로고 */}
       {!isMobile && (
         <>
-          {/* 로고는 상세페이지에서만 표시 */}
-          {location.pathname !== "/" && (
+          {isDetail && (
             <a href="/" style={{ marginRight: '16px' }}>
               <img src="/images/saladcity_origin.png" alt="home" style={{ height: '38px' }} />
             </a>
@@ -84,17 +77,18 @@ export default function Header() {
             borderRadius: '6px',
             textDecoration: 'none',
             fontWeight: 600,
-            whiteSpace: 'nowrap'
+            whiteSpace: 'nowrap',
+            flexShrink: 0
           }}>
             ORDER
           </a>
         </>
       )}
 
-      {/* ✅ Mobile - 햄버거 + 로고 (상세페이지에서만) */}
+      {/* ✅ 모바일 버전 */}
       {isMobile && (
         <>
-          {location.pathname !== "/" && (
+          {isDetail && (
             <a href="/" style={{
               position: 'absolute',
               top: '12px',
