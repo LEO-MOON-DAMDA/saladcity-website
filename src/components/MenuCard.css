@@ -47,16 +47,45 @@
   margin-bottom: 6px;
 }
 
-/* ✅ 태그 뱃지 스타일 */
+/* ✅ 태그 뱃지 기본 스타일 */
 .card-badge {
   font-size: 10px;
   font-weight: 600;
-  color: #2c8f5b;
-  background: rgba(44, 143, 91, 0.1);
-  border: 1px solid #2c8f5b;
   padding: 2px 6px;
   border-radius: 999px;
   text-transform: uppercase;
+  border: 1px solid transparent;
+}
+
+/* ✅ 색상별 뱃지 */
+.badge-green {
+  background: #e6f4eb;
+  color: #2c8f5b;
+  border-color: #2c8f5b;
+}
+
+.badge-orange {
+  background: #fff3e0;
+  color: #e09100;
+  border-color: #e09100;
+}
+
+.badge-gray {
+  background: #f4f4f4;
+  color: #666;
+  border-color: #aaa;
+}
+
+.badge-beige {
+  background: #fdf2e9;
+  color: #d29566;
+  border-color: #d29566;
+}
+
+.badge-blue {
+  background: #e0f0ff;
+  color: #2b6cb0;
+  border-color: #2b6cb0;
 }
 
 /* 제목 */
