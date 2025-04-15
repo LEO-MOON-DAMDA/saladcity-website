@@ -35,7 +35,7 @@ export default function Header() {
       backgroundColor: '#ffffffee',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: isMobile ? 'center' : 'space-between',
+      justifyContent: isMobile ? 'space-between' : 'flex-start', // ✅ PC는 좌측 정렬
       padding: '8px 24px',
       zIndex: 1000,
       backdropFilter: 'blur(6px)',
