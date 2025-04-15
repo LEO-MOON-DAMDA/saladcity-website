@@ -21,18 +21,31 @@ export default function SaladcityHome() {
     styleTag.innerHTML = `
       @keyframes fadeInOverlay {
         from {
-          background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.2), rgba(0,0,0,0));
+          opacity: 0;
         }
         to {
-          background: linear-gradient(
-            to bottom,
-            rgba(0,0,0,0.6) 0%,
-            rgba(0,0,0,0.35) 30%,
-            rgba(0,0,0,0.15) 60%,
-            rgba(0,0,0,0.05) 85%,
-            rgba(0,0,0,0) 100%
-          );
+          opacity: 1;
         }
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.6) 0%,
+          rgba(0,0,0,0.35) 30%,
+          rgba(0,0,0,0.15) 60%,
+          rgba(0,0,0,0.05) 85%,
+          rgba(0,0,0,0) 100%
+        );
+        opacity: 0;
+        animation: fadeInOverlay 1.8s ease-in-out forwards;
       }
     `;
     document.head.appendChild(styleTag);
@@ -73,16 +86,7 @@ export default function SaladcityHome() {
         />
 
         {/* 🎨 고급 오버레이 그라디언트 + 애니메이션 */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: 1,
-          pointerEvents: 'none',
-          animation: 'fadeInOverlay 2s ease-in-out forwards'
-        }} />
+        <div className="hero-overlay" />
 
         <div style={{
           position: 'relative',
