@@ -19,7 +19,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ✅ Hover 효과 */
+/* Hover 효과 */
 .scroll-card:hover {
   transform: scale(1.04);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
@@ -45,7 +45,7 @@
   gap: 6px;
 }
 
-/* ✅ 태그 뱃지 박스 */
+/* 뱃지 박스 */
 .card-badges {
   display: flex;
   gap: 6px;
@@ -54,7 +54,7 @@
   margin-bottom: 6px;
 }
 
-/* ✅ 태그 뱃지 기본 스타일 */
+/* 뱃지 스타일 */
 .card-badge {
   font-size: 10px;
   font-weight: 600;
@@ -62,9 +62,9 @@
   border-radius: 999px;
   text-transform: uppercase;
   border: 1px solid transparent;
+  cursor: pointer;
 }
 
-/* ✅ 색상별 뱃지 */
 .badge-green {
   background: #e6f4eb;
   color: #2c8f5b;
@@ -116,7 +116,7 @@
   overflow: hidden;
 }
 
-/* 재료 구성 (선택) */
+/* 재료 구성 */
 .card-ingredients {
   font-size: 12px;
   color: #888;
@@ -147,4 +147,12 @@
   font-weight: bold;
   color: #2c8f5b;
   margin-top: 4px;
+}
+
+/* 하단 정렬용 */
+.card-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
