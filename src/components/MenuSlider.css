@@ -7,13 +7,13 @@
 .slider-scroll-wrapper {
   display: flex;
   overflow-x: auto;
-  padding: 48px 0;
+  padding: 24px 0; /* ⬅ 상하 간격 좁힘 */
   min-height: 480px;
   align-items: center;
   perspective: 2000px;
 
   scroll-snap-type: x mandatory;
-  scroll-padding: 0 24px;
+  scroll-padding: 0 12px; /* ⬅ 좌우 스냅 위치 좁힘 */
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
@@ -40,7 +40,7 @@
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  margin: 0 12px;
+  margin: 0 6px; /* ⬅ 카드 간격 좁힘 */
 
   scroll-snap-align: center;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
