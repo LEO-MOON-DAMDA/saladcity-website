@@ -11,22 +11,26 @@ export default function MenuCard({ item }) {
         <h3 className="card-title">{item.name}</h3>
 
         {/* 설명 */}
-        {item.description && (
+        {(item.description || item.summary) && (
           <p className="card-description">
-            {item.description.length > 40 ? item.description.slice(0, 40) + "..." : item.description}
+            {(item.description || item.summary).length > 40
+              ? (item.description || item.summary).slice(0, 40) + "..."
+              : (item.description || item.summary)}
           </p>
         )}
 
         {/* 재료 구성 */}
         {item.ingredients && (
           <p className="card-ingredients">
-            {item.ingredients.length > 40 ? item.ingredients.slice(0, 40) + "..." : item.ingredients}
+            {item.ingredients.length > 40
+              ? item.ingredients.slice(0, 40) + "..."
+              : item.ingredients}
           </p>
         )}
 
         {/* 영양 정보 */}
         <p className="card-nutrition">
-          {item.calories ? `${item.calories} kcal` : ""}
+          {item.kcal ? `${item.kcal} kcal` : ""}
           {item.protein ? ` | 단백질 ${item.protein}g` : ""}
           {item.carbs ? ` | 탄수 ${item.carbs}g` : ""}
           {item.fat ? ` | 지방 ${item.fat}g` : ""}
