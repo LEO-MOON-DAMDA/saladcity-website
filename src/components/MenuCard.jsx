@@ -2,24 +2,28 @@ import React from "react";
 import "./MenuCard.css";
 
 export default function MenuCard({ item }) {
-  // 태그 자동 감지 (예: Vegan, Flexitarian, Pollo 등)
-  const tags = [];
+  // 태그 자동 감지 + 스타일 지정
   const lowerName = item.name.toLowerCase();
-  if (lowerName.includes("vegan")) tags.push("Vegan");
-  if (lowerName.includes("vegetarian")) tags.push("Vegetarian");
-  if (lowerName.includes("flexitarian")) tags.push("Flexitarian");
-  if (lowerName.includes("pollo")) tags.push("Pollo");
-  if (lowerName.includes("pesco")) tags.push("Pesco");
+
+  const allTags = [
+    { key: "vegan", label: "Vegan 🥦", className: "badge-green" },
+    { key: "vegetarian", label: "Vegetarian 🥕", className: "badge-orange" },
+    { key: "flexitarian", label: "Flexitarian 🍽️", className: "badge-gray" },
+    { key: "pollo", label: "Pollo 🍗", className: "badge-beige" },
+    { key: "pesco", label: "Pesco 🐟", className: "badge-blue" },
+  ];
+
+  const tags = allTags.filter(tag => lowerName.includes(tag.key));
 
   return (
     <div className="scroll-card">
       <img src={item.image} alt={item.name} className="card-image" />
 
       <div className="card-content">
-        {/* ✅ 태그 뱃지 (상단에 출력) */}
+        {/* ✅ 감성 뱃지 출력 */}
         <div className="card-badges">
           {tags.map((tag, idx) => (
-            <span key={idx} className="card-badge">{tag}</span>
+            <span key={idx} className={`card-badge ${tag.className}`}>{tag.label}</span>
           ))}
         </div>
 
