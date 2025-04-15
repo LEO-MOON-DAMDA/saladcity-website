@@ -69,7 +69,7 @@ export default function Header() {
             {menuItems.map((link, index) => (
               <a key={index} href={link.href} style={{
                 textDecoration: 'none',
-                color: '#333',
+                color: '#fff',
                 paddingBottom: '2px',
                 borderBottom: '2px solid transparent',
                 transition: 'color 0.2s ease, border-Bottom 0.2s ease'
