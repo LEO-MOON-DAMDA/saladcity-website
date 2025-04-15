@@ -8,10 +8,9 @@ export default function MenuSlider({ items }) {
   const lastLoopTime = useRef(0);
   const scrolling = useRef(false);
 
-  // ✅ 5배 복제 (무한루프처럼 보이게)
   const loopedItems = [...items, ...items, ...items, ...items, ...items];
   const originalLength = items.length;
-  const startIndex = originalLength * 2; // 중앙 위치로 시작
+  const startIndex = originalLength * 2;
 
   useEffect(() => {
     const ref = containerRef.current;
@@ -52,7 +51,6 @@ export default function MenuSlider({ items }) {
       setCenterIndex(closestIndex);
     }
 
-    // ✅ loop 보정: 더 넓은 범위에서 offset 계산
     const now = Date.now();
     const cardWidth = container.firstChild.offsetWidth;
     const loopOffset = originalLength * 2;
@@ -127,34 +125,33 @@ export default function MenuSlider({ items }) {
           const offset = index - centerIndex;
           const distance = Math.abs(offset);
 
-          const scale = Math.max(0.6, 1 - distance * 0.15); // ✅ 가운데 1.0, 멀수록 작아짐
+          const scale = Math.max(0.6, 1 - distance * 0.15);
           const opacity = Math.max(0.3, 1 - distance * 0.2);
           const rotateY = offset === 0 ? 0 : offset < 0 ? -15 : 15;
           const zIndex = offset === 0 ? 10 : 5 - distance;
 
           return (
             <motion.div
-  key={`${item.name}-${index}`}
-  className="scroll-card"
-  style={{
-    zIndex,
-    marginLeft: offset < 0 ? -120 : 0,
-    marginRight: offset > 0 ? -120 : 0,
-  }}
-  animate={{
-    scale,
-    opacity,
-    rotateY,
-    y: offset === 0 ? 10 : 0, // ✅ 중심 카드만 살짝 아래로
-  }}
-  transition={{ type: "spring", stiffness: 300, damping: 30 }}
->
-
+              key={`${item.name}-${index}`}
+              className="scroll-card"
+              style={{
+                zIndex,
+                marginLeft: offset < 0 ? -120 : 0,
+                marginRight: offset > 0 ? -120 : 0,
+              }}
+              animate={{
+                scale,
+                opacity,
+                rotateY,
+                y: offset === 0 ? 10 : 0,
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
               <img src={item.image} alt={item.name} className="card-image" />
               <div className="card-text">
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>
-                <span>{item.price}원</span>
+                <span>{item.price?.toLocaleString()}원</span>
               </div>
             </motion.div>
           );
