@@ -44,7 +44,7 @@ export default function MenuPage() {
                   onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>
                   <div style={{ width: "100%", height: "230px", overflow: "hidden" }}>
                     <img
-                      src={item["이미지경로"] + ".jpg"}
+                      src={item["이미지경로"]}
                       alt={item["메뉴명"]}
                       style={{
                         width: "100%",
