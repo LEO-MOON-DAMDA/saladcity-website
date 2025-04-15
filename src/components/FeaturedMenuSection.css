@@ -42,7 +42,8 @@
 /* 카드 자체 */
 .featured-card {
   width: 260px;
-  flex-shrink: 0; /* ✅ 절대 작아지지 않게 */
+  min-width: 260px;                  /* ✅ 모바일에서 폭 줄어드는 문제 방지 */
+  flex-shrink: 0;
   scroll-snap-align: start;
   border-radius: 16px;
   overflow: hidden;
@@ -64,12 +65,14 @@
   transform: translateY(-2px) scale(0.98);
 }
 
+/* 이미지 */
 .featured-image {
   width: 100%;
   height: 180px;
   object-fit: cover;
 }
 
+/* 텍스트 */
 .featured-text {
   padding: 16px;
   text-align: left;
@@ -80,23 +83,30 @@
   margin-bottom: 6px;
   color: #222;
   font-weight: 600;
+  white-space: nowrap;              /* ✅ 한 줄 유지 */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .featured-text p {
   font-size: 13px;
   color: #666;
   margin: 0 0 4px;
+  word-break: keep-all;             /* ✅ 단어 깨짐 방지 */
 }
 
 .nutrient {
   font-size: 12px;
   color: #999;
+  word-break: keep-all;
 }
 
-/* 모바일 대응 */
+/* ✅ 모바일 반응형 */
 @media (max-width: 480px) {
   .featured-card {
     width: 80vw;
+    min-width: 240px;
+    max-width: 90vw;
   }
 
   .featured-text h3 {
