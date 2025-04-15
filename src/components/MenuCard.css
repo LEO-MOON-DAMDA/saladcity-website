@@ -21,8 +21,8 @@
 
 /* Hover 효과 */
 .scroll-card:hover {
-  transform: scale(1.04);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+  transform: scale(1.04) translateY(-5px) rotateX(1deg); /* 미세 회전과 이동 */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2); /* 강한 그림자 효과 */
   z-index: 20;
   background-color: rgba(255, 255, 255, 0.8); /* 배경 색상 살짝 밝게 */
 }
