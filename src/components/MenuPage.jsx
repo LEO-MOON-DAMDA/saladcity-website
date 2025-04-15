@@ -1,7 +1,7 @@
 
 // src/components/MenuPage.jsx
 import React from "react";
-import Header from "./components/Header"; // ✅ 추가
+import Header from "./Header"; // ✅ 추가
 import menuData from "../data/menuItems.json";
 
 export default function MenuPage() {
