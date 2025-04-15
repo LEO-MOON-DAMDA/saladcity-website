@@ -1,3 +1,4 @@
+/* filter-bar 기본 스타일 */
 .filter-bar {
   position: sticky;
   top: 0;
@@ -13,9 +14,23 @@
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s ease;
+
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+/* 자동 숨김/등장 상태 제어 */
+.filter-bar.hide {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.filter-bar.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* 필터 배지 */
 .filter-tag {
   background-color: #f0f0f0;
   padding: 6px 10px;
@@ -33,6 +48,7 @@
   border: 1px solid #2c8f5b;
 }
 
+/* 삭제 버튼 */
 .filter-remove {
   margin-left: 6px;
   background: transparent;
@@ -43,6 +59,7 @@
   line-height: 1;
 }
 
+/* 모두 초기화 버튼 */
 .filter-clear {
   margin-left: 12px;
   background: transparent;
@@ -72,4 +89,3 @@
     font-size: 11px;
   }
 }
-
