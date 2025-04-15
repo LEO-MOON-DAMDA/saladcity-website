@@ -3,12 +3,12 @@
 .menu-page {
   background-color: #f5fdf7;
   padding: 40px 16px;
+  max-width: 100%;
   margin: 0 auto;
-  max-width: 1280px; /* PC에서 너무 넓어지지 않도록 제한 */
 }
 
 .menu-section {
-  margin-bottom: 48px;
+  margin-bottom: 56px;
 }
 
 .section-title {
@@ -19,20 +19,20 @@
   padding-left: 8px;
 }
 
-/* 슬라이드 레이아웃 */
+/* ✅ 슬라이드형 카드 컨테이너 */
 .horizontal-scroll-container {
   display: flex;
   gap: 24px;
   overflow-x: auto;
-  padding: 0 8px 8px;
+  padding: 0 16px 8px;
   scroll-snap-type: x mandatory;
-  scroll-padding: 8px;
+  scroll-padding: 16px;
 }
-
 .horizontal-scroll-container::-webkit-scrollbar {
   display: none;
 }
 
+/* ✅ 메뉴 카드 스타일 */
 .menu-card {
   background: #fff;
   border-radius: 16px;
@@ -41,11 +41,7 @@
   width: 240px;
   scroll-snap-align: start;
   overflow: hidden;
-  transition: transform 0.2s ease;
-}
-
-.menu-card:hover {
-  transform: scale(1.03);
+  margin-bottom: 16px;
 }
 
 .menu-image {
@@ -80,17 +76,20 @@
   color: #888;
 }
 
-/* 모바일 대응 */
+/* ✅ 모바일 반응형 조정 */
 @media (max-width: 768px) {
-  .menu-page {
-    padding: 24px 8px;
-  }
-
   .horizontal-scroll-container {
+    padding-left: 8px;
     gap: 16px;
   }
 
   .menu-card {
     width: 200px;
+  }
+
+  .section-title {
+    font-size: 20px;
+    text-align: center;
+    padding-left: 0;
   }
 }
