@@ -4,13 +4,14 @@ import "./MenuCard.css";
 export default function MenuCard({ item }) {
   return (
     <div className="scroll-card">
+      {/* 이미지 */}
       <img src={item.image} alt={item.name} className="card-image" />
 
       <div className="card-content">
-        {/* 메뉴명 */}
+        {/* 메뉴 이름 */}
         <h3 className="card-title">{item.name}</h3>
 
-        {/* 설명 (description 없으면 summary 사용) */}
+        {/* 설명 (description 또는 summary 사용) */}
         {(item.description || item.summary) && (
           <p className="card-description">
             {(item.description || item.summary).length > 40
@@ -19,7 +20,7 @@ export default function MenuCard({ item }) {
           </p>
         )}
 
-        {/* 재료 구성 */}
+        {/* 재료 구성 (있을 경우에만) */}
         {item.ingredients && (
           <p className="card-ingredients">
             {item.ingredients.length > 40
@@ -34,7 +35,9 @@ export default function MenuCard({ item }) {
           {item.protein ? ` | 단백질 ${item.protein}g` : ""}
           {item.carbs ? ` | 탄수 ${item.carbs}g` : ""}
           {item.fat ? ` | 지방 ${item.fat}g` : ""}
-          {item.co2 !== undefined ? ` | CO₂e ${parseFloat(item.co2).toFixed(1)}kg` : ""}
+          {item.co2 !== undefined
+            ? ` | CO₂e ${parseFloat(item.co2).toFixed(1)}kg`
+            : ""}
         </p>
 
         {/* 가격 */}
