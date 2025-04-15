@@ -9,11 +9,10 @@ export default function Header() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
   const updateDevice = () => {
     setIsMobile(window.innerWidth < 768);
   };
-
-  useEffect(() => {
     window.addEventListener("resize", updateDevice);
     return () => window.removeEventListener("resize", updateDevice);
   }, []);
@@ -96,30 +95,32 @@ export default function Header() {
         </>
       )}
 
-      {/* ✅ Mobile 화면 */}
-     {isMobile && isDetail && (
-  <a href="/" style={{
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    height: '40px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden'
-  }}>
-    <img
-      src="/images/saladcity_origin.png"
-      alt="home"
-      style={{
-        height: '100%',
-        objectFit: 'cover',
-        objectPosition: 'center'
-      }}
-    />
-  </a>
-)}
+     {/* ✅ Mobile 화면 */}
+      {isMobile && (
+        <>
+          {isDetail && (
+            <a href="/" style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              height: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden'
+            }}>
+              <img
+                src="/images/saladcity_origin.png"
+                alt="home"
+                style={{
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center'
+                }}
+              />
+            </a>
+          )}
 
 
           <div onClick={() => setIsOpen(!isOpen)} style={{
