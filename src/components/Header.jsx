@@ -33,13 +33,14 @@ export default function Header() {
       top: 0,
       left: 0,
       width: '100%',
-      backgroundColor: '#ffffffee',
+      backgroundColor: 'transparent',      // ✅ 배경 투명
+      backdropFilter: 'blur(6px)',         // ✅ 배경 흐림 효과 유지
+      WebkitBackdropFilter: 'blur(6px)',   // ✅ 사파리 대응
       display: 'flex',
       alignItems: 'center',
       justifyContent: isMobile ? 'space-between' : 'flex-start',
       padding: '8px 24px',
       zIndex: 1000,
-      backdropFilter: 'blur(6px)',
       boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
       height: '60px',
       boxSizing: 'border-box'
