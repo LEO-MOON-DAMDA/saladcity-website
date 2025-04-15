@@ -1,8 +1,7 @@
 import React from "react";
 import "./MenuCard.css";
 
-export default function MenuCard({ item }) {
-  // 태그 자동 감지 + 스타일 지정
+export default function MenuCard({ item, onTagClick }) {
   const lowerName = item.name.toLowerCase();
 
   const allTags = [
@@ -20,10 +19,16 @@ export default function MenuCard({ item }) {
       <img src={item.image} alt={item.name} className="card-image" />
 
       <div className="card-content">
-        {/* ✅ 감성 뱃지 출력 */}
         <div className="card-badges">
           {tags.map((tag, idx) => (
-            <span key={idx} className={`card-badge ${tag.className}`}>{tag.label}</span>
+            <span
+              key={idx}
+              className={`card-badge ${tag.className}`}
+              onClick={() => onTagClick?.(tag.key)}
+              style={{ cursor: "pointer" }}
+            >
+              {tag.label}
+            </span>
           ))}
         </div>
 
@@ -45,19 +50,19 @@ export default function MenuCard({ item }) {
           </p>
         )}
 
-        <p className="card-nutrition">
-          {item.kcal ? `${item.kcal} kcal` : ""}
-          {item.protein ? ` | 단백질 ${item.protein}g` : ""}
-          {item.carbs ? ` | 탄수 ${item.carbs}g` : ""}
-          {item.fat ? ` | 지방 ${item.fat}g` : ""}
-          {item.co2 !== undefined
-            ? ` | CO₂e ${parseFloat(item.co2).toFixed(1)}kg`
-            : ""}
-        </p>
+        <div className="card-bottom">
+          <p className="card-nutrition">
+            {item.kcal ? `${item.kcal} kcal` : ""}
+            {item.protein ? ` | 단백질 ${item.protein}g` : ""}
+            {item.carbs ? ` | 탄수 ${item.carbs}g` : ""}
+            {item.fat ? ` | 지방 ${item.fat}g` : ""}
+            {item.co2 !== undefined ? ` | CO₂e ${parseFloat(item.co2).toFixed(1)}kg` : ""}
+          </p>
 
-        <p className="card-price">
-          {item.price !== undefined ? `${item.price.toLocaleString()}원` : ""}
-        </p>
+          <p className="card-price">
+            {item.price !== undefined ? `${item.price.toLocaleString()}\uc6d0` : ""}
+          </p>
+        </div>
       </div>
     </div>
   );
