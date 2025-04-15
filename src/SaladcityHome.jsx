@@ -36,25 +36,26 @@ export default function SaladcityHome() {
       }}>
 
        <video
-          key={videoIndex}
-          ref={videoRef}
-          src={videoList[videoIndex]}
-          autoPlay
-          muted
-          loop={false}           // ✅ loop 제거
-          playsInline
-          onEnded={handleVideoEnd} // ✅ 끝나면 다음 영상 재생
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            zIndex: 0,
-            filter: 'brightness(0.7) blur(1.5px)'
-          }}
-        />
+  key={videoIndex}
+  ref={videoRef}
+  src={videoList[videoIndex]}
+  autoPlay
+  muted
+  loop={false}
+  playsInline
+  onEnded={handleVideoEnd}
+  style={{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    zIndex: 0,
+    filter: 'brightness(0.7) blur(1.5px)',             // ✅ 여기에
+    boxShadow: 'inset 0 60px 120px rgba(0,0,0,0.3)'     // ✅ 여기도 같이
+  }}
+/>
       <div style={{ position: 'relative', zIndex: 1 }}>
           <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '200px', marginBottom: '20px' }} />
           <h1 style={{ fontSize: '40px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
