@@ -5,7 +5,7 @@ import "./MenuSlider.css";
 export default function MenuSlider({ items, onTagClick, selectedTags }) {
   const scrollRef = useRef(null);
 
-  // ✅ 카드 중심 확대 효과
+  // ✅ 중심 카드 애니메이션 효과
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -19,11 +19,15 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
         const cardRect = card.getBoundingClientRect();
         const cardCenter = cardRect.left + cardRect.width / 2;
         const distance = Math.abs(containerCenter - cardCenter);
-        const scale = Math.max(0.85, 1 - distance / 800);
-        const opacity = Math.max(0.4, 1 - distance / 600);
-        const zIndex = 1000 - Math.floor(distance);
+        const maxDistance = containerRect.width / 2;
 
-        card.style.transform = `scale(${scale})`;
+        const normalized = Math.min(distance / maxDistance, 1);
+        const scale = 1 - normalized * 0.2;        // 0.8 ~ 1
+        const rotateY = normalized * 20;           // 0 ~ 20 deg
+        const opacity = 1 - normalized * 0.5;
+        const zIndex = 1000 - Math.floor(normalized * 100);
+
+        card.style.transform = `scale(${scale}) rotateY(${cardCenter < containerCenter ? rotateY : -rotateY}deg)`;
         card.style.opacity = opacity;
         card.style.zIndex = zIndex;
       });
@@ -37,7 +41,7 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
     };
   }, [items]);
 
-  // ✅ 스크롤 이동 함수 (좌우 버튼)
+  // ✅ 좌우 스크롤 버튼
   const scroll = (direction) => {
     if (!scrollRef.current) return;
     const scrollAmount = 300;
@@ -47,12 +51,11 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
     });
   };
 
-  // ✅ 안정화용 카드 제한 (10개)
+  // ✅ 카드 제한
   const safeItems = items.slice(0, 10);
 
   return (
     <div className="slider-wrapper">
-      {/* 좌우 화살표 버튼 */}
       <button className="slider-arrow left" onClick={() => scroll(-1)}>
         ◀
       </button>
