@@ -57,7 +57,7 @@ export default function Header() {
             </a>
           )}
           <nav style={{
-            display: 'flex',
+            display: isMobile ? 'none' : 'flex', 
             gap: '18px',
             fontSize: '14px',
             fontWeight: 500,
