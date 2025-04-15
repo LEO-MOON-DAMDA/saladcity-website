@@ -97,18 +97,30 @@ export default function Header() {
       )}
 
       {/* ✅ Mobile 화면 */}
-      {isMobile && (
-        <>
-          {isDetail && (
-            <a href="/" style={{
-              position: 'absolute',
-              top: '12px',
-              left: '50%',
-              transform: 'translateX(-50%)'
-            }}>
-              <img src="/images/saladcity_origin.png" alt="home" style={{ height: '52px' }} />
-            </a>
-          )}
+     {isMobile && isDetail && (
+  <a href="/" style={{
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    height: '40px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden'
+  }}>
+    <img
+      src="/images/saladcity_origin.png"
+      alt="home"
+      style={{
+        height: '100%',
+        objectFit: 'cover',
+        objectPosition: 'center'
+      }}
+    />
+  </a>
+)}
+
 
           <div onClick={() => setIsOpen(!isOpen)} style={{
             position: 'absolute',
