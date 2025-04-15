@@ -1,7 +1,7 @@
 /* 카드 전체 */
 .scroll-card {
   flex: 0 0 auto;
-  width: 220px; /* 카드 폭 줄이기 */
+  width: 260px; /* 카드 폭 원상복구 */
   min-height: 400px;
   height: auto;
   background: white;
@@ -50,7 +50,7 @@
   flex-direction: column;
   justify-content: flex-start;
   flex-grow: 1;
-  gap: 4px; /* 컬럼 간격 좁히기 */
+  gap: 2px; /* 컬럼 간격 좁히기 */
   animation: fadeInUp 0.5s ease-out both;
 }
 
