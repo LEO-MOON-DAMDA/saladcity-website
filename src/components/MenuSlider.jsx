@@ -129,7 +129,7 @@ export default function MenuSlider({ items }) {
 
           const scale = Math.max(0.6, 1 - distance * 0.15); // ✅ 가운데 1.0, 멀수록 작아짐
           const opacity = Math.max(0.3, 1 - distance * 0.2);
-          const rotateY = offset === 0 ? 0 : offset < 0 ? -35 : 35;
+          const rotateY = offset === 0 ? 0 : offset < 0 ? -15 : 15;
           const zIndex = offset === 0 ? 10 : 5 - distance;
 
           return (
