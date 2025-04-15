@@ -1,13 +1,22 @@
-// src/components/Header.jsx
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function Header() {
   const location = useLocation();
-  const navigate = useNavigate();
-  const isMobile = useMediaQuery({ maxWidth: 767 });
   const isHome = location.pathname === "/";
+  const isDetail = !isHome;
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const updateDevice = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateDevice);
+    return () => window.removeEventListener("resize", updateDevice);
+  }, []);
 
   const menuItems = [
     { text: "OUR MENU", href: "/menu" },
@@ -15,124 +24,151 @@ export default function Header() {
     { text: "THE MARKET", href: "/market" },
     { text: "OUTPOST", href: "/outpost" },
     { text: "CATERING", href: "/catering" },
-    { text: "LOCATIONS", href: "/locations" },
+    { text: "LOCATIONS", href: "/locations" }
   ];
 
-  const handleLogoClick = () => navigate("/");
-
   return (
-    <header
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        backgroundColor: "#ffffffee",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "8px 24px",
-        zIndex: 1000,
-        backdropFilter: "blur(6px)",
-        boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
-        height: "60px",
-        boxSizing: "border-box",
-      }}
-    >
-      {isMobile ? (
-        <>
-          {/* 🍔 모바일 햄버거 메뉴 */}
-          <button
-            onClick={() => alert("모바일 메뉴 토글 (추후 Drawer 도입 가능)")}
-            style={{
-              fontSize: "20px",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            ☰
-          </button>
+    <header style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      backgroundColor: '#ffffffee',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: isMobile ? 'center' : 'space-between',
+      padding: '8px 24px',
+      zIndex: 1000,
+      backdropFilter: 'blur(6px)',
+      boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
+      height: '60px',
+      boxSizing: 'border-box'
+    }}>
 
-          {/* 상세페이지일 경우 중앙 로고 */}
-          {!isHome && (
-            <img
-              src="/images/saladcity_origin.png"
-              alt="Saladcity"
-              style={{ height: "40px", cursor: "pointer" }}
-              onClick={handleLogoClick}
-            />
+      {/* ✅ PC 화면 */}
+      {!isMobile && (
+        <>
+          {isDetail && (
+            <a href="/" style={{ marginRight: '16px' }}>
+              <img src="/images/saladcity_origin.png" alt="home" style={{ height: '52px' }} />
+            </a>
           )}
-        </>
-      ) : (
-        <>
-          {/* ⬅️ PC: 좌측 로고 */}
-          <img
-            src="/images/saladcity_origin.png"
-            alt="Saladcity"
-            style={{
-              height: "44px",
-              visibility: isHome ? "hidden" : "visible", // 홈화면에서 숨기기
-              pointerEvents: isHome ? "none" : "auto",
-              cursor: "pointer",
-            }}
-            onClick={handleLogoClick}
-          />
-
-          {/* PC: 네비게이션 */}
-          <nav
-            style={{
-              display: "flex",
-              gap: "20px",
-              marginLeft: "auto",
-              marginRight: "auto",
-              fontSize: "14px",
-              fontWeight: 500,
-              letterSpacing: "0.3px",
-            }}
-          >
-            {menuItems.map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                style={{
-                  textDecoration: "none",
-                  color: "#333",
-                  paddingBottom: "2px",
-                  borderBottom: "2px solid transparent",
-                  transition: "color 0.2s ease, border-bottom 0.2s ease",
-                  whiteSpace: "nowrap",
-                }}
+          <nav style={{
+            display: 'flex',
+            gap: '18px',
+            fontSize: '14px',
+            fontWeight: 500,
+            letterSpacing: '0.3px'
+          }}>
+            {menuItems.map((link, index) => (
+              <a key={index} href={link.href} style={{
+                textDecoration: 'none',
+                color: '#333',
+                paddingBottom: '2px',
+                borderBottom: '2px solid transparent',
+                transition: 'color 0.2s ease, borderBottom 0.2s ease'
+              }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "#3C8050";
-                  e.currentTarget.style.borderBottom = "2px solid #3C8050";
+                  e.currentTarget.style.color = '#3C8050';
+                  e.currentTarget.style.borderBottom = '2px solid #3C8050';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "#333";
-                  e.currentTarget.style.borderBottom = "2px solid transparent";
+                  e.currentTarget.style.color = '#333';
+                  e.currentTarget.style.borderBottom = '2px solid transparent';
                 }}
               >
-                {item.text}
+                {link.text}
               </a>
             ))}
           </nav>
-
-          {/* PC: 우측 ORDER 버튼 */}
-          <a
-            href="/order"
-            style={{
-              backgroundColor: "#3C8050",
-              color: "#fff",
-              padding: "6px 14px",
-              borderRadius: "6px",
-              textDecoration: "none",
-              fontWeight: 600,
-              whiteSpace: "nowrap",
-              flexShrink: 0,
-            }}
-          >
+          <a href="/order" style={{
+            backgroundColor: '#3C8050',
+            color: '#fff',
+            padding: '6px 14px',
+            borderRadius: '6px',
+            textDecoration: 'none',
+            fontWeight: 600,
+            whiteSpace: 'nowrap',
+            flexShrink: 0
+          }}>
             ORDER
           </a>
+        </>
+      )}
+
+      {/* ✅ Mobile 화면 */}
+     {isMobile && isDetail && (
+  <a href="/" style={{
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    height: '40px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden'
+  }}>
+    <img
+      src="/images/saladcity_origin.png"
+      alt="home"
+      style={{
+        height: '100%',
+        objectFit: 'cover',
+        objectPosition: 'center'
+      }}
+    />
+  </a>
+)}
+
+
+          <div onClick={() => setIsOpen(!isOpen)} style={{
+            position: 'absolute',
+            top: '12px',
+            left: '24px',
+            cursor: 'pointer',
+            zIndex: 2000
+          }}>
+            <div style={{ width: '24px', height: '2px', backgroundColor: '#333', marginBottom: '6px' }} />
+            <div style={{ width: '24px', height: '2px', backgroundColor: '#333', marginBottom: '6px' }} />
+            <div style={{ width: '24px', height: '2px', backgroundColor: '#333' }} />
+          </div>
+
+          {/* 햄버거 메뉴 드롭다운 */}
+          {isOpen && (
+            <div style={{
+              position: 'absolute',
+              top: '60px',
+              left: 0,
+              width: '100%',
+              backgroundColor: '#fff',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              padding: '16px 24px',
+              zIndex: 1500
+            }}>
+              {menuItems.map((link, index) => (
+                <a key={index} href={link.href} style={{
+                  display: 'block',
+                  padding: '10px 0',
+                  fontSize: '15px',
+                  textDecoration: 'none',
+                  color: '#333',
+                  borderBottom: '1px solid #eee'
+                }}>
+                  {link.text}
+                </a>
+              ))}
+              <a href="/order" style={{
+                display: 'block',
+                marginTop: '12px',
+                fontWeight: 'bold',
+                color: '#3C8050',
+                textDecoration: 'underline'
+              }}>
+                주문하기 →
+              </a>
+            </div>
+          )}
         </>
       )}
     </header>
