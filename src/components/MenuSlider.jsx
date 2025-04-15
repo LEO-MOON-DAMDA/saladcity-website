@@ -2,9 +2,9 @@ import React, { useRef, useEffect } from "react";
 import MenuCard from "./MenuCard";
 import "./MenuSlider.css";
 
-// ✅ 슬라이드 사운드 base64 인라인 삽입
+// ✅ base64 인코딩된 짧은 슬라이드 사운드 (0.3초 whoosh 효과)
 const slideSound =
-  "data:audio/mp3;base64,//uQZAAAAAAAAAAAAAAAAAAAAAAA..."; // <— 실제 base64는 아래에서 계속됨
+  "data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCAAMEAAAC7nAAA..."; // 👉 실제 base64 길이 줄임처리
 
 export default function MenuSlider({ items, onTagClick, selectedTags }) {
   const scrollRef = useRef(null);
@@ -38,7 +38,7 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
         card.style.transform = `scale(${scale}) rotateY(${cardCenter < containerCenter ? rotateY : -rotateY}deg)`;
         card.style.opacity = opacity;
         card.style.zIndex = zIndex;
-        card.style.filter = `blur(${normalized * 1}px)`;
+        card.style.filter = `blur(${normalized}px)`;
       });
     };
 
@@ -59,13 +59,13 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
     const currentScroll = container.scrollLeft;
     const targetScroll = currentScroll + direction * cardWidth;
 
-    // ✅ 사운드
+    // 사운드
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.play();
     }
 
-    // ✅ 진동
+    // 진동
     if (navigator.vibrate) {
       navigator.vibrate(20);
     }
