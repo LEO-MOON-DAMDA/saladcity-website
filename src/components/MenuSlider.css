@@ -16,8 +16,9 @@
   scroll-padding: 0 12px; /* ⬅ 좌우 스냅 위치 좁힘 */
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-  touch-action: pan-x;
+
+  overscroll-behavior-x: auto;     /* ✅ 수정: 상하 스크롤 인식 허용 */
+  touch-action: pan-y pan-x;       /* ✅ 수정: 상하 제스처도 허용 */
   scrollbar-width: none;
 }
 
