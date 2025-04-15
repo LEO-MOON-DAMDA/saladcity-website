@@ -49,9 +49,9 @@ export default function SaladcityHome() {
         fontFamily: "sans-serif",
         backgroundColor: "#f6fdf8",
         paddingTop: "0px",
-        overflow: "visible",       // ✅ 카드 hover 및 하단 콘텐츠 보이게
-        position: "relative",      // ✅ z-index 기준
-        minHeight: "100vh"         // ✅ 푸터까지 공간 확보
+        overflow: "visible",     // ✅ hover 카드 상단 보이게
+        position: "relative",    // ✅ z-index 기준 생성
+        minHeight: "100vh"       // ✅ 전체 레이아웃 안정
       }}
     >
       <Header hideLogo={location.pathname === "/"} />
@@ -115,11 +115,15 @@ export default function SaladcityHome() {
       {/* ✅ 추천메뉴 슬라이더 */}
       <FeaturedMenuSection items={homepageMenuItems} />
 
-      {/* ✅ 프린트 섹션 */}
-      <CustomPrintableMenu />
+      {/* ✅ 프린트 섹션 (덮임 방지용 wrapper) */}
+      <div style={{ position: "relative", zIndex: 0 }}>
+        <CustomPrintableMenu />
+      </div>
 
       {/* ✅ 푸터 */}
       <footer style={{
+        position: "relative",
+        zIndex: 0,
         textAlign: 'center',
         padding: '40px 0',
         backgroundColor: '#eaf5ec',
