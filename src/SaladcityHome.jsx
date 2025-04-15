@@ -85,12 +85,6 @@ export default function SaladcityHome() {
   </div>
 </div>
 
-          <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '200px', marginBottom: '20px' }} />
-          <h1 style={{ fontSize: '40px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
-          <p style={{ fontSize: '18px', marginTop: '8px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
-          <p style={{ fontSize: '14px', color: '#e0e0e0' }}>Fresh ingredients, made daily with care.</p>
-        </div>
-      </div>
 
 
        {/* ✅ 추천메뉴 섹션 (홈화면에 표시되는 6개 메뉴) */}
