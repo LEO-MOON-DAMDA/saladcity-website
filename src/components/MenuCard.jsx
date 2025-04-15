@@ -3,15 +3,24 @@ import "./MenuCard.css";
 
 export default function MenuCard({ item }) {
   return (
-    <div className="menu-card">
-      <img src={item.image} alt={item.name} className="menu-image" />
-      <div className="menu-content">
-        <h3 className="menu-name">{item.name}</h3>
-        <p className="menu-description">{item.description}</p>
-        <p className="menu-price">{item.price.toLocaleString()}원</p>
-        <p className="menu-nutrition">
-          {item.kcal}kcal | P {item.protein}g | C {item.carbs}g | F {item.fat}g | CO₂e {item.co2}kg
+    <div className="scroll-card">
+      <img src={item.image} alt={item.name} className="card-image" />
+      <div className="card-content">
+        <h3 className="card-title">{item.name}</h3>
+
+        <p className="card-description">
+          {item.description.length > 40 ? item.description.slice(0, 40) + "..." : item.description}
         </p>
+
+        <p className="card-ingredients">
+          {item.ingredients.length > 40 ? item.ingredients.slice(0, 40) + "..." : item.ingredients}
+        </p>
+
+        <p className="card-nutrition">
+          {item.calories} kcal | 단백질 {item.protein}g | 탄수 {item.carbs}g | 지방 {item.fat}g | CO₂e {parseFloat(item.co2).toFixed(1)}kg
+        </p>
+
+        <p className="card-price">{item.price.toLocaleString()}원</p>
       </div>
     </div>
   );
