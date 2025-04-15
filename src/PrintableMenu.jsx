@@ -1,5 +1,6 @@
 import React from "react";
 
+// 프린트 전용 메뉴 데이터
 const printableMenuData = [
   {
     name: "로스트베지 샐러드 Vegan",
@@ -8,7 +9,14 @@ const printableMenuData = [
     description: "구운 당근, 브로콜리, 렌틸콩 등 구운 채소 조합",
     kcal: 320, protein: 10, carbs: 28, fat: 12, co2: 0.9
   },
-  // 메뉴 30종 그대로 이어서 구성 가능
+  {
+    name: "수비드 치킨 샐러드",
+    price: "₩13,800",
+    image: "/images/sc모짜렐라01.jpg",
+    description: "수비드한 닭가슴살과 슈퍼푸드 구성",
+    kcal: 490, protein: 32, carbs: 22, fat: 18, co2: 1.3
+  }
+  // 필요시 더 추가 가능
 ];
 
 const PrintableMenu = React.forwardRef((props, ref) => {
@@ -16,7 +24,7 @@ const PrintableMenu = React.forwardRef((props, ref) => {
     <div
       ref={ref}
       style={{
-        display: "none", // ✅ 화면에는 보이지 않음
+        display: "none", // ✅ 화면에서는 숨김, 프린트할 때만 출력됨
         padding: "40px",
         fontFamily: "sans-serif"
       }}
@@ -48,7 +56,8 @@ const PrintableMenu = React.forwardRef((props, ref) => {
                 width: "100%",
                 height: "180px",
                 objectFit: "cover",
-                borderRadius: "8px"
+                borderRadius: "8px",
+                marginBottom: "12px"
               }}
             />
             <h4>{item.name}</h4>
