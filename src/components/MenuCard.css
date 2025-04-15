@@ -2,8 +2,8 @@
 .scroll-card {
   flex: 0 0 auto;
   width: 260px;
-  min-height: 400px;     /* ✅ 최소 높이만 정하고 */
-  height: auto;          /* ✅ 내용 많으면 자동으로 늘어나게 */
+  min-height: 400px;
+  height: auto;
   background: white;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -38,6 +38,27 @@
   gap: 6px;
 }
 
+/* ✅ 태그 뱃지 박스 */
+.card-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+/* ✅ 태그 뱃지 스타일 */
+.card-badge {
+  font-size: 10px;
+  font-weight: 600;
+  color: #2c8f5b;
+  background: rgba(44, 143, 91, 0.1);
+  border: 1px solid #2c8f5b;
+  padding: 2px 6px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
 /* 제목 */
 .card-title {
   font-size: 16px;
@@ -54,7 +75,7 @@
   line-height: 1.4;
   white-space: normal;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* ✅ 최대 3줄 */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
