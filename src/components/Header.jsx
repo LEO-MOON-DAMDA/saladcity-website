@@ -1,12 +1,22 @@
-// src/components/Header.jsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function Header() {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const isDetail = !isHome;
-  const isMobile = window.innerWidth < 768;
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const updateDevice = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateDevice);
+    return () => window.removeEventListener("resize", updateDevice);
+  }, []);
 
   const menuItems = [
     { text: "OUR MENU", href: "/menu" },
@@ -34,7 +44,8 @@ export default function Header() {
       height: '60px',
       boxSizing: 'border-box'
     }}>
-      {/* ✅ PC 버전: 수평 메뉴 + 조건부 로고 */}
+
+      {/* ✅ PC 화면 */}
       {!isMobile && (
         <>
           {isDetail && (
@@ -85,7 +96,7 @@ export default function Header() {
         </>
       )}
 
-      {/* ✅ 모바일 버전 */}
+      {/* ✅ Mobile 화면 */}
       {isMobile && (
         <>
           {isDetail && (
@@ -95,19 +106,57 @@ export default function Header() {
               left: '50%',
               transform: 'translateX(-50%)'
             }}>
-              <img src="/images/saladcity_origin.png" alt="home" style={{ height: '34px' }} />
+              <img src="/images/saladcity_origin.png" alt="home" style={{ height: '32px' }} />
             </a>
           )}
-          <div style={{
+
+          <div onClick={() => setIsOpen(!isOpen)} style={{
             position: 'absolute',
             top: '12px',
             left: '24px',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            zIndex: 2000
           }}>
             <div style={{ width: '24px', height: '2px', backgroundColor: '#333', marginBottom: '6px' }} />
             <div style={{ width: '24px', height: '2px', backgroundColor: '#333', marginBottom: '6px' }} />
             <div style={{ width: '24px', height: '2px', backgroundColor: '#333' }} />
           </div>
+
+          {/* 햄버거 메뉴 드롭다운 */}
+          {isOpen && (
+            <div style={{
+              position: 'absolute',
+              top: '60px',
+              left: 0,
+              width: '100%',
+              backgroundColor: '#fff',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              padding: '16px 24px',
+              zIndex: 1500
+            }}>
+              {menuItems.map((link, index) => (
+                <a key={index} href={link.href} style={{
+                  display: 'block',
+                  padding: '10px 0',
+                  fontSize: '15px',
+                  textDecoration: 'none',
+                  color: '#333',
+                  borderBottom: '1px solid #eee'
+                }}>
+                  {link.text}
+                </a>
+              ))}
+              <a href="/order" style={{
+                display: 'block',
+                marginTop: '12px',
+                fontWeight: 'bold',
+                color: '#3C8050',
+                textDecoration: 'underline'
+              }}>
+                주문하기 →
+              </a>
+            </div>
+          )}
         </>
       )}
     </header>
