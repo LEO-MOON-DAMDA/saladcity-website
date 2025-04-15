@@ -9,7 +9,7 @@ export default function MenuSlider({ items }) {
   const originalLength = items.length;
   const startIndex = originalLength;
 
-  // ✅ 초기 가운데 카드 정중앙에 정렬
+  // 초기 가운데 카드 정렬
   useEffect(() => {
     const ref = containerRef.current;
     if (ref) {
@@ -28,7 +28,6 @@ export default function MenuSlider({ items }) {
     }
   }, []);
 
-  // ✅ 가운데 카드 인식
   const updateCenter = () => {
     const container = containerRef.current;
     if (!container) return;
@@ -51,7 +50,6 @@ export default function MenuSlider({ items }) {
       setCenterIndex(closestIndex);
     }
 
-    // ✅ loop 보정
     if (closestIndex <= originalLength / 2) {
       container.scrollLeft += originalLength * container.firstChild.offsetWidth;
     }
@@ -60,7 +58,6 @@ export default function MenuSlider({ items }) {
     }
   };
 
-  // ✅ scroll, touch 대응
   useEffect(() => {
     const ref = containerRef.current;
     if (!ref) return;
@@ -102,7 +99,8 @@ export default function MenuSlider({ items }) {
             className="scroll-card"
             style={{
               zIndex,
-              margin: "0 40px", // ✅ margin 겹침 통일
+              marginLeft: offset < 0 ? -80 : 0,
+              marginRight: offset > 0 ? -80 : 0,
             }}
             animate={{
               scale,
