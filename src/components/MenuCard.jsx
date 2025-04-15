@@ -1,7 +1,7 @@
 import React from "react";
 import "./MenuCard.css";
 
-export default function MenuCard({ item, onTagClick }) {
+export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
   const lowerName = item.name.toLowerCase();
 
   const allTags = [
@@ -17,15 +17,13 @@ export default function MenuCard({ item, onTagClick }) {
   return (
     <div className="scroll-card">
       <img src={item.image} alt={item.name} className="card-image" />
-
       <div className="card-content">
         <div className="card-badges">
           {tags.map((tag, idx) => (
             <span
               key={idx}
-              className={`card-badge ${tag.className}`}
+              className={`card-badge ${tag.className} ${selectedTags.includes(tag.key) ? "selected" : ""}`}
               onClick={() => onTagClick?.(tag.key)}
-              style={{ cursor: "pointer" }}
             >
               {tag.label}
             </span>
@@ -58,9 +56,8 @@ export default function MenuCard({ item, onTagClick }) {
             {item.fat ? ` | 지방 ${item.fat}g` : ""}
             {item.co2 !== undefined ? ` | CO₂e ${parseFloat(item.co2).toFixed(1)}kg` : ""}
           </p>
-
           <p className="card-price">
-            {item.price !== undefined ? `${item.price.toLocaleString()}\uc6d0` : ""}
+            {item.price !== undefined ? `${item.price.toLocaleString()}원` : ""}
           </p>
         </div>
       </div>
