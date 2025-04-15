@@ -1,3 +1,4 @@
+// MenuSlider.jsx
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./MenuSlider.css";
@@ -6,8 +7,6 @@ export default function MenuSlider({ items }) {
   const containerRef = useRef(null);
   const [centerIndex, setCenterIndex] = useState(0);
   const [audio] = useState(() => new Audio("/sounds/slide.mp3"));
-  const scrollTimeout = useRef(null);
-
   const loopedItems = [...items, ...items, ...items];
   const originalLength = items.length;
   const startIndex = originalLength;
@@ -28,7 +27,6 @@ export default function MenuSlider({ items }) {
     if (!container) return;
 
     const containerCenter = container.scrollLeft + container.offsetWidth / 2;
-
     let closestIndex = 0;
     let minDistance = Infinity;
 
@@ -44,8 +42,9 @@ export default function MenuSlider({ items }) {
 
     if (closestIndex !== centerIndex) {
       setCenterIndex(closestIndex);
+      audio.pause();
       audio.currentTime = 0;
-      audio.play().catch(() => {});
+      audio.play().catch((e) => console.warn("Audio play blocked:", e));
     }
 
     if (closestIndex <= originalLength / 2) {
@@ -60,22 +59,25 @@ export default function MenuSlider({ items }) {
     const ref = containerRef.current;
     if (!ref) return;
 
-    const handleScroll = () => {
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-      scrollTimeout.current = setTimeout(() => {
-        updateCenter();
-      }, 80);
-    };
+    let ticking = false;
 
-    const handlePointerDown = () => {
-      updateCenter();
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateCenter();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     ref.addEventListener("scroll", handleScroll);
-    ref.addEventListener("pointerdown", handlePointerDown);
+    ref.addEventListener("pointerdown", updateCenter);
+    ref.addEventListener("touchstart", updateCenter);
     return () => {
       ref.removeEventListener("scroll", handleScroll);
-      ref.removeEventListener("pointerdown", handlePointerDown);
+      ref.removeEventListener("pointerdown", updateCenter);
+      ref.removeEventListener("touchstart", updateCenter);
     };
   }, [centerIndex]);
 
@@ -89,15 +91,17 @@ export default function MenuSlider({ items }) {
         return (
           <motion.div
             key={`${item.name}-${index}`}
-            className={`scroll-card ${isCenter ? "center" : ""}`}
+            className="scroll-card"
+            style={{
+              marginLeft: offset < 0 ? -40 : 0,
+              marginRight: offset > 0 ? -40 : 0,
+              zIndex: isCenter ? 10 : 5 - Math.abs(offset),
+            }}
             animate={{
               scale: isCenter ? 1.25 : overlap ? 0.85 : 0.7,
               opacity: overlap ? 1 : 0.5,
-              zIndex: isCenter ? 10 : 5 - Math.abs(offset),
-              marginLeft: offset < 0 ? -40 : 0,
-              marginRight: offset > 0 ? -40 : 0,
             }}
-            transition={{ type: "spring", stiffness: 250, damping: 25 }}
+            transition={{ type: "spring", stiffness: 260, damping: 24 }}
           >
             <img src={item.image} alt={item.name} className="card-image" />
             <div className="card-text">
