@@ -9,6 +9,10 @@ export default function MenuSectionSlider({ title, items }) {
     setActiveTag(prev => (prev === tagKey ? null : tagKey));
   };
 
+  const clearTag = () => {
+    setActiveTag(null);
+  };
+
   const filteredItems = activeTag
     ? items.filter(item => item.name.toLowerCase().includes(activeTag.toLowerCase()))
     : items;
@@ -20,9 +24,10 @@ export default function MenuSectionSlider({ title, items }) {
       </h2>
 
       {activeTag && (
-        <p style={{ textAlign: "center", color: "#2c8f5b", marginBottom: "20px", fontWeight: 500 }}>
+        <div style={{ textAlign: "center", color: "#2c8f5b", marginBottom: "20px", fontWeight: 500 }}>
           선택된 필터: <span style={{ textTransform: "capitalize" }}>{activeTag}</span>
-        </p>
+          <button onClick={clearTag} style={{ marginLeft: "10px", background: "transparent", border: "none", color: "#999", cursor: "pointer", fontSize: "14px" }}>❌</button>
+        </div>
       )}
 
       <MenuSlider items={filteredItems} onTagClick={handleTagClick} />
