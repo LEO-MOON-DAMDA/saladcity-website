@@ -12,9 +12,13 @@
 }
 
 .featured-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-6px) scale(1.01); /* ✅ 감성적 상승 + 살짝 커짐 */
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   z-index: 10;
+}
+
+.featured-card:active {
+  transform: translateY(-2px) scale(0.98); /* ✅ 클릭 피드백 */
 }
 
 .featured-image {
@@ -44,4 +48,20 @@
 .nutrient {
   font-size: 12px;
   color: #999;
+}
+
+/* ✅ 모바일 반응형 감성 튜닝 */
+@media (max-width: 480px) {
+  .featured-card {
+    width: 80vw;
+  }
+
+  .featured-text h3 {
+    font-size: 14px;
+  }
+
+  .featured-text p,
+  .nutrient {
+    font-size: 12px;
+  }
 }
