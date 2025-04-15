@@ -14,15 +14,16 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none; /* ✅ Firefox */
+}
+
+.featured-slider-wrapper::-webkit-scrollbar {
+  display: none; /* ✅ Chrome, Safari */
 }
 
 .featured-slider-scroll {
   display: flex;
   gap: 20px;
   padding-bottom: 8px;
-  scrollbar-width: none;
-}
-
-.featured-slider-scroll::-webkit-scrollbar {
-  display: none;
 }
