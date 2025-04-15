@@ -106,7 +106,7 @@ export default function Header() {
               left: '50%',
               transform: 'translateX(-50%)'
             }}>
-              <img src="/images/saladcity_origin.png" alt="home" style={{ height: '32px' }} />
+              <img src="/images/saladcity_origin.png" alt="home" style={{ height: '52px' }} />
             </a>
           )}
 
