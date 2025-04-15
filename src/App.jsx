@@ -8,11 +8,14 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        {/* 공통 레이아웃을 적용할 라우트 그룹 */}
+        {/* 공통 레이아웃을 사용하는 페이지들 */}
         <Route element={<Layout />}>
-          <Route path="/" element={<SaladcityHome />} />
-          <Route path="/menu" element={<MenuPage />} /> {/* ✅ 메뉴 페이지 연결 */}
+          <Route path="/" element={<SaladcityHome />} />     {/* 홈 */}
+          <Route path="/menu" element={<MenuPage />} />      {/* 메뉴 페이지 */}
         </Route>
+
+        {/* 추후 404 페이지 만들 경우 대비 (선택) */}
+        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </Router>
   );
