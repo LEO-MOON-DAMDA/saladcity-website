@@ -15,7 +15,7 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
     audioRef.current = new Audio(slideSound);
   }, []);
 
-  // 카드 애니메이션
+  // 카드 애니메이션 + 확대/회전/블러
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -44,16 +44,23 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
       });
     };
 
-    container.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => container.removeEventListener("scroll", handleScroll);
+    // ✅ 한 프레임 딜레이 후 애니메이션 실행
+    const timeout = setTimeout(() => {
+      container.addEventListener("scroll", handleScroll, { passive: true });
+      handleScroll(); // 최초 실행
+    }, 50);
+
+    return () => {
+      clearTimeout(timeout);
+      container.removeEventListener("scroll", handleScroll);
+    };
   }, [items]);
 
   // ✅ 3배 복제 구조
   const tripledItems = [...items, ...items, ...items];
   const centerIndex = items.length;
 
-  // 초기 중앙 정렬
+  // 중앙 정렬
   useEffect(() => {
     const container = scrollRef.current;
     const card = container?.querySelector(".scroll-card");
