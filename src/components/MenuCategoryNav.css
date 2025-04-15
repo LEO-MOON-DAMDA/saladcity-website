@@ -1,1 +1,31 @@
+.menu-category-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffffee;
+  padding: 12px 16px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  border-bottom: 1px solid #eee;
+  backdrop-filter: blur(8px);
+}
+
+.menu-nav-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  background: #f4f4f4;
+  color: #333;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.menu-nav-btn:hover {
+  background: #2c8f5b;
+  color: white;
+}
 
