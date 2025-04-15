@@ -12,17 +12,25 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
     { key: "pesco", label: "Pesco 🐟", className: "badge-blue" },
   ];
 
-  const tags = allTags.filter(tag => lowerName.includes(tag.key));
+  const tags = allTags.filter((tag) => lowerName.includes(tag.key));
 
   return (
     <div className="scroll-card">
-      <img src={item.image} alt={item.name} className="card-image" />
+      <img
+        src={item.image}
+        alt={item.name}
+        className="card-image"
+        loading="lazy" // ✅ 메모리 최적화
+      />
+
       <div className="card-content">
         <div className="card-badges">
           {tags.map((tag, idx) => (
             <span
               key={idx}
-              className={`card-badge ${tag.className} ${selectedTags.includes(tag.key) ? "selected" : ""}`}
+              className={`card-badge ${tag.className} ${
+                selectedTags.includes(tag.key) ? "selected" : ""
+              }`}
               onClick={() => onTagClick?.(tag.key)}
             >
               {tag.label}
@@ -54,10 +62,14 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
             {item.protein ? ` | 단백질 ${item.protein}g` : ""}
             {item.carbs ? ` | 탄수 ${item.carbs}g` : ""}
             {item.fat ? ` | 지방 ${item.fat}g` : ""}
-            {item.co2 !== undefined ? ` | CO₂e ${parseFloat(item.co2).toFixed(1)}kg` : ""}
+            {item.co2 !== undefined
+              ? ` | CO₂e ${parseFloat(item.co2).toFixed(1)}kg`
+              : ""}
           </p>
           <p className="card-price">
-            {item.price !== undefined ? `${item.price.toLocaleString()}원` : ""}
+            {item.price !== undefined
+              ? `${item.price.toLocaleString()}원`
+              : ""}
           </p>
         </div>
       </div>
