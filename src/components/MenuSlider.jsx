@@ -2,25 +2,20 @@ import React, { useRef, useEffect } from "react";
 import MenuCard from "./MenuCard";
 import "./MenuSlider.css";
 
-// ✅ base64 사운드
+// ✅ 슬라이드 효과음 (짧은 whoosh)
 const slideSound =
-  "data:audio/mp3;base64,//uQZAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCA"
-  + "AT//////+4UBxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
-  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
-  + "//uQZAAAAAAAAAAAAAAAAAAAAAAAGpAAD///+wAAACkAAAAAAAgICAgICAgICAgICAgICAgICAg"
-  + "ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg"
-  + "ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAA";
+  "data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCAAMEAAAC7nAAA";
 
 export default function MenuSlider({ items, onTagClick, selectedTags }) {
   const scrollRef = useRef(null);
   const audioRef = useRef(null);
 
-  // 🔊 사운드
+  // 사운드 초기화
   useEffect(() => {
     audioRef.current = new Audio(slideSound);
   }, []);
 
-  // 🎯 슬라이더 효과
+  // 카드 애니메이션
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -51,25 +46,39 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
 
     container.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-
-    return () => {
-      container.removeEventListener("scroll", handleScroll);
-    };
+    return () => container.removeEventListener("scroll", handleScroll);
   }, [items]);
 
-  // 🔁 3배 복제하여 양쪽 여유 확보
+  // ✅ 3배 복제 구조
   const tripledItems = [...items, ...items, ...items];
   const centerIndex = items.length;
 
-  // ⏩ 시작 시 중앙으로 스크롤
+  // 초기 중앙 정렬
   useEffect(() => {
     const container = scrollRef.current;
     const card = container?.querySelector(".scroll-card");
     if (container && card) {
-      const cardWidth = card.offsetWidth + 6; // margin 포함 보정
+      const cardWidth = card.offsetWidth + 6; // 마진 포함
       container.scrollLeft = centerIndex * cardWidth;
     }
   }, [items]);
+
+  // 사운드 재생
+  const playSound = () => {
+    if (audioRef.current) {
+      try {
+        audioRef.current.currentTime = 0;
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((err) => {
+            console.warn("🔇 오디오 재생 차단:", err);
+          });
+        }
+      } catch (err) {
+        console.error("🔇 오디오 오류:", err);
+      }
+    }
+  };
 
   const scrollToCard = (direction) => {
     const container = scrollRef.current;
@@ -80,14 +89,8 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
     const currentScroll = container.scrollLeft;
     const targetScroll = currentScroll + direction * cardWidth;
 
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
-    }
-
-    if (navigator.vibrate) {
-      navigator.vibrate(20);
-    }
+    playSound();
+    if (navigator.vibrate) navigator.vibrate(20);
 
     container.scrollTo({
       left: targetScroll,
