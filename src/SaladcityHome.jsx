@@ -52,10 +52,21 @@ export default function SaladcityHome() {
     height: '100%',
     objectFit: 'cover',
     zIndex: 0,
-    filter: 'brightness(0.7) blur(1.5px)',             // ✅ 여기에
-    boxShadow: 'inset 0 60px 120px rgba(0,0,0,0.3)'     // ✅ 여기도 같이
-  }}
+   }}
 />
+
+ {/* ✅ 위쪽 어둡게 덮어주는 overlay */}
+  <div style={{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    zIndex: 1,
+    background: 'linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0))',
+    pointerEvents: 'none' // 클릭 방지
+  }} />
+        
       <div style={{ position: 'relative', zIndex: 1 }}>
           <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '200px', marginBottom: '20px' }} />
           <h1 style={{ fontSize: '40px', margin: '0' }}>건강하고 맛있는 샐러드</h1>
