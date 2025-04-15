@@ -54,6 +54,7 @@ export default function Header() {
           )}
           <nav style={{
             display: 'flex',
+            alignItems: 'left',
             gap: '18px',
             fontSize: '14px',
             fontWeight: 500,
