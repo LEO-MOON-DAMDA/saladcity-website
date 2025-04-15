@@ -9,13 +9,11 @@ export default function MenuSlider({ items }) {
   const [centerIndex, setCenterIndex] = useState(0);
   const scrollTimeout = useRef(null);
 
-  // 복제된 아이템 배열 (loop 구현용)
   const loopedItems = [...items, ...items, ...items];
   const originalLength = items.length;
-  const startIndex = originalLength; // 중앙 시작
+  const startIndex = originalLength;
 
   useEffect(() => {
-    // 첫 로딩 시 중앙으로 스크롤 위치 이동
     const ref = containerRef.current;
     if (ref) {
       const middleCard = ref.children[startIndex];
@@ -51,7 +49,6 @@ export default function MenuSlider({ items }) {
       sound.play().catch(() => {});
     }
 
-    // 무한 루프처럼 보이게 처음/끝에서 jump
     if (closestIndex <= originalLength / 2) {
       container.scrollLeft += originalLength * container.firstChild.offsetWidth;
     }
@@ -67,42 +64,3 @@ export default function MenuSlider({ items }) {
     const handleScroll = () => {
       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
       scrollTimeout.current = setTimeout(() => {
-        updateCenter();
-      }, 80);
-    };
-
-    const handlePointerDown = () => {
-      updateCenter(); // 누를 때 즉시 중심 계산
-    };
-
-    ref.addEventListener("scroll", handleScroll);
-    ref.addEventListener("pointerdown", handlePointerDown);
-    return () => {
-      ref.removeEventListener("scroll", handleScroll);
-      ref.removeEventListener("pointerdown", handlePointerDown);
-    };
-  }, [centerIndex]);
-
-  return (
-    <div className="slider-scroll-wrapper" ref={containerRef}>
-      {loopedItems.map((item, index) => (
-        <motion.div
-          key={`${item.name}-${index}`}
-          className="scroll-card"
-          animate={{
-            scale: index === centerIndex ? 1.25 : 0.85,
-            zIndex: index === centerIndex ? 10 : 1,
-          }}
-          transition={{ type: "spring", stiffness: 250, damping: 22 }}
-        >
-          <img src={item.image} alt={item.name} className="card-image" />
-          <div className="card-text">
-            <h3>{item.name}</h3>
-            <p>{item.description}</p>
-            <span>{item.price}원</span>
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
