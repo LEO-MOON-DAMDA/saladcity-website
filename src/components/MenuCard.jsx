@@ -10,7 +10,7 @@ export default function MenuCard({ item }) {
         {/* 메뉴명 */}
         <h3 className="card-title">{item.name}</h3>
 
-        {/* 설명 */}
+        {/* 설명 (description 없으면 summary 사용) */}
         {(item.description || item.summary) && (
           <p className="card-description">
             {(item.description || item.summary).length > 40
