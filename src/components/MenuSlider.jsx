@@ -1,3 +1,7 @@
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import "./MenuSlider.css";
+
 export default function MenuSlider({ items }) {
   const [current, setCurrent] = useState(0);
   const timeoutRef = useRef(null);
