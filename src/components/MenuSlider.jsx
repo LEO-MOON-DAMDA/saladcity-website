@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import MenuCard from "./MenuCard"; // ✅ 카드 내용은 MenuCard가 담당
 import "./MenuSlider.css";
 
 export default function MenuSlider({ items }) {
@@ -132,24 +133,24 @@ export default function MenuSlider({ items }) {
 
           return (
             <motion.div
-  key={`${item.name}-${index}`}
-  className="scroll-card"
-  style={{
-    zIndex,
-    marginLeft: offset < 0 ? -120 : 0,
-    marginRight: offset > 0 ? -120 : 0,
-    transformOrigin: "bottom center",
-  }}
-  animate={{
-    scale,
-    opacity,
-    rotateY,
-    y: offset === 0 ? 20 : 0,
-  }}
-  transition={{ type: "spring", stiffness: 300, damping: 30 }}
->
-  <MenuCard item={item} /> {/* 이제 카드 내용은 여기서 처리 */}
-</motion.div>
+              key={`${item.name}-${index}`}
+              className="scroll-card"
+              style={{
+                zIndex,
+                marginLeft: offset < 0 ? -120 : 0,
+                marginRight: offset > 0 ? -120 : 0,
+                transformOrigin: "bottom center",
+              }}
+              animate={{
+                scale,
+                opacity,
+                rotateY,
+                y: offset === 0 ? 20 : 0,
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              <MenuCard item={item} /> {/* ✅ 카드 전체 정보는 여기서 처리 */}
+            </motion.div>
           );
         })}
       </div>
