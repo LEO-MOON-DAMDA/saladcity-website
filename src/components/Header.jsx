@@ -44,46 +44,37 @@ export default function Header() {
       boxSizing: 'border-box'
     }}>
 
-      {/* ✅ PC 화면 */}
-      {!isMobile && (
-        <>
-          {isDetail && (
-            <a href="/" style={{ marginRight: '16px' }}>
-              <img src="/images/saladcity_origin.png" alt="home" style={{
-                  height: '54px',
-                  objectFit: 'cover',
-                  objectPosition: 'center'
-                }} />
-            </a>
-          )}
-          <nav style={{
-            display: isMobile ? 'none' : 'flex', 
-            gap: '18px',
-            fontSize: '14px',
-            fontWeight: 500,
-            letterSpacing: '0.3px'
-          }}>
-            {menuItems.map((link, index) => (
-              <a key={index} href={link.href} style={{
-                textDecoration: 'none',
-                color: '#333',
-                paddingBottom: '2px',
-                borderBottom: '2px solid transparent',
-                transition: 'color 0.2s ease, border-Bottom 0.2s ease'
-              }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#3C8050';
-                  e.currentTarget.style.borderBottom = '2px solid #3C8050';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#333';
-                  e.currentTarget.style.borderBottom = '2px solid transparent';
-                }}
-              >
-                {link.text}
-              </a>
-            ))}
-          </nav>
+{/* ✅ PC 전용 네비게이션 메뉴 */}
+{!isMobile && (
+  <nav style={{
+    display: 'flex',
+    gap: '18px',
+    fontSize: '14px',
+    fontWeight: 500,
+    letterSpacing: '0.3px'
+  }}>
+    {menuItems.map((link, index) => (
+      <a key={index} href={link.href} style={{
+        textDecoration: 'none',
+        color: '#333',
+        paddingBottom: '2px',
+        borderBottom: '2px solid transparent',
+        transition: 'color 0.2s ease, border-Bottom 0.2s ease'
+      }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.color = '#3C8050';
+          e.currentTarget.style.borderBottom = '2px solid #3C8050';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.color = '#333';
+          e.currentTarget.style.borderBottom = '2px solid transparent';
+        }}
+      >
+        {link.text}
+      </a>
+    ))}
+  </nav>
+
           <a href="/order" style={{
             backgroundColor: '#3C8050',
             color: '#fff',
