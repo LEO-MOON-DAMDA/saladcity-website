@@ -40,8 +40,30 @@
   object-fit: cover;
 }
 
+/* ✅ 카드 내부 텍스트 스타일 보강 */
 .card-text {
   padding: 16px;
+  font-size: 14px;
+  color: #333;
+  background: rgba(255, 255, 255, 0.95);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.card-text h3 {
+  font-size: 16px;
+  margin: 0 0 4px;
+  color: #111;
+}
+.card-text p {
+  margin: 0 0 4px;
+  color: #666;
+}
+.card-text span {
+  font-weight: bold;
+  color: #2c8f5b;
+  margin-top: 6px;
 }
 
 /* ✅ 화살표 버튼: PC만 표시, 작고 정원형 */
