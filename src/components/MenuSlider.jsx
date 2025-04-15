@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import MenuCard from "./MenuCard"; // ✅ 카드 내용은 MenuCard가 담당
+import MenuCard from "./MenuCard";
 import "./MenuSlider.css";
 
-export default function MenuSlider({ items, onTagClick }) {
+export default function MenuSlider({ items, onTagClick, selectedTags = [] }) {
   const containerRef = useRef(null);
   const [centerIndex, setCenterIndex] = useState(0);
   const lastLoopTime = useRef(0);
@@ -125,7 +125,6 @@ export default function MenuSlider({ items, onTagClick }) {
         {loopedItems.map((item, index) => {
           const offset = index - centerIndex;
           const distance = Math.abs(offset);
-
           const scale = Math.max(0.6, 1 - distance * 0.15);
           const opacity = Math.max(0.3, 1 - distance * 0.2);
           const rotateY = offset === 0 ? 0 : offset < 0 ? -15 : 15;
@@ -141,15 +140,10 @@ export default function MenuSlider({ items, onTagClick }) {
                 marginRight: offset > 0 ? -120 : 0,
                 transformOrigin: "bottom center",
               }}
-              animate={{
-                scale,
-                opacity,
-                rotateY,
-                y: offset === 0 ? 20 : 0,
-              }}
+              animate={{ scale, opacity, rotateY, y: offset === 0 ? 20 : 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <MenuCard item={item} onTagClick={onTagClick} />
+              <MenuCard item={item} onTagClick={onTagClick} selectedTags={selectedTags} />
             </motion.div>
           );
         })}
