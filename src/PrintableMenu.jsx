@@ -13,28 +13,44 @@ const printableMenuData = [
 
 const PrintableMenu = React.forwardRef((props, ref) => {
   return (
-    <div ref={ref} style={{ padding: "40px", fontFamily: "sans-serif" }}>
+    <div
+      ref={ref}
+      style={{
+        display: "none", // ✅ 화면에는 보이지 않음
+        padding: "40px",
+        fontFamily: "sans-serif"
+      }}
+    >
       <h2 style={{ textAlign: "center", marginBottom: "32px" }}>샐러드시티 메뉴</h2>
-      <div style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "32px",
-        justifyContent: "center"
-      }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "32px",
+          justifyContent: "center"
+        }}
+      >
         {printableMenuData.map((item, index) => (
-          <div key={index} style={{
-            width: "260px",
-            border: "1px solid #ddd",
-            borderRadius: "12px",
-            padding: "16px",
-            textAlign: "center"
-          }}>
-            <img src={item.image} alt={item.name} style={{
-              width: "100%",
-              height: "180px",
-              objectFit: "cover",
-              borderRadius: "8px"
-            }} />
+          <div
+            key={index}
+            style={{
+              width: "260px",
+              border: "1px solid #ddd",
+              borderRadius: "12px",
+              padding: "16px",
+              textAlign: "center"
+            }}
+          >
+            <img
+              src={item.image}
+              alt={item.name}
+              style={{
+                width: "100%",
+                height: "180px",
+                objectFit: "cover",
+                borderRadius: "8px"
+              }}
+            />
             <h4>{item.name}</h4>
             <p style={{ fontSize: "14px", color: "#666" }}>{item.description}</p>
             <p><strong>{item.price}</strong></p>
@@ -49,4 +65,3 @@ const PrintableMenu = React.forwardRef((props, ref) => {
 });
 
 export default PrintableMenu;
-
