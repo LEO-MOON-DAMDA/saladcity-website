@@ -5,14 +5,20 @@ import homepageMenuItems from "./data/homepageMenuItems.json";
 import FeaturedMenuSection from "./components/FeaturedMenuSection";
 import CustomPrintableMenu from "./CustomPrintableMenu";
 import InstaFeedSection from "./components/InstaFeedSection";
-
+import ReviewSection from "./components/ReviewSection";
+import SubscriptionSection from "./components/SubscriptionSection";
+import OurMissionSection from "./components/OurMissionSection";
+import StoreLocatorSection from "./components/StoreLocatorSection";
 
 export default function SaladcityHome() {
   const videoRef = useRef(null);
   const [videoIndex, setVideoIndex] = useState(0);
   const location = useLocation();
 
-  const videoList = ["/videos/joyful-healthy-eating.mp4", "/videos/joyful2.mp4"];
+  const videoList = [
+    "/videos/joyful-healthy-eating.mp4",
+    "/videos/joyful2.mp4"
+  ];
 
   const handleVideoEnd = () => {
     setVideoIndex((prev) => (prev + 1) % videoList.length);
@@ -51,14 +57,14 @@ export default function SaladcityHome() {
         fontFamily: "sans-serif",
         backgroundColor: "#f6fdf8",
         paddingTop: "0px",
-        overflow: "visible",     // ✅ hover 카드 상단 보이게
-        position: "relative",    // ✅ z-index 기준 생성
-        minHeight: "100vh"       // ✅ 전체 레이아웃 안정
+        overflow: "visible",
+        position: "relative",
+        minHeight: "100vh"
       }}
     >
       <Header hideLogo={location.pathname === "/"} />
 
-      {/* ✅ 메인 비디오 */}
+      {/* Hero 비디오 */}
       <div style={{
         position: 'relative',
         height: '800px',
@@ -114,15 +120,16 @@ export default function SaladcityHome() {
         </div>
       </div>
 
-      {/* ✅ 추천메뉴 슬라이더 */}
+      {/* 주요 섹션 */}
       <FeaturedMenuSection items={homepageMenuItems} />
+      <CustomPrintableMenu />
+      <InstaFeedSection />
+      <SubscriptionSection />
+      <ReviewSection />
+      <OurMissionSection />
+      <StoreLocatorSection />
 
-      {/* ✅ 프린트 섹션 (덮임 방지용 wrapper) */}
-      <div style={{ position: "relative", zIndex: 0 }}>
-        <CustomPrintableMenu />
-      </div>
-
-      {/* ✅ 푸터 */}
+      {/* Footer */}
       <footer style={{
         position: "relative",
         zIndex: 0,
