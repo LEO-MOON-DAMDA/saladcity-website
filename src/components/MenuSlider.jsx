@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import MenuCard from "./MenuCard"; // ✅ 카드 내용은 MenuCard가 담당
 import "./MenuSlider.css";
 
-export default function MenuSlider({ items }) {
+export default function MenuSlider({ items, onTagClick }) {
   const containerRef = useRef(null);
   const [centerIndex, setCenterIndex] = useState(0);
   const lastLoopTime = useRef(0);
@@ -149,7 +149,7 @@ export default function MenuSlider({ items }) {
               }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <MenuCard item={item} /> {/* ✅ 카드 전체 정보는 여기서 처리 */}
+              <MenuCard item={item} onTagClick={onTagClick} />
             </motion.div>
           );
         })}
