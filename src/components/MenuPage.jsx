@@ -5,7 +5,7 @@ import "./MenuPage.css";
 
 export default function MenuPage() {
   const groupedItems = menuItems.reduce((acc, item) => {
-    const section = item.section || "기타";
+    const section = item.category || "기타"; // ✅ 여기만 수정
     if (!acc[section]) acc[section] = [];
     acc[section].push(item);
     return acc;
