@@ -5,10 +5,14 @@ import "./MenuSlider.css";
 export default function MenuSlider({ items }) {
   const containerRef = useRef(null);
   const [centerIndex, setCenterIndex] = useState(0);
+  const lastLoopTime = useRef(0);
+  const scrolling = useRef(false);
+
   const loopedItems = [...items, ...items, ...items];
   const originalLength = items.length;
   const startIndex = originalLength;
 
+  // 초기 중앙 정렬
   useEffect(() => {
     const ref = containerRef.current;
     if (ref) {
@@ -49,14 +53,23 @@ export default function MenuSlider({ items }) {
       setCenterIndex(closestIndex);
     }
 
-    if (closestIndex <= originalLength / 2) {
-      container.scrollLeft += originalLength * container.firstChild.offsetWidth;
-    }
-    if (closestIndex >= loopedItems.length - originalLength / 2) {
-      container.scrollLeft -= originalLength * container.firstChild.offsetWidth;
+    // ✅ 안전한 loop 보정
+    const now = Date.now();
+    const cardWidth = container.firstChild.offsetWidth;
+
+    if (now - lastLoopTime.current > 500) {
+      if (closestIndex <= originalLength / 4) {
+        container.scrollLeft += originalLength * cardWidth;
+        lastLoopTime.current = now;
+      }
+      if (closestIndex >= loopedItems.length - originalLength / 4) {
+        container.scrollLeft -= originalLength * cardWidth;
+        lastLoopTime.current = now;
+      }
     }
   };
 
+  // scroll/drag 이벤트 바인딩
   useEffect(() => {
     const ref = containerRef.current;
     if (!ref) return;
@@ -75,7 +88,6 @@ export default function MenuSlider({ items }) {
     ref.addEventListener("scroll", handleScroll);
     ref.addEventListener("pointerdown", updateCenter);
     ref.addEventListener("touchstart", updateCenter);
-
     return () => {
       ref.removeEventListener("scroll", handleScroll);
       ref.removeEventListener("pointerdown", updateCenter);
@@ -83,15 +95,23 @@ export default function MenuSlider({ items }) {
     };
   }, [centerIndex]);
 
-  // ✅ 좌우 이동 함수
+  // ✅ 좌우 클릭 이동
   const scrollByCard = (direction) => {
+    if (scrolling.current) return;
+    scrolling.current = true;
+
     const container = containerRef.current;
     if (!container) return;
+
     const cardWidth = container.firstChild.offsetWidth;
     container.scrollBy({ left: direction * cardWidth, behavior: "smooth" });
+
+    setTimeout(() => {
+      scrolling.current = false;
+    }, 300); // 중복 방지
   };
 
-  // ✅ 키보드 대응
+  // ✅ 방향키 대응
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "ArrowLeft") scrollByCard(-1);
@@ -104,6 +124,7 @@ export default function MenuSlider({ items }) {
   return (
     <div className="slider-wrapper">
       <button className="slider-arrow left" onClick={() => scrollByCard(-1)}>‹</button>
+
       <div className="slider-scroll-wrapper" ref={containerRef}>
         {loopedItems.map((item, index) => {
           const offset = index - centerIndex;
@@ -119,8 +140,8 @@ export default function MenuSlider({ items }) {
               className="scroll-card"
               style={{
                 zIndex,
-                marginLeft: offset < 0 ? -100 : 0,
-                marginRight: offset > 0 ? -100 : 0,
+                marginLeft: offset < 0 ? -80 : 0,
+                marginRight: offset > 0 ? -80 : 0,
               }}
               animate={{
                 scale,
@@ -139,6 +160,7 @@ export default function MenuSlider({ items }) {
           );
         })}
       </div>
+
       <button className="slider-arrow right" onClick={() => scrollByCard(1)}>›</button>
     </div>
   );
