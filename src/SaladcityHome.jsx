@@ -4,6 +4,8 @@ import Header from "./components/Header";
 import homepageMenuItems from "./data/homepageMenuItems.json";
 import FeaturedMenuSection from "./components/FeaturedMenuSection";
 import CustomPrintableMenu from "./CustomPrintableMenu";
+import InstaFeedSection from "./components/InstaFeedSection";
+
 
 export default function SaladcityHome() {
   const videoRef = useRef(null);
