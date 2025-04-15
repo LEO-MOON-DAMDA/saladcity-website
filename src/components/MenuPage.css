@@ -1,5 +1,6 @@
 .horizontal-scroll-container {
   display: flex;
+  flex-wrap: nowrap; /* ✅ 슬라이드 유지 핵심 */
   overflow-x: auto;
   scroll-behavior: smooth;
   gap: 20px;
