@@ -44,51 +44,61 @@ export default function Header() {
       boxSizing: 'border-box'
     }}>
 
-{/* ✅ PC 전용 네비게이션 메뉴 */}
+{/* ✅ PC 화면 */}
 {!isMobile && (
-  <nav style={{
-    display: 'flex',
-    gap: '18px',
-    fontSize: '14px',
-    fontWeight: 500,
-    letterSpacing: '0.3px'
-  }}>
-    {menuItems.map((link, index) => (
-      <a key={index} href={link.href} style={{
-        textDecoration: 'none',
-        color: '#333',
-        paddingBottom: '2px',
-        borderBottom: '2px solid transparent',
-        transition: 'color 0.2s ease, border-Bottom 0.2s ease'
-      }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.color = '#3C8050';
-          e.currentTarget.style.borderBottom = '2px solid #3C8050';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.color = '#333';
-          e.currentTarget.style.borderBottom = '2px solid transparent';
-        }}
-      >
-        {link.text}
+  <>
+    {isDetail && (
+      <a href="/" style={{ marginRight: '16px' }}>
+        <img src="/images/saladcity_origin.png" alt="home" style={{
+            height: '54px',
+            objectFit: 'cover',
+            objectPosition: 'center'
+          }} />
       </a>
-    ))}
-  </nav>
+    )}
+    <nav style={{
+      display: 'flex',
+      gap: '18px',
+      fontSize: '14px',
+      fontWeight: 500,
+      letterSpacing: '0.3px'
+    }}>
+      {menuItems.map((link, index) => (
+        <a key={index} href={link.href} style={{
+          textDecoration: 'none',
+          color: '#333',
+          paddingBottom: '2px',
+          borderBottom: '2px solid transparent',
+          transition: 'color 0.2s ease, border-Bottom 0.2s ease'
+        }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = '#3C8050';
+            e.currentTarget.style.borderBottom = '2px solid #3C8050';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = '#333';
+            e.currentTarget.style.borderBottom = '2px solid transparent';
+          }}
+        >
+          {link.text}
+        </a>
+      ))}
+    </nav>
+    <a href="/order" style={{
+      backgroundColor: '#3C8050',
+      color: '#fff',
+      padding: '6px 14px',
+      borderRadius: '6px',
+      textDecoration: 'none',
+      fontWeight: 600,
+      whiteSpace: 'nowrap',
+      marginLeft: 'auto'
+    }}>
+      ORDER
+    </a>
+  </>
+)}
 
-          <a href="/order" style={{
-            backgroundColor: '#3C8050',
-            color: '#fff',
-            padding: '6px 14px',
-            borderRadius: '6px',
-            textDecoration: 'none',
-            fontWeight: 600,
-            whiteSpace: 'nowrap',
-            marginLeft: 'auto' // ✅ PC에서 ORDER는 우측 끝으로 밀어줌
-          }}>
-            ORDER
-          </a>
-        </>
-      )}
 
    {/* ✅ Mobile 화면 */}
       {isMobile && (
