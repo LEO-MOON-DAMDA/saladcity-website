@@ -123,7 +123,7 @@ export default function MenuSlider({ items }) {
         {loopedItems.map((item, index) => {
           const offset = index - centerIndex;
           const isCenter = index === centerIndex;
-          const rotateY = offset === 0 ? 0 : offset < 0 ? 35 : -35;
+          const rotateY = offset === 0 ? 0 : offset < 0 ? -35 : 35; // ✅ 반대 방향으로 기울어짐
           const scale = isCenter ? 1.25 : 0.8;
           const opacity = isCenter ? 1 : 0.5;
           const zIndex = isCenter ? 10 : 5 - Math.abs(offset);
