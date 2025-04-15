@@ -2,17 +2,10 @@ import React, { useRef, useEffect } from "react";
 import MenuCard from "./MenuCard";
 import "./MenuSlider.css";
 
-// ✅ base64로 인코딩된 슬라이드 사운드 (짧은 whoosh 효과)
+// ✅ base64 사운드
 const slideSound =
   "data:audio/mp3;base64,//uQZAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCA"
   + "AT//////+4UBxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
-  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
-  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
-  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
-  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
-  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
-  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
-  + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
   + "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
   + "//uQZAAAAAAAAAAAAAAAAAAAAAAAGpAAD///+wAAACkAAAAAAAgICAgICAgICAgICAgICAgICAg"
   + "ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg"
@@ -22,10 +15,12 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
   const scrollRef = useRef(null);
   const audioRef = useRef(null);
 
+  // 🔊 사운드
   useEffect(() => {
     audioRef.current = new Audio(slideSound);
   }, []);
 
+  // 🎯 슬라이더 효과
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -62,22 +57,34 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
     };
   }, [items]);
 
+  // 🔁 3배 복제하여 양쪽 여유 확보
+  const tripledItems = [...items, ...items, ...items];
+  const centerIndex = items.length;
+
+  // ⏩ 시작 시 중앙으로 스크롤
+  useEffect(() => {
+    const container = scrollRef.current;
+    const card = container?.querySelector(".scroll-card");
+    if (container && card) {
+      const cardWidth = card.offsetWidth + 6; // margin 포함 보정
+      container.scrollLeft = centerIndex * cardWidth;
+    }
+  }, [items]);
+
   const scrollToCard = (direction) => {
     const container = scrollRef.current;
     const card = container.querySelector(".scroll-card");
     if (!container || !card) return;
 
-    const cardWidth = card.offsetWidth + 24;
+    const cardWidth = card.offsetWidth + 6;
     const currentScroll = container.scrollLeft;
     const targetScroll = currentScroll + direction * cardWidth;
 
-    // 🔊 사운드 재생
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.play();
     }
 
-    // 📳 진동
     if (navigator.vibrate) {
       navigator.vibrate(20);
     }
@@ -87,8 +94,6 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
       behavior: "smooth",
     });
   };
-
-  const safeItems = items.slice(0, 10);
 
   return (
     <div className="slider-wrapper">
@@ -100,7 +105,7 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
       </button>
 
       <div className="slider-scroll-wrapper" ref={scrollRef}>
-        {safeItems.map((item, idx) => (
+        {tripledItems.map((item, idx) => (
           <MenuCard
             key={idx}
             item={item}
