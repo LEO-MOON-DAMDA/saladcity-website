@@ -79,7 +79,7 @@ export default function Header() {
                   e.currentTarget.style.borderBottom = '2px solid #3C8050';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#333';
+                  e.currentTarget.style.color = '#fff';
                   e.currentTarget.style.borderBottom = '2px solid transparent';
                 }}
               >
@@ -168,7 +168,7 @@ export default function Header() {
             top: '60px',
             left: 0,
             width: '100%',
-            backgroundColor: '#fff',
+            backgroundColor: 'rgba(0,0,0,0.8)',
             boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
             padding: isOpen ? '16px 24px' : '0px',
             zIndex: 1500
@@ -179,7 +179,7 @@ export default function Header() {
                 padding: '10px 0',
                 fontSize: '15px',
                 textDecoration: 'none',
-                color: '#333',
+                color: '#fff',
                 borderBottom: '1px solid #eee'
               }}>
                 {link.text}
