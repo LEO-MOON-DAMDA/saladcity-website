@@ -22,8 +22,8 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
         const maxDistance = containerRect.width / 2;
 
         const normalized = Math.min(distance / maxDistance, 1);
-        const scale = 1 - normalized * 0.2;        // 0.8 ~ 1
-        const rotateY = normalized * 20;           // 0 ~ 20 deg
+        const scale = 1 - normalized * 0.2;
+        const rotateY = normalized * 20;
         const opacity = 1 - normalized * 0.5;
         const zIndex = 1000 - Math.floor(normalized * 100);
 
@@ -41,25 +41,32 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
     };
   }, [items]);
 
-  // ✅ 좌우 스크롤 버튼
-  const scroll = (direction) => {
+  // ✅ 카드 단위 중심 정렬 이동
+  const scrollToCard = (direction) => {
     if (!scrollRef.current) return;
-    const scrollAmount = 300;
-    scrollRef.current.scrollBy({
-      left: direction * scrollAmount,
+
+    const container = scrollRef.current;
+    const card = container.querySelector(".scroll-card");
+    if (!card) return;
+
+    const cardWidth = card.offsetWidth + 24; // 카드 + margin
+    const currentScroll = container.scrollLeft;
+    const targetScroll = currentScroll + direction * cardWidth;
+
+    container.scrollTo({
+      left: targetScroll,
       behavior: "smooth",
     });
   };
 
-  // ✅ 카드 제한
   const safeItems = items.slice(0, 10);
 
   return (
     <div className="slider-wrapper">
-      <button className="slider-arrow left" onClick={() => scroll(-1)}>
+      <button className="slider-arrow left" onClick={() => scrollToCard(-1)}>
         ◀
       </button>
-      <button className="slider-arrow right" onClick={() => scroll(1)}>
+      <button className="slider-arrow right" onClick={() => scrollToCard(1)}>
         ▶
       </button>
 
