@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import reviews from "../data/reviews_baemin.json";
 import ReviewModal from "../components/ReviewModal";
+import ReviewStatsChart from "../components/ReviewStatsChart";
 import "./Reviews.css";
 
 export default function ReviewsPage() {
@@ -8,7 +9,7 @@ export default function ReviewsPage() {
   const [showWithImageOnly, setShowWithImageOnly] = useState(false);
   const [minRating, setMinRating] = useState(0);
   const [sortOption, setSortOption] = useState("latest");
-  const [selectedReview, setSelectedReview] = useState(null); // ✅ 팝업용 상태
+  const [selectedReview, setSelectedReview] = useState(null);
 
   const filteredReviews = reviews
     .filter((review) => {
@@ -32,7 +33,11 @@ export default function ReviewsPage() {
 
   return (
     <div className="reviews-page" style={{ padding: "40px 16px", backgroundColor: "#f8fef9", fontFamily: "sans-serif" }}>
-      {/* 통계 + 필터 */}
+      
+      {/* ✅ 통계 차트 삽입 */}
+      <ReviewStatsChart reviews={reviews} />
+
+      {/* 필터 및 헤더 */}
       <div className="reviews-header" style={{ textAlign: "center", marginBottom: "40px" }}>
         <h1 style={{ fontSize: "32px", marginBottom: "8px" }}>고객 리뷰 모음</h1>
         <p style={{ fontSize: "16px", color: "#555" }}>
@@ -103,7 +108,7 @@ export default function ReviewsPage() {
           <div
             className="review-card"
             key={idx}
-            onClick={() => setSelectedReview(review)} // ✅ 클릭 시 팝업 열기
+            onClick={() => setSelectedReview(review)}
             style={{
               background: "#fff",
               borderRadius: "16px",
@@ -150,7 +155,7 @@ export default function ReviewsPage() {
         </p>
       )}
 
-      {/* ✅ 팝업 연결 */}
+      {/* 팝업 */}
       <ReviewModal review={selectedReview} onClose={() => setSelectedReview(null)} />
     </div>
   );
