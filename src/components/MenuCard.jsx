@@ -14,6 +14,16 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
 
   const tags = allTags.filter((tag) => lowerName.includes(tag.key));
 
+  // ✅ 드레싱 이미지 매핑
+  const dressingList = [
+    "그릭요거트", "발사믹", "수제오리엔탈", "스리라차마요",
+    "오렌지", "오리엔탈", "이탈리안", "크림시저"
+  ];
+  const matchedDressing = dressingList.find((name) =>
+    (item.dressing || item.description || "").includes(name)
+  );
+  const dressingImg = matchedDressing ? `/images/${matchedDressing}.png` : null;
+
   return (
     <div className="scroll-card">
       <img
@@ -54,6 +64,12 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
               ? item.ingredients.slice(0, 40) + "..."
               : item.ingredients}
           </p>
+        )}
+
+        {dressingImg && (
+          <div className="card-dressing">
+            <img src={dressingImg} alt="드레싱" />
+          </div>
         )}
 
         <div className="card-bottom animated-bottom">
