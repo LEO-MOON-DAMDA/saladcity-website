@@ -84,6 +84,27 @@
   max-width: 480px;
 }
 
+/* 드레싱 카드 전용 */
+.card-dressing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.card-dressing img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card-dressing img:hover {
+  transform: scale(1.05);
+}
+
 .mission-cta {
   background-color: #e5f6ed;
   padding: 60px 20px;
