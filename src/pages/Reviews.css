@@ -1,0 +1,39 @@
+/* src/pages/Reviews.css */
+
+.reviews-page {
+  background-color: #f8fef9;
+  font-family: sans-serif;
+  padding: 40px 16px;
+}
+
+.reviews-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.review-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.review-meta {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.review-content {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.review-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-top: 8px;
+}
