@@ -13,8 +13,8 @@ export default function ReviewsPage() {
 
   const filteredReviews = reviews
     .filter((review) => {
-      const content = review.content || review.review || "";
-      const keyword = (filter || "").toLowerCase(); // ✅ filter 안전 처리
+      const content = review.content || review.review || review.text || "";
+      const keyword = (filter || "").toLowerCase();
       const matchesText = content.toLowerCase().includes(keyword);
       const matchesImage = showWithImageOnly ? !!review.image : true;
       const matchesRating = (review.rating || 0) >= minRating;
@@ -34,57 +34,31 @@ export default function ReviewsPage() {
     reviews.reduce((sum, r) => sum + (r.rating || 0), 0) / reviews.length;
 
   return (
-    <div
-      className="reviews-page"
-      style={{
-        padding: "40px 16px",
-        backgroundColor: "#f8fef9",
-        fontFamily: "sans-serif",
-      }}
-    >
+    <div className="reviews-page">
       {/* 통계 차트 */}
       <ReviewStatsChart reviews={reviews} />
 
-      {/* 필터 + 헤더 */}
-      <div
-        className="reviews-header"
-        style={{ textAlign: "center", marginBottom: "40px" }}
-      >
-        <h1 style={{ fontSize: "32px", marginBottom: "8px" }}>고객 리뷰 모음</h1>
-        <p style={{ fontSize: "16px", color: "#555" }}>
+      {/* 필터 및 헤더 */}
+      <div className="reviews-header">
+        <h1>고객 리뷰 모음</h1>
+        <p>
           총 리뷰 수: <strong>{reviews.length}</strong>개 &nbsp;|&nbsp; 평균 별점:{" "}
           <strong>⭐ {averageRating.toFixed(1)}</strong>
         </p>
 
-        <div
-          style={{
-            marginTop: "24px",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "16px",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <div className="filter-controls">
           <input
             type="text"
             placeholder="리뷰 키워드 검색"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            style={{
-              padding: "10px 14px",
-              borderRadius: "8px",
-              border: "1px solid #ccc",
-              fontSize: "14px",
-            }}
           />
 
-          <label style={{ fontSize: "14px", color: "#444" }}>
+          <label>
             <input
               type="checkbox"
               checked={showWithImageOnly}
               onChange={() => setShowWithImageOnly(!showWithImageOnly)}
-              style={{ marginRight: "6px" }}
             />
             이미지 포함만
           </label>
@@ -92,11 +66,6 @@ export default function ReviewsPage() {
           <select
             value={minRating}
             onChange={(e) => setMinRating(Number(e.target.value))}
-            style={{
-              padding: "10px",
-              borderRadius: "8px",
-              fontSize: "14px",
-            }}
           >
             <option value={0}>⭐ 모든 별점</option>
             <option value={5}>⭐ 5점만</option>
@@ -107,11 +76,6 @@ export default function ReviewsPage() {
           <select
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
-            style={{
-              padding: "10px",
-              borderRadius: "8px",
-              fontSize: "14px",
-            }}
           >
             <option value="latest">🕒 최신순</option>
             <option value="highest">⭐ 평점 높은순</option>
@@ -120,84 +84,44 @@ export default function ReviewsPage() {
       </div>
 
       {/* 리뷰 카드 리스트 */}
-      <div
-        className="reviews-list"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: "24px",
-        }}
-      >
+      <div className="reviews-list">
         {filteredReviews.map((review, idx) => (
           <div
             className="review-card"
             key={idx}
             onClick={() => setSelectedReview(review)}
-            style={{
-              background: "#fff",
-              borderRadius: "16px",
-              padding: "20px",
-              boxShadow: "0 6px 16px rgba(0,0,0,0.06)",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              cursor: "pointer",
-            }}
           >
-            <div
-              className="review-meta"
-              style={{
-                marginBottom: "12px",
-                fontSize: "14px",
-                color: "#666",
-              }}
-            >
-              <strong>{review.author || review.nickname || "익명"}</strong>
+            <div className="review-meta">
+              <strong>{review.nickname || "익명"}</strong>
               <br />
-              ⭐ {review.rating || 5} &nbsp;|&nbsp;
-              {review.date || ""}
+              <span className="rating">⭐ {Math.min(review.rating || 5, 5)}</span>
+              &nbsp;|&nbsp; {review.date || ""}
             </div>
-            <p
-              className="review-content"
-              style={{
-                fontSize: "15px",
-                color: "#333",
-                lineHeight: "1.5",
-                marginBottom: "12px",
-              }}
-            >
-              {review.content || review.review || "내용 없음"}
+
+            <p className={`review-content ${review.text || review.review ? "" : "empty"}`}>
+              {review.text || review.review || "내용 없음"}
             </p>
+
             {review.image && (
               <img
                 src={review.image}
                 alt="리뷰 이미지"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  borderRadius: "12px",
-                  marginTop: "8px",
-                }}
               />
+            )}
+
+            {!review.reply && (
+              <p className="review-reply-pending">사장님 댓글 등록하기</p>
             )}
           </div>
         ))}
       </div>
 
-      {/* 결과 없을 때 메시지 */}
+      {/* 조건에 맞는 리뷰 없을 때 */}
       {filteredReviews.length === 0 && (
-        <p
-          style={{
-            textAlign: "center",
-            marginTop: "40px",
-            color: "#888",
-          }}
-        >
-          조건에 맞는 리뷰가 없습니다.
-        </p>
+        <p className="no-results">조건에 맞는 리뷰가 없습니다.</p>
       )}
 
-      {/* 팝업 */}
+      {/* 모달 */}
       <ReviewModal
         review={selectedReview}
         onClose={() => setSelectedReview(null)}
