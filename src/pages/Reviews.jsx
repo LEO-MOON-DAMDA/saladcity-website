@@ -4,6 +4,26 @@ import ReviewModal from "../components/ReviewModal";
 import ReviewStatsChart from "../components/ReviewStatsChart";
 import "./Reviews.css";
 
+const fallbackComments = [
+  "하트 5개드립니다. / 5 hearts for this.",
+  "별점 5개드립니다. / 5 shining stars.",
+  "5점만점에 5점이예요. / A perfect 5 out of 5!",
+  "별별별별별 / Sparkles all around!",
+  "완벽한 샐러드예요. / The salad was perfect!",
+  "정기배송해야겠어요. / I might subscribe!",
+  "맛과 건강 모두 잡았어요. / Taste meets wellness.",
+  "재료가 살아있어요. / So fresh, so good.",
+  "기분이 좋아졌어요. / This made my day!",
+  "매일 먹고 싶어요. / I could eat this every day."
+];
+
+const fallbackImages = [
+  "/images/review-sample01.jpg",
+  "/images/review-sample02.jpg",
+  "/images/review-sample03.jpg",
+  "/images/review-sample04.jpg"
+];
+
 export default function ReviewsPage() {
   const [filter, setFilter] = useState("");
   const [showWithImageOnly, setShowWithImageOnly] = useState(false);
@@ -40,7 +60,7 @@ export default function ReviewsPage() {
       <div className="reviews-header">
         <h1>고객 리뷰 모음</h1>
         <p>
-          총 리뷰 수: <strong>{reviews.length}</strong>개 &nbsp;|&nbsp; 평균 별점:{" "}
+          총 리뷰 수: <strong>{reviews.length}</strong>개 &nbsp;|&nbsp; 평균 별점: {" "}
           <strong>⭐ {averageRating.toFixed(1)}</strong>
         </p>
 
@@ -82,34 +102,41 @@ export default function ReviewsPage() {
       </div>
 
       <div className="reviews-list">
-        {filteredReviews.map((review, idx) => (
-          <div
-            className="review-card"
-            key={idx}
-            onClick={() => setSelectedReview(review)}
-          >
-            <div className="review-meta">
-              <strong>{review.nickname || "익명"}</strong>
-              <br />
-              <span className="rating">⭐ {Math.min(review.rating || 5, 5)}</span>
-              &nbsp;|&nbsp; {review.date || ""}
-            </div>
+        {filteredReviews.map((review, idx) => {
+          const hasText = !!(review.text || review.review);
+          const fallback = fallbackComments[Math.floor(Math.random() * fallbackComments.length)];
+          const content = hasText ? (review.text || review.review) : fallback;
+          const hasImage = !!review.image;
+          const fallbackImage = fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
 
-            <p className={`review-content ${review.text || review.review ? "" : "empty"}`}>
-              {review.text || review.review || "아직 작성된 내용이 없어요 😶"}
-            </p>
-
-            {review.image && (
-              <div className="review-image-wrapper">
-                <img src={review.image} alt="리뷰 이미지" />
+          return (
+            <div
+              className="review-card"
+              key={idx}
+              onClick={() => setSelectedReview(review)}
+            >
+              <div className="review-meta">
+                <strong>{review.nickname || "익명"}</strong>
+                <div className={`rating-icons ${review.rating >= 4 ? "green" : "pink"}`}>
+                  {Array.from({ length: Math.min(review.rating || 0, 5) }).map((_, i) => (
+                    <span key={i}>{review.rating >= 4 ? "💚" : "💗"}</span>
+                  ))}
+                </div>
+                <span className="date">{review.date || ""}</span>
               </div>
-            )}
 
-            {!review.reply && (
-              <p className="review-reply-pending">아직 사장님의 답변이 없습니다 🙏</p>
-            )}
-          </div>
-        ))}
+              <p className="review-content">
+                {content}
+              </p>
+
+              {(review.image || fallbackImage) && (
+                <div className="review-image-wrapper">
+                  <img src={review.image || fallbackImage} alt="리뷰 이미지" />
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       {filteredReviews.length === 0 && (
