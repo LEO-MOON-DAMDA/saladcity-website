@@ -1,0 +1,90 @@
+.subscribe-page {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #f6fdf8;
+  padding-bottom: 60px;
+}
+
+.subscribe-hero {
+  background: linear-gradient(to right, #88c057, #aed581);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.subscribe-hero h1 {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.subscribe-benefits {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.subscribe-benefits h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.subscribe-benefits ul {
+  list-style: none;
+  padding: 0;
+  font-size: 16px;
+}
+
+.subscribe-types {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+}
+
+.sub-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  padding: 30px;
+  max-width: 300px;
+  flex: 1;
+  text-align: center;
+}
+
+.subscribe-schedule {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.schedule-buttons button {
+  margin: 0 10px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 24px;
+  background: #88c057;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.schedule-buttons button:hover {
+  background: #689f38;
+}
+
+.subscribe-cta {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.subscribe-cta button {
+  padding: 14px 36px;
+  background: #66bb6a;
+  border: none;
+  border-radius: 24px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.subscribe-cta button:hover {
+  background: #558b2f;
+}
