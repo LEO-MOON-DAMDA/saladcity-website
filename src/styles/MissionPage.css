@@ -88,3 +88,12 @@
 .mission-cta button:hover {
   background-color: #558b2f;
 }
+
+.review-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.review-slider {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
