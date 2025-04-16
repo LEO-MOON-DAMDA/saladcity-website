@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import SaladcityHome from "./SaladcityHome";
 import MenuPage from "./components/MenuPage";
-import ReviewsPage from "./pages/Reviews";  // ✅ 추가
+import ReviewsPage from "./pages/Reviews";
+import MissionPage from "./pages/MissionPage"; // ✅ 추가
 
 export default function App() {
   return (
@@ -11,7 +12,8 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<SaladcityHome />} />
           <Route path="/menu" element={<MenuPage />} />
-          <Route path="/reviews" element={<ReviewsPage />} /> {/* ✅ 추가됨 */}
+          <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/mission" element={<MissionPage />} /> {/* ✅ 미션페이지 연결 */}
         </Route>
       </Routes>
     </Router>
