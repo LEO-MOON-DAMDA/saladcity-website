@@ -1,4 +1,3 @@
-// src/components/InstaFeedSection.jsx
 import React from "react";
 import "./InstaFeedSection.css";
 
@@ -12,7 +11,7 @@ const images = [
 export default function InstaFeedSection() {
   return (
     <section className="insta-section">
-      <h2>#Saladcity on Instagram</h2>
+      <h2 className="insta-title">#Saladcity on Instagram</h2>
       <div className="insta-grid">
         {images.map((src, index) => (
           <div key={index} className="insta-image-wrapper">
@@ -23,4 +22,3 @@ export default function InstaFeedSection() {
     </section>
   );
 }
-
