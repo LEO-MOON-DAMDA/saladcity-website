@@ -1,3 +1,4 @@
+/* 전체 미션 페이지 */
 .mission-page {
   font-family: 'Noto Sans KR', sans-serif;
   background-color: #f9fdfb;
@@ -7,7 +8,7 @@
 .mission-hero {
   position: relative;
   background-size: cover;
-  background-position: center;
+  background-position: center 30%;
   height: 600px;
   display: flex;
   align-items: center;
@@ -33,55 +34,54 @@
   margin-bottom: 16px;
 }
 
-.mission-values {
-  padding: 80px 20px;
-  background-color: #ffffff;
-}
-
-.mission-columns {
+/* 지그재그 구성 */
+.mission-zigzag-section {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 40px;
   flex-wrap: wrap;
-  margin-top: 40px;
+  width: 100%;
 }
 
-.mission-left,
-.mission-right {
+.mission-zigzag-item {
   display: flex;
-  flex-direction: column;
-  gap: 40px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 400px;
 }
 
-.mission-divider {
-  width: 1px;
-  background-color: #ddd;
-  min-height: 300px;
+.mission-zigzag-item:nth-child(even) {
+  flex-direction: row-reverse;
 }
 
-.value-card {
-  max-width: 280px;
-  text-align: center;
+.mission-zigzag-image,
+.mission-zigzag-text {
+  flex: 1 1 50%;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
 }
 
-.value-image img {
-  width: 180px;
-  max-width: 100%;
-  margin-bottom: 16px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+.mission-zigzag-image img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.value-card h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
+.mission-zigzag-text h3 {
+  font-size: 28px;
   color: #2f5130;
+  margin-bottom: 12px;
 }
 
-.value-card p {
-  font-size: 14px;
-  color: #666;
+.mission-zigzag-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  max-width: 480px;
 }
 
 .mission-cta {
@@ -108,46 +108,4 @@
 
 .mission-cta button:hover {
   background-color: #558b2f;
-}
-
-.review-slider::-webkit-scrollbar {
-  display: none;
-}
-
-.review-slider {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
-}
-
-.print-button {
-  background-color: #ffffff;
-  color: #2f5130;
-  border: 2px solid #2f5130;
-  padding: 10px 24px;
-  font-size: 15px;
-  border-radius: 24px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.print-button:hover {
-  background-color: #2f5130;
-  color: #fff;
-}
-
-.subscription-button {
-  background-color: #ffebee;
-  color: #c62828;
-  border: none;
-  padding: 12px 28px;
-  font-size: 16px;
-  border-radius: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.subscription-button:hover {
-  background-color: #ef9a9a;
 }
