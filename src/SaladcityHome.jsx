@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import Header from "./components/Header";
 import homepageMenuItems from "./data/homepageMenuItems.json";
 import FeaturedMenuSection from "./components/FeaturedMenuSection";
@@ -155,9 +155,9 @@ export default function SaladcityHome() {
 
       {/* 전체 리뷰 보기 버튼 */}
       <div className="review-button-container">
-        <a href="/reviews" className="review-button">
+        <Link to="/reviews" className="review-button">
           전체 리뷰 보기 →
-        </a>
+        </Link>
       </div>
 
       <InstaFeedSection />
