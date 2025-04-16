@@ -13,22 +13,22 @@ export default function ReviewsPage() {
 
   const filteredReviews = reviews
     .filter((review) => {
-    const content = review.content || review.review || "";
-    const keyword = (filter || "").toLowerCase(); // ✅ filter 안전 처리
-    const matchesText = content.toLowerCase().includes(keyword);
-    const matchesImage = showWithImageOnly ? !!review.image : true;
-    const matchesRating = (review.rating || 0) >= minRating;
-    return matchesText && matchesImage && matchesRating;
-  })
-  .sort((a, b) => {
-    if (sortOption === "latest") {
-      return new Date(b.date || "") - new Date(a.date || "");
-    }
-    if (sortOption === "highest") {
-      return (b.rating || 0) - (a.rating || 0);
-    }
-    return 0;
-  });
+      const content = review.content || review.review || "";
+      const keyword = (filter || "").toLowerCase(); // ✅ filter 안전 처리
+      const matchesText = content.toLowerCase().includes(keyword);
+      const matchesImage = showWithImageOnly ? !!review.image : true;
+      const matchesRating = (review.rating || 0) >= minRating;
+      return matchesText && matchesImage && matchesRating;
+    })
+    .sort((a, b) => {
+      if (sortOption === "latest") {
+        return new Date(b.date || "") - new Date(a.date || "");
+      }
+      if (sortOption === "highest") {
+        return (b.rating || 0) - (a.rating || 0);
+      }
+      return 0;
+    });
 
   const averageRating =
     reviews.reduce((sum, r) => sum + (r.rating || 0), 0) / reviews.length;
@@ -39,7 +39,7 @@ export default function ReviewsPage() {
       style={{
         padding: "40px 16px",
         backgroundColor: "#f8fef9",
-        fontFamily: "sans-serif"
+        fontFamily: "sans-serif",
       }}
     >
       {/* 통계 차트 */}
@@ -63,7 +63,7 @@ export default function ReviewsPage() {
             flexWrap: "wrap",
             gap: "16px",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <input
@@ -75,7 +75,7 @@ export default function ReviewsPage() {
               padding: "10px 14px",
               borderRadius: "8px",
               border: "1px solid #ccc",
-              fontSize: "14px"
+              fontSize: "14px",
             }}
           />
 
@@ -95,7 +95,7 @@ export default function ReviewsPage() {
             style={{
               padding: "10px",
               borderRadius: "8px",
-              fontSize: "14px"
+              fontSize: "14px",
             }}
           >
             <option value={0}>⭐ 모든 별점</option>
@@ -110,7 +110,7 @@ export default function ReviewsPage() {
             style={{
               padding: "10px",
               borderRadius: "8px",
-              fontSize: "14px"
+              fontSize: "14px",
             }}
           >
             <option value="latest">🕒 최신순</option>
@@ -125,7 +125,7 @@ export default function ReviewsPage() {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: "24px"
+          gap: "24px",
         }}
       >
         {filteredReviews.map((review, idx) => (
@@ -141,7 +141,7 @@ export default function ReviewsPage() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
-              cursor: "pointer"
+              cursor: "pointer",
             }}
           >
             <div
@@ -149,10 +149,10 @@ export default function ReviewsPage() {
               style={{
                 marginBottom: "12px",
                 fontSize: "14px",
-                color: "#666"
+                color: "#666",
               }}
             >
-              <strong>{review.author || "익명"}</strong>
+              <strong>{review.author || review.nickname || "익명"}</strong>
               <br />
               ⭐ {review.rating || 5} &nbsp;|&nbsp;
               {review.date || ""}
@@ -163,10 +163,10 @@ export default function ReviewsPage() {
                 fontSize: "15px",
                 color: "#333",
                 lineHeight: "1.5",
-                marginBottom: "12px"
+                marginBottom: "12px",
               }}
             >
-              {review.content || "내용 없음"}
+              {review.content || review.review || "내용 없음"}
             </p>
             {review.image && (
               <img
@@ -176,7 +176,7 @@ export default function ReviewsPage() {
                   width: "100%",
                   height: "auto",
                   borderRadius: "12px",
-                  marginTop: "8px"
+                  marginTop: "8px",
                 }}
               />
             )}
@@ -190,7 +190,7 @@ export default function ReviewsPage() {
           style={{
             textAlign: "center",
             marginTop: "40px",
-            color: "#888"
+            color: "#888",
           }}
         >
           조건에 맞는 리뷰가 없습니다.
