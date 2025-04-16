@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import reviews from "../data/reviews_baemin.json";
+import ReviewModal from "../components/ReviewModal";
 import "./Reviews.css";
 
 export default function ReviewsPage() {
@@ -7,6 +8,7 @@ export default function ReviewsPage() {
   const [showWithImageOnly, setShowWithImageOnly] = useState(false);
   const [minRating, setMinRating] = useState(0);
   const [sortOption, setSortOption] = useState("latest");
+  const [selectedReview, setSelectedReview] = useState(null); // ✅ 팝업용 상태
 
   const filteredReviews = reviews
     .filter((review) => {
@@ -98,15 +100,21 @@ export default function ReviewsPage() {
         gap: "24px"
       }}>
         {filteredReviews.map((review, idx) => (
-          <div className="review-card" key={idx} style={{
-            background: "#fff",
-            borderRadius: "16px",
-            padding: "20px",
-            boxShadow: "0 6px 16px rgba(0,0,0,0.06)",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between"
-          }}>
+          <div
+            className="review-card"
+            key={idx}
+            onClick={() => setSelectedReview(review)} // ✅ 클릭 시 팝업 열기
+            style={{
+              background: "#fff",
+              borderRadius: "16px",
+              padding: "20px",
+              boxShadow: "0 6px 16px rgba(0,0,0,0.06)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              cursor: "pointer"
+            }}
+          >
             <div className="review-meta" style={{ marginBottom: "12px", fontSize: "14px", color: "#666" }}>
               <strong>{review.author || "익명"}</strong><br />
               ⭐ {review.rating || 5} &nbsp;|&nbsp;
@@ -141,6 +149,9 @@ export default function ReviewsPage() {
           조건에 맞는 리뷰가 없습니다.
         </p>
       )}
+
+      {/* ✅ 팝업 연결 */}
+      <ReviewModal review={selectedReview} onClose={() => setSelectedReview(null)} />
     </div>
   );
 }
