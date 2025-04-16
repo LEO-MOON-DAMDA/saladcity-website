@@ -34,12 +34,30 @@
 }
 
 .mission-values {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
   padding: 80px 20px;
   background-color: #ffffff;
+}
+
+.mission-columns {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.mission-left,
+.mission-right {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.mission-divider {
+  width: 1px;
+  background-color: #ddd;
+  min-height: 300px;
 }
 
 .value-card {
@@ -47,9 +65,12 @@
   text-align: center;
 }
 
-.value-card img {
-  width: 100px;
+.value-image img {
+  width: 180px;
+  max-width: 100%;
   margin-bottom: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .value-card h3 {
