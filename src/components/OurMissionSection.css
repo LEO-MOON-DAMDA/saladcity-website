@@ -24,27 +24,36 @@
   color: #444;
   margin-bottom: 24px;
   max-width: 500px;
+  line-height: 1.6;
 }
 
-.mission-text button {
-  background-color: #66bb6a;
+.mission-sub {
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+  display: block;
+  margin-top: 12px;
+}
+
+.mission-button {
+  background-color: #4CAF50;
   color: white;
   border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  border-radius: 8px;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 32px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.mission-text button:hover {
-  background-color: #558b2f;
+.mission-button:hover {
+  background-color: #388E3C;
 }
 
 .mission-image img {
   width: 100%;
   max-width: 400px;
   border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
-
