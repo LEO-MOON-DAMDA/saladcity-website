@@ -1,0 +1,36 @@
+.store-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  overflow: hidden;
+  width: 100%;
+  max-width: 320px;
+  transition: transform 0.3s ease;
+}
+
+.store-card:hover {
+  transform: translateY(-6px);
+}
+
+.store-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.store-content {
+  padding: 20px;
+  text-align: left;
+}
+
+.store-content h3 {
+  margin: 0 0 8px;
+  color: #388e3c;
+  font-size: 20px;
+}
+
+.store-address, .store-phone, .store-hours, .store-description {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #555;
+}
