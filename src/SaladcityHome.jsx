@@ -4,9 +4,9 @@ import Header from "./components/Header";
 import homepageMenuItems from "./data/homepageMenuItems.json";
 import FeaturedMenuSection from "./components/FeaturedMenuSection";
 import CustomPrintableMenu from "./CustomPrintableMenu";
-import InstaFeedSection from "./components/InstaFeedSection";
-import ReviewSection from "./components/ReviewSection";
 import SubscriptionSection from "./components/SubscriptionSection";
+import ReviewSection from "./components/ReviewSection";
+import InstaFeedSection from "./components/InstaFeedSection";
 import OurMissionSection from "./components/OurMissionSection";
 import StoreLocatorSection from "./components/StoreLocatorSection";
 
@@ -44,6 +44,7 @@ export default function SaladcityHome() {
           rgba(0,0,0,0) 100%);
         opacity: 0;
         animation: fadeInOverlay 1.8s ease-in-out forwards;
+      }
     `;
     document.head.appendChild(styleTag);
     return () => {
@@ -106,7 +107,11 @@ export default function SaladcityHome() {
           <img
             src="/images/saladcity_origin.png"
             alt="Saladcity Logo"
-            style={{ height: '160px', marginBottom: '24px', filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))' }}
+            style={{
+              height: '160px',
+              marginBottom: '24px',
+              filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))'
+            }}
           />
           <h1 style={{ fontSize: '42px', fontWeight: '600', margin: '0 0 10px' }}>
             건강하고 맛있는 샐러드
@@ -123,9 +128,9 @@ export default function SaladcityHome() {
       {/* 주요 섹션 */}
       <FeaturedMenuSection items={homepageMenuItems} />
       <CustomPrintableMenu />
-      <InstaFeedSection />
       <SubscriptionSection />
       <ReviewSection />
+      <InstaFeedSection />
       <OurMissionSection />
       <StoreLocatorSection />
 
