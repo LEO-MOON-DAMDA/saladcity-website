@@ -15,37 +15,44 @@ export default function MissionPage() {
 
       {/* Value Section */}
       <section className="mission-values">
-        <div className="value-card">
-          <div className="value-image">
-            <img src="/images/1salcymission17.jpg" alt="정직한 재료" />
-          </div>
-          <h3>정직한 재료<br /><span>Honest Ingredients</span></h3>
-          <p>
-            농장의 뿌리부터 당신의 접시까지.<br />
-            Every bowl we serve begins with a real story.
-          </p>
+  <div className="mission-columns">
+    <div className="mission-left">
+      <div className="value-card">
+        <div className="value-image">
+          <img src="/images/1salcymission17.jpg" alt="정직한 재료" />
         </div>
-        <div className="value-card">
-          <div className="value-image">
-            <img src="/images/1salcymission19.jpg" alt="지속가능한 선택" />
-          </div>
-          <h3>지속가능한 선택<br /><span>Sustainable Living</span></h3>
-          <p>
-            우리의 샐러드는 환경을 생각합니다.<br />
-            Sustainability is not a trend, it’s our principle.
-          </p>
+        <h3>정직한 재료<br /><span>Honest Ingredients</span></h3>
+        <p>
+          농장의 뿌리부터 당신의 접시까지.<br />
+          Every bowl we serve begins with a real story.
+        </p>
+      </div>
+      <div className="value-card">
+        <div className="value-image">
+          <img src="/images/1salcymission19.jpg" alt="지속가능한 선택" />
         </div>
-        <div className="value-card">
-          <div className="value-image">
-            <img src="/images/1salcymission20.jpg" alt="건강한 연결" />
-          </div>
-          <h3>건강한 연결<br /><span>Meaningful Connection</span></h3>
-          <p>
-            음식은 사람을 잇습니다.<br />
-            From soil to soul — food brings us together.
-          </p>
+        <h3>지속가능한 선택<br /><span>Sustainable Living</span></h3>
+        <p>
+          우리의 샐러드는 환경을 생각합니다.<br />
+          Sustainability is not a trend, it’s our principle.
+        </p>
+      </div>
+    </div>
+    <div className="mission-divider"></div>
+    <div className="mission-right">
+      <div className="value-card">
+        <div className="value-image">
+          <img src="/images/1salcymission20.jpg" alt="건강한 연결" />
         </div>
-      </section>
+        <h3>건강한 연결<br /><span>Meaningful Connection</span></h3>
+        <p>
+          음식은 사람을 잇습니다.<br />
+          From soil to soul — food brings us together.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* CTA Section */}
       <section className="mission-cta">
