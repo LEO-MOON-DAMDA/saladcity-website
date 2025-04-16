@@ -21,10 +21,11 @@ export default function Header() {
   const menuItems = [
     { text: "OUR MENU", href: "/menu" },
     { text: "OUR MISSION", href: "/mission" },
-    { text: "THE MARKET", href: "/market" },
     { text: "OUTPOST", href: "/outpost" },
-    { text: "CATERING", href: "/catering" },
-    { text: "LOCATIONS", href: "/locations" }
+    { text: "SALCY CREW", href: "/reviews" },
+    { text: "LOCATIONS", href: "/locations" },
+    { text: "SOCIAL", href: "/social" },
+    { text: "THE MARKET", href: "/market" }
   ];
 
   const baseColor = isHome ? '#fff' : '#333';
@@ -78,7 +79,7 @@ export default function Header() {
                   color: baseColor,
                   paddingBottom: '2px',
                   borderBottom: '2px solid transparent',
-                  transition: 'color 0.2s ease, border-Bottom 0.2s ease'
+                  transition: 'color 0.2s ease, border-bottom 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = hoverColor;
