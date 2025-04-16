@@ -5,7 +5,7 @@ export default function MissionPage() {
   return (
     <div className="mission-page">
       {/* Hero Section */}
-      <section className="mission-hero" style={{ backgroundImage: 'url("/images/1salcymission04.jpg")', backgroundSize: "cover", backgroundPosition: "center" }}>
+      <section className="mission-hero" style={{ backgroundImage: 'url("/images/1salcymission04.jpg")', backgroundSize: "cover", backgroundPosition: "center 30%" }}>
         <div className="mission-overlay" />
         <div className="mission-hero-text">
           <h1>우리는 한 끼를 심습니다</h1>
