@@ -4,24 +4,23 @@ import ReviewModal from "../components/ReviewModal";
 import ReviewStatsChart from "../components/ReviewStatsChart";
 import "./Reviews.css";
 
-const fallbackComments = [
-  "하트 5개드립니다. / 5 hearts for this.",
-  "별점 5개드립니다. / 5 shining stars.",
-  "5점만점에 5점이예요. / A perfect 5 out of 5!",
-  "별별별별별 / Sparkles all around!",
-  "완벽한 샐러드예요. / The salad was perfect!",
-  "정기배송해야겠어요. / I might subscribe!",
-  "맛과 건강 모두 잡았어요. / Taste meets wellness.",
-  "재료가 살아있어요. / So fresh, so good.",
-  "기분이 좋아졌어요. / This made my day!",
-  "매일 먹고 싶어요. / I could eat this every day."
+const fallbackTexts = [
+  "하트 5개 드립니다. Heartful 5 stars.",
+  "별점 5개 드립니다. Rated 5 out of 5.",
+  "5점 만점에 5점이에요. Perfect 5/5.",
+  "별별별별별! Stars all the way!",
+  "완벽했어요! Absolutely perfect!",
+  "감동적인 한 끼였습니다. Truly heartwarming.",
+  "신선하고 맛있어요! Fresh and tasty!",
+  "매일 먹고 싶어요! I want this every day!",
+  "건강한 맛의 정석. The gold standard of healthy food.",
+  "추천합니다! Highly recommended!"
 ];
 
 const fallbackImages = [
   "/images/review-sample01.jpg",
   "/images/review-sample02.jpg",
-  "/images/review-sample03.jpg",
-  "/images/review-sample04.jpg"
+  "/images/review-sample03.jpg"
 ];
 
 export default function ReviewsPage() {
@@ -103,11 +102,12 @@ export default function ReviewsPage() {
 
       <div className="reviews-list">
         {filteredReviews.map((review, idx) => {
-          const hasText = !!(review.text || review.review);
-          const fallback = fallbackComments[Math.floor(Math.random() * fallbackComments.length)];
-          const content = hasText ? (review.text || review.review) : fallback;
-          const hasImage = !!review.image;
-          const fallbackImage = fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
+          const hasText = review.review?.trim();
+          const content = hasText
+            ? review.review
+            : fallbackTexts[Math.floor(Math.random() * fallbackTexts.length)];
+
+          const imageSrc = review.image || fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
 
           return (
             <div
@@ -117,21 +117,20 @@ export default function ReviewsPage() {
             >
               <div className="review-meta">
                 <strong>{review.nickname || "익명"}</strong>
-                <div className={`rating-icons ${review.rating >= 4 ? "green" : "pink"}`}>
-                  {Array.from({ length: Math.min(review.rating || 0, 5) }).map((_, i) => (
-                    <span key={i}>{review.rating >= 4 ? "💚" : "💗"}</span>
-                  ))}
-                </div>
-                <span className="date">{review.date || ""}</span>
+                <br />
+                <span className={`rating ${review.rating >= 4 ? "green" : "pink"}`}>
+                  {Array(Math.min(review.rating || 5, 5)).fill(review.rating >= 4 ? "💚" : "💗").join("")}
+                </span>
+                &nbsp;|&nbsp; {review.date || ""}
               </div>
 
               <p className="review-content">
                 {content}
               </p>
 
-              {(review.image || fallbackImage) && (
+              {imageSrc && (
                 <div className="review-image-wrapper">
-                  <img src={review.image || fallbackImage} alt="리뷰 이미지" />
+                  <img src={imageSrc} alt="리뷰 이미지" />
                 </div>
               )}
             </div>
