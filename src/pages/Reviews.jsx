@@ -13,17 +13,18 @@ export default function ReviewsPage() {
 
   const filteredReviews = reviews
     .filter((review) => {
-      const matchesText = review.content.toLowerCase().includes(filter.toLowerCase());
+      const content = review.content || "";
+      const matchesText = content.toLowerCase().includes(filter.toLowerCase());
       const matchesImage = showWithImageOnly ? !!review.image : true;
-      const matchesRating = review.rating >= minRating;
+      const matchesRating = (review.rating || 0) >= minRating;
       return matchesText && matchesImage && matchesRating;
     })
     .sort((a, b) => {
       if (sortOption === "latest") {
-        return new Date(b.date) - new Date(a.date);
+        return new Date(b.date || "") - new Date(a.date || "");
       }
       if (sortOption === "highest") {
-        return b.rating - a.rating;
+        return (b.rating || 0) - (a.rating || 0);
       }
       return 0;
     });
@@ -32,27 +33,38 @@ export default function ReviewsPage() {
     reviews.reduce((sum, r) => sum + (r.rating || 0), 0) / reviews.length;
 
   return (
-    <div className="reviews-page" style={{ padding: "40px 16px", backgroundColor: "#f8fef9", fontFamily: "sans-serif" }}>
-      
-      {/* ✅ 통계 차트 삽입 */}
+    <div
+      className="reviews-page"
+      style={{
+        padding: "40px 16px",
+        backgroundColor: "#f8fef9",
+        fontFamily: "sans-serif"
+      }}
+    >
+      {/* 통계 차트 */}
       <ReviewStatsChart reviews={reviews} />
 
-      {/* 필터 및 헤더 */}
-      <div className="reviews-header" style={{ textAlign: "center", marginBottom: "40px" }}>
+      {/* 필터 + 헤더 */}
+      <div
+        className="reviews-header"
+        style={{ textAlign: "center", marginBottom: "40px" }}
+      >
         <h1 style={{ fontSize: "32px", marginBottom: "8px" }}>고객 리뷰 모음</h1>
         <p style={{ fontSize: "16px", color: "#555" }}>
-          총 리뷰 수: <strong>{reviews.length}</strong>개 &nbsp;|&nbsp;
-          평균 별점: <strong>⭐ {averageRating.toFixed(1)}</strong>
+          총 리뷰 수: <strong>{reviews.length}</strong>개 &nbsp;|&nbsp; 평균 별점:{" "}
+          <strong>⭐ {averageRating.toFixed(1)}</strong>
         </p>
 
-        <div style={{
-          marginTop: "24px",
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "16px",
-          justifyContent: "center",
-          alignItems: "center"
-        }}>
+        <div
+          style={{
+            marginTop: "24px",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "16px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
           <input
             type="text"
             placeholder="리뷰 키워드 검색"
@@ -79,7 +91,11 @@ export default function ReviewsPage() {
           <select
             value={minRating}
             onChange={(e) => setMinRating(Number(e.target.value))}
-            style={{ padding: "10px", borderRadius: "8px", fontSize: "14px" }}
+            style={{
+              padding: "10px",
+              borderRadius: "8px",
+              fontSize: "14px"
+            }}
           >
             <option value={0}>⭐ 모든 별점</option>
             <option value={5}>⭐ 5점만</option>
@@ -90,7 +106,11 @@ export default function ReviewsPage() {
           <select
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
-            style={{ padding: "10px", borderRadius: "8px", fontSize: "14px" }}
+            style={{
+              padding: "10px",
+              borderRadius: "8px",
+              fontSize: "14px"
+            }}
           >
             <option value="latest">🕒 최신순</option>
             <option value="highest">⭐ 평점 높은순</option>
@@ -99,11 +119,14 @@ export default function ReviewsPage() {
       </div>
 
       {/* 리뷰 카드 리스트 */}
-      <div className="reviews-list" style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-        gap: "24px"
-      }}>
+      <div
+        className="reviews-list"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+          gap: "24px"
+        }}
+      >
         {filteredReviews.map((review, idx) => (
           <div
             className="review-card"
@@ -120,18 +143,29 @@ export default function ReviewsPage() {
               cursor: "pointer"
             }}
           >
-            <div className="review-meta" style={{ marginBottom: "12px", fontSize: "14px", color: "#666" }}>
-              <strong>{review.author || "익명"}</strong><br />
+            <div
+              className="review-meta"
+              style={{
+                marginBottom: "12px",
+                fontSize: "14px",
+                color: "#666"
+              }}
+            >
+              <strong>{review.author || "익명"}</strong>
+              <br />
               ⭐ {review.rating || 5} &nbsp;|&nbsp;
               {review.date || ""}
             </div>
-            <p className="review-content" style={{
-              fontSize: "15px",
-              color: "#333",
-              lineHeight: "1.5",
-              marginBottom: "12px"
-            }}>
-              {review.content}
+            <p
+              className="review-content"
+              style={{
+                fontSize: "15px",
+                color: "#333",
+                lineHeight: "1.5",
+                marginBottom: "12px"
+              }}
+            >
+              {review.content || "내용 없음"}
             </p>
             {review.image && (
               <img
@@ -149,14 +183,24 @@ export default function ReviewsPage() {
         ))}
       </div>
 
+      {/* 결과 없을 때 메시지 */}
       {filteredReviews.length === 0 && (
-        <p style={{ textAlign: "center", marginTop: "40px", color: "#888" }}>
+        <p
+          style={{
+            textAlign: "center",
+            marginTop: "40px",
+            color: "#888"
+          }}
+        >
           조건에 맞는 리뷰가 없습니다.
         </p>
       )}
 
       {/* 팝업 */}
-      <ReviewModal review={selectedReview} onClose={() => setSelectedReview(null)} />
+      <ReviewModal
+        review={selectedReview}
+        onClose={() => setSelectedReview(null)}
+      />
     </div>
   );
 }
