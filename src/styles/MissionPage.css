@@ -6,7 +6,6 @@
 
 .mission-hero {
   position: relative;
-  background-image: url("/images/1salcymission04.jpg");
   background-size: cover;
   background-position: center;
   height: 600px;
@@ -89,4 +88,3 @@
 .mission-cta button:hover {
   background-color: #558b2f;
 }
-
