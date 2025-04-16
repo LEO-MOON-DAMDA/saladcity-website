@@ -13,21 +13,22 @@ export default function ReviewsPage() {
 
   const filteredReviews = reviews
     .filter((review) => {
-      const content = review.content || "";
-      const matchesText = content.toLowerCase().includes(filter.toLowerCase());
-      const matchesImage = showWithImageOnly ? !!review.image : true;
-      const matchesRating = (review.rating || 0) >= minRating;
-      return matchesText && matchesImage && matchesRating;
-    })
-    .sort((a, b) => {
-      if (sortOption === "latest") {
-        return new Date(b.date || "") - new Date(a.date || "");
-      }
-      if (sortOption === "highest") {
-        return (b.rating || 0) - (a.rating || 0);
-      }
-      return 0;
-    });
+    const content = review.content || review.review || "";
+    const keyword = (filter || "").toLowerCase(); // ✅ filter 안전 처리
+    const matchesText = content.toLowerCase().includes(keyword);
+    const matchesImage = showWithImageOnly ? !!review.image : true;
+    const matchesRating = (review.rating || 0) >= minRating;
+    return matchesText && matchesImage && matchesRating;
+  })
+  .sort((a, b) => {
+    if (sortOption === "latest") {
+      return new Date(b.date || "") - new Date(a.date || "");
+    }
+    if (sortOption === "highest") {
+      return (b.rating || 0) - (a.rating || 0);
+    }
+    return 0;
+  });
 
   const averageRating =
     reviews.reduce((sum, r) => sum + (r.rating || 0), 0) / reviews.length;
