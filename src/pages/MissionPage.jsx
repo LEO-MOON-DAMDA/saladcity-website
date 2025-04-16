@@ -1,137 +1,63 @@
-/* 전체 미션 페이지 */
-.mission-page {
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: #f9fdfb;
-  color: #333;
-  position: relative;
-}
+import React from "react";
+import "../styles/MissionPage.css";
 
-.mission-hero {
-  position: relative;
-  background-size: cover;
-  background-position: center 30%;
-  height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+export default function MissionPage() {
+  return (
+    <div className="mission-page">
+      <section
+        className="mission-hero"
+        style={{
+          backgroundImage: 'url("/images/1salcymission04.jpg")',
+          backgroundSize: "cover",
+          backgroundPosition: "center 30%"
+        }}
+      >
+        <div className="mission-overlay" />
+        <div className="mission-hero-text">
+          <h1>우리는 한 끼를 심습니다</h1>
+          <p>We don’t just serve salad. We cultivate a philosophy of eating.</p>
+        </div>
+      </section>
 
-.mission-overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.1));
-}
+      <section className="mission-zigzag-section">
+        <div className="mission-zigzag-item">
+          <div className="mission-zigzag-image">
+            <img src="/images/1salcymission17.jpg" alt="정직한 재료" />
+          </div>
+          <div className="mission-zigzag-text">
+            <h3>정직한 재료</h3>
+            <p>농장의 뿌리부터 당신의 접시까지. Every bowl we serve begins with a real story.</p>
+          </div>
+        </div>
 
-.mission-hero-text {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: #fff;
-}
+        <div className="mission-zigzag-item">
+          <div className="mission-zigzag-image">
+            <img src="/images/1salcymission19.jpg" alt="지속가능한 선택" />
+          </div>
+          <div className="mission-zigzag-text">
+            <h3>지속가능한 선택</h3>
+            <p>우리의 샐러드는 환경을 생각합니다. Sustainability is not a trend, it’s our principle.</p>
+          </div>
+        </div>
 
-.mission-hero-text h1 {
-  font-size: 42px;
-  font-weight: 700;
-  margin-bottom: 16px;
-}
+        <div className="mission-zigzag-item">
+          <div className="mission-zigzag-image">
+            <img src="/images/1salcymission20.jpg" alt="건강한 연결" />
+          </div>
+          <div className="mission-zigzag-text">
+            <h3>건강한 연결</h3>
+            <p>음식은 사람을 잇습니다. From soil to soul — food brings us together.</p>
+          </div>
+        </div>
+      </section>
 
-/* 중앙 세로 선 */
-.mission-page::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 1px;
-  background-color: #4CAF50;
-  z-index: 0;
-}
-
-/* 지그재그 구성 */
-.mission-zigzag-section {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 60px 0;
-  gap: 60px;
-  position: relative;
-  z-index: 1;
-}
-
-.mission-zigzag-item {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  min-height: 400px;
-  align-items: center;
-  justify-content: center;
-}
-
-.mission-zigzag-item:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-.mission-zigzag-image,
-.mission-zigzag-text {
-  flex: 1 1 50%;
-  min-width: 300px;
-  padding: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-}
-
-.mission-zigzag-image img {
-  width: 100%;
-  max-width: 600px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-.mission-zigzag-text {
-  flex-direction: column;
-  text-align: center;
-}
-
-.mission-zigzag-text h3 {
-  font-size: 28px;
-  color: #2f5130;
-  margin-bottom: 12px;
-}
-
-.mission-zigzag-text p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #555;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.mission-cta {
-  background-color: #e5f6ed;
-  padding: 60px 20px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-
-.mission-cta h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.mission-cta button {
-  background-color: #66bb6a;
-  color: white;
-  border: none;
-  padding: 12px 32px;
-  font-size: 16px;
-  border-radius: 24px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.mission-cta button:hover {
-  background-color: #558b2f;
+      <section className="mission-cta">
+        <h2>우리는 한 끼를 팔지 않습니다</h2>
+        <p>We serve values, not just food.</p>
+        <button className="mission-button" onClick={() => window.location.href = "/menu"}>
+          메뉴 보기 →
+        </button>
+      </section>
+    </div>
+  );
 }
