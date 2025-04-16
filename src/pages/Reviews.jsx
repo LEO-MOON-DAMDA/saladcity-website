@@ -12,10 +12,8 @@
         &nbsp;|&nbsp; {review.date || ""}
       </div>
 
-      <p
-        className={`review-content ${review.text || review.review ? "" : "empty"}`}
-      >
-        {review.text || review.review || "내용 없음"}
+      <p className={`review-content ${review.text || review.review ? "" : "empty"}`}>
+        {review.text || review.review || "아직 작성된 내용이 없어요 😶"}
       </p>
 
       {review.image && (
@@ -25,7 +23,7 @@
       )}
 
       {!review.reply && (
-        <p className="review-reply-pending">사장님 댓글 등록하기</p>
+        <p className="review-reply-pending">아직 사장님의 답변이 없습니다 🙏</p>
       )}
     </div>
   ))}
