@@ -45,6 +45,28 @@ export default function SaladcityHome() {
         opacity: 0;
         animation: fadeInOverlay 1.8s ease-in-out forwards;
       }
+
+      .review-button {
+        display: inline-block;
+        margin: 32px auto;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: 500;
+        color: white;
+        background-color: #4CAF50;
+        border-radius: 32px;
+        text-decoration: none;
+        transition: background 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      }
+
+      .review-button:hover {
+        background-color: #3c9842;
+      }
+
+      .review-button-container {
+        text-align: center;
+      }
     `;
     document.head.appendChild(styleTag);
     return () => {
@@ -130,6 +152,14 @@ export default function SaladcityHome() {
       <CustomPrintableMenu />
       <SubscriptionSection />
       <ReviewSection />
+
+      {/* 전체 리뷰 보기 버튼 */}
+      <div className="review-button-container">
+        <a href="/reviews" className="review-button">
+          전체 리뷰 보기 →
+        </a>
+      </div>
+
       <InstaFeedSection />
       <OurMissionSection />
       <StoreLocatorSection />
