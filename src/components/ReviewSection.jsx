@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import BrandButton from "./BrandButton";
 import "./ReviewSection.css";
 
 export default function ReviewSection() {
@@ -58,6 +59,9 @@ export default function ReviewSection() {
             )}
           </div>
         ))}
+      </div>
+      <div style={{ textAlign: "center", marginTop: "32px" }}>
+        <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
       </div>
     </section>
   );
