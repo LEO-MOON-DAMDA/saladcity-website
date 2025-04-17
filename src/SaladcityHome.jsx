@@ -12,7 +12,6 @@ import StoreLocatorSection from "./components/StoreLocatorSection";
 import ShopSection from "./components/ShopSection";
 import ScrollingBanner from "./components/ScrollingBanner";
 import SectionTitle from "./components/SectionTitle";
-import BrandButton from "./components/BrandButton";
 
 export default function SaladcityHome() {
   const videoRef = useRef(null);
@@ -85,28 +84,19 @@ export default function SaladcityHome() {
 
       <SectionTitle>샐러드시티 추천메뉴</SectionTitle>
       <FeaturedMenuSection items={homepageMenuItems} />
-      <div style={{ textAlign: 'center', marginTop: '24px' }}>
-        <BrandButton onClick={() => window.print()}>📄 메뉴 프린트하기</BrandButton>
-      </div>
 
       <SectionTitle>우리는 왜 샐러드를 만들까요?</SectionTitle>
       <OurMissionSection />
-      <div style={{ textAlign: 'center', marginTop: '16px' }}>
-        <BrandButton href="/mission">브랜드 철학 더 보기 →</BrandButton>
-      </div>
 
       <SectionTitle>정기식 구독으로 더 간편하게</SectionTitle>
       <SubscriptionSection />
-      <div style={{ textAlign: 'center', marginTop: '16px' }}>
-        <BrandButton onClick={() => alert("정기식 신청 로직 예정")}>정기식 시작하기</BrandButton>
-      </div>
 
+      <SectionTitle>SALCY CREW's 리뷰</SectionTitle>
       <ReviewSection />
-      <div style={{ textAlign: 'center', marginTop: '32px' }}>
-        <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
-      </div>
 
+      <SectionTitle>샐러드시티 매장 안내</SectionTitle>
       <StoreLocatorSection />
+
       <InstaFeedSection />
       <ShopSection />
 
