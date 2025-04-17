@@ -1,0 +1,38 @@
+.scrolling-banner-wrapper {
+  background-color: #f6fdf8;
+  overflow: hidden;
+  padding: 12px 0;
+  position: relative;
+}
+
+.scrolling-banner-line {
+  height: 1px;
+  background-color: #88c057;
+  width: 100%;
+}
+
+.scrolling-banner-track {
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+.scrolling-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 35s linear infinite;
+  font-size: 18px;
+  font-weight: 500;
+  color: #2f5130;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
