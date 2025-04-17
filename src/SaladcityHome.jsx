@@ -49,12 +49,12 @@ export default function SaladcityHome() {
       }
       .section-title {
         margin-bottom: 12px !important;
-        text-align: left !important;
-        padding-left: 24px;
+        text-align: right !important;
+        padding-right: 24px;
       }
       .brand-button {
         display: inline-block;
-        margin: 24px 0 0 24px;
+        margin: 24px 24px 0 auto;
       }
     `;
     document.head.appendChild(styleTag);
@@ -96,13 +96,18 @@ export default function SaladcityHome() {
       <SectionTitle>우리는 왜 샐러드를 만들까요?</SectionTitle>
       <OurMissionSection />
 
-      <SectionTitle>정기식 구독으로 더 간편하게</SectionTitle>
+      <SectionTitle style={{ textAlign: "right" }}>정기식 구독으로 더 간편하게</SectionTitle>
       <SubscriptionSection />
 
-      <SectionTitle>SALCY CREW's 리뷰</SectionTitle>
+      <SectionTitle style={{ textAlign: "right", marginBottom: 8 }}>SALCY CREW</SectionTitle>
+      <SectionTitle style={{ textAlign: "right", marginTop: 0, marginBottom: 24 }}>최근 리뷰</SectionTitle>
       <ReviewSection />
+      <div style={{ marginTop: '24px', marginLeft: '24px' }}>
+        <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
+      </div>
 
-      <SectionTitle>샐러드시티 매장 안내</SectionTitle>
+      <SectionTitle style={{ textAlign: "right" }}>샐러드시티 매장 안내</SectionTitle>
+      <SectionTitle style={{ textAlign: "right" }}>LOCATIONS</SectionTitle>
       <StoreLocatorSection />
 
       <InstaFeedSection />
