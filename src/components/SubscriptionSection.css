@@ -2,12 +2,7 @@
   background-color: #e8f5e9;
   padding: 60px 20px;
   text-align: center;
-}
-
-.subscription-section h2 {
-  font-size: 28px;
-  margin-bottom: 16px;
-  color: #2e7d32;
+  margin-top: 80px; /* ✅ 섹션 간 간격 구분 */
 }
 
 .sub-text {
@@ -16,18 +11,4 @@
   margin-bottom: 24px;
 }
 
-.subscribe-button {
-  background-color: #66bb6a;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.subscribe-button:hover {
-  background-color: #558b2f;
-}
-
+/* 이전 .subscribe-button 제거 - BrandButton 사용 중 */
