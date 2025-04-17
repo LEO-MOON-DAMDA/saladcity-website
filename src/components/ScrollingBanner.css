@@ -1,11 +1,10 @@
 .scrolling-banner-wrapper {
-  margin-top: 16px; /* ✅ Hero Section과 딱 안 겹치게 한 칸 내림 */
+  margin-top: 32px; /* ✅ 한 칸 더 내려줌 */
   background-color: #f6fdf8;
   overflow: hidden;
-  padding: 0; /* 패딩 제거해서 선 위치 정확히 맞춤 */
-  margin: 0;
+  padding: 0;
   position: relative;
-  line-height: 0; /* ✅ 이게 핵심: 전체 상하 간격 제거 */
+  line-height: 0;
 }
 
 .scrolling-banner-line {
