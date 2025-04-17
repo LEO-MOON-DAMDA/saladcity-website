@@ -6,7 +6,7 @@
   background-color: #f0f8f3;
   padding: 40px 20px;  /* 상하 여백 줄이기 */
   gap: 20px;  /* 섹션 간 간격 줄이기 */
-  margin-top: 40px;  /* 상단 여백 줄이기 */
+  margin-top: 0px;  /* 상단 여백 줄이기 */
 }
 
 .mission-text {
