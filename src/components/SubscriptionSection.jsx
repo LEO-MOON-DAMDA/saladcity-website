@@ -19,7 +19,10 @@ export default function SubscriptionSection() {
           당신만을 위한 샐러드가 문 앞에 도착합니다.
           <br />
           <br />
-          <span className="subscription-sub">
+          <span
+            className="subscription-sub"
+            style={{ fontSize: "15px", color: "#666", fontStyle: "italic" }}
+          >
             Delivering wellness, one bowl at a time.
           </span>
         </p>
