@@ -11,7 +11,6 @@ import StoreLocatorSection from "./components/StoreLocatorSection";
 import TheMarketSection from "./components/TheMarketSection";
 import Footer from "./components/Footer";
 import ScrollingBanner from "./components/ScrollingBanner";
-import SectionTitle from "./components/SectionTitle";
 import SubTitle from "./components/SubTitle";
 
 export default function SaladcityHome() {
@@ -84,61 +83,13 @@ export default function SaladcityHome() {
 
         <ScrollingBanner />
 
-        <div>
-          <SectionTitle style={{ textAlign: "center" }}>
-            샐러드시티 추천메뉴
-          </SectionTitle>
-          <FeaturedMenuSection items={homepageMenuItems} />
-        </div>
-
-        <div>
-          <SectionTitle style={{ textAlign: "left" }}>
-            우리는 왜 샐러드를 만들까요?
-          </SectionTitle>
-          <OurMissionSection />
-        </div>
-
-        <div>
-          <SectionTitle style={{ textAlign: "right" }}>
-            정기식 구독으로 더 간편하게
-          </SectionTitle>
-          <SubscriptionSection />
-        </div>
-
-        <div>
-          <SectionTitle style={{ textAlign: "left" }}>
-            SALCY CREW
-          </SectionTitle>
-          <ReviewSection />
-          <div style={{ marginTop: "16px", display: "flex", justifyContent: "flex-start", paddingLeft: "12px" }}>
-            <a href="/reviews" className="brand-button">전체 리뷰 보기 →</a>
-          </div>
-        </div>
-
-        <div>
-          <SectionTitle style={{ textAlign: "right" }}>
-            샐러드시티 매장 안내
-          </SectionTitle>
-          <SubTitle style={{ textAlign: "right" }}>
-            LOCATIONS
-          </SubTitle>
-          <StoreLocatorSection showMap={true} />
-        </div>
-
-        <div>
-          <SectionTitle style={{ textAlign: "left" }}>
-            #saladcity on Instagram
-          </SectionTitle>
-          <InstaFeedSection />
-        </div>
-
-        <div>
-          <SectionTitle style={{ textAlign: "left" }}>
-            THE MARKET
-          </SectionTitle>
-          <TheMarketSection />
-        </div>
-
+        <FeaturedMenuSection />
+        <OurMissionSection />
+        <SubscriptionSection />
+        <ReviewSection />
+        <StoreLocatorSection showMap={true} />
+        <InstaFeedSection />
+        <TheMarketSection />
         <Footer />
       </div>
     </>
