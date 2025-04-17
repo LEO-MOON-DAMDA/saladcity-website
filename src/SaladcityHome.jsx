@@ -11,7 +11,6 @@ import StoreLocatorSection from "./components/StoreLocatorSection";
 import ShopSection from "./components/ShopSection";
 import ScrollingBanner from "./components/ScrollingBanner";
 import SectionTitle from "./components/SectionTitle";
-import BrandButton from "./components/BrandButton";
 
 export default function SaladcityHome() {
   const videoRef = useRef(null);
@@ -112,7 +111,7 @@ export default function SaladcityHome() {
       <footer style={{ position: "relative", zIndex: 0, textAlign: 'center', padding: '40px 0', backgroundColor: '#eaf5ec', color: '#444', fontSize: '14px', borderTop: '1px solid #cfe3d5', marginTop: '60px' }}>
         <p>#Saladcity_Global</p>
         <p>© 2025 Saladcity. All rights reserved.</p>
-        <p>contact@saladcity.co.kr | 서울시 성동구 성수이로 113, 2층</p>
+        <p>서울시 성동구 성수이로 113, 2층</p>
       </footer>
     </div>
   );
