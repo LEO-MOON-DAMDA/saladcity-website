@@ -37,9 +37,7 @@ export default function ReviewSection() {
 
   return (
     <section className="review-section">
-      <SectionTitle style={{ textAlign: "left" }}>
-        SALCY CREW
-      </SectionTitle>
+      <SectionTitle style={{ textAlign: "left" }}>SALCY CREW</SectionTitle>
       <SubTitle style={{ textAlign: "left" }}>최근 리뷰</SubTitle>
 
       <div className="review-slider" ref={sliderRef}>
@@ -47,9 +45,7 @@ export default function ReviewSection() {
           <div className="review-card" key={idx}>
             <div className="review-top">
               <span className="nickname">{r.nickname || "익명"}</span>
-              <span
-                className={`rating ${r.rating >= 4 ? "green" : "pink"}`}
-              >
+              <span className={`rating ${r.rating >= 4 ? "green" : "pink"}`}>
                 {"⭐".repeat(Math.min(r.rating || 0, 5))}
               </span>
               <span className="date">{r.date || ""}</span>
