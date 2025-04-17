@@ -48,6 +48,9 @@ export default function SaladcityHome() {
         opacity: 0;
         animation: fadeInOverlay 1.8s ease-in-out forwards;
       }
+      .section-title {
+        margin-bottom: 12px !important; /* ✅ 섹션 제목과 내용 간격 축소 */
+      }
     `;
     document.head.appendChild(styleTag);
     return () => {
