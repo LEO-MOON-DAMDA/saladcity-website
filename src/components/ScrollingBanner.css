@@ -15,7 +15,7 @@
   white-space: nowrap;
   overflow: hidden;
   position: relative;
-  padding: 12px 0; /* 내부 여백만 적용 */
+  padding: 2px 0; /* 내부 여백만 적용 */
 }
 
 .scrolling-text {
@@ -24,7 +24,7 @@
   animation: scroll-left 150s linear infinite; /* ✅ 속도 느리게 조정 */
   font-size: 34px;
   font-weight: 200;
-  line-height: 1.1;
+  line-height: 1.05;
   color: #0f2417;
   font-family: 'Inter', 'Pretendard', 'Noto Sans KR', sans-serif;
   letter-spacing: -0.04em;
