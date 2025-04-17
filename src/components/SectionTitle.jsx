@@ -7,9 +7,9 @@ export default function SectionTitle({ children, style = {} }) {
     marginBottom: "4px",
     paddingLeft: style.textAlign === "left" ? "12px" : "0px",
     paddingRight: style.textAlign === "right" ? "12px" : "0px",
-    fontSize: "22px",
+    fontSize: "24px",
     fontWeight: "700",
-    color: "#111",
+    color: "#2f855a", // 초록색 복원
     ...style,
   };
 
