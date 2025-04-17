@@ -53,3 +53,7 @@
     min-height: 240px;
   }
 }
+
+.review-section .section-title {
+  display: none; /* ✅ 중복 제목 제거 */
+}
