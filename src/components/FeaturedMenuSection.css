@@ -1,6 +1,6 @@
 /* src/components/FeaturedMenuSection.css */
 .featured-menu-section {
-  padding: 60px 24px;
+  padding: 60px 24px 40px; /* 하단 여백 줄임 */
   background: #f8fcf9;
   overflow: visible;
   position: relative;
@@ -10,11 +10,10 @@
 .featured-title {
   text-align: center;
   font-size: 28px;
-  margin-bottom: 32px;
+  margin-bottom: 16px; /* 제목 아래 여백 줄임 */
   color: #2c8f5b;
 }
 
-/* 슬라이더 래퍼 */
 .featured-slider-wrapper {
   overflow-x: auto;
   overflow-y: visible;
@@ -31,16 +30,14 @@
   display: none;
 }
 
-/* 슬라이더 내부 카드 리스트 */
 .featured-slider-scroll {
   display: flex;
   gap: 20px;
-  padding: 12px 0 8px; /* ✅ hover 공간 확보 */
+  padding: 8px 0; /* 카드 상단 간격 압축 */
   overflow: visible;
   position: relative;
 }
 
-/* 카드 자체 */
 .featured-card {
   width: 260px;
   min-width: 260px;
@@ -100,7 +97,11 @@
   word-break: keep-all;
 }
 
-/* 모바일 반응형 */
+.featured-menu-cta {
+  margin-top: 24px; /* 프린트 버튼과 카드 사이 여백 조정 */
+  text-align: center;
+}
+
 @media (max-width: 480px) {
   .featured-card {
     width: 80vw;
@@ -119,6 +120,6 @@
 
   .featured-slider-scroll {
     gap: 12px;
-    padding: 12px 12px 8px; /* ✅ 모바일에서도 동일하게 상단 여백 유지 */
+    padding: 8px 12px; /* 모바일 간격도 압축 */
   }
 }
