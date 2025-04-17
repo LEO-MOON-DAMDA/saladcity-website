@@ -11,7 +11,8 @@ import OurMissionSection from "./components/OurMissionSection";
 import StoreLocatorSection from "./components/StoreLocatorSection";
 import ShopSection from "./components/ShopSection";
 import ScrollingBanner from "./components/ScrollingBanner";
-
+import SectionTitle from "./components/SectionTitle";
+import BrandButton from "./components/BrandButton";
 
 export default function SaladcityHome() {
   const videoRef = useRef(null);
@@ -48,25 +49,6 @@ export default function SaladcityHome() {
         opacity: 0;
         animation: fadeInOverlay 1.8s ease-in-out forwards;
       }
-      .review-button {
-        display: inline-block;
-        margin: 32px auto;
-        padding: 12px 24px;
-        font-size: 16px;
-        font-weight: 500;
-        color: white;
-        background-color: #4CAF50;
-        border-radius: 32px;
-        text-decoration: none;
-        transition: background 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      }
-      .review-button:hover {
-        background-color: #3c9842;
-      }
-      .review-button-container {
-        text-align: center;
-      }
     `;
     document.head.appendChild(styleTag);
     return () => {
@@ -99,21 +81,35 @@ export default function SaladcityHome() {
           <p style={{ fontSize: '15px', color: '#cccccc' }}>Fresh ingredients, made daily with care.</p>
         </div>
       </div>
+
+      {/* 1.5 브랜드 슬로건 애니메이션 */}
       <ScrollingBanner />
+
       {/* 2. OUR MENU */}
+      <SectionTitle>샐러드시티 추천메뉴</SectionTitle>
       <FeaturedMenuSection items={homepageMenuItems} />
-      <CustomPrintableMenu />
+      <div style={{ textAlign: 'center', margin: '24px 0' }}>
+        <BrandButton onClick={() => window.print()}>📄 메뉴 프린트하기</BrandButton>
+      </div>
 
       {/* 3. OUR MISSION */}
+      <SectionTitle>우리는 왜 샐러드를 만들까요?</SectionTitle>
       <OurMissionSection />
+      <div style={{ textAlign: 'center', margin: '16px 0' }}>
+        <BrandButton href="/mission">브랜드 철학 더 보기 →</BrandButton>
+      </div>
 
       {/* 4. OUTPOST */}
+      <SectionTitle>정기식 구독으로 더 간편하게</SectionTitle>
       <SubscriptionSection />
+      <div style={{ textAlign: 'center', margin: '16px 0' }}>
+        <BrandButton onClick={() => alert("정기식 신청 로직 연결 예정")}>정기식 시작하기</BrandButton>
+      </div>
 
       {/* 5. SALCY CREW */}
       <ReviewSection />
-      <div className="review-button-container">
-        <Link to="/reviews" className="review-button">전체 리뷰 보기 →</Link>
+      <div style={{ textAlign: 'center', margin: '32px 0' }}>
+        <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
       </div>
 
       {/* 6. LOCATIONS */}
