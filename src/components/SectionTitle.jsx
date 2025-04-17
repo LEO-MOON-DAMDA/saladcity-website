@@ -3,10 +3,12 @@ import "./SectionTitle.css";
 
 export default function SectionTitle({ children, style = {} }) {
   const combinedStyle = {
-    marginTop: "32px",
-    marginBottom: "16px",
+    marginTop: "24px",
+    marginBottom: "4px",
     paddingLeft: style.textAlign === "left" ? "12px" : "0px",
     paddingRight: style.textAlign === "right" ? "12px" : "0px",
+    fontSize: "20px",
+    fontWeight: "600",
     ...style,
   };
 
