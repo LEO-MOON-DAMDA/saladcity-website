@@ -1,3 +1,22 @@
+import React from "react";
+
+const storeData = [
+  {
+    name: "역삼점",
+    address: "(06236) 서울특별시 강남구 역삼동 736-58 B2 104호 (역삼동, 위워크빌딩)",
+    phone: "02-555-8501",
+    email: "skhuh@dosikitchen.com",
+    hours: "월~금 08:30 ~ 20:30",
+  },
+  {
+    name: "성수점",
+    address: "서울 성동구 성수이로 113 2층",
+    phone: "02-1234-5678",
+    email: "contact@saladcity.com",
+    hours: "매일 09:00 ~ 21:00",
+  },
+];
+
 export default function StoreLocatorSection({ showMap = true }) {
   return (
     <section className="store-locator-section">
