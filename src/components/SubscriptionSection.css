@@ -7,13 +7,23 @@
   flex-wrap: wrap;
   background-color: #e8f5e9;
   padding: 60px 24px;
-  text-align: left;
   margin-top: 80px;
+}
+
+.subscription-image {
+  flex: 1;
+  min-width: 280px;
+}
+
+.subscription-image img {
+  width: 100%;
+  border-radius: 16px;
 }
 
 .subscription-text {
   flex: 1;
   min-width: 280px;
+  text-align: right;
 }
 
 .subscription-text p {
@@ -27,14 +37,4 @@
   font-size: 15px;
   color: #666;
   font-style: italic;
-}
-
-.subscription-image {
-  flex: 1;
-  min-width: 280px;
-}
-
-.subscription-image img {
-  width: 100%;
-  border-radius: 16px;
 }
