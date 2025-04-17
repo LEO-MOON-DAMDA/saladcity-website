@@ -14,7 +14,7 @@ export default function ScrollingBanner() {
     "As Bold as Our GREENS"
   ];
 
-  const fullText = slogans.join("       ·       ") + "       ·       "; // 마지막에도 점 찍고 반복 자연스럽게
+  const fullText = slogans.join("                 ·                   ") + "                 ·                  "; // 마지막에도 점 찍고 반복 자연스럽게
 
   return (
     <div className="scrolling-banner-wrapper">
