@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import SectionTitle from "./SectionTitle";
+import SubTitle from "./SubTitle";
+import BrandButton from "./BrandButton";
 import "./ReviewSection.css";
 
 export default function ReviewSection() {
@@ -34,6 +37,11 @@ export default function ReviewSection() {
 
   return (
     <section className="review-section">
+      <SectionTitle style={{ textAlign: "left" }}>
+        SALCY CREW
+      </SectionTitle>
+      <SubTitle style={{ textAlign: "left" }}>최근 리뷰</SubTitle>
+
       <div className="review-slider" ref={sliderRef}>
         {reviews.map((r, idx) => (
           <div className="review-card" key={idx}>
@@ -57,6 +65,10 @@ export default function ReviewSection() {
             )}
           </div>
         ))}
+      </div>
+
+      <div style={{ marginTop: "16px", display: "flex", justifyContent: "flex-start", paddingLeft: "12px" }}>
+        <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
       </div>
     </section>
   );
