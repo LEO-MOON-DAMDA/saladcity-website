@@ -14,8 +14,11 @@ export default function ScrollingBanner() {
     "As Bold as Our GREENS"
   ];
 
-  const fullText = slogans.join("    ·    "); // 점 3칸 간격만 유지
-  const repeated = Array(20).fill(fullText).join("       "); // 반복 시에도 간격 넣기
+  const gap = "                    ·                    "; // 점과 문장 간 간격만 넓힘
+  const repeatGap = "                                        "; // 전체 반복 시 간격도 추가
+  const fullText = slogans.join(gap);
+  const repeated = Array(20).fill(fullText).join(repeatGap);
+
 
   return (
     <div className="scrolling-banner-wrapper">
