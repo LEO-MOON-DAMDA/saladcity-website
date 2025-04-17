@@ -1,16 +1,7 @@
 .insta-feed-section {
-  margin-top: 64px;
+  margin-top: 0;
   margin-bottom: 32px;
   padding: 0 16px;
-}
-
-.insta-title {
-  font-size: 24px;
-  font-weight: 700;
-  text-align: left;
-  padding-left: 12px;
-  margin-bottom: 8px;
-  color: #2f855a;
 }
 
 .insta-grid {
