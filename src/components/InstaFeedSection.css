@@ -22,6 +22,6 @@
 .insta-button-wrap {
   margin-top: 16px;
   display: flex;
-  justify-content: flex-end;
-  padding-right: 12px;
+  justify-content: flex-start;
+  padding-left: 12px;
 }
