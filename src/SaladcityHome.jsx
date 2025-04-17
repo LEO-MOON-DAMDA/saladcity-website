@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import homepageMenuItems from "./data/homepageMenuItems.json";
 import FeaturedMenuSection from "./components/FeaturedMenuSection";
@@ -60,7 +60,6 @@ export default function SaladcityHome() {
     <div style={{ fontFamily: "sans-serif", backgroundColor: "#f6fdf8", paddingTop: "0px", overflow: "visible", position: "relative", minHeight: "100vh" }}>
       <Header hideLogo={location.pathname === "/"} />
 
-      {/* 1. SALCY HERO */}
       <div style={{ position: 'relative', height: '800px', marginTop: '-60px', overflow: 'hidden' }}>
         <video
           key={videoIndex}
@@ -82,46 +81,35 @@ export default function SaladcityHome() {
         </div>
       </div>
 
-      {/* 1.5 브랜드 슬로건 애니메이션 */}
       <ScrollingBanner />
 
-      {/* 2. OUR MENU */}
       <SectionTitle>샐러드시티 추천메뉴</SectionTitle>
       <FeaturedMenuSection items={homepageMenuItems} />
-      <div style={{ textAlign: 'center', margin: '24px 0' }}>
+      <div style={{ textAlign: 'center', marginTop: '24px' }}>
         <BrandButton onClick={() => window.print()}>📄 메뉴 프린트하기</BrandButton>
       </div>
 
-      {/* 3. OUR MISSION */}
       <SectionTitle>우리는 왜 샐러드를 만들까요?</SectionTitle>
       <OurMissionSection />
-      <div style={{ textAlign: 'center', margin: '16px 0' }}>
+      <div style={{ textAlign: 'center', marginTop: '16px' }}>
         <BrandButton href="/mission">브랜드 철학 더 보기 →</BrandButton>
       </div>
 
-      {/* 4. OUTPOST */}
       <SectionTitle>정기식 구독으로 더 간편하게</SectionTitle>
       <SubscriptionSection />
-      <div style={{ textAlign: 'center', margin: '16px 0' }}>
-        <BrandButton onClick={() => alert("정기식 신청 로직 연결 예정")}>정기식 시작하기</BrandButton>
+      <div style={{ textAlign: 'center', marginTop: '16px' }}>
+        <BrandButton onClick={() => alert("정기식 신청 로직 예정")}>정기식 시작하기</BrandButton>
       </div>
 
-      {/* 5. SALCY CREW */}
       <ReviewSection />
-      <div style={{ textAlign: 'center', margin: '32px 0' }}>
+      <div style={{ textAlign: 'center', marginTop: '32px' }}>
         <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
       </div>
 
-      {/* 6. LOCATIONS */}
       <StoreLocatorSection />
-
-      {/* 7. SOCIAL */}
       <InstaFeedSection />
-
-      {/* 8. THE MARKET */}
       <ShopSection />
 
-      {/* Footer */}
       <footer style={{ position: "relative", zIndex: 0, textAlign: 'center', padding: '40px 0', backgroundColor: '#eaf5ec', color: '#444', fontSize: '14px', borderTop: '1px solid #cfe3d5', marginTop: '60px' }}>
         <p>#Saladcity_Global</p>
         <p>© 2025 Saladcity. All rights reserved.</p>
