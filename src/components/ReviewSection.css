@@ -2,12 +2,13 @@
   padding: 60px 24px;
   background-color: #fdfdf7;
   text-align: center;
+  margin-top: 80px; /* ✅ 섹션 간 여백 정리 */
 }
 
 .section-title {
   font-size: 28px;
   font-weight: 600;
-  margin-bottom: 36px;
+  margin-bottom: 24px; /* ✅ 간격 살짝 줄임 */
   color: #2f5130;
 }
 
