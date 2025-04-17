@@ -1,5 +1,6 @@
 import React from "react";
 import "./InstaFeedSection.css";
+import BrandButton from "./BrandButton";
 
 const images = [
   "/images/insta01.jpg",
@@ -17,13 +18,14 @@ export default function InstaFeedSection() {
       <div className="insta-grid">
         {images.map((src, index) => (
           <div key={index} className="insta-item">
-            <img
-              src={src}
-              alt={`insta-${index}`}
-              onError={(e) => (e.target.style.display = "none")}
-            />
+            <img src={src} alt={`insta-${index}`} />
           </div>
         ))}
+      </div>
+      <div style={{ marginTop: "16px", display: "flex", justifyContent: "flex-end", paddingRight: "12px" }}>
+        <BrandButton href="https://www.instagram.com/saladcity.official" target="_blank">
+          인스타그램 더 보기 →
+        </BrandButton>
       </div>
     </section>
   );
