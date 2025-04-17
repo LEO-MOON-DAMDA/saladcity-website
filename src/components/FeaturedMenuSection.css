@@ -1,6 +1,7 @@
 /* src/components/FeaturedMenuSection.css */
 .featured-menu-section {
-  padding: 40px 24px 20px; /* 상하 여백 줄임 */
+  padding: 40px 24px 20px; /* 상단 여백을 40px로 설정 */
+  margin-top: 40px; /* 상단 여백을 40px로 설정 */
   background: #f8fcf9;
   overflow: visible;
   position: relative;
