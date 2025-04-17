@@ -7,7 +7,11 @@ export default function SubscriptionSection() {
   return (
     <section className="subscription-section">
       <div className="subscription-image">
-        {/* <img src="/images/subscription-image.jpg" alt="정기식 이미지" /> */}
+        <img
+          src="/images/1salcymission04.jpg"
+          alt="정기식 이미지"
+          style={{ width: "100%", borderRadius: "16px" }}
+        />
       </div>
 
       <div className="subscription-text" style={{ textAlign: "right" }}>
@@ -17,7 +21,7 @@ export default function SubscriptionSection() {
 
         <p
           style={{
-            fontSize: "18px", // 브랜드스토리 동일 크기
+            fontSize: "18px",
             lineHeight: "1.8",
             color: "#222",
             marginBottom: "0",
@@ -31,7 +35,10 @@ export default function SubscriptionSection() {
           당신만을 위한 샐러드가 문 앞에 도착합니다.
           <br />
           <br />
-          <span className="subscription-sub">
+          <span
+            className="subscription-sub"
+            style={{ fontSize: "15px", color: "#666", fontStyle: "italic" }}
+          >
             Delivering wellness, one bowl at a time.
           </span>
         </p>
