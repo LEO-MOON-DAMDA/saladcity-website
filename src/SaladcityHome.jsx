@@ -11,7 +11,6 @@ import StoreLocatorSection from "./components/StoreLocatorSection";
 import ShopSection from "./components/ShopSection";
 import ScrollingBanner from "./components/ScrollingBanner";
 import SectionTitle from "./components/SectionTitle";
-import BrandButton from "./components/BrandButton";
 
 export default function SaladcityHome() {
   const videoRef = useRef(null);
@@ -48,10 +47,6 @@ export default function SaladcityHome() {
         opacity: 0;
         animation: fadeInOverlay 1.8s ease-in-out forwards;
       }
-      .brand-button {
-        display: inline-block;
-        margin: 24px 24px 0 auto;
-      }
     `;
     document.head.appendChild(styleTag);
     return () => {
@@ -87,42 +82,39 @@ export default function SaladcityHome() {
 
         <ScrollingBanner />
 
-        <div style={{ marginTop: "80px", marginBottom: "32px" }}>
-          <SectionTitle style={{ textAlign: "center", marginBottom: "8px" }}>
+        <div>
+          <SectionTitle style={{ textAlign: "center" }}>
             샐러드시티 추천메뉴
           </SectionTitle>
           <FeaturedMenuSection items={homepageMenuItems} />
         </div>
 
-        <div style={{ marginTop: "80px", marginBottom: "32px" }}>
-          <SectionTitle style={{ textAlign: "left", paddingLeft: "12px", marginBottom: "8px" }}>
+        <div>
+          <SectionTitle style={{ textAlign: "left" }}>
             우리는 왜 샐러드를 만들까요?
           </SectionTitle>
           <OurMissionSection />
         </div>
 
-        <div style={{ marginTop: "80px", marginBottom: "32px" }}>
-          <SectionTitle style={{ textAlign: "right", paddingRight: "12px", marginBottom: "8px" }}>
+        <div>
+          <SectionTitle style={{ textAlign: "right" }}>
             정기식 구독으로 더 간편하게
           </SectionTitle>
           <SubscriptionSection />
         </div>
 
-        <div style={{ marginTop: "80px", marginBottom: "16px" }}>
-          <SectionTitle style={{ textAlign: "left", paddingLeft: "12px", marginBottom: "8px" }}>
-            SALCY CREW
+        <div>
+          <SectionTitle style={{ textAlign: "left", fontSize: "17px", fontWeight: "500", color: "#666" }}>
+            최근 리뷰
           </SectionTitle>
           <ReviewSection />
-          <div style={{ marginTop: '16px', marginLeft: '0px' }}>
-            <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
-          </div>
         </div>
 
-        <div style={{ marginTop: "80px", marginBottom: "32px" }}>
-          <SectionTitle style={{ textAlign: "right", paddingRight: "12px", marginBottom: "8px" }}>
+        <div>
+          <SectionTitle style={{ textAlign: "right" }}>
             샐러드시티 매장 안내
           </SectionTitle>
-          <SectionTitle style={{ textAlign: "right", paddingRight: "12px", marginBottom: "16px" }}>
+          <SectionTitle style={{ textAlign: "right", fontSize: "17px", fontWeight: "500", color: "#666" }}>
             LOCATIONS
           </SectionTitle>
           <StoreLocatorSection showMap={true} />
