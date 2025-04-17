@@ -98,8 +98,8 @@ export default function SaladcityHome() {
         </SectionTitle>
         <SubscriptionSection />
 
-        <SectionTitle style={{ textAlign: "left", fontSize: "17px", fontWeight: "500", color: "#666" }}>
-          최근 리뷰
+        <SectionTitle style={{ textAlign: "left" }}>
+          SALCY CREW
         </SectionTitle>
         <ReviewSection />
 
