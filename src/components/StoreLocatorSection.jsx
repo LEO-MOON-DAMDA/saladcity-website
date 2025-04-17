@@ -38,10 +38,10 @@ export default function StoreLocatorSection({ showMap = true }) {
     <section className="store-locator-section" style={{ paddingTop: 0 }}>
       <p className="sub-text">샐러드시티의 신선함을 직접 느낄 수 있는 오프라인 매장을 확인하세요.</p>
 
-      <div className="store-info">
-        <div className="store-text">
+      <div className="store-info" style={{ display: 'flex', gap: '40px', flexWrap: 'wrap' }}>
+        <div className="store-text" style={{ flex: 1 }}>
           {storeData.map((store, index) => (
-            <div key={index} className="store-block">
+            <div key={index} className="store-block" style={{ marginBottom: '24px' }}>
               <h3>{store.name}</h3>
               <p>
                 <a
@@ -59,8 +59,12 @@ export default function StoreLocatorSection({ showMap = true }) {
         </div>
 
         {showMap && (
-          <div className="store-map">
-            <img src="/public/images/store-map-full.jpg" alt="샐러드시티 전체 매장 지도" />
+          <div className="store-map" style={{ flex: 1, minWidth: '300px' }}>
+            <img
+              src="/images/store-map-full.jpg"
+              alt="샐러드시티 전체 매장 지도"
+              style={{ width: '100%', borderRadius: '12px', objectFit: 'cover' }}
+            />
           </div>
         )}
       </div>
