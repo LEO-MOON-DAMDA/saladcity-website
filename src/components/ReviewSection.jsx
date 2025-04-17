@@ -37,7 +37,9 @@ export default function ReviewSection() {
 
   return (
     <section className="review-section">
-      <SectionTitle style={{ textAlign: "left" }}>SALCY CREW</SectionTitle>
+      <SectionTitle style={{ textAlign: "left", marginTop: "48px" }}>
+        SALCY CREW
+      </SectionTitle>
       <SubTitle style={{ textAlign: "left" }}>최근 리뷰</SubTitle>
 
       <div className="review-slider" ref={sliderRef}>
