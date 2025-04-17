@@ -50,17 +50,16 @@ export default function StoreLocatorSection({ showMap = true }) {
         </div>
 
         {showMap && (
-          <div className="store-map" style={{ flex: 1, minWidth: "300px" }}>
+          <div className="store-map" style={{ flex: 1, minWidth: '300px' }}>
             <iframe
-              title="Saladcity Map"
+              title="샐러드시티 위치"
               width="100%"
               height="360"
               style={{ border: 0, borderRadius: "12px" }}
               loading="lazy"
               allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-              src={`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=샐러드시티`}
-            />
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.8521193351335!2d127.03174521531062!3d37.501274979812376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca16f2154d1c7%3A0xe0f45614f5ae2ef9!2z7IOI7YOA7ZWZ7JuQIOqzteybkA!5e0!3m2!1sko!2skr!4v1680000000000!5m2!1sko!2skr"
+            ></iframe>
           </div>
         )}
       </div>
