@@ -64,6 +64,9 @@ export default function StoreLocatorSection({ showMap = true }) {
               src="/images/store-map-full.jpg"
               alt="샐러드시티 전체 매장 지도"
               style={{ width: '100%', borderRadius: '12px', objectFit: 'cover' }}
+              onError={(e) => {
+                e.target.style.display = "none";
+              }}
             />
           </div>
         )}
