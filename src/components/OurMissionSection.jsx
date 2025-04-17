@@ -6,10 +6,12 @@ import "./OurMissionSection.css";
 export default function OurMissionSection() {
   return (
     <section className="our-mission-section">
+      {/* 🔴 SectionTitle 삽입 */}
       <SectionTitle style={{ textAlign: "left" }}>
         우리는 왜 샐러드를 만들까요?
       </SectionTitle>
 
+      {/* 🔴 textAlign 복구 */}
       <div className="mission-text" style={{ textAlign: "left" }}>
         <p>
           매일 아침 수확한 재료로 정직한 한 끼를 준비합니다.
