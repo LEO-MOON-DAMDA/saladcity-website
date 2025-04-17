@@ -1,4 +1,5 @@
 .scrolling-banner-wrapper {
+  margin-top: 16px; /* ✅ Hero Section과 딱 안 겹치게 한 칸 내림 */
   background-color: #f6fdf8;
   overflow: hidden;
   padding: 0; /* 패딩 제거해서 선 위치 정확히 맞춤 */
