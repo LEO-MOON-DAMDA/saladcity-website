@@ -13,7 +13,6 @@ const images = [
 export default function InstaFeedSection() {
   return (
     <section className="insta-feed-section">
-      <h2 className="insta-title">#saladcity on Instagram</h2>
       <div className="insta-grid">
         {images.map((src, index) => (
           <div key={index} className="insta-item">
