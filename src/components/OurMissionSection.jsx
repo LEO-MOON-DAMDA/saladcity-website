@@ -1,4 +1,5 @@
 import React from "react";
+import BrandButton from "./BrandButton";
 import "./OurMissionSection.css";
 
 export default function OurMissionSection() {
@@ -12,7 +13,9 @@ export default function OurMissionSection() {
           <br />
           <span className="mission-sub">We grow more than greens — we grow goodness.</span>
         </p>
-        {/* ✅ 버튼 제거됨 */}
+        <div style={{ marginTop: '24px' }}>
+          <BrandButton href="/mission">브랜드 철학 더 보기 →</BrandButton>
+        </div>
       </div>
       <div className="mission-image">
         <img src="/images/1salcymission04.jpg" alt="우리의 철학" />
