@@ -9,7 +9,6 @@ import InstaFeedSection from "./components/InstaFeedSection";
 import OurMissionSection from "./components/OurMissionSection";
 import StoreLocatorSection from "./components/StoreLocatorSection";
 import TheMarketSection from "./components/TheMarketSection";
-import ShopSection from "./components/ShopSection";
 import Footer from "./components/Footer";
 import ScrollingBanner from "./components/ScrollingBanner";
 import SectionTitle from "./components/SectionTitle";
@@ -140,7 +139,6 @@ export default function SaladcityHome() {
           <TheMarketSection />
         </div>
 
-        <ShopSection />
         <Footer />
       </div>
     </>
