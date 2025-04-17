@@ -48,11 +48,6 @@ export default function SaladcityHome() {
         opacity: 0;
         animation: fadeInOverlay 1.8s ease-in-out forwards;
       }
-      .section-title {
-        margin-bottom: 12px !important;
-        text-align: right !important;
-        padding-right: 24px;
-      }
       .brand-button {
         display: inline-block;
         margin: 24px 24px 0 auto;
@@ -105,7 +100,7 @@ export default function SaladcityHome() {
         </SectionTitle>
         <SubscriptionSection />
 
-        <SectionTitle style={{ textAlign: "left", marginBottom: 8 }}>
+        <SectionTitle style={{ textAlign: "left", marginBottom: "8px", marginTop: "32px" }}>
           SALCY CREW
         </SectionTitle>
         <ReviewSection />
