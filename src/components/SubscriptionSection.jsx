@@ -15,6 +15,9 @@ export default function SubscriptionSection() {
         <p className="sub-text" style={{ fontSize: '18px', lineHeight: '1.6', marginBottom: '24px' }}>
           매일 신선하게 준비된 샐러드를<br />
           원하는 주기에 맞춰 배송받으세요.
+          <br /><br />
+          원하는 요일, 원하는 시간, 원하는 스타일<br />
+          당신만을 위한 샐러드가 문 앞에 도착합니다.
         </p>
         <BrandButton onClick={() => alert("정기식 시작! 🚀")}>
           정기식 시작하기
