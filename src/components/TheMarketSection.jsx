@@ -14,7 +14,6 @@ export default function TheMarketSection() {
 
   return (
     <section className="market-section">
-      <h2 className="market-title">THE MARKET</h2>
       <div className="market-slider" ref={sliderRef}>
         {goods.map((item) => (
           <div key={item.id} className="market-card">
