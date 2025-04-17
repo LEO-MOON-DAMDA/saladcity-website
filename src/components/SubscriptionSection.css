@@ -44,7 +44,7 @@
 .subscription-image img {
   width: 100%;
   height: auto;
-  max-height: 280px;  /* 이미지 높이 줄이기 */
+  max-height: 400px;  /* 이미지 높이 줄이기 */
   object-fit: cover;
   border-radius: 16px;
 }
