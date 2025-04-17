@@ -3,18 +3,18 @@ import "./ScrollingBanner.css";
 
 export default function ScrollingBanner() {
   const slogans = [
-    "Howdy, y’all Welcome to the safest City on Earth",
+    "Howdy, y’all  -  Welcome to the SAFEST CITY on EARTH",
     "I wasn’t born in SaladCity, BUT I’ll DIE HERE",
     "BORN & RAISED. ORGANICALLY GROWN",
-    "Where SALADS become legends.",
+    "Where SALADS become LEGENDS",
     "Everything’s fresher IN SALADCITY – EVEN OUR CREW!",
-    "WE live in SALADCITY!",
-    "Don’t mess with fresh",
+    "Where do you live, WE live IN SALADCITY!",
+    "Don’t mess with FRESH ",
     "Big Bowls Bigger Hearts, SALADCITY STYLE",
-    "As Bold as Our Greens"
+    "As Bold as Our GREENS"
   ];
 
-  const fullText = slogans.join(" · ") + "     ·     "; // 마지막에도 점 찍고 반복 자연스럽게
+  const fullText = slogans.join("     ·     ") + "     ·     "; // 마지막에도 점 찍고 반복 자연스럽게
 
   return (
     <div className="scrolling-banner-wrapper">
