@@ -6,7 +6,14 @@ import "./FeaturedMenuSection.css";
 
 export default function FeaturedMenuSection({ items }) {
   if (!items || items.length === 0) {
-    return null;
+    return (
+      <section className="featured-menu-section">
+        <SectionTitle style={{ textAlign: "center" }}>
+          샐러드시티 추천메뉴
+        </SectionTitle>
+        <p className="featured-loading">추천메뉴를 불러오는 중입니다...</p>
+      </section>
+    );
   }
 
   return (
