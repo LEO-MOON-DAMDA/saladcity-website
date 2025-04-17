@@ -1,0 +1,76 @@
+.market-section {
+  margin-top: 64px;
+  margin-bottom: 32px;
+  padding: 0 16px;
+}
+
+.market-title {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+  padding-left: 12px;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.market-slider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.market-card {
+  flex: 0 0 auto;
+  width: 180px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  scroll-snap-align: start;
+}
+
+.market-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.market-card h3 {
+  font-size: 15px;
+  margin: 4px 0;
+  color: #333;
+}
+
+.market-card p {
+  font-size: 14px;
+  color: #2f855a;
+  margin-bottom: 6px;
+}
+
+.market-buy {
+  font-size: 13px;
+  color: #fff;
+  background-color: #2f855a;
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+}
+
+.market-buy:hover {
+  background-color: #276749;
+}
+
+.market-button-wrap {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 12px;
+}
