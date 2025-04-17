@@ -1,7 +1,7 @@
 .our-mission-section {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: stretch; /* ✅ 이미지와 텍스트 높이 맞춤 */
   justify-content: space-between;
   background-color: #f0f8f3;
   padding: 60px 20px;
@@ -51,9 +51,16 @@
   background-color: #388E3C;
 }
 
+.mission-image {
+  flex: 1;
+  height: 100%;
+  display: flex;
+}
+
 .mission-image img {
   width: 100%;
-  max-width: 400px;
+  height: 100%; /* ✅ 상하 여백 없이 꽉 채움 */
+  object-fit: cover;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
