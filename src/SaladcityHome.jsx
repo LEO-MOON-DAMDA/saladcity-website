@@ -13,6 +13,7 @@ import ShopSection from "./components/ShopSection";
 import Footer from "./components/Footer";
 import ScrollingBanner from "./components/ScrollingBanner";
 import SectionTitle from "./components/SectionTitle";
+import SubTitle from "./components/SubTitle";
 
 export default function SaladcityHome() {
   const videoRef = useRef(null);
@@ -64,7 +65,7 @@ export default function SaladcityHome() {
         <div style={{ position: 'relative', height: '800px', marginTop: '-60px', overflow: 'hidden' }}>
           <video
             key={videoIndex}
-            ref={={videoRef}
+            ref={videoRef}
             src={videoList[videoIndex]}
             autoPlay
             muted
@@ -107,9 +108,9 @@ export default function SaladcityHome() {
         <SectionTitle style={{ textAlign: "right" }}>
           샐러드시티 매장 안내
         </SectionTitle>
-        <SectionTitle style={{ textAlign: "right", fontSize: "17px", fontWeight: "500", color: "#666" }}>
+        <SubTitle style={{ textAlign: "right" }}>
           LOCATIONS
-        </SectionTitle>
+        </SubTitle>
         <StoreLocatorSection showMap={true} />
 
         <InstaFeedSection />
