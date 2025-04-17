@@ -1,38 +1,121 @@
 /* SubscriptionSection.css */
 
-.subscription-section {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
+.subscription-menu-section {
+  padding: 40px 24px 20px; /* 상단 여백을 40px로 설정 */
+  margin-top: 40px; /* 상단 여백을 40px로 설정 */
   background-color: #e8f5e9;
-  padding: 60px 24px;
-  margin-top: 80px;
+  overflow: visible;
+  position: relative;
+  z-index: 0;
   flex-direction: row; /* 기본은 좌→우 */
 }
 
-.subscription-image {
-  flex: 1;
-  min-width: 280px;
+.featured-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 12px; /* 제목 아래 여백 줄임 */
+  color: #2c8f5b;
 }
 
-.subscription-image img {
-  width: 100%;
+.subscription-slider-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.subscription-slider-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.subscription-slider-scroll {
+  display: flex;
+  gap: 12px; /* 카드 간 간격 줄임 */
+  padding: 8px 0;
+  overflow: visible;
+  position: relative;
+}
+
+.subscription-card {
+  width: 260px;
+  min-width: 260px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
   border-radius: 16px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.subscription-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  z-index: 5;
+}
+
+
+.subscription-card:active {
+  transform: translateY(-2px) scale(0.98);
 }
 
 .subscription-text {
-  flex: 1;
-  min-width: 280px;
+  padding: 16px;
   text-align: right;
 }
 
-.subscription-text p {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #222;
-  margin-bottom: 0;
+.subscription-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
 }
+
+.subscription-text h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #222;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  }
+
+.subscription-text p {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 4px;
+  word-break: keep-all;
+}
+
+.nutrient {
+  font-size: 12px;
+  color: #999;
+  word-break: keep-all;
+}
+.subscription-menu-cta {
+  margin-top: 20px; /* 프린트 버튼과 카드 사이 여백 조정 */
+  text-align: center;
+
+
+@media (max-width: 480px) {
+  .featured-card {
+    width: 80vw;
+    min-width: 240px;
+    max-width: 90vw;
+  }
+  
+.subscription-text p,
+  .nutrient {
+    font-size: 12px;
+  }
 
 .subscription-sub {
   font-size: 15px;
@@ -40,8 +123,8 @@
   font-style: italic;
 }
 
-@media (max-width: 768px) {
-  .subscription-section {
-    flex-direction: column-reverse; /* 모바일에선 아래로 내려가게 */
+  .subscription-slider-scroll {
+    gap: 8px; /* 모바일 카드 간격 줄이기 */
+    padding: 8px 12px; /* 모바일 간격도 압축 */
   }
 }
