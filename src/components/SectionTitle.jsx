@@ -2,5 +2,13 @@ import React from "react";
 import "./SectionTitle.css";
 
 export default function SectionTitle({ children, style = {} }) {
-  return <h2 className="section-title" style={style}>{children}</h2>;
+  const combinedStyle = {
+    marginTop: "0px",
+    marginBottom: "16px",
+    paddingLeft: style.textAlign === "left" ? "12px" : "0px",
+    paddingRight: style.textAlign === "right" ? "12px" : "0px",
+    ...style,
+  };
+
+  return <h2 className="section-title" style={combinedStyle}>{children}</h2>;
 }
