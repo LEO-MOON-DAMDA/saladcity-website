@@ -1,5 +1,5 @@
 .scrolling-banner-wrapper {
-  margin-top: 1px; /* ✅ 한 칸 더 내려줌 */
+  margin-top: 2px; /* ✅ 한 칸 더 내려줌 */
   background-color: #f6fdf8;
   overflow: hidden;
   padding: 0;
