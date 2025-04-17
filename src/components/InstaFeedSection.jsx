@@ -7,8 +7,7 @@ const images = [
   "/images/insta02.jpg",
   "/images/insta03.jpg",
   "/images/insta04.jpg",
-  "/images/insta05.jpg",
-  "/images/insta06.jpg",
+  "/images/insta06.jpg"
 ];
 
 export default function InstaFeedSection() {
@@ -22,7 +21,7 @@ export default function InstaFeedSection() {
           </div>
         ))}
       </div>
-      <div style={{ marginTop: "16px", display: "flex", justifyContent: "flex-end", paddingRight: "12px" }}>
+      <div className="insta-button-wrap">
         <BrandButton href="https://www.instagram.com/saladcity.official" target="_blank">
           인스타그램 더 보기 →
         </BrandButton>
