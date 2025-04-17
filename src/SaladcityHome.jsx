@@ -83,7 +83,7 @@ export default function SaladcityHome() {
 
         <ScrollingBanner />
 
-        <FeaturedMenuSection />
+        <FeaturedMenuSection items={homepageMenuItems} />
         <OurMissionSection />
         <SubscriptionSection />
         <ReviewSection />
