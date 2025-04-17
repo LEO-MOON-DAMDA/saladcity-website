@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import homepageMenuItems from "./data/homepageMenuItems.json";
 import FeaturedMenuSection from "./components/FeaturedMenuSection";
-import CustomPrintableMenu from "./CustomPrintableMenu";
 import SubscriptionSection from "./components/SubscriptionSection";
 import ReviewSection from "./components/ReviewSection";
 import InstaFeedSection from "./components/InstaFeedSection";
@@ -94,9 +93,6 @@ export default function SaladcityHome() {
 
       <SectionTitle>샐러드시티 추천메뉴</SectionTitle>
       <FeaturedMenuSection items={homepageMenuItems} />
-      <div style={{ marginTop: '24px', marginLeft: '24px' }}>
-        <BrandButton onClick={() => window.print()}>📄 메뉴 프린트하기</BrandButton>
-      </div>
 
       <SectionTitle>우리는 왜 샐러드를 만들까요?</SectionTitle>
       <OurMissionSection />
@@ -106,9 +102,6 @@ export default function SaladcityHome() {
 
       <SectionTitle>SALCY CREW's 리뷰</SectionTitle>
       <ReviewSection />
-      <div style={{ marginTop: '32px', marginLeft: '24px' }}>
-        <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
-      </div>
 
       <SectionTitle>샐러드시티 매장 안내</SectionTitle>
       <StoreLocatorSection />
