@@ -8,6 +8,7 @@ import ReviewSection from "./components/ReviewSection";
 import InstaFeedSection from "./components/InstaFeedSection";
 import OurMissionSection from "./components/OurMissionSection";
 import StoreLocatorSection from "./components/StoreLocatorSection";
+import TheMarketSection from "./components/TheMarketSection";
 import ShopSection from "./components/ShopSection";
 import ScrollingBanner from "./components/ScrollingBanner";
 import SectionTitle from "./components/SectionTitle";
@@ -82,45 +83,36 @@ export default function SaladcityHome() {
 
         <ScrollingBanner />
 
-        <div>
-          <SectionTitle style={{ textAlign: "center" }}>
-            샐러드시티 추천메뉴
-          </SectionTitle>
-          <FeaturedMenuSection items={homepageMenuItems} />
-        </div>
+        <SectionTitle style={{ textAlign: "center" }}>
+          샐러드시티 추천메뉴
+        </SectionTitle>
+        <FeaturedMenuSection items={homepageMenuItems} />
 
-        <div>
-          <SectionTitle style={{ textAlign: "left" }}>
-            우리는 왜 샐러드를 만들까요?
-          </SectionTitle>
-          <OurMissionSection />
-        </div>
+        <SectionTitle style={{ textAlign: "left" }}>
+          우리는 왜 샐러드를 만들까요?
+        </SectionTitle>
+        <OurMissionSection />
 
-        <div>
-          <SectionTitle style={{ textAlign: "right" }}>
-            정기식 구독으로 더 간편하게
-          </SectionTitle>
-          <SubscriptionSection />
-        </div>
+        <SectionTitle style={{ textAlign: "right" }}>
+          정기식 구독으로 더 간편하게
+        </SectionTitle>
+        <SubscriptionSection />
 
-        <div>
-          <SectionTitle style={{ textAlign: "left", fontSize: "17px", fontWeight: "500", color: "#666" }}>
-            최근 리뷰
-          </SectionTitle>
-          <ReviewSection />
-        </div>
+        <SectionTitle style={{ textAlign: "left", fontSize: "17px", fontWeight: "500", color: "#666" }}>
+          최근 리뷰
+        </SectionTitle>
+        <ReviewSection />
 
-        <div>
-          <SectionTitle style={{ textAlign: "right" }}>
-            샐러드시티 매장 안내
-          </SectionTitle>
-          <SectionTitle style={{ textAlign: "right", fontSize: "17px", fontWeight: "500", color: "#666" }}>
-            LOCATIONS
-          </SectionTitle>
-          <StoreLocatorSection showMap={true} />
-        </div>
+        <SectionTitle style={{ textAlign: "right" }}>
+          샐러드시티 매장 안내
+        </SectionTitle>
+        <SectionTitle style={{ textAlign: "right", fontSize: "17px", fontWeight: "500", color: "#666" }}>
+          LOCATIONS
+        </SectionTitle>
+        <StoreLocatorSection showMap={true} />
 
         <InstaFeedSection />
+        <TheMarketSection />
         <ShopSection />
 
         <footer style={{ position: "relative", zIndex: 0, textAlign: 'center', padding: '40px 0', backgroundColor: '#eaf5ec', color: '#444', fontSize: '14px', borderTop: '1px solid #cfe3d5', marginTop: '60px' }}>
