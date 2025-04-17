@@ -10,6 +10,8 @@ import InstaFeedSection from "./components/InstaFeedSection";
 import OurMissionSection from "./components/OurMissionSection";
 import StoreLocatorSection from "./components/StoreLocatorSection";
 import ShopSection from "./components/ShopSection";
+import ScrollingBanner from "./components/ScrollingBanner";
+
 
 export default function SaladcityHome() {
   const videoRef = useRef(null);
@@ -97,7 +99,7 @@ export default function SaladcityHome() {
           <p style={{ fontSize: '15px', color: '#cccccc' }}>Fresh ingredients, made daily with care.</p>
         </div>
       </div>
-
+      <ScrollingBanner />
       {/* 2. OUR MENU */}
       <FeaturedMenuSection items={homepageMenuItems} />
       <CustomPrintableMenu />
