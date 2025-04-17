@@ -17,7 +17,11 @@ export default function InstaFeedSection() {
       <div className="insta-grid">
         {images.map((src, index) => (
           <div key={index} className="insta-item">
-            <img src={src} alt={`insta-${index}`} />
+            <img
+              src={src}
+              alt={`insta-${index}`}
+              onError={(e) => (e.target.style.display = "none")}
+            />
           </div>
         ))}
       </div>
