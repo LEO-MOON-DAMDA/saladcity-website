@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./ReviewSection.css";
+import BrandButton from "./BrandButton";
 
 export default function ReviewSection() {
   const [reviews, setReviews] = useState([]);
@@ -34,15 +35,15 @@ export default function ReviewSection() {
 
   return (
     <section className="review-section">
-      <h2 className="section-title" style={{ textAlign: "left" }}>최근 리뷰</h2>
+      <h2 className="section-title" style={{ textAlign: "left", paddingLeft: "12px", marginBottom: "4px" }}>
+        최근 리뷰
+      </h2>
       <div className="review-slider" ref={sliderRef}>
         {reviews.map((r, idx) => (
           <div className="review-card" key={idx}>
             <div className="review-top">
               <span className="nickname">{r.nickname || "익명"}</span>
-              <span
-                className={`rating ${r.rating >= 4 ? "green" : "pink"}`}
-              >
+              <span className={`rating ${r.rating >= 4 ? "green" : "pink"}`}>
                 {"⭐".repeat(Math.min(r.rating || 0, 5))}
               </span>
               <span className="date">{r.date || ""}</span>
@@ -58,6 +59,9 @@ export default function ReviewSection() {
             )}
           </div>
         ))}
+      </div>
+      <div style={{ marginTop: "16px", display: "flex", justifyContent: "flex-end", paddingRight: "12px" }}>
+        <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
       </div>
     </section>
   );
