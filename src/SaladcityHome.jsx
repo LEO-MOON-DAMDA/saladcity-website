@@ -108,9 +108,11 @@ export default function SaladcityHome() {
         <SectionTitle style={{ textAlign: "right" }}>
           샐러드시티 매장 안내
         </SectionTitle>
+
         <SubTitle style={{ textAlign: "right" }}>
           LOCATIONS
         </SubTitle>
+
         <StoreLocatorSection showMap={true} />
 
         <InstaFeedSection />
