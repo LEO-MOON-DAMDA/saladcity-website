@@ -28,6 +28,7 @@
   color: #0f2417;
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   letter-spacing: -0.05em;
+  transform: scaleX(1.1); /* ✅ 글자폭 확장! */
 }
 
 @keyframes scroll-left {
