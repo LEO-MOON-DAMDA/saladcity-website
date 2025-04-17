@@ -6,11 +6,23 @@ import "./SubscriptionSection.css";
 export default function SubscriptionSection() {
   return (
     <section className="subscription-section">
-      <div className="subscription-text">
+      <div className="subscription-image">
+        {/* <img src="/images/subscription-image.jpg" alt="정기식 이미지" /> */}
+      </div>
+
+      <div className="subscription-text" style={{ textAlign: "right" }}>
         <SectionTitle style={{ textAlign: "right" }}>
           정기식 구독으로 더 간편하게
         </SectionTitle>
-        <p>
+
+        <p
+          style={{
+            fontSize: "18px", // 브랜드스토리 동일 크기
+            lineHeight: "1.8",
+            color: "#222",
+            marginBottom: "0",
+          }}
+        >
           매일 신선하게 준비된 샐러드를<br />
           원하는 주기에 맞춰 배송받으세요.
           <br />
@@ -19,22 +31,16 @@ export default function SubscriptionSection() {
           당신만을 위한 샐러드가 문 앞에 도착합니다.
           <br />
           <br />
-          <span
-            className="subscription-sub"
-            style={{ fontSize: "15px", color: "#666", fontStyle: "italic" }}
-          >
+          <span className="subscription-sub">
             Delivering wellness, one bowl at a time.
           </span>
         </p>
+
         <div style={{ marginTop: "24px" }}>
           <BrandButton onClick={() => alert("정기식 시작! 🚀")}>
             정기식 시작하기
           </BrandButton>
         </div>
-      </div>
-
-      <div className="subscription-image">
-        {/* <img src="/images/subscription-image.jpg" alt="정기식 이미지" /> */}
       </div>
     </section>
   );
