@@ -14,7 +14,7 @@ export default function FeaturedMenuSection({ items }) {
 
   return (
     <section className="featured-menu-section">
-      <h2 className="featured-title">샐러드시티 추천메뉴</h2>
+      {/* 제목 제거됨 */}
       <div className="featured-slider-wrapper">
         <div className="featured-slider-scroll">
           {items.map((item, idx) => (
