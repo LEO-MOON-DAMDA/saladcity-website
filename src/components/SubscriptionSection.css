@@ -100,10 +100,11 @@
   color: #999;
   word-break: keep-all;
 }
+
 .subscription-menu-cta {
   margin-top: 20px; /* 프린트 버튼과 카드 사이 여백 조정 */
   text-align: center;
-
+}
 
 @media (max-width: 480px) {
   .featured-card {
