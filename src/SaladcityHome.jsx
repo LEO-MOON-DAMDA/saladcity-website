@@ -11,6 +11,7 @@ import StoreLocatorSection from "./components/StoreLocatorSection";
 import ShopSection from "./components/ShopSection";
 import ScrollingBanner from "./components/ScrollingBanner";
 import SectionTitle from "./components/SectionTitle";
+import BrandButton from "./components/BrandButton";
 
 export default function SaladcityHome() {
   const videoRef = useRef(null);
