@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "샐러드시티 에코백",
+    "price": "18,000원",
+    "image": "/images/goods01.jpg",
+    "url": "https://yourstore.com/product/eco-bag"
+  },
+  {
+    "id": 2,
+    "name": "샐러드시티 텀블러",
+    "price": "15,000원",
+    "image": "/images/goods02.jpg",
+    "url": "https://yourstore.com/product/tumbler"
+  },
+  {
+    "id": 3,
+    "name": "샐러드시티 우드 트레이",
+    "price": "22,000원",
+    "image": "/images/goods03.jpg",
+    "url": "https://yourstore.com/product/tray"
+  },
+  {
+    "id": 4,
+    "name": "샐러드시티 앞치마",
+    "price": "28,000원",
+    "image": "/images/goods04.jpg",
+    "url": "https://yourstore.com/product/apron"
+  }
+]
