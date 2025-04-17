@@ -10,6 +10,7 @@ import OurMissionSection from "./components/OurMissionSection";
 import StoreLocatorSection from "./components/StoreLocatorSection";
 import TheMarketSection from "./components/TheMarketSection";
 import ShopSection from "./components/ShopSection";
+import Footer from "./components/Footer";
 import ScrollingBanner from "./components/ScrollingBanner";
 import SectionTitle from "./components/SectionTitle";
 
@@ -63,7 +64,7 @@ export default function SaladcityHome() {
         <div style={{ position: 'relative', height: '800px', marginTop: '-60px', overflow: 'hidden' }}>
           <video
             key={videoIndex}
-            ref={videoRef}
+            ref={={videoRef}
             src={videoList[videoIndex]}
             autoPlay
             muted
@@ -114,12 +115,7 @@ export default function SaladcityHome() {
         <InstaFeedSection />
         <TheMarketSection />
         <ShopSection />
-
-        <footer style={{ position: "relative", zIndex: 0, textAlign: 'center', padding: '40px 0', backgroundColor: '#eaf5ec', color: '#444', fontSize: '14px', borderTop: '1px solid #cfe3d5', marginTop: '60px' }}>
-          <p>#Saladcity_Global</p>
-          <p>© 2025 Saladcity. All rights reserved.</p>
-          <p>서울시 성동구 성수이로 113, 2층</p>
-        </footer>
+        <Footer />
       </div>
     </>
   );
