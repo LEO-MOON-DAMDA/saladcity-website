@@ -85,38 +85,61 @@ export default function SaladcityHome() {
 
         <ScrollingBanner />
 
-        <SectionTitle style={{ textAlign: "center" }}>
-          샐러드시티 추천메뉴
-        </SectionTitle>
-        <FeaturedMenuSection items={homepageMenuItems} />
+        <div>
+          <SectionTitle style={{ textAlign: "center" }}>
+            샐러드시티 추천메뉴
+          </SectionTitle>
+          <FeaturedMenuSection items={homepageMenuItems} />
+        </div>
 
-        <SectionTitle style={{ textAlign: "left" }}>
-          우리는 왜 샐러드를 만들까요?
-        </SectionTitle>
-        <OurMissionSection />
+        <div>
+          <SectionTitle style={{ textAlign: "left" }}>
+            우리는 왜 샐러드를 만들까요?
+          </SectionTitle>
+          <OurMissionSection />
+        </div>
 
-        <SectionTitle style={{ textAlign: "right" }}>
-          정기식 구독으로 더 간편하게
-        </SectionTitle>
-        <SubscriptionSection />
+        <div>
+          <SectionTitle style={{ textAlign: "right" }}>
+            정기식 구독으로 더 간편하게
+          </SectionTitle>
+          <SubscriptionSection />
+        </div>
 
-        <SectionTitle style={{ textAlign: "left" }}>
-          SALCY CREW
-        </SectionTitle>
-        <ReviewSection />
+        <div>
+          <SectionTitle style={{ textAlign: "left" }}>
+            SALCY CREW
+          </SectionTitle>
+          <SubTitle style={{ textAlign: "left" }}>
+            최근 리뷰
+          </SubTitle>
+          <ReviewSection />
+        </div>
 
-        <SectionTitle style={{ textAlign: "right" }}>
-          샐러드시티 매장 안내
-        </SectionTitle>
+        <div>
+          <SectionTitle style={{ textAlign: "right" }}>
+            샐러드시티 매장 안내
+          </SectionTitle>
+          <SubTitle style={{ textAlign: "right" }}>
+            LOCATIONS
+          </SubTitle>
+          <StoreLocatorSection showMap={true} />
+        </div>
 
-        <SubTitle style={{ textAlign: "right" }}>
-          LOCATIONS
-        </SubTitle>
+        <div>
+          <SectionTitle style={{ textAlign: "left" }}>
+            #saladcity on Instagram
+          </SectionTitle>
+          <InstaFeedSection />
+        </div>
 
-        <StoreLocatorSection showMap={true} />
+        <div>
+          <SectionTitle style={{ textAlign: "left" }}>
+            THE MARKET
+          </SectionTitle>
+          <TheMarketSection />
+        </div>
 
-        <InstaFeedSection />
-        <TheMarketSection />
         <ShopSection />
         <Footer />
       </div>
