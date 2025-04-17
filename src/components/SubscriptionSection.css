@@ -8,6 +8,7 @@
   background-color: #e8f5e9;
   padding: 60px 24px;
   margin-top: 80px;
+  flex-direction: row; /* 기본은 좌→우 */
 }
 
 .subscription-image {
@@ -37,4 +38,10 @@
   font-size: 15px;
   color: #666;
   font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .subscription-section {
+    flex-direction: column-reverse; /* 모바일에선 아래로 내려가게 */
+  }
 }
