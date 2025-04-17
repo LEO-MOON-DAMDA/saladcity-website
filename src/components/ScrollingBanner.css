@@ -27,7 +27,7 @@
 .scrolling-text {
   display: inline-block;
   padding-left: 100%;
-  animation: scroll-left 350s linear infinite; /* ✅ 속도 느리게 조정 */
+  animation: scroll-left 400s linear infinite; /* ✅ 속도 느리게 조정 */
   font-size: 34px;
   font-weight: 100;
   line-height: 1;
