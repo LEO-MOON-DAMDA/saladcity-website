@@ -1,18 +1,18 @@
 .brand-button {
   display: inline-block;
-  background-color: #2f7d32; /* 진한 녹색 */
-  color: #fff;
+  background-color: #2f7d32;
+  color: white;
   padding: 12px 24px;
-  border: none;
-  border-radius: 32px;
   font-size: 16px;
   font-weight: 500;
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
-  cursor: pointer;
+  border: none;
+  border-radius: 32px;
   text-decoration: none;
-  transition: background 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  cursor: pointer;
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  transition: background-color 0.3s ease;
 }
 
 .brand-button:hover {
