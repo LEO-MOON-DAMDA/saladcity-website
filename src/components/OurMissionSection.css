@@ -4,9 +4,9 @@
   align-items: stretch;
   justify-content: space-between;
   background-color: #f0f8f3;
-  padding: 60px 20px;
-  gap: 40px;
-  margin-top: 80px;
+  padding: 40px 20px;  /* 상하 여백 줄이기 */
+  gap: 20px;  /* 섹션 간 간격 줄이기 */
+  margin-top: 40px;  /* 상단 여백 줄이기 */
 }
 
 .mission-text {
@@ -17,7 +17,7 @@
 .mission-text p {
   font-size: 16px;
   color: #444;
-  margin-bottom: 24px;
+  margin-bottom: 16px;  /* 본문 간격 줄이기 */
   max-width: 500px;
   line-height: 1.6;
 }
@@ -27,7 +27,7 @@
   color: #888;
   font-style: italic;
   display: block;
-  margin-top: 12px;
+  margin-top: 8px;  /* 서브텍스트 상단 여백 줄이기 */
 }
 
 .mission-image {
@@ -40,7 +40,7 @@
 .mission-image img {
   width: 100%;
   height: auto;
-  max-height: 320px;
+  max-height: 280px;  /* 이미지 높이 줄이기 */
   object-fit: cover;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -50,6 +50,6 @@
   .mission-image img {
     max-height: none;
     height: 100%;
-    min-height: 240px;
+    min-height: 200px;  /* 모바일에서 이미지 최소 높이 줄이기 */
   }
 }
