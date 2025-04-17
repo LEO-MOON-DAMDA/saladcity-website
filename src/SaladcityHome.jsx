@@ -109,10 +109,10 @@ export default function SaladcityHome() {
           <SectionTitle style={{ textAlign: "left" }}>
             SALCY CREW
           </SectionTitle>
-          <SubTitle style={{ textAlign: "left" }}>
-            최근 리뷰
-          </SubTitle>
           <ReviewSection />
+          <div style={{ marginTop: "16px", display: "flex", justifyContent: "flex-start", paddingLeft: "12px" }}>
+            <a href="/reviews" className="brand-button">전체 리뷰 보기 →</a>
+          </div>
         </div>
 
         <div>
