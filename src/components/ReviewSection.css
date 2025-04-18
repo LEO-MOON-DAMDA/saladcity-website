@@ -1,110 +1,147 @@
-.reviews-page {
-  padding: 40px 24px;
-  background-color: #f8fcf9;
+.review-section {
+  padding: 40px 20px 60px;
+  background-color: #fdfdf7;
+  margin-top: 0px;
 }
 
-.reviews-title {
-  text-align: center;
-  font-size: 28px;
-  color: #2c8f5b;
-  margin-bottom: 16px;
+.review-slider-wrapper {
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+  margin-top: 24px;
 }
 
-.reviews-subtitle {
-  text-align: center;
-  font-size: 16px;
-  color: #777;
-  margin-bottom: 32px;
+.review-slider {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 1000px;
+  justify-content: center;
+  overflow-x: hidden;
 }
 
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.review-card {
-  background-color: #fff;
+/* 사진 있는 카드 */
+.review-card.large {
+  width: 240px;
+  background: #ffffff;
   border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
-  cursor: pointer;
 }
 
-.review-card:hover {
+.review-card.large:hover {
   transform: translateY(-4px);
+}
+
+/* 사진 없는 카드 */
+.review-card.small {
+  width: 200px;
+  background: #f8f8f8;
+  border-radius: 12px;
+  padding: 12px;
+  opacity: 0.85;
+  box-shadow: none;
+}
+
+/* 하단 작은 카드 전용 컨테이너 (간격 좁힘) */
+.review-slider-wrapper.without-image-wrapper {
+  margin-top: 12px;
+}
+
+.review-slider.without-image {
+  max-width: 900px;
 }
 
 .review-top {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 8px;
 }
 
 .nickname {
+  font-weight: 600;
+  color: #2e7d32;
+  font-size: 14px;
+}
+
+.rating {
+  font-size: 14px;
   font-weight: bold;
-  color: #333;
 }
 
 .rating.green {
-  color: #2c8f5b;
+  color: #4CAF50;
 }
 
 .rating.pink {
-  color: #e94e77;
+  color: #E91E63;
 }
 
 .date {
-  font-size: 12px;
-  color: #aaa;
+  font-size: 11px;
+  color: #999;
 }
 
 .review-text {
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #444;
+  font-size: 13px;
+  color: #333;
+  margin: 8px 0;
+  line-height: 1.4;
+  font-style: italic;
+  min-height: 42px;
 }
 
 .menu-tag {
-  display: inline-block;
-  background-color: #e0f2e9;
-  color: #2c8f5b;
-  font-size: 12px;
-  padding: 4px 8px;
-  border-radius: 12px;
-  margin-bottom: 8px;
-}
-
-.badge-container {
-  margin-top: 4px;
-}
-
-.badge {
-  display: inline-block;
-  background-color: #f0f0f0;
-  color: #555;
+  background-color: #e8f5e9;
+  color: #388e3c;
+  padding: 4px 10px;
+  border-radius: 20px;
   font-size: 11px;
-  padding: 2px 6px;
-  border-radius: 8px;
-  margin-right: 4px;
-}
-
-.review-image {
-  margin-top: 12px;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
 .review-image img {
   width: 100%;
   border-radius: 12px;
   object-fit: cover;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-top: 8px;
 }
 
-/* 📌 문제 생겼던 이 아래 부분도 완성형으로 포함 */
+.review-image img:hover {
+  filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
+}
 
-.review-meta {
-  font-size: 13px;
-  color: #999;
+.review-button-wrap {
+  margin-top: 24px;
+  text-align: center;
+}
+
+/* ✅ 플랫폼/매장 뱃지 */
+.badge-container {
   margin-top: 6px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.badge-platform {
+  background-color: #6abf69;
+}
+
+.badge-store {
+  background-color: #8884d8;
 }
