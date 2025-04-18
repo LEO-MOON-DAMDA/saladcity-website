@@ -33,10 +33,15 @@ const YOGIYO_ACCOUNTS = [
     try {
       console.log(`🔐 배민 로그인 중: ${account.store}`);
       await page.goto("https://biz-member.baemin.com/login", { waitUntil: "networkidle2" });
+
+      await page.waitForSelector('input[name="id"]', { timeout: 10000 });
+      await page.waitForSelector('input[name="pw"]', { timeout: 10000 });
+
       await page.type('input[name="id"]', account.id);
       await page.type('input[name="pw"]', account.pw);
       await page.click("button[type=submit]");
       await page.waitForNavigation({ waitUntil: "networkidle2" });
+
       await page.goto("https://self.baemin.com/review", { waitUntil: "networkidle2" });
 
       const reviews = await page.evaluate((storeName) => {
@@ -66,6 +71,10 @@ const YOGIYO_ACCOUNTS = [
     try {
       console.log(`🔐 쿠팡이츠 로그인 중: ${account.id}`);
       await page.goto("https://store.coupangeats.com/merchant/login", { waitUntil: "networkidle2" });
+
+      await page.waitForSelector('input[name="email"]', { timeout: 10000 });
+      await page.waitForSelector('input[name="password"]', { timeout: 10000 });
+
       await page.type('input[name="email"]', account.id);
       await page.type('input[name="password"]', account.pw);
       await page.click("button[type=submit]");
@@ -108,6 +117,10 @@ const YOGIYO_ACCOUNTS = [
     try {
       console.log(`🔐 요기요 로그인 중: ${account.id}`);
       await page.goto("https://ceo.yogiyo.co.kr/login/", { waitUntil: "networkidle2" });
+
+      await page.waitForSelector('input[name="login_id"]', { timeout: 10000 });
+      await page.waitForSelector('input[name="password"]', { timeout: 10000 });
+
       await page.type('input[name="login_id"]', account.id);
       await page.type('input[name="password"]', account.pw);
       await page.click("button[type=submit]");
