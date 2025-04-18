@@ -5,17 +5,20 @@ require("dotenv").config();
 
 const outputPath = path.join(__dirname, "public/data/reviews_all.json");
 
+// 배민 계정
 const BAEMIN_ACCOUNTS = [
   { id: process.env.BAEMIN_ID_1, pw: process.env.BAEMIN_PW_1, store: "배민_역삼점" },
   { id: process.env.BAEMIN_ID_2, pw: process.env.BAEMIN_PW_2, store: "배민_서초점" },
   { id: process.env.BAEMIN_ID_3, pw: process.env.BAEMIN_PW_3, store: "배민_강남점" },
 ];
 
+// 쿠팡이츠 계정
 const COUPANG_ACCOUNTS = [
   { id: process.env.COUPANG_ID_1, pw: process.env.COUPANG_PW_1, stores: ["쿠팡_강남점", "쿠팡_서초점"] },
   { id: process.env.COUPANG_ID_2, pw: process.env.COUPANG_PW_2, stores: ["쿠팡_홍대점"] },
 ];
 
+// 요기요 계정
 const YOGIYO_ACCOUNTS = [
   { id: process.env.YOGIYO_ID_1, pw: process.env.YOGIYO_PW_1, stores: ["요기요_강남점", "요기요_서초점"] },
   { id: process.env.YOGIYO_ID_2, pw: process.env.YOGIYO_PW_2, stores: ["요기요_홍대점"] },
@@ -29,7 +32,7 @@ const YOGIYO_ACCOUNTS = [
 
   const allReviews = [];
 
-  // ✅ 배민
+  // 배민
   for (const account of BAEMIN_ACCOUNTS) {
     const page = await browser.newPage();
     try {
@@ -73,7 +76,7 @@ const YOGIYO_ACCOUNTS = [
     await page.close();
   }
 
-  // ✅ 쿠팡이츠
+  // 쿠팡이츠
   for (const account of COUPANG_ACCOUNTS) {
     const page = await browser.newPage();
     try {
@@ -118,7 +121,7 @@ const YOGIYO_ACCOUNTS = [
     await page.close();
   }
 
-  // ✅ 요기요
+  // 요기요
   for (const account of YOGIYO_ACCOUNTS) {
     const page = await browser.newPage();
     try {
@@ -135,12 +138,12 @@ const YOGIYO_ACCOUNTS = [
       const reviews = await page.evaluate((storeNames) => {
         const cards = Array.from(document.querySelectorAll(".ReviewItem__Container-sc-1oxgj67-0"));
         return cards.map((el, i) => {
-          const nickname = el.querySelector("h6.Typography__StyledTypography-sc-r9ksfy-0")?.textContent.trim() || "익명";
-          const rating = el.querySelectorAll('svg[fill^="hsla"]').length || 5;
-          const review = el.querySelector("p.ReviewItem__CommentTypography-sc-1oxgj67-3")?.textContent.trim() || "";
-          const date = el.querySelector(".Typography__StyledTypography-sc-r9ksfy-0.jwoVKl")?.textContent.trim() || "";
-          const menu = el.querySelector(".Typography__StyledTypography-sc-r9ksfy-0.jlzcvj")?.textContent.trim() || "";
-          const image = el.querySelector(".ReviewItem__Image-sc-1oxgj67-1")?.src || null;
+          const nickname = el.querySelector(".ReviewItem__CustomerName-sc-1oxgj67-1")?.textContent.trim() || "익명";
+          const review = el.querySelector(".ReviewItem__CommentTypography-sc-1oxgj67-3")?.textContent.trim() || "";
+          const date = el.querySelector(".ReviewItem__DateTypography-sc-1oxgj67-4")?.textContent.trim() || "";
+          const rating = el.querySelectorAll('svg[fill^="currentColor"]').length || 5;
+          const image = el.querySelector(".ReviewItem__Image-sc-1oxgj67-1 img")?.src || null;
+          const menu = el.querySelector(".ReviewItem__MenuTypography-sc-1oxgj67-2")?.textContent.trim() || "";
 
           return {
             platform: "요기요",
