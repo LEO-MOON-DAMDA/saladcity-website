@@ -29,5 +29,5 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add public/data/reviews_*.json
-          git commit -m "자동 수집된 리뷰 반영"
+          git commit -m "자동 수집된 리뷰 반영" || echo "No changes to commit"
           git push
