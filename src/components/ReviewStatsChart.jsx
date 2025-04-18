@@ -5,10 +5,9 @@ import {
   LineChart, Line, CartesianGrid
 } from "recharts";
 
-const COLORS = ["#4CAF50", "#A5D6A7"];
+const COLORS = ["#4CAF50", "#C8E6C9"]; // 연한 초록 톤
 
 export default function ReviewStatsChart({ reviews }) {
-  // ⭐ 별점 분포
   const ratingData = useMemo(() => {
     const ratingCount = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
     reviews.forEach(r => {
@@ -20,7 +19,6 @@ export default function ReviewStatsChart({ reviews }) {
       .sort((a, b) => b.star - a.star);
   }, [reviews]);
 
-  // 🖼 이미지 포함 비율
   const imageData = useMemo(() => {
     const withImage = reviews.filter(r => !!r.image).length;
     const withoutImage = reviews.length - withImage;
@@ -30,7 +28,6 @@ export default function ReviewStatsChart({ reviews }) {
     ];
   }, [reviews]);
 
-  // 📅 날짜별 리뷰 수
   const dateChartData = useMemo(() => {
     const map = {};
     reviews.forEach((r) => {
@@ -44,54 +41,59 @@ export default function ReviewStatsChart({ reviews }) {
       .map(([date, count]) => ({ date, count }));
   }, [reviews]);
 
-  // 💬 사장님 응답률 계산
   const replyCount = reviews.filter(r => !!r.reply).length;
   const replyRate = reviews.length > 0
     ? Math.round((replyCount / reviews.length) * 100)
     : 0;
 
   return (
-    <div style={{ marginBottom: "40px" }}>
-      <h2 style={{ textAlign: "center", marginBottom: "24px", fontSize: "24px" }}>
+    <div style={{ marginBottom: "48px" }}>
+      <h2 style={{
+        textAlign: "center",
+        fontSize: "26px",
+        color: "#2f5130",
+        marginBottom: "32px",
+        fontWeight: "600"
+      }}>
         리뷰 통계
       </h2>
 
-      {/* 응답률 카드 */}
+      {/* 카드 영역 */}
       <div style={{
         display: "flex",
         justifyContent: "center",
         gap: "24px",
-        marginBottom: "32px",
+        marginBottom: "40px",
         flexWrap: "wrap"
       }}>
         <div style={cardStyle}>
-          <h4 style={cardTitle}>사장님 응답률</h4>
+          <p style={cardTitle}>사장님 응답률</p>
           <p style={cardValue}>{replyRate}%</p>
         </div>
         <div style={cardStyle}>
-          <h4 style={cardTitle}>전체 리뷰 수</h4>
+          <p style={cardTitle}>전체 리뷰 수</p>
           <p style={cardValue}>{reviews.length}건</p>
         </div>
         <div style={cardStyle}>
-          <h4 style={cardTitle}>응답된 리뷰</h4>
+          <p style={cardTitle}>응답된 리뷰</p>
           <p style={cardValue}>{replyCount}건</p>
         </div>
       </div>
 
-      {/* 차트들 */}
+      {/* 차트 영역 */}
       <div style={{
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
         gap: "40px"
       }}>
-        {/* 별점 바 차트 */}
+        {/* 별점 차트 */}
         <div style={{ width: "360px", height: "300px" }}>
-          <h3 style={{ textAlign: "center" }}>별점 분포</h3>
+          <h3 style={chartTitle}>별점 분포</h3>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={ratingData}>
-              <XAxis dataKey="star" />
-              <YAxis allowDecimals={false} />
+              <XAxis dataKey="star" stroke="#666" />
+              <YAxis allowDecimals={false} stroke="#888" />
               <Tooltip />
               <Bar dataKey="count" fill="#4CAF50" radius={[4, 4, 0, 0]} />
             </BarChart>
@@ -100,7 +102,7 @@ export default function ReviewStatsChart({ reviews }) {
 
         {/* 이미지 포함 파이차트 */}
         <div style={{ width: "300px", height: "300px" }}>
-          <h3 style={{ textAlign: "center" }}>이미지 포함 비율</h3>
+          <h3 style={chartTitle}>이미지 포함 비율</h3>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -124,11 +126,11 @@ export default function ReviewStatsChart({ reviews }) {
 
         {/* 날짜별 리뷰 추세 */}
         <div style={{ width: "480px", height: "300px" }}>
-          <h3 style={{ textAlign: "center" }}>날짜별 리뷰 추세</h3>
+          <h3 style={chartTitle}>날짜별 리뷰 추세</h3>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={dateChartData}>
-              <XAxis dataKey="date" />
-              <YAxis allowDecimals={false} />
+              <XAxis dataKey="date" stroke="#666" />
+              <YAxis allowDecimals={false} stroke="#888" />
               <Tooltip />
               <CartesianGrid strokeDasharray="3 3" />
               <Line type="monotone" dataKey="count" stroke="#4CAF50" strokeWidth={2} />
@@ -142,21 +144,30 @@ export default function ReviewStatsChart({ reviews }) {
 
 const cardStyle = {
   background: "#ffffff",
-  borderRadius: "12px",
+  borderRadius: "16px",
   padding: "20px 24px",
-  boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
+  boxShadow: "0 6px 16px rgba(0,0,0,0.06)",
   textAlign: "center",
   minWidth: "160px"
 };
 
 const cardTitle = {
   fontSize: "14px",
-  color: "#555",
-  marginBottom: "6px"
+  color: "#888",
+  marginBottom: "6px",
+  fontWeight: "500"
 };
 
 const cardValue = {
-  fontSize: "22px",
+  fontSize: "24px",
   fontWeight: "600",
-  color: "#333"
+  color: "#2f5130"
+};
+
+const chartTitle = {
+  textAlign: "center",
+  fontSize: "16px",
+  marginBottom: "12px",
+  fontWeight: "500",
+  color: "#444"
 };
