@@ -87,4 +87,11 @@ export default function ReviewSection() {
 
       <div className="review-button-wrap">
         <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
-      </
+      </div>
+
+      {selectedReview && (
+        <ReviewModal review={selectedReview} onClose={() => setSelectedReview(null)} />
+      )}
+    </section>
+  );
+}
