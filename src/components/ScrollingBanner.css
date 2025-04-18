@@ -29,7 +29,7 @@
   padding-left: 100%;
   animation: scroll-left 600s linear infinite;
   font-size: 34px;
-  font-weight: 100; /* ✅ LEO 기준: 얇고 예쁜 스타일 고정 */
+  font-weight: 100;
   line-height: 1;
   color: #0f2417;
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
@@ -37,7 +37,6 @@
   transform: scaleX(1.3);
   white-space: nowrap;
 
-  /* ✅ 얇은 느낌 유지용 최적화 렌더링 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -45,13 +44,13 @@
 
 .scrolling-segment {
   display: inline-block;
-  padding-right: 60px;
-  transform: scaleX(1); /* ✅ 내부 span 글자 굵어지는 것 방지 */
+  padding-right: 48px; /* 문장 간 여백 */
+  transform: scaleX(1); /* 내부 글자 왜곡 방지 */
 }
 
 .scrolling-gap {
   color: #88c057;
-  font-weight: 100; /* ✅ 본문과 동일한 두께로 맞춤 */
+  font-weight: 100;
 }
 
 @keyframes scroll-left {
