@@ -80,7 +80,7 @@ export default function ReviewSection() {
               </p>
               {r.menu && <div className="menu-tag">{r.menu}</div>}
               {renderBadges(r)}
-            </div> // ✅ 이 닫는 태그가 빠져 있었음
+            </div>
           ))}
         </div>
       </div>
