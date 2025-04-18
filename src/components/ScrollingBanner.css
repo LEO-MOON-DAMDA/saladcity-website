@@ -37,22 +37,10 @@
   transform: scaleX(1.3);
   white-space: nowrap;
 
-  /* ✅ 글자 굵기 안정화용 */
+  /* 원래 쓰던 보정 설정 그대로 유지 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-}
-
-.scrolling-segment {
-  display: inline-block;
-  margin-right: 64px;
-  transform: scaleX(1); /* ✅ 내부 요소 scale 제거로 두께 유지 */
-}
-
-.scrolling-gap {
-  margin: 0 24px;
-  color: #88c057;
-  font-weight: 100;
 }
 
 @keyframes scroll-left {
