@@ -7,7 +7,7 @@ export default function SocialPage() {
         INSTAGRAM
       </h1>
       <iframe
-        src="https://widgets.sociablekit.com/instagram-feed/iframe/219407"
+        src="https://widgets.sociablekit.com/instagram-feed/iframe/25547853"
         width="100%"
         height="800"
         style={{
