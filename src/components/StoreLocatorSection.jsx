@@ -1,4 +1,5 @@
 import React from "react";
+import SectionTitle from "./SectionTitle";
 
 const storeData = [
   {
@@ -24,6 +25,10 @@ const storeData = [
 export default function StoreLocatorSection({ showMap = true }) {
   return (
     <section className="store-locator-section" style={{ paddingTop: 0 }}>
+      <SectionTitle style={{ textAlign: "center", marginBottom: "32px" }}>
+        LOCATION
+      </SectionTitle>
+
       <p className="sub-text" style={{ padding: "0 16px", marginBottom: "24px", fontSize: "16px", color: "#444" }}>
         샐러드시티의 신선함을 직접 느낄 수 있는 오프라인 매장을 확인하세요.
       </p>
