@@ -68,6 +68,7 @@ const YOGIYO_ACCOUNTS = [
         }));
       }, account.store);
 
+      console.log(`✅ ${account.store} 수집 리뷰: ${reviews.length}건`);
       allReviews.push(...reviews);
     } catch (err) {
       console.error(`❌ 배민 ${account.store} 에러:`, err.message);
@@ -117,6 +118,7 @@ const YOGIYO_ACCOUNTS = [
         }));
       }, account.stores);
 
+      console.log(`✅ 쿠팡 ${account.id} 수집 리뷰: ${reviews.length}건`);
       allReviews.push(...reviews);
     } catch (err) {
       console.error(`❌ 쿠팡이츠 ${account.id} 에러:`, err.message);
@@ -166,6 +168,7 @@ const YOGIYO_ACCOUNTS = [
         }));
       }, account.stores);
 
+      console.log(`✅ 요기요 ${account.id} 수집 리뷰: ${reviews.length}건`);
       allReviews.push(...reviews);
     } catch (err) {
       console.error(`❌ 요기요 ${account.id} 에러:`, err.message);
@@ -174,6 +177,16 @@ const YOGIYO_ACCOUNTS = [
   }
 
   await browser.close();
-  fs.writeFileSync(outputPath, JSON.stringify(allReviews, null, 2), "utf-8");
-  console.log(`📁 최종 저장 완료: ${outputPath} (총 ${allReviews.length}건)`);
+
+  const outputDir = path.dirname(outputPath);
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+
+  try {
+    fs.writeFileSync(outputPath, JSON.stringify(allReviews, null, 2), "utf-8");
+    console.log(`✅ 저장 성공: ${outputPath} (총 ${allReviews.length}건)`);
+  } catch (err) {
+    console.error("❌ 저장 중 오류 발생:", err.message);
+  }
 })();
