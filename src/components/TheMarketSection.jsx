@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import BrandButton from "./BrandButton";
+import SectionTitle from "./SectionTitle";
 import "./TheMarketSection.css";
 
 export default function TheMarketSection() {
@@ -14,6 +15,10 @@ export default function TheMarketSection() {
 
   return (
     <section className="market-section">
+      <SectionTitle style={{ textAlign: "center", marginBottom: "32px" }}>
+        THE MARKET
+      </SectionTitle>
+
       <div className="market-slider" ref={sliderRef}>
         {goods.map((item) => (
           <div key={item.id} className="market-card">
