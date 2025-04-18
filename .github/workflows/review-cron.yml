@@ -2,8 +2,8 @@ name: Daily Review Update
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # 매일 00:00 UTC = 한국 시간 오전 9시
-  workflow_dispatch:      # 수동 실행도 가능하게 설정
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
   update-reviews:
@@ -13,18 +13,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          persist-credentials: false  # ✅ push 권한 위해 false 설정
+          persist-credentials: false
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "18"
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install puppeteer  # ✅ 이 줄 추가!
+        run: npm install puppeteer
 
       - name: Run review generator
-        run: node save_reviews_puppeteer.js  # ✅ 최신 자동 수집기 실행
+        run: node save_reviews_puppeteer.js
 
       - name: Commit and push updated review data
         env:
@@ -32,7 +32,7 @@ jobs:
         run: |
           git config user.name "salcy-bot"
           git config user.email "bot@saladcity.com"
-          git pull --rebase origin main  # ✅ 최신 커밋과 충돌 방지
-          git add public/data/reviews_all.json  # ✅ 저장 경로 변경 반영
+          git pull --rebase origin main
+          git add public/data/reviews_all.json
           git commit -m "🔄 자동 리뷰 업데이트" || echo "No changes to commit"
           git push https://x-access-token:${GH_TOKEN}@github.com/LEO-MOON-DAMDA/saladcity-website.git
