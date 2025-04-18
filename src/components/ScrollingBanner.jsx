@@ -9,7 +9,7 @@ export default function ScrollingBanner() {
     "Where SALADS become LEGENDS",
     "Everything’s fresher IN SALADCITY – EVEN OUR CREW!",
     "Where do you live, WE live IN SALADCITY!",
-    "Don’t mess with FRESH ",
+    "Don’t mess with FRESH",
     "Big Bowls Bigger Hearts, SALADCITY STYLE",
     "As Bold as Our GREENS"
   ];
@@ -25,7 +25,7 @@ export default function ScrollingBanner() {
           {repeated.map((text, i) => (
             <span key={i} className="scrolling-segment">
               {text}
-              <span className="scrolling-gap"> &nbsp;&nbsp;&nbsp;&nbsp;{gap}&nbsp;&nbsp;&nbsp;&nbsp; </span>
+              <span className="scrolling-gap">&nbsp;&nbsp;&nbsp;{gap}&nbsp;&nbsp;&nbsp;</span>
             </span>
           ))}
         </p>
