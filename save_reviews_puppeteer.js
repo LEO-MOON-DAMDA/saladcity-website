@@ -29,7 +29,7 @@ const YOGIYO_ACCOUNTS = [
 
   const allReviews = [];
 
-  // 1️⃣ 배민
+  // ✅ 배민
   for (const account of BAEMIN_ACCOUNTS) {
     const page = await browser.newPage();
     try {
@@ -73,7 +73,7 @@ const YOGIYO_ACCOUNTS = [
     await page.close();
   }
 
-  // 2️⃣ 쿠팡이츠
+  // ✅ 쿠팡이츠
   for (const account of COUPANG_ACCOUNTS) {
     const page = await browser.newPage();
     try {
@@ -118,7 +118,7 @@ const YOGIYO_ACCOUNTS = [
     await page.close();
   }
 
-  // 3️⃣ 요기요 (샘플 placeholder, 구조 들어오면 바로 반영)
+  // ✅ 요기요
   for (const account of YOGIYO_ACCOUNTS) {
     const page = await browser.newPage();
     try {
@@ -132,8 +132,28 @@ const YOGIYO_ACCOUNTS = [
 
       await page.goto("https://ceo.yogiyo.co.kr/reviews", { waitUntil: "networkidle2" });
 
-      // TODO: 요기요 셀렉터 적용 필요
-      const reviews = []; // 추후 완성
+      const reviews = await page.evaluate((storeNames) => {
+        const cards = Array.from(document.querySelectorAll(".ReviewItem__Container-sc-1oxgj67-0"));
+        return cards.map((el, i) => {
+          const nickname = el.querySelector("h6.Typography__StyledTypography-sc-r9ksfy-0")?.textContent.trim() || "익명";
+          const rating = el.querySelectorAll('svg[fill^="hsla"]').length || 5;
+          const review = el.querySelector("p.ReviewItem__CommentTypography-sc-1oxgj67-3")?.textContent.trim() || "";
+          const date = el.querySelector(".Typography__StyledTypography-sc-r9ksfy-0.jwoVKl")?.textContent.trim() || "";
+          const menu = el.querySelector(".Typography__StyledTypography-sc-r9ksfy-0.jlzcvj")?.textContent.trim() || "";
+          const image = el.querySelector(".ReviewItem__Image-sc-1oxgj67-1")?.src || null;
+
+          return {
+            platform: "요기요",
+            store: storeNames[i % storeNames.length],
+            nickname,
+            rating,
+            review,
+            date,
+            image,
+            menu
+          };
+        });
+      }, account.stores);
 
       console.log(`✅ 요기요 리뷰 수집 완료: ${reviews.length}건`);
       allReviews.push(...reviews);
