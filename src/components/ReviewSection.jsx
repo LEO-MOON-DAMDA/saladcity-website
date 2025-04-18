@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import SectionTitle from "./SectionTitle";
 import SubTitle from "./SubTitle";
 import BrandButton from "./BrandButton";
-import ReviewModal from "./ReviewModal"; // ✅ 모달 추가
+import ReviewModal from "./ReviewModal";
 import "./ReviewSection.css";
 
 export default function ReviewSection() {
   const [reviews, setReviews] = useState([]);
-  const [selectedReview, setSelectedReview] = useState(null); // ✅ 모달 상태
+  const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
     fetch("/data/reviews_baemin.json")
@@ -17,6 +17,13 @@ export default function ReviewSection() {
 
   const withImage = reviews.filter((r) => r.image);
   const withoutImage = reviews.filter((r) => !r.image);
+
+  const renderBadges = (r) => (
+    <div className="badge-container">
+      {r.platform && <span className="badge badge-platform">{r.platform}</span>}
+      {r.store && <span className="badge badge-store">{r.store}</span>}
+    </div>
+  );
 
   return (
     <section className="review-section">
@@ -31,7 +38,7 @@ export default function ReviewSection() {
             <div
               className="review-card large"
               key={`img-${idx}`}
-              onClick={() => setSelectedReview(r)} // ✅ 클릭 시 모달 열기
+              onClick={() => setSelectedReview(r)}
             >
               <div className="review-top">
                 <span className="nickname">{r.nickname || "익명"}</span>
@@ -44,11 +51,10 @@ export default function ReviewSection() {
                 "{r.review?.slice(0, 40) || "내용 없음"}"
               </p>
               {r.menu && <div className="menu-tag">{r.menu}</div>}
-              {r.image && (
-                <div className="review-image">
-                  <img src={r.image} alt="리뷰 이미지" />
-                </div>
-              )}
+              {renderBadges(r)}
+              <div className="review-image">
+                <img src={r.image} alt="리뷰 이미지" />
+              </div>
             </div>
           ))}
         </div>
@@ -60,7 +66,7 @@ export default function ReviewSection() {
             <div
               className="review-card small"
               key={`noimg-${idx}`}
-              onClick={() => setSelectedReview(r)} // ✅ 모달 열기
+              onClick={() => setSelectedReview(r)}
             >
               <div className="review-top">
                 <span className="nickname">{r.nickname || "익명"}</span>
@@ -73,6 +79,7 @@ export default function ReviewSection() {
                 "{r.review?.slice(0, 40) || "내용 없음"}"
               </p>
               {r.menu && <div className="menu-tag">{r.menu}</div>}
+              {renderBadges(r)}
             </div>
           ))}
         </div>
@@ -80,12 +87,4 @@ export default function ReviewSection() {
 
       <div className="review-button-wrap">
         <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
-      </div>
-
-      {/* ✅ 모달 렌더링 */}
-      {selectedReview && (
-        <ReviewModal review={selectedReview} onClose={() => setSelectedReview(null)} />
-      )}
-    </section>
-  );
-}
+      </
