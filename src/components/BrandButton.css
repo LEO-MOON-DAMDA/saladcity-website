@@ -11,10 +11,11 @@
   text-decoration: none;
   cursor: pointer;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
 }
 
 .brand-button:hover {
   background-color: #256528;
+  transform: translateY(-2px);
 }
