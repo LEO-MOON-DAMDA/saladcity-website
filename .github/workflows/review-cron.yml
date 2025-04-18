@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Install puppeteer  # ✅ 이 줄 추가!
+      - name: Install puppeteer
         run: npm install puppeteer
 
       - name: Run review generator
@@ -32,7 +32,8 @@ jobs:
         run: |
           git config user.name "salcy-bot"
           git config user.email "bot@saladcity.com"
-          git pull --rebase origin main
+          git reset --hard HEAD               # ✅ 추가: 이전 커밋 상태로 초기화
+          git pull --rebase origin main       # ✅ 최신 커밋 반영
           git add public/data/reviews_all.json
           git commit -m "🔄 자동 리뷰 업데이트" || echo "No changes to commit"
           git push https://x-access-token:${GH_TOKEN}@github.com/LEO-MOON-DAMDA/saladcity-website.git
