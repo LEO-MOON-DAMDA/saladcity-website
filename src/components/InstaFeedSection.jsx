@@ -13,7 +13,7 @@ const images = [
 
 export default function InstaFeedSection() {
   return (
-    <section className="insta-feed-section">
+    <section className="insta-feed-section" style={{ marginTop: "80px" }}>
       <SectionTitle style={{ textAlign: "center", marginBottom: "32px" }}>
         INSTAGRAM
       </SectionTitle>
