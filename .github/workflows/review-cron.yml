@@ -2,8 +2,8 @@ name: Daily Review Update
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # 매일 00:00 UTC (KST 기준 오전 9시)
-  workflow_dispatch:      # 수동 실행도 가능하게
+    - cron: "0 0 * * *"  # 매일 00:00 UTC = 한국 시간 오전 9시
+  workflow_dispatch:      # 수동 실행도 가능하게 설정
 
 jobs:
   update-reviews:
@@ -25,9 +25,11 @@ jobs:
         run: node save_reviews.js
 
       - name: Commit and push updated review data
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           git config user.name "salcy-bot"
           git config user.email "bot@saladcity.com"
           git add public/data/reviews_baemin.json
-          git commit -m "🔄 자동 리뷰 업데이트"
-          git push
+          git commit -m "🔄 자동 리뷰 업데이트" || echo "No changes to commit"
+          git push https://x-access-token:${GH_TOKEN}@github.com/LEO-MOON-DAMDA/saladcity-website.git
