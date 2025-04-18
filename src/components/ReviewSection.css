@@ -120,3 +120,28 @@
   margin-top: 24px;
   text-align: center;
 }
+
+/* ✅ 플랫폼/매장 뱃지 */
+.badge-container {
+  margin-top: 6px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.badge-platform {
+  background-color: #6abf69; /* 예: 배민 초록 */
+}
+
+.badge-store {
+  background-color: #8884d8; /* 예: 매장 식별용 보라 */
+}
