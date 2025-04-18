@@ -10,9 +10,20 @@ export default function ReviewSection() {
   const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
-    fetch(process.env.PUBLIC_URL + "/data/reviews_baemin.json")
-      .then((res) => res.json())
-      .then((data) => setReviews(data || []));
+    const files = [
+      "/data/reviews_yeoksam.json",
+      "/data/reviews_gangdong.json",
+      "/data/reviews_gudi.json",
+    ];
+
+    Promise.all(
+      files.map((file) =>
+        fetch(process.env.PUBLIC_URL + file).then((res) => res.json())
+      )
+    ).then((allData) => {
+      const merged = allData.flat();
+      setReviews(merged || []);
+    });
   }, []);
 
   const withImage = reviews.filter((r) => r.image);
@@ -80,7 +91,7 @@ export default function ReviewSection() {
               </p>
               {r.menu && <div className="menu-tag">{r.menu}</div>}
               {renderBadges(r)}
-            </div> // ✅ 이 줄 추가됨
+            </div>
           ))}
         </div>
       </div>
