@@ -22,7 +22,7 @@ jobs:
         run: npm install axios cheerio
 
       - name: Run review scraper
-        run: node baeminReviewScraperAll.js
+        run: node ./baeminReviewScraperAll.js
 
       - name: Commit and push review JSON
         run: |
