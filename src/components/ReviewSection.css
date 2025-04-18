@@ -20,21 +20,37 @@
   overflow-x: hidden;
 }
 
-.review-card {
-  width: 220px;
+/* 사진 있는 카드 */
+.review-card.large {
+  width: 240px;
   background: #ffffff;
   border-radius: 16px;
   padding: 16px;
   box-shadow: 0 6px 12px rgba(0,0,0,0.05);
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   transition: transform 0.2s ease;
 }
 
-.review-card:hover {
+.review-card.large:hover {
   transform: translateY(-4px);
+}
+
+/* 사진 없는 카드 */
+.review-card.small {
+  width: 200px;
+  background: #f8f8f8;
+  border-radius: 12px;
+  padding: 12px;
+  opacity: 0.85;
+  box-shadow: none;
+}
+
+/* 하단 작은 카드 전용 컨테이너 (간격 좁힘) */
+.review-slider-wrapper.without-image-wrapper {
+  margin-top: 12px;
+}
+
+.review-slider.without-image {
+  max-width: 900px;
 }
 
 .review-top {
@@ -93,6 +109,7 @@
   object-fit: cover;
   transition: all 0.3s ease;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin-top: 8px;
 }
 
 .review-image img:hover {
