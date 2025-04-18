@@ -29,7 +29,7 @@
   padding-left: 100%;
   animation: scroll-left 600s linear infinite;
   font-size: 34px;
-  font-weight: 100;
+  font-weight: 200; /* ✅ 기존보다 더 얇게 (100은 너무 얇음) */
   line-height: 1;
   color: #0f2417;
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
@@ -45,7 +45,7 @@
 
 .scrolling-gap {
   color: #88c057;
-  font-weight: 400;
+  font-weight: 200; /* ✅ 메인 텍스트와 동일한 얇은 굵기로 통일 */
 }
 
 @keyframes scroll-left {
