@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import SectionTitle from "./SectionTitle";
 import SubTitle from "./SubTitle";
 import BrandButton from "./BrandButton";
+import ReviewModal from "./ReviewModal"; // ✅ 모달 추가
 import "./ReviewSection.css";
 
 export default function ReviewSection() {
   const [reviews, setReviews] = useState([]);
+  const [selectedReview, setSelectedReview] = useState(null); // ✅ 모달 상태
 
   useEffect(() => {
     fetch("/data/reviews_baemin.json")
@@ -26,7 +28,11 @@ export default function ReviewSection() {
       <div className="review-slider-wrapper">
         <div className="review-slider">
           {withImage.map((r, idx) => (
-            <div className="review-card large" key={`img-${idx}`}>
+            <div
+              className="review-card large"
+              key={`img-${idx}`}
+              onClick={() => setSelectedReview(r)} // ✅ 클릭 시 모달 열기
+            >
               <div className="review-top">
                 <span className="nickname">{r.nickname || "익명"}</span>
                 <span className={`rating ${r.rating >= 4 ? "green" : "pink"}`}>
@@ -51,7 +57,11 @@ export default function ReviewSection() {
       <div className="review-slider-wrapper without-image-wrapper">
         <div className="review-slider without-image">
           {withoutImage.map((r, idx) => (
-            <div className="review-card small" key={`noimg-${idx}`}>
+            <div
+              className="review-card small"
+              key={`noimg-${idx}`}
+              onClick={() => setSelectedReview(r)} // ✅ 모달 열기
+            >
               <div className="review-top">
                 <span className="nickname">{r.nickname || "익명"}</span>
                 <span className={`rating ${r.rating >= 4 ? "green" : "pink"}`}>
@@ -71,6 +81,11 @@ export default function ReviewSection() {
       <div className="review-button-wrap">
         <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
       </div>
+
+      {/* ✅ 모달 렌더링 */}
+      {selectedReview && (
+        <ReviewModal review={selectedReview} onClose={() => setSelectedReview(null)} />
+      )}
     </section>
   );
 }
