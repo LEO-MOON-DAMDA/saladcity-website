@@ -7,81 +7,70 @@ require("dotenv").config();
 puppeteer.use(StealthPlugin());
 
 const outputPath = path.join(__dirname, "public/data/reviews_all.json");
-
-const COUPANG_STORE_IDS = ["801106", "720946", "722176"];
-const YOGIYO_STORE_IDS = ["1423483", "1379463", "1401179"];
-
-const BAEMIN_ACCOUNTS = [
-  { id: process.env.BAEMIN_ID_1, pw: process.env.BAEMIN_PW_1, store: "배민_역삼점" },
-  { id: process.env.BAEMIN_ID_2, pw: process.env.BAEMIN_PW_2, store: "배민_구디점" },
-  { id: process.env.BAEMIN_ID_3, pw: process.env.BAEMIN_PW_3, store: "배민_강동점" },
-];
+const BAEMIN_URL = "https://biz-member.baemin.com/login";
+const REVIEW_URL = "https://self.baemin.com/shops/14137597/reviews";
 
 (async () => {
-  const browser = await puppeteer.launch({
-    headless: "new",
-    args: ["--no-sandbox"]
-  });
+  const browser = await puppeteer.launch({ headless: "new", args: ["--no-sandbox"] });
+  const page = await browser.newPage();
+  await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122 Safari/537.36");
+  await page.setViewport({ width: 1280, height: 800 });
 
   const allReviews = [];
 
-  for (const account of BAEMIN_ACCOUNTS) {
-    const page = await browser.newPage();
-    await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122 Safari/537.36");
-    await page.setViewport({ width: 1280, height: 800 });
+  try {
+    console.log("🔐 배민 로그인 시도 중...");
+    await page.goto(BAEMIN_URL, { waitUntil: "domcontentloaded", timeout: 30000 });
+    await page.waitForSelector('input[name="id"]', { timeout: 15000 });
+    await page.type('input[name="id"]', process.env.BAEMIN_ID_1);
+    await page.type('input[name="pw"]', process.env.BAEMIN_PW_1);
+    await page.click("button[type=submit]");
+    await page.waitForNavigation({ waitUntil: "networkidle2", timeout: 30000 });
 
-    try {
-      console.log(`🔐 배민 로그인 중: ${account.store}`);
-      await page.goto("https://biz-member.baemin.com/login", { waitUntil: "domcontentloaded" });
-      await page.screenshot({ path: `baemin_login_${account.store}.png`, fullPage: true });
+    console.log("✅ 로그인 완료. 리뷰 페이지로 이동 중...");
+    await page.goto(REVIEW_URL, { waitUntil: "networkidle2", timeout: 30000 });
 
-      await page.waitForSelector('input[name="id"]', { timeout: 15000 });
-      await page.type('input[name="id"]', account.id);
-      await page.waitForSelector('input[name="pw"]', { timeout: 10000 });
-      await page.type('input[name="pw"]', account.pw);
-      await page.click("button[type=submit]");
-      await page.waitForNavigation({ waitUntil: "networkidle2" });
-
-      await page.goto("https://self.baemin.com/review", { waitUntil: "networkidle2" });
-
-      const reviews = await page.evaluate((storeName) => {
-        const cards = Array.from(document.querySelectorAll('div[data-atelier-component="Flex"].Flex_c_rfd6_bbdidai'));
-        return cards.map((el) => ({
-          platform: "배달의민족",
-          store: storeName,
-          nickname: el.querySelector('.Typography_b_rmnf_1bisyd49')?.textContent.trim() || "익명",
-          rating: el.querySelectorAll('svg[fill="#FFCC00"]').length || 5,
-          review: el.querySelector('.Typography_b_rmnf_1bisyd4a')?.textContent.trim() || "",
-          date: el.querySelector('.Typography_b_rmnf_1bisyd4q')?.textContent.trim() || "",
-          image: el.querySelector('img')?.src || null,
-          menu: null
-        }));
-      }, account.store);
-
-      console.log(`✅ ${account.store} 수집 리뷰: ${reviews.length}건`);
-      allReviews.push(...reviews);
-    } catch (err) {
-      console.error(`❌ 배민 ${account.store} 에러:`, err.message);
+    // 스크롤 다운 (최대 10회)
+    for (let i = 0; i < 10; i++) {
+      await page.evaluate(() => window.scrollBy(0, 1000));
+      await page.waitForTimeout(1500);
     }
 
-    await page.close();
+    console.log("📦 리뷰 데이터 수집 시작...");
+    const reviews = await page.evaluate(() => {
+      const cards = Array.from(document.querySelectorAll(".ReviewContent-module__Ksg4"));
+      return cards.map((el) => {
+        const getText = (selector) => el.querySelector(selector)?.textContent.trim() || "";
+        const getImage = () => el.querySelector("img[src^='https://bmreview.cdn.baemin.com']")?.src || null;
+        const getMenu = () => el.querySelector("ul.ReviewMenus-module__WRZI li span span span")?.textContent.trim() || "";
+        return {
+          platform: "배달의민족",
+          store: "배민_역삼점",
+          nickname: getText("span[class*='Typography_b_rmnf_'][class*='_1bisyd47']"),
+          rating: el.querySelectorAll("svg[fill='#FFC600']").length,
+          review: getText("span[class*='Typography_b_rmnf_'][class*='_1bisyd49']"),
+          date: getText("span[class*='Typography_b_rmnf_'][class*='_1bisyd4q']"),
+          image: getImage(),
+          menu: getMenu(),
+        };
+      });
+    });
+
+    console.log(`✅ 수집된 리뷰 수: ${reviews.length}`);
+    allReviews.push(...reviews);
+  } catch (err) {
+    console.error("❌ 수집 오류:", err.message);
   }
 
   await browser.close();
 
   const outputDir = path.dirname(outputPath);
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
-  }
+  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
 
   try {
-    console.log("총 수집 리뷰 수:", allReviews.length);
-    if (allReviews.length > 0) {
-      console.log("샘플 데이터:", JSON.stringify(allReviews[0], null, 2));
-    }
     fs.writeFileSync(outputPath, JSON.stringify(allReviews, null, 2), "utf-8");
-    console.log(`✅ 저장 성공: ${outputPath} (총 ${allReviews.length}건)`);
+    console.log(`📁 저장 완료: ${outputPath}`);
   } catch (err) {
-    console.error("❌ 저장 중 오류 발생:", err.message);
+    console.error("❌ 저장 실패:", err.message);
   }
 })();
