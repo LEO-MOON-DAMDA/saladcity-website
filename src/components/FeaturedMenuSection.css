@@ -1,7 +1,6 @@
-/* src/components/FeaturedMenuSection.css */
 .featured-menu-section {
-  padding: 40px 20px; /* 상단 여백을 40px로 설정 */
-  margin-top: 0px; /* 상단 여백을 40px로 설정 */
+  padding: 16px 20px 40px; /* ✅ 상단 여백만 줄임 (16px) */
+  margin-top: 0px;
   background: #f8fcf9;
   overflow: visible;
   position: relative;
@@ -11,7 +10,7 @@
 .featured-title {
   text-align: center;
   font-size: 28px;
-  margin-bottom: 12px; /* 제목 아래 여백 줄임 */
+  margin-bottom: 12px;
   color: #2c8f5b;
 }
 
@@ -33,7 +32,7 @@
 
 .featured-slider-scroll {
   display: flex;
-  gap: 12px; /* 카드 간 간격 줄임 */
+  gap: 12px;
   padding: 8px 0;
   overflow: visible;
   position: relative;
@@ -99,7 +98,7 @@
 }
 
 .featured-menu-cta {
-  margin-top: 20px; /* 프린트 버튼과 카드 사이 여백 조정 */
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -120,7 +119,7 @@
   }
 
   .featured-slider-scroll {
-    gap: 8px; /* 모바일 카드 간격 줄이기 */
-    padding: 8px 12px; /* 모바일 간격도 압축 */
+    gap: 8px;
+    padding: 8px 12px;
   }
 }
