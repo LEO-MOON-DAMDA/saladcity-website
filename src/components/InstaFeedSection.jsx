@@ -27,7 +27,7 @@ export default function InstaFeedSection() {
       </div>
 
       <div className="insta-button-wrap">
-        <BrandButton href="https://www.instagram.com/saladcity.official" target="_blank">
+        <BrandButton href="/social">
           인스타그램 더 보기 →
         </BrandButton>
       </div>
