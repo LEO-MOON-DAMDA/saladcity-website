@@ -1,5 +1,5 @@
 .featured-menu-section {
-  padding: 16px 20px 40px; /* ✅ 상단 여백만 줄임 (16px) */
+  padding: 8px 20px 40px; /* ✅ 상단 여백 줄임 (8px) */
   margin-top: 0px;
   background: #f8fcf9;
   overflow: visible;
@@ -32,6 +32,7 @@
 
 .featured-slider-scroll {
   display: flex;
+  justify-content: center; /* ✅ 카드 중앙 정렬 */
   gap: 12px;
   padding: 8px 0;
   overflow: visible;
@@ -121,5 +122,6 @@
   .featured-slider-scroll {
     gap: 8px;
     padding: 8px 12px;
+    justify-content: flex-start; /* ✅ 모바일에서는 기본처럼 왼쪽 정렬 유지 */
   }
 }
