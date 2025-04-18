@@ -1,0 +1,33 @@
+name: Daily Review Update
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # 매일 00:00 UTC (KST 기준 오전 9시)
+  workflow_dispatch:      # 수동 실행도 가능하게
+
+jobs:
+  update-reviews:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run review generator
+        run: node save_reviews.js
+
+      - name: Commit and push updated review data
+        run: |
+          git config user.name "salcy-bot"
+          git config user.email "bot@saladcity.com"
+          git add public/data/reviews_baemin.json
+          git commit -m "🔄 자동 리뷰 업데이트"
+          git push
