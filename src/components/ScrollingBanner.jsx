@@ -25,7 +25,9 @@ export default function ScrollingBanner() {
           {repeated.map((text, i) => (
             <span key={i} className="scrolling-segment">
               {text}
-              <span className="scrolling-gap">&nbsp;&nbsp;&nbsp{gap}&nbsp;;&nbsp;&nbsp;</span>
+              <span className="scrolling-gap">
+                &nbsp;&nbsp;&nbsp;{gap}&nbsp;&nbsp;&nbsp;
+              </span>
             </span>
           ))}
         </p>
