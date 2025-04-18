@@ -3,53 +3,67 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
 const path = require("path");
-require("dotenv").config(); // 환경변수 불러오기
+require("dotenv").config();
 
-// 환경변수 (GitHub Secrets or .env)
-const BAEMIN_ID = process.env.BAEMIN_ID;
-const BAEMIN_PW = process.env.BAEMIN_PW;
+const outputPath = path.join(__dirname, "public/data/reviews_all.json");
 
-const OUTPUT_PATH = path.join(__dirname, "public/data/reviews_baemin.json");
+const BAEMIN_ACCOUNTS = [
+  { id: process.env.BAEMIN_ID_1, pw: process.env.BAEMIN_PW_1, store: "역삼점" },
+  { id: process.env.BAEMIN_ID_2, pw: process.env.BAEMIN_PW_2, store: "서초점" },
+  { id: process.env.BAEMIN_ID_3, pw: process.env.BAEMIN_PW_3, store: "강남점" },
+  // 쿠팡, 요기요 계정은 나중에 이어붙임
+];
 
 (async () => {
   const browser = await puppeteer.launch({
     headless: true,
     args: ["--no-sandbox"]
   });
-  const page = await browser.newPage();
 
-  try {
-    // 1️⃣ 배민 로그인
-    await page.goto("https://biz-member.baemin.com/login", { waitUntil: "networkidle2" });
+  const allReviews = [];
 
-    await page.type('input[name="id"]', BAEMIN_ID);
-    await page.type('input[name="pw"]', BAEMIN_PW);
-    await page.click("button[type=submit]");
-    await page.waitForNavigation({ waitUntil: "networkidle2" });
+  for (const account of BAEMIN_ACCOUNTS) {
+    const page = await browser.newPage();
 
-    // 2️⃣ 리뷰 페이지로 이동 (가정)
-    await page.goto("https://self.baemin.com/review", { waitUntil: "networkidle2" });
+    try {
+      console.log(`🔐 로그인 중: ${account.store}`);
+      await page.goto("https://biz-member.baemin.com/login", { waitUntil: "networkidle2" });
 
-    // 3️⃣ DOM에서 리뷰 추출 (예시 구조, 실제 구조에 맞춰 조정 필요)
-    const reviews = await page.evaluate(() => {
-      const cards = Array.from(document.querySelectorAll(".review-card")); // 예시 셀렉터
-      return cards.map((card) => ({
-        nickname: card.querySelector(".nickname")?.textContent.trim(),
-        rating: parseInt(card.querySelector(".stars")?.dataset.score || "5"),
-        review: card.querySelector(".review-text")?.textContent.trim(),
-        date: card.querySelector(".date")?.textContent.trim(),
-        menu: card.querySelector(".menu-name")?.textContent.trim(),
-        image: card.querySelector("img")?.src || null,
-        platform: "배달의민족"
-      }));
-    });
+      await page.type('input[name="id"]', account.id);
+      await page.type('input[name="pw"]', account.pw);
+      await page.click("button[type=submit]");
+      await page.waitForNavigation({ waitUntil: "networkidle2" });
 
-    // 4️⃣ 저장
-    fs.writeFileSync(OUTPUT_PATH, JSON.stringify(reviews, null, 2), "utf-8");
-    console.log("✅ 리뷰 수집 완료! 저장된 수:", reviews.length);
-  } catch (err) {
-    console.error("❌ 리뷰 수집 중 에러 발생:", err);
-  } finally {
-    await browser.close();
+      // 리뷰 페이지 이동 (예시 URL, 실제 구조에 따라 조정 필요)
+      await page.goto("https://self.baemin.com/review", { waitUntil: "networkidle2" });
+
+      // 리뷰 파싱
+      const reviews = await page.evaluate((storeName) => {
+        const items = Array.from(document.querySelectorAll(".review-card")); // 예시
+        return items.map((el) => ({
+          platform: "배달의민족",
+          store: storeName,
+          nickname: el.querySelector(".nickname")?.textContent.trim(),
+          rating: parseInt(el.querySelector(".stars")?.dataset.score || "5"),
+          review: el.querySelector(".review-text")?.textContent.trim(),
+          date: el.querySelector(".date")?.textContent.trim(),
+          image: el.querySelector("img")?.src || null,
+          menu: el.querySelector(".menu-name")?.textContent.trim()
+        }));
+      }, account.store);
+
+      console.log(`✅ ${account.store} 리뷰 수집 완료: ${reviews.length}건`);
+      allReviews.push(...reviews);
+    } catch (err) {
+      console.error(`❌ ${account.store} 에러 발생:`, err.message);
+    }
+
+    await page.close();
   }
+
+  await browser.close();
+
+  // 저장
+  fs.writeFileSync(outputPath, JSON.stringify(allReviews, null, 2), "utf-8");
+  console.log(`📁 리뷰 저장 완료: ${outputPath}`);
 })();
