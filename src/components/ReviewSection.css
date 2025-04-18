@@ -1,31 +1,30 @@
 .review-section {
-  padding: 60px 24px;
+  padding: 40px 20px 60px;
   background-color: #fdfdf7;
-  text-align: center;
-  margin-top: 80px; /* ✅ 섹션 간 여백 정리 */
+  margin-top: 0px;
 }
 
-.section-title {
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 24px; /* ✅ 간격 살짝 줄임 */
-  color: #2f5130;
+.review-slider-wrapper {
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+  margin-top: 24px;
 }
 
 .review-slider {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 12px;
+  max-width: 1000px;
+  justify-content: center;
+  overflow-x: hidden;
 }
 
 .review-card {
-  flex: 0 0 220px;
+  width: 220px;
   background: #ffffff;
   border-radius: 16px;
   padding: 16px;
-  scroll-snap-align: start;
   box-shadow: 0 6px 12px rgba(0,0,0,0.05);
   text-align: left;
   display: flex;
@@ -98,4 +97,9 @@
 
 .review-image img:hover {
   filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
+}
+
+.review-button-wrap {
+  margin-top: 24px;
+  text-align: center;
 }
