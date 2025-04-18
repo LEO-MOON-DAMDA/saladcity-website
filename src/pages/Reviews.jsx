@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import reviews from "../data/reviews_baemin.json";
-import ReviewModal from "../components/ReviewModal";
 import ReviewStatsChart from "../components/ReviewStatsChart";
+import ReviewModal from "../components/ReviewModal";
 import "./Reviews.css";
 
 const fallbackTexts = [
@@ -31,12 +31,12 @@ export default function ReviewsPage() {
   const [selectedReview, setSelectedReview] = useState(null);
 
   const filteredReviews = reviews
-    .filter((review) => {
-      const content = review.content || review.review || review.text || "";
+    .filter((r) => {
+      const content = r.content || r.review || r.text || "";
       const keyword = (filter || "").toLowerCase();
       const matchesText = content.toLowerCase().includes(keyword);
-      const matchesImage = showWithImageOnly ? !!review.image : true;
-      const matchesRating = (review.rating || 0) >= minRating;
+      const matchesImage = showWithImageOnly ? !!r.image : true;
+      const matchesRating = (r.rating || 0) >= minRating;
       return matchesText && matchesImage && matchesRating;
     })
     .sort((a, b) => {
@@ -49,17 +49,18 @@ export default function ReviewsPage() {
       return 0;
     });
 
-  const averageRating =
-    reviews.reduce((sum, r) => sum + (r.rating || 0), 0) / reviews.length;
+  const averageRating = reviews.reduce((sum, r) => sum + (r.rating || 0), 0) / reviews.length;
 
   return (
     <div className="reviews-page">
+      <h1 className="reviews-title">SALCY CREW</h1>
+      <p className="reviews-subtitle">고객 리뷰 전체보기</p>
+
       <ReviewStatsChart reviews={reviews} />
 
       <div className="reviews-header">
-        <h1>고객 리뷰 모음</h1>
         <p>
-          총 리뷰 수: <strong>{reviews.length}</strong>개 &nbsp;|&nbsp; 평균 별점: {" "}
+          총 리뷰 수: <strong>{reviews.length}</strong>개 &nbsp;|&nbsp; 평균 별점:{" "}
           <strong>⭐ {averageRating.toFixed(1)}</strong>
         </p>
 
@@ -80,20 +81,14 @@ export default function ReviewsPage() {
             이미지 포함만
           </label>
 
-          <select
-            value={minRating}
-            onChange={(e) => setMinRating(Number(e.target.value))}
-          >
+          <select value={minRating} onChange={(e) => setMinRating(Number(e.target.value))}>
             <option value={0}>⭐ 모든 별점</option>
             <option value={5}>⭐ 5점만</option>
             <option value={4}>⭐ 4점 이상</option>
             <option value={3}>⭐ 3점 이상</option>
           </select>
 
-          <select
-            value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
-          >
+          <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
             <option value="latest">🕒 최신순</option>
             <option value="highest">⭐ 평점 높은순</option>
           </select>
@@ -110,11 +105,7 @@ export default function ReviewsPage() {
           const imageSrc = review.image || fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
 
           return (
-            <div
-              className="review-card"
-              key={idx}
-              onClick={() => setSelectedReview(review)}
-            >
+            <div className="review-card" key={idx} onClick={() => setSelectedReview(review)}>
               <div className="review-meta">
                 <strong>{review.nickname || "익명"}</strong>
                 <br />
@@ -124,9 +115,7 @@ export default function ReviewsPage() {
                 &nbsp;|&nbsp; {review.date || ""}
               </div>
 
-              <p className="review-content">
-                {content}
-              </p>
+              <p className="review-content">{content}</p>
 
               {imageSrc && (
                 <div className="review-image-wrapper">
@@ -142,10 +131,7 @@ export default function ReviewsPage() {
         <p className="no-results">조건에 맞는 리뷰가 없습니다.</p>
       )}
 
-      <ReviewModal
-        review={selectedReview}
-        onClose={() => setSelectedReview(null)}
-      />
+      <ReviewModal review={selectedReview} onClose={() => setSelectedReview(null)} />
     </div>
   );
 }
