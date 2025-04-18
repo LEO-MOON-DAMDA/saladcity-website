@@ -2,8 +2,8 @@ name: Daily Review Update
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # 매일 00:00 UTC = 한국 시간 오전 9시
-  workflow_dispatch:      # 수동 실행도 가능하게 설정
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
   update-reviews:
@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false  # ✅ 핵심 포인트!
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
