@@ -7,8 +7,8 @@ const images = [
   "/images/insta01.jpg",
   "/images/insta02.jpg",
   "/images/insta03.jpg",
-  "/images/insta05.jpg",
-  "/images/insta06.jpg"
+  "/images/insta04.jpg",
+  "/images/insta05.jpg"
 ];
 
 export default function InstaFeedSection() {
@@ -21,7 +21,7 @@ export default function InstaFeedSection() {
       <div className="insta-grid">
         {images.map((src, index) => (
           <div key={index} className="insta-item">
-            <img src={src} alt={`insta-${index}`} />
+            <img src={src} alt={`insta-${index + 1}`} />
           </div>
         ))}
       </div>
