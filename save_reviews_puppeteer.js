@@ -5,8 +5,8 @@ require("dotenv").config();
 
 const outputPath = path.join(__dirname, "public/data/reviews_all.json");
 
-// 쿠팡이츠 가게번호 화이트리스트
 const COUPANG_STORE_IDS = ["801106", "720946", "722176"];
+const YOGIYO_STORE_IDS = ["1423483", "1379463", "1401179"];
 
 const BAEMIN_ACCOUNTS = [
   { id: process.env.BAEMIN_ID_1, pw: process.env.BAEMIN_PW_1, store: "배민_역삼점" },
@@ -27,7 +27,7 @@ const YOGIYO_ACCOUNTS = [
   const browser = await puppeteer.launch({ headless: true, args: ["--no-sandbox"] });
   const allReviews = [];
 
-  // 배민
+  // ✅ 배민
   for (const account of BAEMIN_ACCOUNTS) {
     const page = await browser.newPage();
     try {
@@ -60,7 +60,7 @@ const YOGIYO_ACCOUNTS = [
     await page.close();
   }
 
-  // 쿠팡이츠
+  // ✅ 쿠팡이츠
   for (const account of COUPANG_ACCOUNTS) {
     const page = await browser.newPage();
     try {
@@ -71,11 +71,10 @@ const YOGIYO_ACCOUNTS = [
       await page.click("button[type=submit]");
       await page.waitForNavigation({ waitUntil: "networkidle2" });
 
-      // storeId 추출
       const storeUrl = page.url();
       const currentStoreId = storeUrl.split("/").pop();
       if (!COUPANG_STORE_IDS.includes(currentStoreId)) {
-        console.log(`⛔️ 필터링: ${currentStoreId} 매장은 대상이 아님`);
+        console.log(`⛔️ 쿠팡 필터링: ${currentStoreId} 매장은 대상이 아님`);
         await page.close();
         continue;
       }
@@ -103,7 +102,7 @@ const YOGIYO_ACCOUNTS = [
     await page.close();
   }
 
-  // 요기요
+  // ✅ 요기요
   for (const account of YOGIYO_ACCOUNTS) {
     const page = await browser.newPage();
     try {
@@ -113,7 +112,16 @@ const YOGIYO_ACCOUNTS = [
       await page.type('input[name="password"]', account.pw);
       await page.click("button[type=submit]");
       await page.waitForNavigation({ waitUntil: "networkidle2" });
-      await page.goto("https://ceo.yogiyo.co.kr/reviews", { waitUntil: "networkidle2" });
+
+      const storeUrl = page.url();
+      const currentStoreId = storeUrl.split("/")[2];
+      if (!YOGIYO_STORE_IDS.includes(currentStoreId)) {
+        console.log(`⛔️ 요기요 필터링: ${currentStoreId} 매장은 대상이 아님`);
+        await page.close();
+        continue;
+      }
+
+      await page.goto(`https://ceo.yogiyo.co.kr/vendor/${currentStoreId}/reviews`, { waitUntil: "networkidle2" });
 
       const reviews = await page.evaluate((storeNames) => {
         const cards = Array.from(document.querySelectorAll(".ReviewItem__Container-sc-1oxgj67-0"));
