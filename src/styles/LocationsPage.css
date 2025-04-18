@@ -1,19 +1,50 @@
+/* src/styles/LocationsPage.css */
+
 .locations-page {
   background-color: #fdfdf7;
   padding: 60px 16px 100px;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
+/* 상단 배너 + 영향력 이미지 */
+.locations-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.main-banner {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-bottom: 4px solid #2f855a;
+}
+
+.rank-image img {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* 매장 카드 그리드 */
 .locations-grid {
   display: grid;
   gap: 24px;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
+/* 카드 */
 .location-card {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.location-card:hover {
+  transform: translateY(-4px);
 }
 
 .location-card img {
@@ -24,4 +55,24 @@
 
 .location-info {
   padding: 16px;
+  text-align: left;
+}
+
+.location-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2f5130;
+  margin-bottom: 4px;
+}
+
+.location-info .type {
+  font-size: 13px;
+  color: #2f855a;
+  margin-bottom: 6px;
+}
+
+.location-info .address {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
 }
