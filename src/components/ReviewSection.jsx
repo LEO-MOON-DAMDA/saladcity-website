@@ -80,7 +80,7 @@ export default function ReviewSection() {
               </p>
               {r.menu && <div className="menu-tag">{r.menu}</div>}
               {renderBadges(r)}
-            </div>
+            </div> // ✅ 이 줄 추가됨
           ))}
         </div>
       </div>
