@@ -1,28 +1,25 @@
-/* SubscriptionSection.css */
-
 .subscription-section {
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch;
   justify-content: space-between;
+  align-items: center;
   background-color: #e8f5e9;
   padding: 40px 20px;
   gap: 20px;
-  margin-top: 0px;
-  flex-direction: row; /* 기본은 좌→우 */
 }
 
 .subscription-text {
   flex: 1;
   min-width: 280px;
+  max-width: 500px;
   text-align: right;
 }
 
 .subscription-text p {
   font-size: 16px;
   color: #222;
-  margin-bottom: 16px;  /* 본문 간격 줄이기 */
   line-height: 1.6;
+  margin-bottom: 16px;
 }
 
 .subscription-sub {
@@ -30,32 +27,32 @@
   color: #666;
   font-style: italic;
   display: block;
-  margin-top: 8px;  /* 서브텍스트 상단 여백 줄이기 */
+  margin-top: 8px;
 }
 
 .subscription-image {
   flex: 1;
   min-width: 280px;
-  height: auto;
   display: flex;
+  justify-content: center;
 }
 
 .subscription-image img {
   width: 100%;
   height: auto;
-  max-height: 400px;  /* 이미지 높이 줄이기 */
+  max-height: 280px;
   object-fit: cover;
   border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
-
 @media (max-width: 768px) {
+  .subscription-section {
+    flex-direction: column-reverse;
+  }
+
   .subscription-image img {
     max-height: none;
-    height: 100%;
-    min-height: 200px;  /* 모바일에서 이미지 최소 높이 줄이기 */
-  }
-   .subscription-section {
-    flex-direction: column-reverse; /* 모바일에선 아래로 내려가게 */
+    min-height: 200px;
   }
 }
