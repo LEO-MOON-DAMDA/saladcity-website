@@ -1,1 +1,142 @@
-[]
+[
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "워니",
+    "rating": 0,
+    "review": "사장님 댓글 등록하기",
+    "date": "그제",
+    "image": null,
+    "menu": "갈릭훈제오리 파스타샐러드 Pollo Vegetarian추천"
+  },
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "맛짱",
+    "rating": 0,
+    "review": "사장님 댓글 등록하기",
+    "date": "그제",
+    "image": null,
+    "menu": "[재주문율 1위] 수비드돈목살 파스타샐러드"
+  },
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "하린",
+    "rating": 0,
+    "review": "최고 맛있습니당",
+    "date": "그제",
+    "image": "https://bmreview.cdn.baemin.com/bmreview-qh2e/i/2025/4/16/01jrz172885w4jf9zh34x80fkw.jpg",
+    "menu": "갈릭훈제오리 샐러드 Pollo Vegetarian"
+  },
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "삼바추는채반",
+    "rating": 0,
+    "review": "짱!!!!",
+    "date": "그제",
+    "image": "https://bmreview.cdn.baemin.com/bmreview-qh2e/i/2025/4/16/01jrz136pbkhhy1djk148rc211.jpg",
+    "menu": "[재주문율 1위] 수비드돈목살 파스타샐러드"
+  },
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "yj",
+    "rating": 0,
+    "review": "사장님 댓글 등록하기",
+    "date": "그제",
+    "image": null,
+    "menu": "수비드치킨(닭가슴살) 포케 PolloVegetarian"
+  },
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "손혜정",
+    "rating": 0,
+    "review": "맛있어요. 양도 딱 좋아요.",
+    "date": "그제",
+    "image": null,
+    "menu": "수비드치킨(닭가슴살)샐러드 PolloVegetarian추천"
+  },
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "start",
+    "rating": 0,
+    "review": "사장님 댓글 등록하기",
+    "date": "그제",
+    "image": null,
+    "menu": "[재주문율 1위] 수비드돈목살 샐러드"
+  },
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "start",
+    "rating": 0,
+    "review": "사장님 댓글 등록하기",
+    "date": "그제",
+    "image": null,
+    "menu": "갈릭훈제오리 구운야채플래터 PolloVegetarian"
+  },
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "키요",
+    "rating": 0,
+    "review": "사장님 댓글 등록하기",
+    "date": "그제",
+    "image": null,
+    "menu": "머쉬룸 파스타샐러드 Vegan"
+  },
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "진진자라",
+    "rating": 0,
+    "review": "맛있어요!",
+    "date": "이번 주",
+    "image": null,
+    "menu": "[재주문율 1위] 수비드돈목살 샐러드"
+  },
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "스푼",
+    "rating": 0,
+    "review": "오늘 포케가 땡겨서 원래 먹던 곳 말고 후기가 많아 여기 주문해봤는데 넘 맛있네요!야채 싱싱하고 고기 안질기고 냄새없고 소스도 맛있었어요",
+    "date": "이번 주",
+    "image": "https://bmreview.cdn.baemin.com/bmreview-qh2e/i/2025/4/15/01jrwej62syvjb0rcddmwmktn6.jpg",
+    "menu": "[재주문율 1위] 수비드돈목살 샐러드추천"
+  },
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "michaela",
+    "rating": 0,
+    "review": "핫도그 넘 맛있고 샐러드파스타도 양 많고 고기도 실하고 아주 맛있어요!!!",
+    "date": "이번 주",
+    "image": "https://bmreview.cdn.baemin.com/bmreview-qh2e/i/2025/4/15/01jrwd2em7mdwsqzjsjmr11dkw.jpg",
+    "menu": "[재주문율 1위] 수비드돈목살 파스타샐러드"
+  },
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "반짝반짝",
+    "rating": 0,
+    "review": "사장님 댓글 등록하기",
+    "date": "이번 주",
+    "image": null,
+    "menu": "[재주문율 1위] 수비드돈목살 샐러드추천"
+  },
+  {
+    "platform": "배달의민족",
+    "store": "배민_역삼점",
+    "nickname": "반이애비",
+    "rating": 0,
+    "review": "사장님 댓글 등록하기",
+    "date": "이번 주",
+    "image": null,
+    "menu": "(한정수량) 샐시업타운 수비드돈목살파스타샐러드"
+  }
+]
