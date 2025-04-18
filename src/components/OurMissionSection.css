@@ -1,25 +1,25 @@
 .our-mission-section {
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch;
   justify-content: space-between;
+  align-items: center;
   background-color: #f0f8f3;
-  padding: 40px 20px;  /* 상하 여백 줄이기 */
-  gap: 20px;  /* 섹션 간 간격 줄이기 */
-  margin-top: 0px;  /* 상단 여백 줄이기 */
+  padding: 40px 20px;
+  gap: 20px;
 }
 
 .mission-text {
   flex: 1;
   min-width: 280px;
+  max-width: 500px;
+  text-align: left;
 }
 
 .mission-text p {
   font-size: 16px;
   color: #444;
-  margin-bottom: 16px;  /* 본문 간격 줄이기 */
-  max-width: 500px;
   line-height: 1.6;
+  margin-bottom: 16px;
 }
 
 .mission-sub {
@@ -27,29 +27,32 @@
   color: #888;
   font-style: italic;
   display: block;
-  margin-top: 8px;  /* 서브텍스트 상단 여백 줄이기 */
+  margin-top: 8px;
 }
 
 .mission-image {
   flex: 1;
   min-width: 280px;
-  height: auto;
   display: flex;
+  justify-content: center;
 }
 
 .mission-image img {
   width: 100%;
   height: auto;
-  max-height: 280px;  /* 이미지 높이 줄이기 */
+  max-height: 280px;
   object-fit: cover;
   border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 @media (max-width: 768px) {
+  .our-mission-section {
+    flex-direction: column;
+  }
+
   .mission-image img {
     max-height: none;
-    height: 100%;
-    min-height: 200px;  /* 모바일에서 이미지 최소 높이 줄이기 */
+    min-height: 200px;
   }
 }
