@@ -14,20 +14,14 @@ export default function ScrollingBanner() {
     "As Bold as Our GREENS"
   ];
 
-  const repeated = Array(20).fill(slogans).flat();
+  const fullText = slogans.join("   ·   ");
+  const repeated = Array(30).fill(fullText).join("      ");
 
   return (
     <div className="scrolling-banner-wrapper">
       <div className="scrolling-banner-line" />
       <div className="scrolling-banner-track">
-        <p className="scrolling-text">
-          {repeated.map((text, i) => (
-            <span key={i} className="scrolling-segment">
-              {text}
-              <span className="scrolling-gap">·</span>
-            </span>
-          ))}
-        </p>
+        <p className="scrolling-text">{repeated}</p>
       </div>
       <div className="scrolling-banner-line" />
     </div>
