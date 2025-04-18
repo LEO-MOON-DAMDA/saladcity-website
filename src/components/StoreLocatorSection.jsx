@@ -24,7 +24,7 @@ const storeData = [
 
 export default function StoreLocatorSection({ showMap = true }) {
   return (
-    <section className="store-locator-section" style={{ paddingTop: 0 }}>
+    <section className="store-locator-section" style={{ marginTop: "80px" }}>
       <SectionTitle style={{ textAlign: "center", marginBottom: "32px" }}>
         LOCATION
       </SectionTitle>
