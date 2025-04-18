@@ -14,23 +14,15 @@ export default function ScrollingBanner() {
     "As Bold as Our GREENS"
   ];
 
-  const gap = "·";
-  const repeated = Array(10).fill(slogans).flat();
+  // 슬로건을 하나의 문자열로 연결 + 점과 간격 포함
+  const fullText = slogans.join("   ·   ");
+  const repeated = Array(30).fill(fullText).join("      "); // 문장 덩어리 간 간격
 
   return (
     <div className="scrolling-banner-wrapper">
       <div className="scrolling-banner-line" />
       <div className="scrolling-banner-track">
-        <p className="scrolling-text">
-          {repeated.map((text, i) => (
-            <span key={i} className="scrolling-segment">
-              {text}
-              <span className="scrolling-gap">
-                &nbsp;&nbsp;&nbsp;{gap}&nbsp;&nbsp;&nbsp;
-              </span>
-            </span>
-          ))}
-        </p>
+        <p className="scrolling-text">{repeated}</p>
       </div>
       <div className="scrolling-banner-line" />
     </div>
