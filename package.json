@@ -7,7 +7,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "crawl": "node save_reviews_puppeteer.js"
+    "crawl": "node save_reviews_puppeteer.js",
+    "merge-reviews": "node scripts/generate_reviews_all.js"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
