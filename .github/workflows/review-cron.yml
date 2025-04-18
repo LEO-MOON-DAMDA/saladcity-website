@@ -24,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Run review generator
-        run: node save_reviews.js
+        run: node save_reviews_puppeteer.js  # ✅ 최신 자동 수집기 실행
 
       - name: Commit and push updated review data
         env:
@@ -32,7 +32,7 @@ jobs:
         run: |
           git config user.name "salcy-bot"
           git config user.email "bot@saladcity.com"
-          git pull --rebase origin main  # ✅ 최신 변경 사항 먼저 반영
-          git add public/data/reviews_baemin.json
+          git pull --rebase origin main  # ✅ 최신 커밋과 충돌 방지
+          git add public/data/reviews_all.json  # ✅ 저장 경로 변경 반영
           git commit -m "🔄 자동 리뷰 업데이트" || echo "No changes to commit"
           git push https://x-access-token:${GH_TOKEN}@github.com/LEO-MOON-DAMDA/saladcity-website.git
