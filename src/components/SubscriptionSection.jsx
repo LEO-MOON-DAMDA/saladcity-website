@@ -7,10 +7,7 @@ export default function SubscriptionSection() {
   return (
     <section className="subscription-section">
       <div className="subscription-image">
-        <img
-          src="/images/1salcymission04.jpg"
-          alt="정기식 이미지"
-        />
+        <img src="/images/1salcymission04.jpg" alt="정기식 이미지" />
       </div>
 
       <div className="subscription-text">
