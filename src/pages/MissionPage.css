@@ -1,0 +1,130 @@
+.mission-page {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #fdfdf7;
+  color: #333;
+}
+
+/* Hero Section */
+.mission-hero {
+  height: 60vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mission-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.mission-hero-text {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  z-index: 1;
+}
+
+.mission-hero-text h1 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.mission-hero-text p {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+/* Zigzag Section */
+.mission-zigzag-section {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mission-zigzag-item {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.mission-zigzag-image img {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 16px;
+}
+
+.mission-zigzag-text {
+  flex: 1;
+  min-width: 260px;
+}
+
+.mission-zigzag-text h3 {
+  font-size: 22px;
+  color: #2f855a;
+  margin-bottom: 12px;
+}
+
+.mission-zigzag-text p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* CTA Section */
+.mission-cta {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: #e6f5ec;
+  color: #2f5130;
+}
+
+.mission-cta h2 {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.mission-cta p {
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.mission-button {
+  background-color: #2f855a;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.mission-button:hover {
+  background-color: #276c48;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mission-hero {
+    height: 50vh;
+    padding: 0 16px;
+  }
+
+  .mission-hero-text h1 {
+    font-size: 24px;
+  }
+
+  .mission-zigzag-item {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .mission-cta {
+    padding: 60px 16px;
+  }
+}
