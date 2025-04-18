@@ -37,10 +37,20 @@
   transform: scaleX(1.3);
   white-space: nowrap;
 
-  /* 렌더링 품질 개선 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+.scrolling-segment {
+  display: inline-block;
+  margin-right: 64px; /* ✅ 문장 사이 여백 보정 */
+}
+
+.scrolling-gap {
+  margin: 0 24px;      /* ✅ 점 앞뒤 간격 */
+  color: #88c057;
+  font-weight: 100;
 }
 
 @keyframes scroll-left {
