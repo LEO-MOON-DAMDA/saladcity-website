@@ -4,14 +4,19 @@ const cheerio = require("cheerio");
 
 const targets = [
   {
-    name: "배민_구디점",
-    url: "https://s.baemin.com/JP000fpXdzqD1",
-    output: "./public/data/reviews_gudi.json",
+    name: "배민_역삼점",
+    url: "https://s.baemin.com/0E000fujTdfsA",
+    output: "./public/data/reviews_yeoksam.json",
   },
   {
     name: "배민_강동점",
-    url: "https://s.baemin.com/y4000gcrxunpI", // 정상 작동 시 사용
+    url: "https://s.baemin.com/y4000gcrxunpI",
     output: "./public/data/reviews_gangdong.json",
+  },
+  {
+    name: "배민_구디점",
+    url: "https://s.baemin.com/JP000fpXdzqD1",
+    output: "./public/data/reviews_gudi.json",
   },
 ];
 
@@ -42,7 +47,7 @@ const targets = [
       });
 
       fs.writeFileSync(store.output, JSON.stringify(reviews, null, 2), "utf-8");
-      console.log(`✅ ${store.name}: 리뷰 ${reviews.length}건 저장 완료`);
+      console.log(`✅ ${store.name} 리뷰 ${reviews.length}건 저장 완료`);
     } catch (err) {
       console.error(`❌ ${store.name} 실패:`, err.message);
     }
