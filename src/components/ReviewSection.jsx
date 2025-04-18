@@ -10,7 +10,7 @@ export default function ReviewSection() {
   const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
-    fetch("/data/reviews_baemin.json")
+    fetch(process.env.PUBLIC_URL + "/data/reviews_baemin.json")
       .then((res) => res.json())
       .then((data) => setReviews(data || []));
   }, []);
