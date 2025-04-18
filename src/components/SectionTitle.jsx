@@ -4,14 +4,20 @@ import "./SectionTitle.css";
 export default function SectionTitle({ children, style = {} }) {
   const combinedStyle = {
     marginTop: "96px",
-    marginBottom: "16px", // 본문과 간격 확장
+    marginBottom: "16px",
     paddingLeft: style.textAlign === "left" ? "12px" : "0px",
     paddingRight: style.textAlign === "right" ? "12px" : "0px",
-    fontSize: "36px", // 기존보다 조금 더 큼
-    fontWeight: "500",
+    fontSize: "32px", // 브랜드 표준 크기 확정
+    fontWeight: "600",
+    lineHeight: "1.4",
     color: "#2f855a",
+    textAlign: style.textAlign || "center", // 기본 중앙정렬
     ...style,
   };
 
-  return <h2 className="section-title" style={combinedStyle}>{children}</h2>;
+  return (
+    <h2 className="section-title" style={combinedStyle}>
+      {children}
+    </h2>
+  );
 }
