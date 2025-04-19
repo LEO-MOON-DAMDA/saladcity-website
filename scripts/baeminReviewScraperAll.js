@@ -34,12 +34,18 @@ const targets = [
 
   for (const store of targets) {
     try {
-      await page.goto(store.url, { waitUntil: "networkidle2" });
-      await page.waitForSelector(".ReviewContent-module__Ksg4", { timeout: 10000 });
+      await page.goto(store.url, {
+        waitUntil: "networkidle2",
+        timeout: 60000, // ⏱️ 타임아웃 60초로 늘림
+      });
+      await page.waitForSelector(".ReviewContent-module__Ksg4", {
+        timeout: 10000,
+      });
 
-      const reviews = await page.$$eval(".ReviewContent-module__Ksg4", (elements) =>
-        elements.map((el) => {
-          return {
+      const reviews = await page.$$eval(
+        ".ReviewContent-module__Ksg4",
+        (elements) =>
+          elements.map((el) => ({
             platform: "배달의민족",
             store: store.name,
             nickname: "익명",
@@ -48,8 +54,7 @@ const targets = [
             date: "",
             image: null,
             menu: "",
-          };
-        })
+          }))
       );
 
       fs.writeFileSync(store.output, JSON.stringify(reviews, null, 2), "utf-8");
