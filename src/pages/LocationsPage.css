@@ -66,20 +66,15 @@
 .location-info h3 {
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   color: #2f5130;
 }
 
-.location-info .type {
-  font-size: 13px;
-  color: #2f855a;
-  margin-bottom: 6px;
-}
-
-.location-info .address {
+.location-info p {
   font-size: 14px;
   color: #555;
   line-height: 1.4;
+  margin: 4px 0;
 }
 
 /* Responsive */
