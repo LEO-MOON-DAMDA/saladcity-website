@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { loadGoodsFromSupabase } from "../utils/loadGoodsFromSupabase";
+import { loadStripe } from "@stripe/stripe-js";
 import "./MarketProductSlider.css";
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 export default function MarketProductSlider() {
   const [goods, setGoods] = useState([]);
@@ -16,6 +19,22 @@ export default function MarketProductSlider() {
     };
     fetchGoods();
   }, []);
+
+  const handleCheckout = async (priceId) => {
+    const stripe = await stripePromise;
+    const res = await fetch("/api/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ priceId }),
+    });
+
+    const session = await res.json();
+    if (session?.id) {
+      await stripe.redirectToCheckout({ sessionId: session.id });
+    } else {
+      alert("결제 세션 생성 실패");
+    }
+  };
 
   return (
     <section className="market-slider-section">
@@ -37,6 +56,17 @@ export default function MarketProductSlider() {
                   ? `₩${Number(product.price).toLocaleString()}`
                   : "문의"}
               </p>
+
+              {product.stripePriceId ? (
+                <button
+                  className="buy-button"
+                  onClick={() => handleCheckout(product.stripePriceId)}
+                >
+                  {product.isSubscription ? "구독하기" : "구매하기"}
+                </button>
+              ) : (
+                <p style={{ color: "#999", fontSize: "13px" }}>결제 준비 중</p>
+              )}
             </div>
           </div>
         ))}
