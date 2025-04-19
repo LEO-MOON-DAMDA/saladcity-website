@@ -8,13 +8,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repository with credentials
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # ✅ GitHub 인증 정보 유지
 
-      - name: Set up GitHub credentials
+      - name: Set up GitHub identity
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
+          git config --global user.name "salcy-bot"
+          git config --global user.email "bot@saladcity.com"
 
       - name: Install Node.js
         uses: actions/setup-node@v3
@@ -28,9 +30,8 @@ jobs:
         run: node scripts/baeminReviewScraperAll.js
 
       - name: Commit and Push JSON files
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git pull --rebase origin main
           git add public/data/reviews_yeoksam.json public/data/reviews_gangdong.json public/data/reviews_gudi.json
-          git commit -m "🤖 리뷰 자동 업데이트" || echo "Nothing to commit"
-          git push origin main --force
+          git commit -m "🤖 리뷰 자동 업데이트" || echo "No changes to commit"
+          git push
