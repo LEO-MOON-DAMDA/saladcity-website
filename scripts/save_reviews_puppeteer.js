@@ -1,4 +1,4 @@
-// ✅ scripts/save_reviews_puppeteer.js - GitHub Actions 대응: 로그인 안정성 보완
+// ✅ scripts/save_reviews_puppeteer.js - GitHub Actions 대응: headless 모드 복구
 
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
@@ -13,7 +13,7 @@ const BAEMIN_URL = "https://biz-member.baemin.com/login";
 const REVIEW_URL = "https://self.baemin.com/shops/14137597/reviews";
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: false, args: ["--no-sandbox"] });
+  const browser = await puppeteer.launch({ headless: "new", args: ["--no-sandbox", "--disable-gpu"] });
   const page = await browser.newPage();
   await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122 Safari/537.36");
   await page.setViewport({ width: 1280, height: 800 });
