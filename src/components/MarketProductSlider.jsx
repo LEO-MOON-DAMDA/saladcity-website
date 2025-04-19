@@ -3,7 +3,8 @@ import { loadGoodsFromSupabase } from "../utils/loadGoodsFromSupabase";
 import { loadStripe } from "@stripe/stripe-js";
 import "./MarketProductSlider.css";
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+// ✅ CRA 환경에 맞게 수정된 Stripe 키 참조
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 export default function MarketProductSlider() {
   const [goods, setGoods] = useState([]);
