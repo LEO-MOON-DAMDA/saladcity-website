@@ -1,0 +1,48 @@
+.cancel-page {
+  background: #fdfdf7;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 16px;
+}
+
+.cancel-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px 32px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  max-width: 480px;
+}
+
+.cancel-box h1 {
+  font-size: 26px;
+  color: #2f5130;
+  margin-bottom: 16px;
+  font-family: 'Playfair Display', serif;
+}
+
+.cancel-box p {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 10px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.retry-button {
+  margin-top: 24px;
+  padding: 12px 24px;
+  font-size: 15px;
+  background-color: #2f5130;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.retry-button:hover {
+  background-color: #1e3820;
+}
