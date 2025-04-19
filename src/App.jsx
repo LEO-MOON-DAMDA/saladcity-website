@@ -8,6 +8,7 @@ import SocialPage from "./pages/SocialPage";
 import LocationsPage from "./pages/LocationsPage";
 import MarketPage from "./pages/MarketPage"; // 마켓 페이지
 import SuccessPage from "./pages/SuccessPage"; // ✅ 결제 성공 페이지
+import CancelPage from "./pages/CancelPage";   // ✅ 결제 취소 페이지
 
 export default function App() {
   return (
@@ -23,8 +24,9 @@ export default function App() {
           <Route path="/the-market" element={<MarketPage />} />
         </Route>
 
-        {/* ✅ 결제 성공 시 Layout 없이 단독 페이지로 연결 */}
+        {/* ✅ 결제 완료 / 취소 → 단독 감성 페이지 */}
         <Route path="/success" element={<SuccessPage />} />
+        <Route path="/cancel" element={<CancelPage />} />
       </Routes>
     </Router>
   );
