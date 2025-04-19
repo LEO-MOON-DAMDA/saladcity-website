@@ -1,0 +1,74 @@
+.market-hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  background-color: #fdfdf7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.market-hero-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.market-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.75);
+}
+
+.market-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #fdfdf7 10%, transparent 90%);
+  z-index: 1;
+}
+
+.market-hero-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #2f5130;
+  max-width: 680px;
+  padding: 24px;
+}
+
+.market-hero-text h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  font-family: 'Playfair Display', serif;
+}
+
+.market-hero-text p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.market-hero-button {
+  font-size: 16px;
+  padding: 12px 28px;
+  background-color: transparent;
+  border: 2px solid #2f5130;
+  color: #2f5130;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.market-hero-button:hover {
+  background-color: #2f5130;
+  color: #fff;
+}
