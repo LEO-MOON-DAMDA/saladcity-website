@@ -1,47 +1,30 @@
+// ✅ SocialPage.jsx - 실제 인스타그램 피드 자동 표시 (iframe)
+
 import React from "react";
 
 export default function SocialPage() {
   return (
-    <div
-      style={{
-        padding: "60px 16px",
-        textAlign: "center",
-        backgroundColor: "#fdfdf7",
-      }}
-    >
-      <h1
+    <section className="insta-section" style={{ padding: "60px 16px", textAlign: "center", backgroundColor: "#fdfdf7" }}>
+      <h2 className="insta-title" style={{ fontSize: "28px", marginBottom: "24px", color: "#2f5130" }}>
+        @saladcitykorea
+      </h2>
+      <iframe
+        src="https://widgets.sociablekit.com/instagram-feed/iframe/25547853"
+        width="100%"
+        height="800"
         style={{
-          fontSize: "28px",
-          marginBottom: "24px",
-          color: "#2f5130",
+          border: "none",
+          overflow: "hidden",
+          borderRadius: "16px",
+          boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)",
+          maxWidth: "1000px",
+          margin: "0 auto",
+          display: "block"
         }}
-      >
-        INSTAGRAM
-      </h1>
-      <a
-        href="https://www.instagram.com/saladcitykorea"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          display: "inline-block",
-          fontSize: "20px",
-          color: "#2f5130",
-          textDecoration: "none",
-          border: "2px solid #2f5130",
-          padding: "12px 24px",
-          borderRadius: "12px",
-          fontWeight: "600",
-          transition: "all 0.3s ease",
-        }}
-        onMouseOver={(e) =>
-          (e.currentTarget.style.backgroundColor = "#2f5130")
-        }
-        onMouseOut={(e) =>
-          (e.currentTarget.style.backgroundColor = "transparent")
-        }
-      >
-        👉 @saladcitykorea 인스타그램 바로가기
-      </a>
-    </div>
+        allowFullScreen
+        loading="lazy"
+        title="Instagram Feed"
+      ></iframe>
+    </section>
   );
 }
