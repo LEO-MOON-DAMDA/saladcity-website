@@ -1,8 +1,9 @@
 import Stripe from "stripe";
+import { createClient } from "@supabase/supabase-js";
 
 export const config = {
   api: {
-    bodyParser: false, // Stripe raw body 필요
+    bodyParser: false, // Stripe는 raw body 필요
   },
 };
 
@@ -10,12 +11,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2023-10-16",
 });
 
+const supabase = createClient(
+  process.env.VITE_SUPABASE_URL,
+  process.env.VITE_SUPABASE_ANON_KEY
+);
+
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).end("Method Not Allowed");
-  }
+  if (req.method !== "POST") return res.status(405).end("Method Not Allowed");
 
   const buffers = await new Promise((resolve, reject) => {
     const chunks = [];
@@ -25,20 +29,39 @@ export default async function handler(req, res) {
   });
 
   let event;
-
   try {
-    event = stripe.webhooks.constructEvent(buffers, req.headers["stripe-signature"], endpointSecret);
+    event = stripe.webhooks.constructEvent(
+      buffers,
+      req.headers["stripe-signature"],
+      endpointSecret
+    );
   } catch (err) {
-    console.error("❌ Webhook signature verification failed:", err.message);
+    console.error("❌ Webhook 서명 검증 실패:", err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  // 🔍 결제 완료 이벤트 수신
+  // ✅ 결제 완료 이벤트 처리
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
-    console.log("✅ 결제 완료!", session);
 
-    // 👉 여기에 Supabase 저장, Slack 전송, 이메일 발송 등 연결 가능
+    const email = session?.customer_details?.email || null;
+    const amount = session?.amount_total ? session.amount_total / 100 : 0;
+    const currency = session?.currency || "krw";
+
+    const { error } = await supabase.from("payments").insert([
+      {
+        email,
+        amount,
+        currency,
+      },
+    ]);
+
+    if (error) {
+      console.error("❌ Supabase 저장 실패:", error.message);
+      return res.status(500).json({ error: "Supabase 저장 실패" });
+    }
+
+    console.log("✅ Supabase 저장 완료:", { email, amount, currency });
   }
 
   res.status(200).json({ received: true });
