@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "POST 요청만 허용됩니다." });
   }
 
-  const { priceId, isSubscription } = req.body;
+  const { priceId } = req.body;
 
   if (!priceId) {
     return res.status(400).json({ error: "Price ID가 없습니다." });
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
   try {
     const session = await stripe.checkout.sessions.create({
-      mode: isSubscription ? "subscription" : "payment",
+      mode: "subscription", // 또는 "payment" ← 상품 유형에 따라
       line_items: [
         {
           price: priceId,
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ id: session.id });
   } catch (error) {
-    console.error("❌ Stripe 세션 생성 오류:", error);
+    console.error("❌ Stripe 결제 생성 오류:", error);
     return res.status(500).json({ error: "Stripe 결제 세션 생성 실패" });
   }
 }
