@@ -5,7 +5,9 @@ import MenuPage from "./components/MenuPage";
 import ReviewsPage from "./pages/Reviews";
 import MissionPage from "./pages/MissionPage";
 import SocialPage from "./pages/SocialPage";
-import LocationsPage from "./pages/LocationsPage"; // ✅ 추가
+import LocationsPage from "./pages/LocationsPage";
+import MarketPage from "./pages/MarketPage"; // 마켓 페이지
+import SuccessPage from "./pages/SuccessPage"; // ✅ 결제 성공 페이지
 
 export default function App() {
   return (
@@ -17,8 +19,12 @@ export default function App() {
           <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/mission" element={<MissionPage />} />
           <Route path="/social" element={<SocialPage />} />
-          <Route path="/locations" element={<LocationsPage />} /> {/* ✅ 연결 */}
+          <Route path="/locations" element={<LocationsPage />} />
+          <Route path="/the-market" element={<MarketPage />} />
         </Route>
+
+        {/* ✅ 결제 성공 시 Layout 없이 단독 페이지로 연결 */}
+        <Route path="/success" element={<SuccessPage />} />
       </Routes>
     </Router>
   );
