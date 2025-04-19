@@ -17,8 +17,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
 
-      - name: Run scraper
-        run: node scripts/save_reviews_puppeteer.js
+      - name: Run scraper with xvfb
+        run: xvfb-run -a node scripts/save_reviews_puppeteer.js
