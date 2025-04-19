@@ -1,0 +1,63 @@
+.goods-upload-form {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 32px;
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.goods-upload-form h2 {
+  font-size: 22px;
+  color: #2f5130;
+  margin-bottom: 24px;
+}
+
+.goods-upload-form label {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #444;
+}
+
+.goods-upload-form input,
+.goods-upload-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 4px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fdfdfd;
+}
+
+.goods-upload-form textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+.goods-upload-form .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.goods-upload-form button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #2f5130;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.goods-upload-form button:hover {
+  background-color: #1e3820;
+}
