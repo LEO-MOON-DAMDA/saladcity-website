@@ -1,0 +1,88 @@
+.market-slider-section {
+  background: #ffffff;
+  padding: 60px 16px;
+  text-align: center;
+}
+
+.market-slider-title {
+  font-size: 28px;
+  color: #2f5130;
+  margin-bottom: 40px;
+}
+
+.market-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 12px;
+  scroll-padding: 0 16px;
+}
+
+.market-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.market-slide-card {
+  flex: 0 0 auto;
+  width: 260px;
+  scroll-snap-align: center;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fdfdf7;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+
+.market-slide-card:hover {
+  transform: translateY(-6px);
+}
+
+.product-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.product-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #2f5130;
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.product-info {
+  padding: 16px;
+  text-align: left;
+}
+
+.product-info h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #2f5130;
+  font-weight: 700;
+}
+
+.product-desc {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-size: 14px;
+  color: #888;
+  font-weight: 600;
+}
