@@ -1,12 +1,10 @@
-name: Review Crawler
+name: review-crawler
 
 on:
-  schedule:
-    - cron: '0 19 * * *'
   workflow_dispatch:
 
 jobs:
-  crawl-reviews:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,16 +17,15 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install axios cheerio
+        run: npm install
 
       - name: Run review scraper
-        run: node ./baeminReviewScraperAll.js
+        run: node scripts/baeminReviewScraperAll.js
 
-      - name: Commit and push review JSON
+      - name: Commit and push reviews.json
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git pull --rebase
-          git add public/data/reviews_*.json
-          git commit -m "자동 수집된 리뷰 반영" || echo "No changes to commit"
-          git push
+          git add public/data/reviews.json
+          git commit -m "🤖 리뷰 자동 업데이트"
+          git push origin main --force
