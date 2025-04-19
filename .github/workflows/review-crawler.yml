@@ -11,7 +11,7 @@ jobs:
       - name: Checkout repository with credentials
         uses: actions/checkout@v3
         with:
-          persist-credentials: true  # ✅ GitHub 인증 정보 유지
+          persist-credentials: true
 
       - name: Set up GitHub identity
         run: |
@@ -31,7 +31,6 @@ jobs:
 
       - name: Commit and Push JSON files
         run: |
-          git pull --rebase origin main
           git add public/data/reviews_yeoksam.json public/data/reviews_gangdong.json public/data/reviews_gudi.json
           git commit -m "🤖 리뷰 자동 업데이트" || echo "No changes to commit"
           git push
