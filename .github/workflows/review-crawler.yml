@@ -29,10 +29,10 @@ jobs:
       - name: Run Baemin Review Scraper
         run: node scripts/baeminReviewScraperAll.js
 
-      - name: Commit and Push JSON
+      - name: Commit and Push JSON files
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git add public/data/reviews.json
+          git add public/data/reviews_yeoksam.json public/data/reviews_gangdong.json public/data/reviews_gudi.json
           git commit -m "🤖 리뷰 자동 업데이트" || echo "Nothing to commit"
           git push origin main --force
