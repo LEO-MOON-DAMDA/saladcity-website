@@ -1,4 +1,4 @@
-// ✅ scripts/save_reviews_puppeteer.js - GitHub Actions 대응: headless 모드 복구
+// ✅ scripts/save_reviews_puppeteer.js - GitHub Actions: HTML 렌더링 확인 추가
 
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
@@ -23,6 +23,11 @@ const REVIEW_URL = "https://self.baemin.com/shops/14137597/reviews";
   try {
     console.log("🔐 배민 로그인 시도 중...");
     await page.goto(BAEMIN_URL, { waitUntil: "domcontentloaded", timeout: 60000 });
+
+    // 🔍 로그인 페이지 HTML 출력
+    const html = await page.content();
+    console.log("🧾 로그인 페이지 HTML:", html);
+
     await page.waitForSelector('input[name="id"]', { timeout: 30000 });
     await page.type('input[name="id"]', process.env.BAEMIN_ID_1);
     await page.type('input[placeholder="비밀번호"]', process.env.BAEMIN_PW_1);
