@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { saveToSupabase } from "../utils/saveToSupabase";
 import "./GoodsUploadForm.css";
 
-export default function GoodsUploadForm({ onSubmit }) {
+export default function GoodsUploadForm() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -20,19 +21,23 @@ export default function GoodsUploadForm({ onSubmit }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (onSubmit) onSubmit(formData);
-    alert("상품이 등록되었습니다.");
-    setFormData({
-      name: "",
-      description: "",
-      price: "",
-      mainImage: "",
-      isSubscription: false,
-      stripeProductId: "",
-      stripePriceId: "",
-    });
+    try {
+      await saveToSupabase(formData);
+      alert("✅ Supabase에 상품이 등록되었습니다.");
+      setFormData({
+        name: "",
+        description: "",
+        price: "",
+        mainImage: "",
+        isSubscription: false,
+        stripeProductId: "",
+        stripePriceId: "",
+      });
+    } catch (err) {
+      alert("❌ 등록 실패: " + err.message);
+    }
   };
 
   return (
