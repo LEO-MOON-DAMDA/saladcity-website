@@ -21,7 +21,7 @@ export default function App() {
           <Route path="/mission" element={<MissionPage />} />
           <Route path="/social" element={<SocialPage />} />
           <Route path="/locations" element={<LocationsPage />} />
-          <Route path="/the-market" element={<MarketPage />} />
+          <Route path="/market" element={<MarketPage />} /> {/* ✅ 여기 수정됨 */}
         </Route>
 
         {/* ✅ 결제 완료 / 취소 → 단독 감성 페이지 */}
