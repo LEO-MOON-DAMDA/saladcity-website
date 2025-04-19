@@ -1,6 +1,8 @@
 const fs = require("fs");
-const axios = require("axios");
-const cheerio = require("cheerio");
+const puppeteer = require("puppeteer-extra");
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+
+puppeteer.use(StealthPlugin());
 
 const targets = [
   {
@@ -21,30 +23,34 @@ const targets = [
 ];
 
 (async () => {
+  const browser = await puppeteer.launch({
+    headless: "new",
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
+  const page = await browser.newPage();
+  await page.setUserAgent(
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+  );
+
   for (const store of targets) {
     try {
-      const { data: html } = await axios.get(store.url, {
-        headers: { "User-Agent": "Mozilla/5.0" },
-      });
+      await page.goto(store.url, { waitUntil: "networkidle2" });
+      await page.waitForSelector(".ReviewContent-module__Ksg4", { timeout: 10000 });
 
-      const $ = cheerio.load(html);
-      const reviews = [];
-
-      $(".ReviewContent-module__Ksg4").each((i, el) => {
-        const text = $(el).text().trim();
-        if (text) {
-          reviews.push({
+      const reviews = await page.$$eval(".ReviewContent-module__Ksg4", (elements) =>
+        elements.map((el) => {
+          return {
             platform: "배달의민족",
             store: store.name,
             nickname: "익명",
             rating: 5,
-            review: text,
+            review: el.textContent.trim(),
             date: "",
             image: null,
             menu: "",
-          });
-        }
-      });
+          };
+        })
+      );
 
       fs.writeFileSync(store.output, JSON.stringify(reviews, null, 2), "utf-8");
       console.log(`✅ ${store.name} 리뷰 ${reviews.length}건 저장 완료`);
@@ -52,5 +58,6 @@ const targets = [
       console.error(`❌ ${store.name} 실패:`, err.message);
     }
   }
-})();
 
+  await browser.close();
+})();
