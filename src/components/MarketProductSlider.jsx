@@ -20,19 +20,19 @@ export default function MarketProductSlider() {
     fetchGoods();
   }, []);
 
-  const handleCheckout = async (priceId) => {
+  const handleCheckout = async (priceId, isSubscription) => {
     const stripe = await stripePromise;
     const res = await fetch("/api/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ priceId }),
+      body: JSON.stringify({ priceId, isSubscription }),
     });
 
     const session = await res.json();
     if (session?.id) {
       await stripe.redirectToCheckout({ sessionId: session.id });
     } else {
-      alert("결제 세션 생성 실패");
+      alert("❌ 결제 세션 생성 실패");
     }
   };
 
@@ -60,7 +60,9 @@ export default function MarketProductSlider() {
               {product.stripePriceId ? (
                 <button
                   className="buy-button"
-                  onClick={() => handleCheckout(product.stripePriceId)}
+                  onClick={() =>
+                    handleCheckout(product.stripePriceId, product.isSubscription)
+                  }
                 >
                   {product.isSubscription ? "구독하기" : "구매하기"}
                 </button>
