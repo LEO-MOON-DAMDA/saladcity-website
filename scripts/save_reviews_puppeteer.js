@@ -1,4 +1,4 @@
-// ✅ scripts/save_reviews_puppeteer.js - Git 환경 기준, 로그인 후 배민 리뷰 수집기
+// ✅ scripts/save_reviews_puppeteer.js - GitHub Actions 대응: 로그인 안정성 보완
 
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
@@ -13,7 +13,7 @@ const BAEMIN_URL = "https://biz-member.baemin.com/login";
 const REVIEW_URL = "https://self.baemin.com/shops/14137597/reviews";
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: "new", args: ["--no-sandbox"] });
+  const browser = await puppeteer.launch({ headless: false, args: ["--no-sandbox"] });
   const page = await browser.newPage();
   await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122 Safari/537.36");
   await page.setViewport({ width: 1280, height: 800 });
@@ -22,15 +22,15 @@ const REVIEW_URL = "https://self.baemin.com/shops/14137597/reviews";
 
   try {
     console.log("🔐 배민 로그인 시도 중...");
-    await page.goto(BAEMIN_URL, { waitUntil: "domcontentloaded", timeout: 30000 });
-    await page.waitForSelector('input[name="id"]', { timeout: 15000 });
+    await page.goto(BAEMIN_URL, { waitUntil: "domcontentloaded", timeout: 60000 });
+    await page.waitForSelector('input[name="id"]', { timeout: 30000 });
     await page.type('input[name="id"]', process.env.BAEMIN_ID_1);
     await page.type('input[placeholder="비밀번호"]', process.env.BAEMIN_PW_1);
     await page.click("button[type=submit]");
-    await page.waitForNavigation({ waitUntil: "networkidle2", timeout: 30000 });
+    await page.waitForNavigation({ waitUntil: "networkidle2", timeout: 60000 });
 
     console.log("✅ 로그인 완료. 리뷰 페이지로 이동 중...");
-    await page.goto(REVIEW_URL, { waitUntil: "networkidle2", timeout: 30000 });
+    await page.goto(REVIEW_URL, { waitUntil: "networkidle2", timeout: 60000 });
 
     for (let i = 0; i < 10; i++) {
       await page.evaluate(() => window.scrollBy(0, 1000));
