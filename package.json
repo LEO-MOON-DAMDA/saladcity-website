@@ -22,7 +22,7 @@
     "react-scripts": "5.0.1",
     "recharts": "2.8.0",
     "framer-motion": "^10.16.1",
-    "@stripe/stripe-js": "^1.65.0"              ← ✅ Stripe 추가
+    "@stripe/stripe-js": "^1.65.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
