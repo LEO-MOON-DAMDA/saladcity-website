@@ -1,4 +1,3 @@
-// scripts/save_reviews_puppeteer.js
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const fs = require("fs");
@@ -8,7 +7,7 @@ require("dotenv").config();
 puppeteer.use(StealthPlugin());
 
 const outputPath = path.join(__dirname, "../public/data/reviews_baemin.json");
-const debugPath = path.join(__dirname, "../debug/review_debug.png");
+const screenshotPath = path.join(__dirname, "../debug/review_debug.png");
 
 const cookies = [
   {
@@ -50,29 +49,15 @@ const cookies = [
     await page.setCookie(...cookies);
     await page.goto(REVIEW_URL, { waitUntil: "domcontentloaded", timeout: 60000 });
 
-    // ✅ 사람처럼 보이게 행동 추가
-    await page.mouse.move(100, 100, { steps: 10 });
-    await page.mouse.move(300, 400, { steps: 15 });
-    await page.keyboard.press("Tab");
-    await page.keyboard.type("검색", { delay: 100 });
-    await page.waitForTimeout(1000);
+    console.log("📍 현재 페이지 URL:", await page.url());
 
-    // ✅ 스크롤 반복 (사람처럼)
-    for (let i = 0; i < 10; i++) {
-      await page.evaluate(() => window.scrollBy(0, 400));
-      await page.waitForTimeout(1000);
-    }
+    // 스크롤 유도 + 대기
+    await page.evaluate(() => window.scrollBy(0, 2000));
     console.log("📜 강제 스크롤 완료, 3초 대기...");
     await page.waitForTimeout(3000);
 
     console.log("⏳ 리뷰 카드 로딩 대기 중...");
     await page.waitForSelector("div.ReviewContent-module__Ksg4", { timeout: 30000 });
-
-    const html = await page.content();
-    console.log("🧾 HTML 로딩 성공. 길이:", html.length);
-
-    const currentUrl = await page.url();
-    console.log("📍 현재 페이지 URL:", currentUrl);
 
     const reviews = await page.evaluate(() => {
       const cards = Array.from(document.querySelectorAll("div.ReviewContent-module__Ksg4"));
@@ -99,14 +84,13 @@ const cookies = [
     console.log(`✅ 수집된 리뷰 수: ${reviews.length}`);
     allReviews.push(...reviews);
   } catch (err) {
-    console.error("❌ 수집 오류:", err.message);
-  }
-
-  try {
-    await page.screenshot({ path: debugPath });
-    console.log("🖼️ 디버그용 스크린샷 저장 완료");
-  } catch (e) {
-    console.error("⚠️ 스크린샷 저장 실패:", e.message);
+    console.error("❌ 리뷰 카드 로딩 실패:", err.message);
+    try {
+      await page.screenshot({ path: screenshotPath });
+      console.log("📸 스크린샷 저장 완료:", screenshotPath);
+    } catch (screenshotErr) {
+      console.error("⚠️ 스크린샷 저장 실패:", screenshotErr.message);
+    }
   }
 
   await browser.close();
