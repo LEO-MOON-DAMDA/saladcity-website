@@ -1,4 +1,4 @@
-// ✅ scripts/save_reviews_puppeteer.js - GitHub Actions: HTML 렌더링 확인 추가
+// ✅ headless: false 실험용 완성형 save_reviews_puppeteer.js
 
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
@@ -14,7 +14,7 @@ const REVIEW_URL = "https://self.baemin.com/shops/14137597/reviews";
 
 (async () => {
   const browser = await puppeteer.launch({
-    headless: "new", // ✅ GitHub Actions 기본용
+    headless: false,
     args: ["--no-sandbox", "--disable-gpu"]
   });
 
@@ -23,17 +23,23 @@ const REVIEW_URL = "https://self.baemin.com/shops/14137597/reviews";
   await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122 Safari/537.36");
   await page.setViewport({ width: 1280, height: 800 });
 
+  await page.setExtraHTTPHeaders({
+    "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
+    "DNT": "1",
+    "Upgrade-Insecure-Requests": "1"
+  });
+
+  await page.emulateTimezone("Asia/Seoul");
+
   const allReviews = [];
 
   try {
     console.log("🔐 배민 로그인 시도 중...");
     await page.goto(BAEMIN_URL, { waitUntil: "domcontentloaded", timeout: 60000 });
 
-    // HTML 내용 확인용 로그
     const html = await page.content();
     console.log("🧾 로그인 페이지 HTML:", html);
 
-    // 로그인 입력
     await page.waitForSelector('input[name="id"]', { timeout: 30000 });
     await page.type('input[name="id"]', process.env.BAEMIN_ID_1);
     await page.type('input[placeholder="비밀번호"]', process.env.BAEMIN_PW_1);
@@ -43,7 +49,6 @@ const REVIEW_URL = "https://self.baemin.com/shops/14137597/reviews";
     console.log("✅ 로그인 완료. 리뷰 페이지로 이동 중...");
     await page.goto(REVIEW_URL, { waitUntil: "networkidle2", timeout: 60000 });
 
-    // 스크롤 다운 (10회)
     for (let i = 0; i < 10; i++) {
       await page.evaluate(() => window.scrollBy(0, 1000));
       await new Promise(resolve => setTimeout(resolve, 1000));
