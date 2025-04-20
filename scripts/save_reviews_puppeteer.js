@@ -1,3 +1,5 @@
+// ✅ scripts/save_reviews_puppeteer.js - 쿠키 삽입 + 로그인 성공 여부 출력 + 리뷰 DOM 존재 여부 확인 추가
+
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const fs = require("fs");
@@ -7,86 +9,60 @@ require("dotenv").config();
 puppeteer.use(StealthPlugin());
 
 const outputPath = path.join(__dirname, "../public/data/reviews_baemin.json");
-
-const COOKIES = [
-  {
-    name: "__cf_bm",
-    value: "Sm56JjgqMeeuidhOhwtugw2gThHQqtOSXC3bcuMkg6o-1745124121-1.0.1.1-gk15fsNgTn8rjuCU_jKXRx2iRyNoHQQNGZg7NpJ47x428L9mnjX1yneLDdcG586fGtluj3BZWUlE7okI9wBaoD_l6JtTfsd8jFCoPg38wW7PCy8LWskFzU_Sgmmiqm1Z",
-    domain: ".baemin.com",
-    path: "/",
-    httpOnly: true,
-    secure: true,
-    sameSite: "None"
-  },
-  {
-    name: "_ceo_v2_gk_sid",
-    value: "c15ec431-f066-4153-bd68-e80b8848c286",
-    domain: ".baemin.com",
-    path: "/",
-    httpOnly: false,
-    secure: true,
-    sameSite: "None"
-  },
-  {
-    name: "BM_UUID",
-    value: "21d8a59f-fd4b-44d7-aaa6-c19c333b14fe",
-    domain: ".baemin.com",
-    path: "/",
-    secure: true,
-    sameSite: "None"
-  }
-  // 필요한 만큼 쿠키 추가 가능
-];
+const BAEMIN_URL = "https://biz-member.baemin.com/login";
+const REVIEW_URL = "https://self.baemin.com/shops/14137597/reviews";
 
 (async () => {
-  const browser = await puppeteer.launch({
-    headless: false,
-    args: ["--no-sandbox", "--disable-gpu"]
-  });
-
+  const browser = await puppeteer.launch({ headless: false, args: ["--no-sandbox", "--disable-gpu"] });
   const page = await browser.newPage();
 
-  await page.setUserAgent(
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122 Safari/537.36"
+  // ✅ 클라우드플레어 우회용 쿠키 삽입
+  await page.setCookie(
+    {
+      name: "__cf_bm",
+      value: "Sm56JjgqMeeuidhOhwtugw2gThHQqtOSXC3bcuMkg6o-1745124121-1.0.1.1-gk15fsNgTn8rjuCU_jKXRx2iRyNoHQQNGZg7NpJ47x428L9mnjX1yneLDdcG586fGtluj3BZWUlE7okI9wBaoD_l6JtTfsd8jFCoPg38wW7PCy8LWskFzU_Sgmmiqm1Z",
+      domain: ".baemin.com",
+      path: "/",
+      httpOnly: true,
+      secure: true,
+      sameSite: "None"
+    }
   );
-  await page.setViewport({ width: 1280, height: 800 });
-  await page.setExtraHTTPHeaders({
-    "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"
-  });
-
-  // 쿠키 직접 삽입
-  await page.setCookie(...COOKIES);
 
   const allReviews = [];
 
   try {
     console.log("🔐 쿠키 삽입 후 로그인 페이지 진입...");
-    await page.goto("https://self.baemin.com/bridge", {
-      waitUntil: "networkidle2",
-      timeout: 60000
-    });
+    await page.goto(BAEMIN_URL, { waitUntil: "domcontentloaded", timeout: 60000 });
 
-    await page.waitForTimeout(3000);
-
+    // ✅ HTML 로딩 상태 로그 출력
     const html = await page.content();
     console.log("🧾 HTML 로딩 성공. 길이:", html.length);
 
-    // 리뷰 페이지 이동
-    await page.goto("https://self.baemin.com/shops/14137597/reviews", {
-      waitUntil: "networkidle2",
-      timeout: 60000
-    });
+    // ✅ 로그인 입력 및 이동
+    await page.waitForSelector('input[name="id"]', { timeout: 10000 });
+    await page.type('input[name="id"]', process.env.BAEMIN_ID_1);
+    await page.type('input[placeholder="비밀번호"]', process.env.BAEMIN_PW_1);
+    await page.click("button[type=submit]");
+    await page.waitForNavigation({ waitUntil: "networkidle2", timeout: 60000 });
 
-    // 스크롤 다운
+    console.log("✅ 로그인 성공 후 리뷰 페이지 이동 중...");
+    await page.goto(REVIEW_URL, { waitUntil: "networkidle2", timeout: 60000 });
+
+    // ✅ 리뷰 DOM 존재 여부 확인용
+    const reviewExist = await page.$("div.ReviewContent-module__Ksg4") !== null;
+    console.log("🔍 리뷰 DOM 존재 여부:", reviewExist);
+
     for (let i = 0; i < 10; i++) {
       await page.evaluate(() => window.scrollBy(0, 1000));
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
 
+    console.log("📦 리뷰 데이터 수집 시작...");
     const reviews = await page.evaluate(() => {
       const cards = Array.from(document.querySelectorAll("div.ReviewContent-module__Ksg4"));
-      return cards.map(el => {
-        const getText = sel => el.querySelector(sel)?.textContent.trim() || "";
+      return cards.map((el) => {
+        const getText = (sel) => el.querySelector(sel)?.textContent.trim() || "";
         const getImage = () => el.querySelector("img")?.src || null;
         const getMenu = () => {
           const elMenu = el.querySelector("ul.ReviewMenus-module__WRZI li span span span");
@@ -100,7 +76,7 @@ const COOKIES = [
           review: getText("span[class*='Typography_b_rmnf_'][class*='1bisyd49']"),
           date: getText("span[class*='Typography_b_rmnf_'][class*='1bisyd4q']"),
           image: getImage(),
-          menu: getMenu()
+          menu: getMenu(),
         };
       });
     });
