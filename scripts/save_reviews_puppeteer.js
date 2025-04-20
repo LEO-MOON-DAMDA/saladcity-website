@@ -54,9 +54,19 @@ const cookies = [
     const currentUrl = await page.url();
     console.log("📍 현재 페이지 URL:", currentUrl);
 
+    // 스크롤 다운 시도 (LazyLoad 대응)
+    for (let i = 0; i < 5; i++) {
+      await page.evaluate(() => window.scrollBy(0, 1000));
+      await new Promise((r) => setTimeout(r, 1000));
+    }
+    console.log("📜 스크롤 다운 완료");
+
+    // 리뷰 셀렉터 로딩 대기
+    await page.waitForSelector("div.ReviewContent-module__Ksg4", { timeout: 10000 });
+    console.log("✅ 리뷰 카드 DOM 로딩 완료");
+
     const reviews = await page.evaluate(() => {
       const cards = Array.from(document.querySelectorAll("div.ReviewContent-module__Ksg4"));
-      console.log("🧩 리뷰 카드 수:", cards.length); // 이 부분은 페이지 내에서 콘솔이므로 실제 로그는 나오지 않음
       return cards.map((el) => {
         const getText = (sel) => el.querySelector(sel)?.textContent.trim() || "";
         const getImage = () => el.querySelector("img")?.src || null;
