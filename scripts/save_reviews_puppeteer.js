@@ -9,21 +9,51 @@ puppeteer.use(StealthPlugin());
 const outputPath = path.join(__dirname, "../public/data/reviews_baemin.json");
 const screenshotPath = path.join(__dirname, "../debug/review_debug.png");
 
+// ✅ 디버그 폴더 생성 보장
+if (!fs.existsSync(path.dirname(screenshotPath))) {
+  fs.mkdirSync(path.dirname(screenshotPath), { recursive: true });
+}
+
 const cookies = [
-  { name: "__cf_bm", value: "Sm56JjgqMeeuidhOhwtugw2gThHQqtOSXC3bcuMkg6o-1745124121-1.0.1.1-gk15fsNgTn8rjuCU_jKXRx2iRyNoHQQNGZg7NpJ47x428L9mnjX1yneLDdcG586fGtluj3BZWUlE7okI9wBaoD_l6JtTfsd8jFCoPg38wW7PCy8LWskFzU_Sgmmiqm1Z", domain: ".baemin.com", path: "/" },
-  { name: "_ceo_v2_gk_sid", value: "c15ec431-f066-4153-bd68-e80b8848c286", domain: ".baemin.com", path: "/" },
-  { name: "_fwb", value: "192ipAd9xWDhAdl6mq3qzR4.1729998584512", domain: "self.baemin.com", path: "/" },
-  { name: "bm_session_id", value: "no_bsgid/1745124100892", domain: "self.baemin.com", path: "/" },
+  {
+    name: "__cf_bm",
+    value: process.env.COOKIE_CF_BM,
+    domain: ".baemin.com",
+    path: "/",
+  },
+  {
+    name: "_ceo_v2_gk_sid",
+    value: process.env.COOKIE_CEO_V2,
+    domain: ".baemin.com",
+    path: "/",
+  },
+  {
+    name: "_fwb",
+    value: process.env.COOKIE_FWB,
+    domain: "self.baemin.com",
+    path: "/",
+  },
+  {
+    name: "bm_session_id",
+    value: process.env.COOKIE_BM_SESSION,
+    domain: "self.baemin.com",
+    path: "/",
+  },
 ];
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: "new", args: ["--no-sandbox"] });
+  const browser = await puppeteer.launch({
+    headless: "new",
+    args: ["--no-sandbox"],
+  });
   const page = await browser.newPage();
-  await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122 Safari/537.36");
+  await page.setUserAgent(
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122 Safari/537.36"
+  );
 
-  await fs.promises.mkdir(path.dirname(screenshotPath), { recursive: true });
+  const REVIEW_URL =
+    "https://self.baemin.com/shops/14137597/reviews";
   const allReviews = [];
-  const REVIEW_URL = "https://self.baemin.com/shops/14137597/reviews";
 
   try {
     console.log("🔐 쿠키 삽입 후 로그인 페이지 진입...");
@@ -36,24 +66,29 @@ const cookies = [
     const currentUrl = await page.url();
     console.log("📍 현재 페이지 URL:", currentUrl);
 
-    // 강제 스크롤 시도
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    console.log("📜 강제 스크롤 완료, 3초 대기...");
-    await page.waitForTimeout(3000);
-
-    // 렌더링 테스트 로그
-    const debugText = await page.evaluate(() => {
-      const maybe = document.querySelector("div[class*=ReviewContent]");
-      return maybe?.textContent?.slice(0, 100) || "❌ 리뷰 관련 요소 미표시";
+    // 📜 강제 스크롤 다운 시도
+    await page.evaluate(() => {
+      window.scrollBy(0, window.innerHeight * 3);
     });
-    console.log("🔍 확인된 텍스트 요소:", debugText);
+    console.log("📜 강제 스크롤 완료, 3초 대기...");
+    await new Promise((res) => setTimeout(res, 3000));
 
-    // 스크린샷 저장
-    await page.screenshot({ path: screenshotPath });
-    console.log("📸 스크린샷 저장 완료:", screenshotPath);
+    // 🔍 간단한 텍스트 요소 검사
+    const sampleText = await page.evaluate(() => {
+      const el = document.querySelector("body");
+      return el ? el.innerText.slice(0, 100) : "본문 없음";
+    });
+    console.log("🔍 확인된 텍스트 요소:", sampleText.includes("리뷰") ? "✅ 포함됨" : "❌ 리뷰 관련 요소 미표시");
 
-    // 리뷰 파싱 시도
-    await page.waitForSelector("div.ReviewContent-module__Ksg4", { timeout: 30000 });
+    // 📸 스크린샷 저장 시도
+    try {
+      await page.screenshot({ path: screenshotPath, fullPage: true });
+      console.log("📸 스크린샷 저장 완료:", screenshotPath);
+    } catch (screenshotErr) {
+      console.error("⚠️ 스크린샷 저장 실패:", screenshotErr.message);
+    }
+
+    // 📥 리뷰 수집
     const reviews = await page.evaluate(() => {
       const cards = Array.from(document.querySelectorAll("div.ReviewContent-module__Ksg4"));
       return cards.map((el) => {
