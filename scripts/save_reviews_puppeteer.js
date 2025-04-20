@@ -6,8 +6,8 @@ require("dotenv").config();
 
 puppeteer.use(StealthPlugin());
 
-const screenshotPath = path.join(__dirname, "../debug/review_debug.png");
 const outputPath = path.join(__dirname, "../public/data/reviews_baemin.json");
+const screenshotPath = path.join(__dirname, "../debug/review_debug.png");
 
 const cookies = [
   {
@@ -39,49 +39,31 @@ const cookies = [
 (async () => {
   const browser = await puppeteer.launch({ headless: "new", args: ["--no-sandbox"] });
   const page = await browser.newPage();
-
   await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122 Safari/537.36");
 
-  // 👉 네트워크 요청 로깅
-  page.on("request", (req) => {
-    const url = req.url();
-    if (!url.includes("baemin.com")) return;
-    console.log("➡️ 요청:", req.method(), url);
-  });
+  const allReviews = [];
+  const REVIEW_URL = "https://self.baemin.com/shops/14137597/reviews";
 
   try {
     console.log("🔐 쿠키 삽입 후 로그인 페이지 진입...");
     await page.setCookie(...cookies);
-    await page.goto("https://self.baemin.com/shops/14137597/reviews", {
-      waitUntil: "domcontentloaded",
-      timeout: 60000,
-    });
+    await page.goto(REVIEW_URL, { waitUntil: "domcontentloaded", timeout: 60000 });
+
+    await page.waitForNetworkIdle({ timeout: 10000 });
 
     const html = await page.content();
     console.log("🧾 HTML 로딩 성공. 길이:", html.length);
 
-    const url = await page.url();
-    console.log("📍 현재 페이지 URL:", url);
+    const currentUrl = await page.url();
+    console.log("📍 현재 페이지 URL:", currentUrl);
 
-    // 👉 강제 스크롤 + 대기
-    await page.evaluate(() => window.scrollBy(0, window.innerHeight * 10));
+    await page.evaluate(() => window.scrollBy(0, window.innerHeight * 3));
     console.log("📜 강제 스크롤 완료, 3초 대기...");
     await page.waitForTimeout(3000);
 
-    // 👉 리뷰 카드 로딩 대기
     console.log("⏳ 리뷰 카드 로딩 대기 중...");
     await page.waitForSelector("div.ReviewContent-module__Ksg4", { timeout: 30000 });
 
-    // 👉 스크린샷 저장 (디렉토리 자동 생성 포함)
-    try {
-      fs.mkdirSync(path.dirname(screenshotPath), { recursive: true });
-      await page.screenshot({ path: screenshotPath });
-      console.log(`📸 스크린샷 저장 완료: ${screenshotPath}`);
-    } catch (e) {
-      console.error("⚠️ 스크린샷 저장 실패:", e.message);
-    }
-
-    // 👉 리뷰 데이터 수집
     const reviews = await page.evaluate(() => {
       const cards = Array.from(document.querySelectorAll("div.ReviewContent-module__Ksg4"));
       return cards.map((el) => {
@@ -105,12 +87,25 @@ const cookies = [
     });
 
     console.log(`✅ 수집된 리뷰 수: ${reviews.length}`);
-
-    fs.writeFileSync(outputPath, JSON.stringify(reviews, null, 2), "utf-8");
-    console.log(`📁 저장 완료: ${outputPath}`);
+    allReviews.push(...reviews);
   } catch (err) {
     console.error("❌ 리뷰 카드 로딩 실패:", err.message);
-  } finally {
-    await browser.close();
+  }
+
+  try {
+    fs.mkdirSync(path.dirname(screenshotPath), { recursive: true });
+    await page.screenshot({ path: screenshotPath });
+    console.log(`📸 스크린샷 저장 완료: ${screenshotPath}`);
+  } catch (err) {
+    console.error("⚠️ 스크린샷 저장 실패:", err.message);
+  }
+
+  await browser.close();
+
+  try {
+    fs.writeFileSync(outputPath, JSON.stringify(allReviews, null, 2), "utf-8");
+    console.log(`📁 저장 완료: ${outputPath}`);
+  } catch (err) {
+    console.error("❌ 저장 실패:", err.message);
   }
 })();
