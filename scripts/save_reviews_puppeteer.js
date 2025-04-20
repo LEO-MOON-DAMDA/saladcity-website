@@ -1,3 +1,4 @@
+// scripts/save_reviews_puppeteer.js
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const fs = require("fs");
@@ -6,117 +7,71 @@ require("dotenv").config();
 
 puppeteer.use(StealthPlugin());
 
-const outputPath = path.join(__dirname, "../public/data/reviews_baemin.json");
-const screenshotPath = path.join(__dirname, "../debug/review_debug.png");
-
-// 쿠키 정의 (value는 반드시 문자열로 강제)
-const cookies = [
-  {
-    name: "__cf_bm",
-    value: String("Sm56JjgqMeeuidh..."), // 문자열화
-    domain: ".baemin.com",
-    path: "/",
-  },
-  {
-    name: "_fwb",
-    value: String("192ipAd9xWDhAdl6..."),
-    domain: "self.baemin.com",
-    path: "/",
-  },
-  {
-    name: "bm_session_id",
-    value: String("no_bsgid/1745124100892"),
-    domain: "self.baemin.com",
-    path: "/",
-  },
-  // 필요 시 추가 쿠키 계속...
-];
-
 (async () => {
-  // 디버그 폴더 생성
-  fs.mkdirSync(path.dirname(screenshotPath), { recursive: true });
+  const outputPath = path.join(__dirname, "../public/data/reviews_baemin.json");
+  const debugDir = path.join(__dirname, "../debug");
+  const screenshotPath = path.join(debugDir, "review_debug.png");
 
-  const browser = await puppeteer.launch({
-    headless: "new",
-    args: ["--no-sandbox"],
-  });
+  // 💡 디버그 디렉토리 생성
+  if (!fs.existsSync(debugDir)) {
+    fs.mkdirSync(debugDir, { recursive: true });
+    console.log("📁 /debug 디렉토리 생성 완료");
+  }
 
+  const browser = await puppeteer.launch({ headless: "new", args: ["--no-sandbox"] });
   const page = await browser.newPage();
-  await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122 Safari/537.36");
 
-  const allReviews = [];
-  const REVIEW_URL = "https://self.baemin.com/shops/14137597/reviews";
+  await page.setUserAgent(
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122 Safari/537.36"
+  );
+
+  // 🔐 쿠키 삽입
+  try {
+    const cookies = JSON.parse(process.env.BAEMIN_COOKIES || "[]").filter(
+      (c) => typeof c.value === "string"
+    );
+    await page.setCookie(...cookies);
+    console.log("🔐 쿠키 삽입 후 로그인 페이지 진입...");
+  } catch (err) {
+    console.error("❌ 쿠키 파싱 오류:", err.message);
+  }
 
   try {
-    console.log("🔐 쿠키 삽입 후 로그인 페이지 진입...");
-    await page.setCookie(...cookies);
+    const REVIEW_URL = "https://self.baemin.com/shops/14137597/reviews";
     await page.goto(REVIEW_URL, { waitUntil: "domcontentloaded", timeout: 60000 });
-
     const html = await page.content();
     console.log("🧾 HTML 로딩 성공. 길이:", html.length);
 
     const currentUrl = await page.url();
     console.log("📍 현재 페이지 URL:", currentUrl);
 
-    // 강제 스크롤
+    // 📜 스크롤 다운 시도
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    console.log("📜 강제 스크롤 완료, 3초 대기...");
     await page.waitForTimeout(3000);
+    console.log("📜 강제 스크롤 완료, 3초 대기...");
 
-    // 텍스트 로그 출력
-    const textSample = await page.evaluate(() => {
-      const el = document.querySelector("body");
-      return el ? el.innerText.slice(0, 200) : "텍스트 없음";
+    // 🔍 리뷰 영역 외 텍스트 요소 추출
+    const bodyText = await page.evaluate(() => {
+      return document.body.innerText.trim().slice(0, 300);
     });
-    console.log("🔍 확인된 텍스트 요소:", textSample.includes("리뷰") ? "리뷰 관련 텍스트 감지됨" : "❌ 리뷰 관련 요소 미표시");
+    console.log("🔍 확인된 텍스트 요소:", bodyText.length ? bodyText : "❌ 텍스트 미표시");
 
-    // 리뷰 수집 시도
-    try {
-      await page.waitForSelector("div.ReviewContent-module__Ksg4", { timeout: 30000 });
-      const reviews = await page.evaluate(() => {
-        const cards = Array.from(document.querySelectorAll("div.ReviewContent-module__Ksg4"));
-        return cards.map((el) => {
-          const getText = (sel) => el.querySelector(sel)?.textContent.trim() || "";
-          const getImage = () => el.querySelector("img")?.src || null;
-          const getMenu = () => {
-            const elMenu = el.querySelector("ul.ReviewMenus-module__WRZI li span span span");
-            return elMenu?.textContent.trim() || "";
-          };
-          return {
-            platform: "배달의민족",
-            store: "배민_역삼점",
-            nickname: getText("span[class*='Typography_b_rmnf_'][class*='1bisyd47']"),
-            rating: el.querySelectorAll("svg[fill='#FFC600']").length,
-            review: getText("span[class*='Typography_b_rmnf_'][class*='1bisyd49']"),
-            date: getText("span[class*='Typography_b_rmnf_'][class*='1bisyd4q']"),
-            image: getImage(),
-            menu: getMenu(),
-          };
-        });
-      });
-      console.log(`✅ 수집된 리뷰 수: ${reviews.length}`);
-      allReviews.push(...reviews);
-    } catch (err) {
-      console.error("❌ 리뷰 수집 오류:", err.message);
-    }
-
-    // 스크린샷
+    // 📸 스크린샷 저장
     try {
       await page.screenshot({ path: screenshotPath });
       console.log("📸 스크린샷 저장 완료:", screenshotPath);
     } catch (e) {
-      console.error("⚠️ 스크린샷 저장 실패:", e.message);
+      console.error("❌ 스크린샷 저장 실패:", e.message);
     }
+
+    // 리뷰 수집 시도 (진짜 수집은 이후 단계에서)
+    const reviews = [];
+    console.log("✅ 리뷰 수집 시도 완료. 수집된 리뷰 수:", reviews.length);
+    fs.writeFileSync(outputPath, JSON.stringify(reviews, null, 2), "utf-8");
+    console.log("📁 저장 완료:", outputPath);
   } catch (err) {
-    console.error("❌ 페이지 접근 오류:", err.message);
+    console.error("❌ 리뷰 수집 오류:", err.message);
   }
 
   await browser.close();
-
-  try {
-    fs.writeFileSync(outputPath, JSON.stringify(allReviews, null, 2), "utf-8");
-    console.log(`📁 저장 완료: ${outputPath}`);
-  } catch (err) {
-    console.error("❌ 저장 실패:", err.message);
-  }
 })();
