@@ -1,3 +1,5 @@
+// ✅ 파일 위치: scripts/save_reviews_puppeteer.js
+
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const fs = require("fs");
@@ -54,16 +56,15 @@ const cookies = [
     const currentUrl = await page.url();
     console.log("📍 현재 페이지 URL:", currentUrl);
 
-    // 스크롤 다운 시도 (LazyLoad 대응)
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
       await page.evaluate(() => window.scrollBy(0, 1000));
-      await new Promise((r) => setTimeout(r, 1000));
+      await new Promise(resolve => setTimeout(resolve, 500));
     }
-    console.log("📜 스크롤 다운 완료");
+    console.log("📜 스크롤 다운 완료, 2초 대기...");
+    await page.waitForTimeout(2000);
 
-    // 리뷰 셀렉터 로딩 대기
-    await page.waitForSelector("div.ReviewContent-module__Ksg4", { timeout: 10000 });
-    console.log("✅ 리뷰 카드 DOM 로딩 완료");
+    console.log("⏳ 리뷰 카드 로딩 대기 중...");
+    await page.waitForSelector("div.ReviewContent-module__Ksg4", { timeout: 30000 });
 
     const reviews = await page.evaluate(() => {
       const cards = Array.from(document.querySelectorAll("div.ReviewContent-module__Ksg4"));
