@@ -2,32 +2,33 @@
   "name": "saladcity-website",
   "version": "1.0.0",
   "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "puppeteer": "^21.3.8",
+    "puppeteer-extra": "^3.3.4",
+    "puppeteer-extra-plugin-stealth": "^2.11.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "crawl": "node save_reviews_puppeteer.js",
-    "merge-reviews": "node scripts/generate_reviews_all.js"
+    "eject": "react-scripts eject"
   },
-  "dependencies": {
-    "axios": "^1.6.8",
-    "cheerio": "^1.0.0-rc.12",
-    "dotenv": "^16.0.3",
-    "keen-slider": "^6.8.6",
-    "puppeteer": "^21.3.8",
-    "puppeteer-extra": "^3.3.4",
-    "puppeteer-extra-plugin-stealth": "^2.11.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^7.5.0",
-    "react-scripts": "5.0.1",
-    "recharts": "2.8.0",
-    "framer-motion": "^10.16.1",
-    "@stripe/stripe-js": "^7.1.0",
-    "@supabase/supabase-js": "^2.39.6"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "devDependencies": {},
   "browserslist": {
     "production": [
       ">0.2%",
