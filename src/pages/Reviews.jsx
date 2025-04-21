@@ -1,4 +1,4 @@
-// ✅ Reviews.jsx (상단 여백 + ScrollingBanner 추가 반영)
+// ✅ Reviews.jsx (정기배송 CTA 카드 독립 줄바꿈 처리 반영)
 import React, { useState, useEffect } from "react";
 import ReviewModal from "../components/ReviewModal";
 import ScrollingBanner from "../components/ScrollingBanner";
@@ -123,7 +123,16 @@ export default function Reviews() {
         {[
           ...emotionReviews.map(renderEmotionCard),
           ...withImageReviews.slice(0, 6).map(renderReviewCard),
-          renderMidCTA(),
+        ]}
+      </div>
+
+      {/* ✅ 정기배송 CTA 단독 줄 처리 */}
+      <div style={{ display: "flex", justifyContent: "center", margin: "32px 0" }}>
+        {renderMidCTA()}
+      </div>
+
+      <div className="review-grid with-image">
+        {[
           ...withImageReviews.slice(6).map(renderReviewCard),
           ...withoutImageReviews.map(renderReviewCard),
         ]}
