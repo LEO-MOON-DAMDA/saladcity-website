@@ -13,7 +13,7 @@ export default function Reviews() {
   const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
-    fetch("/data/review_with_emotion_v2.json")
+    fetch("/data/review_with_emotion_random.json") // ✅ 랜덤 감성카드 버전 사용
       .then((res) => res.json())
       .then((data) => {
         const clean = data.filter((r) => {
@@ -79,6 +79,7 @@ export default function Reviews() {
     </div>
   );
 
+  // ✅ 렌더링 그룹 분리
   const emotionReviews = reviews.filter((r) => r.emotion);
   const withImageReviews = reviews.filter(
     (r) =>
@@ -102,7 +103,7 @@ export default function Reviews() {
 
       {/* 리뷰 목록 */}
       <div className="review-grid with-image">
-        {[
+        {[ 
           ...emotionReviews.map(renderEmotionCard),
           ...withImageReviews.slice(0, 6).map(renderReviewCard),
           renderMidCTA(),
