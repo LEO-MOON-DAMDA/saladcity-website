@@ -9,21 +9,25 @@ const fallbackImages = [
   "/images/review-sample03.jpg"
 ];
 
-export default function ReviewsPage() {
+export default function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
-    fetch("/data/success_review_dadamdav4.5.json")
+    fetch("/data/success_review_dadamdav4_5.json")
       .then((res) => res.json())
       .then((data) => {
-        const withImage = data.filter((r) => r.image);
-        const withoutImage = data.filter((r) => !r.image);
+        const withImage = data.filter(
+          (r) => typeof r.image === "string" && r.image.startsWith("http")
+        );
+        const withoutImage = data.filter(
+          (r) => !r.image || !r.image.startsWith("http")
+        );
         const merged = [...withImage, ...withoutImage];
         setReviews(merged);
 
-        // ✅ 콘솔 로그 추가 (여기!)
-        console.log("불러온 리뷰 수:", merged.length);
+        console.log("전체 리뷰 수:", data.length);
+        console.log("이미지 있는 리뷰 수:", withImage.length);
         console.log("예시 리뷰:", merged[0]);
       })
       .catch((err) => {
@@ -40,7 +44,7 @@ export default function ReviewsPage() {
 
       <div className="review-grid with-image">
         {reviews
-          .filter((r) => r.image)
+          .filter((r) => typeof r.image === "string" && r.image.startsWith("http"))
           .map((review, idx) => (
             <div
               className="review-card large"
@@ -52,7 +56,9 @@ export default function ReviewsPage() {
                   <span className="badge store">{review.store}</span>
                   <span className="badge platform">{review.platform}</span>
                 </div>
-                <span className={`rating ${review.rating >= 4 ? "green" : "pink"}`}>
+                <span
+                  className={`rating ${review.rating >= 4 ? "green" : "pink"}`}
+                >
                   {"⭐".repeat(review.rating || 5)}
                 </span>
                 &nbsp;|&nbsp; {review.date || ""}
@@ -70,7 +76,7 @@ export default function ReviewsPage() {
 
       <div className="review-grid without-image">
         {reviews
-          .filter((r) => !r.image)
+          .filter((r) => !r.image || !r.image.startsWith("http"))
           .map((review, idx) => {
             const fallback = fallbackImages[idx % fallbackImages.length];
             return (
@@ -84,7 +90,9 @@ export default function ReviewsPage() {
                     <span className="badge store">{review.store}</span>
                     <span className="badge platform">{review.platform}</span>
                   </div>
-                  <span className={`rating ${review.rating >= 4 ? "green" : "pink"}`}>
+                  <span
+                    className={`rating ${review.rating >= 4 ? "green" : "pink"}`}
+                  >
                     {"⭐".repeat(review.rating || 5)}
                   </span>
                   &nbsp;|&nbsp; {review.date || ""}
@@ -102,7 +110,10 @@ export default function ReviewsPage() {
       </div>
 
       {selectedReview && (
-        <ReviewModal review={selectedReview} onClose={() => setSelectedReview(null)} />
+        <ReviewModal
+          review={selectedReview}
+          onClose={() => setSelectedReview(null)}
+        />
       )}
     </div>
   );
