@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ReviewStatsChart from "../components/ReviewStatsChart";
 import ReviewModal from "../components/ReviewModal";
 import "./Reviews.css";
 
@@ -17,8 +16,16 @@ export default function Reviews() {
     fetch("/data/review_with_emotion_v2.json")
       .then((res) => res.json())
       .then((data) => {
-        setReviews(data || []);
-        console.log("총 리뷰 수:", data.length);
+        const clean = data.filter((r) => {
+          const text = r.review?.toLowerCase();
+          return (
+            text &&
+            !text.includes("사장님 댓글 등록하기") &&
+            !text.includes("사장님 댓글 추가하기")
+          );
+        });
+        setReviews(clean || []);
+        console.log("총 리뷰 수:", clean.length);
       })
       .catch((err) => {
         console.error("리뷰 JSON 로딩 오류:", err);
@@ -58,15 +65,9 @@ export default function Reviews() {
           {r.review?.slice(0, 80) || "내용 없음"}
         </p>
         {r.menu && <div className="menu-tag">{r.menu}</div>}
-        {hasImage ? (
-          <div className="review-image-wrapper">
-            <img src={r.image} alt="리뷰 이미지" />
-          </div>
-        ) : (
-          <div className="review-image-wrapper">
-            <img src={fallback} alt="감성 이미지" />
-          </div>
-        )}
+        <div className="review-image-wrapper">
+          <img src={hasImage ? r.image : fallback} alt="리뷰 이미지" />
+        </div>
       </div>
     );
   };
@@ -78,7 +79,6 @@ export default function Reviews() {
     </div>
   );
 
-  // ✅ 렌더링 순서 분리
   const emotionReviews = reviews.filter((r) => r.emotion);
   const withImageReviews = reviews.filter(
     (r) =>
@@ -92,15 +92,15 @@ export default function Reviews() {
 
   return (
     <div className="reviews-page">
+      {/* 감성 헤드라인 */}
       <section className="review-hero">
-        <h1 className="hero-headline">끝나지 않는 샐시크루들의 생생한 이야기</h1>
+        <h1 className="hero-headline">샐러드시티 고객님들이 오늘 보내주신 소중한 리뷰예요</h1>
         <p className="hero-subtext">
-          샐러드시티의 진짜 고객들이 남긴 리뷰를 소개합니다.
+          총 <strong>{reviews.length}</strong>개의 리뷰가 남겨졌습니다.
         </p>
       </section>
 
-      <ReviewStatsChart reviews={reviews} />
-
+      {/* 리뷰 목록 */}
       <div className="review-grid with-image">
         {[
           ...emotionReviews.map(renderEmotionCard),
@@ -111,6 +111,7 @@ export default function Reviews() {
         ]}
       </div>
 
+      {/* 모달 */}
       {selectedReview && (
         <ReviewModal
           review={selectedReview}
