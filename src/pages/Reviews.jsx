@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReviewModal from "../components/ReviewModal";
-import ScrollingBanner from "../components/ScrollingBanner";
+import ReviewScrollingBanner from "../components/ReviewScrollingBanner"; // ✅ 복구 완료
 import "./Reviews.css";
 
 const fallbackImages = [
@@ -123,13 +123,13 @@ export default function Reviews() {
           <p className="hero-subtext">
             총 <strong>{reviews.length}</strong>개의 리뷰가 남겨졌습니다.
             <br />
-            평균 별점은 <strong>{calculateAverageRating(reviews)}</strong>점이에요. 정말 고마운 후기들이에요.
+            평균 별점 <strong>{calculateAverageRating(reviews)}</strong>점! 우리를 연결하는 소중한 후기입니다.
           </p>
         </div>
       </section>
 
       <div style={{ marginTop: "36px", marginBottom: "28px" }}>
-        <ScrollingBanner />
+        <ReviewScrollingBanner />
       </div>
 
       <div className="review-grid emotion-grid">
@@ -156,7 +156,7 @@ export default function Reviews() {
       <section className="review-cta-section">
         <div style={{ marginBottom: "10px" }}>
           <p className="cta-headline">
-            매일 찾아오는 즐거움.<br />샐시는 meal이 아닌, 당신의 새로운 라이프스타일이에요.
+            매일 찾아오는 즐거움.<br />샐시는 Meal이 아닌, 새로운 라이프스타일이에요.
           </p>
           <p className="cta-subtext">
             Everyday SALCY, your new lifestyle — not just a meal.
