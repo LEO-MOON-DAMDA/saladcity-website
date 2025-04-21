@@ -6,7 +6,7 @@
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   color: #333;
 }
-
+/*
 .review-hero.with-bg {
   background-size: cover;
   background-position: center;
@@ -23,7 +23,7 @@
     padding: 120px 20px 60px;
   }
 }
-
+*/
 .review-hero-overlay {
   background: rgba(0, 0, 0, 0.45);
   padding: 32px 20px;
