@@ -1,4 +1,4 @@
-// ✅ Reviews.css (최종 통합 스타일 - nickname + 별점 한 줄 정렬 포함)
+// ✅ Reviews.css (최종 통합 스타일 - 별점 컬러: #2f5130 적용)
 
 .reviews-page {
   padding: 60px 20px 80px;
@@ -94,7 +94,7 @@
 .rating {
   font-size: 13px;
   font-weight: bold;
-  color: #4CAF50;
+  color: #2f5130; /* ✅ 브랜드 색상 적용 */
 }
 
 .review-content {
