@@ -116,6 +116,10 @@
   line-height: 1.5;
   font-style: italic;
   min-height: 44px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }
 
 .menu-tag {
