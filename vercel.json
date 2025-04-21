@@ -1,6 +1,5 @@
 {
   "buildCommand": "npm run build",
-  "installCommand": "npm ci",
   "outputDirectory": "build",
   "cleanUrls": true,
   "trailingSlash": false,
