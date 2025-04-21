@@ -8,11 +8,12 @@ export default function ReviewModal({ review, onClose }) {
     nickname,
     rating,
     date,
-    text,
+    review: content,
     image,
     reply,
     menu,
     platform,
+    store,
   } = review;
 
   return (
@@ -24,12 +25,17 @@ export default function ReviewModal({ review, onClose }) {
         <button className="close-button" onClick={onClose}>×</button>
 
         <h2>{nickname || "익명"}님의 리뷰</h2>
-        <p className="review-meta">⭐ {rating} &nbsp;|&nbsp; {date}</p>
-        <p className="review-text">{text || "내용 없음"}</p>
+        <p className="review-meta">
+          ⭐ {rating}점 &nbsp;|&nbsp; {date} &nbsp;|&nbsp; {platform} · {store}
+        </p>
+
+        {image && (
+          <img className="review-image" src={image} alt="리뷰 이미지" />
+        )}
+
+        <p className="review-text">{content || "내용 없음"}</p>
 
         {menu && <p className="review-menu"><strong>주문 메뉴:</strong> {menu}</p>}
-        {platform && <p className="review-platform"><strong>플랫폼:</strong> {platform}</p>}
-        {image && <img className="review-image" src={image} alt="리뷰 이미지" />}
 
         {reply && (
           <div className="review-reply">
