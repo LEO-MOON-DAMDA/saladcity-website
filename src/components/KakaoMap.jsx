@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 const KakaoMap = () => {
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=YOUR_APP_KEY";
+    script.src = "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=261f12530740989e7f97fbb28840ed8a";
     script.async = true;
     script.onload = () => {
       window.kakao.maps.load(() => {
