@@ -1,3 +1,4 @@
+// ✅ Reviews.jsx (최신 구조 + 닉네임 + 별점 한 줄 정렬 적용)
 import React, { useState, useEffect } from "react";
 import ReviewModal from "../components/ReviewModal";
 import "./Reviews.css";
@@ -5,7 +6,7 @@ import "./Reviews.css";
 const fallbackImages = [
   "/images/review-sample01.jpg",
   "/images/review-sample02.jpg",
-  "/images/review-sample03.jpg"
+  "/images/review-sample03.jpg",
 ];
 
 export default function Reviews() {
@@ -19,16 +20,21 @@ export default function Reviews() {
         const clean = data.filter((r) => {
           const text = r.review?.toLowerCase();
           const score = r.rating || 0;
-          const bannedWords = ["사장님 댓글 등록하기", "사장님 댓글 추가하기", "머리카락", "이물질", "최악"];
-          const containsBannedWord = bannedWords.some((word) => text?.includes(word));
+          const bannedWords = [
+            "사장님 댓글 등록하기",
+            "사장님 댓글 추가하기",
+            "머리카락",
+            "이물질",
+            "최악",
+          ];
+          const containsBannedWord = bannedWords.some((word) =>
+            text?.includes(word)
+          );
           return text && !containsBannedWord && (r.emotion || score >= 4);
         });
         setReviews(clean || []);
-        console.log("총 리뷰 수:", clean.length);
       })
-      .catch((err) => {
-        console.error("리뷰 JSON 로딩 오류:", err);
-      });
+      .catch((err) => console.error("리뷰 JSON 로딩 오류:", err));
   }, []);
 
   const calculateAverageRating = (reviews) => {
@@ -57,15 +63,17 @@ export default function Reviews() {
         onClick={() => setSelectedReview(r)}
       >
         <div className="review-meta">
-          <span className="nickname">{r.nickname || "익명"}</span>
+          <div className="meta-top-row">
+            <span className="nickname">{r.nickname || "익명"}</span>
+            <span className={`rating ${r.rating >= 4 ? "green" : "pink"}`}>
+              {"⭐".repeat(r.rating || 5)}
+            </span>
+          </div>
           <div className="review-badges">
             <span className="badge store">{r.store}</span>
             <span className="badge platform">{r.platform}</span>
           </div>
-          <span className={`rating ${r.rating >= 4 ? "green" : "pink"}`}>
-            {"⭐".repeat(r.rating || 5)}
-          </span>
-          &nbsp;|&nbsp; {r.date || ""}
+          <span className="date">{r.date || ""}</span>
         </div>
         <p className="review-content">
           {r.review?.slice(0, 80) || "내용 없음"}
@@ -81,16 +89,15 @@ export default function Reviews() {
   const renderMidCTA = () => (
     <div className="review-cta review-card emotion" key="mid-cta">
       <p className="emotion-text">“이제 당신도 매주 샐러드시티와 함께하세요.”</p>
-      <a href="/subscription" className="cta-button">정기배송 시작하기 →</a>
+      <a href="/subscription" className="cta-button">
+        정기배송 시작하기 →
+      </a>
     </div>
   );
 
   const emotionReviews = reviews.filter((r) => r.emotion);
   const withImageReviews = reviews.filter(
-    (r) =>
-      !r.emotion &&
-      typeof r.image === "string" &&
-      r.image.startsWith("http")
+    (r) => !r.emotion && typeof r.image === "string" && r.image.startsWith("http")
   );
   const withoutImageReviews = reviews.filter(
     (r) => !r.emotion && (!r.image || !r.image.startsWith("http"))
@@ -98,7 +105,6 @@ export default function Reviews() {
 
   return (
     <div className="reviews-page">
-      {/* ✅ 배경 이미지 + 감성 헤드라인 + 평균 별점 문장 */}
       <section className="review-hero with-bg">
         <div className="review-hero-overlay">
           <h1 className="hero-headline">샐러드시티 고객님들이 오늘 보내주신 소중한 리뷰예요</h1>
@@ -110,26 +116,20 @@ export default function Reviews() {
         </div>
       </section>
 
-      {/* ✅ 리뷰 카드 렌더링 */}
       <div className="review-grid with-image">
-        {[ 
+        {[
           ...emotionReviews.map(renderEmotionCard),
           ...withImageReviews.slice(0, 6).map(renderReviewCard),
           renderMidCTA(),
           ...withImageReviews.slice(6).map(renderReviewCard),
-          ...withoutImageReviews.map(renderReviewCard)
+          ...withoutImageReviews.map(renderReviewCard),
         ]}
       </div>
 
-      {/* ✅ 모달 */}
       {selectedReview && (
-        <ReviewModal
-          review={selectedReview}
-          onClose={() => setSelectedReview(null)}
-        />
+        <ReviewModal review={selectedReview} onClose={() => setSelectedReview(null)} />
       )}
 
-      {/* ✅ 하단 CTA */}
       <section className="review-cta-section">
         <h2 className="cta-headline">이제, 당신도 매주 샐러드시티와 함께해보세요.</h2>
         <a href="/subscription" className="cta-button">정기배송 시작하기 →</a>
