@@ -5,25 +5,27 @@ import BrandButton from "./BrandButton";
 import ReviewModal from "./ReviewModal";
 import "./ReviewSection.css";
 
+const fallbackImages = [
+  "/images/review-sample01.jpg",
+  "/images/review-sample02.jpg",
+  "/images/review-sample03.jpg"
+];
+
 export default function ReviewSection() {
   const [reviews, setReviews] = useState([]);
   const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
-    const files = [
-      "/data/reviews_yeoksam.json",
-      "/data/reviews_gangdong.json",
-      "/data/reviews_gudi.json",
-    ];
-
-    Promise.all(
-      files.map((file) =>
-        fetch(process.env.PUBLIC_URL + file).then((res) => res.json())
-      )
-    ).then((allData) => {
-      const merged = allData.flat();
-      setReviews(merged || []);
-    });
+    fetch("/data/review_preview.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data || []);
+        console.log("불러온 미리보기 리뷰 수:", data.length);
+        console.log("예시 리뷰:", data[0]);
+      })
+      .catch((err) => {
+        console.error("리뷰 preview JSON 로딩 오류:", err);
+      });
   }, []);
 
   const withImage = reviews.filter((r) => r.image);
@@ -51,15 +53,18 @@ export default function ReviewSection() {
               key={`img-${idx}`}
               onClick={() => setSelectedReview(r)}
             >
-              <div className="review-top">
-                <span className="nickname">{r.nickname || "익명"}</span>
+              <div className="review-meta">
+                <div className="review-badges">
+                  <span className="badge store">{r.store}</span>
+                  <span className="badge platform">{r.platform}</span>
+                </div>
                 <span className={`rating ${r.rating >= 4 ? "green" : "pink"}`}>
                   {"⭐".repeat(Math.min(r.rating || 0, 5))}
                 </span>
-                <span className="date">{r.date || ""}</span>
+                &nbsp;|&nbsp; {r.date || ""}
               </div>
-              <p className="review-text">
-                "{r.review?.slice(0, 40) || "내용 없음"}"
+              <p className="review-content">
+                {r.review?.slice(0, 40) || "내용 없음"}
               </p>
               {r.menu && <div className="menu-tag">{r.menu}</div>}
               {renderBadges(r)}
@@ -73,26 +78,35 @@ export default function ReviewSection() {
 
       <div className="review-slider-wrapper without-image-wrapper">
         <div className="review-slider without-image">
-          {withoutImage.map((r, idx) => (
-            <div
-              className="review-card small"
-              key={`noimg-${idx}`}
-              onClick={() => setSelectedReview(r)}
-            >
-              <div className="review-top">
-                <span className="nickname">{r.nickname || "익명"}</span>
-                <span className={`rating ${r.rating >= 4 ? "green" : "pink"}`}>
-                  {"⭐".repeat(Math.min(r.rating || 0, 5))}
-                </span>
-                <span className="date">{r.date || ""}</span>
+          {withoutImage.map((r, idx) => {
+            const fallback = fallbackImages[idx % fallbackImages.length];
+            return (
+              <div
+                className="review-card small"
+                key={`noimg-${idx}`}
+                onClick={() => setSelectedReview(r)}
+              >
+                <div className="review-meta">
+                  <div className="review-badges">
+                    <span className="badge store">{r.store}</span>
+                    <span className="badge platform">{r.platform}</span>
+                  </div>
+                  <span className={`rating ${r.rating >= 4 ? "green" : "pink"}`}>
+                    {"⭐".repeat(Math.min(r.rating || 0, 5))}
+                  </span>
+                  &nbsp;|&nbsp; {r.date || ""}
+                </div>
+                <p className="review-content">
+                  {r.review?.slice(0, 40) || "내용 없음"}
+                </p>
+                {r.menu && <div className="menu-tag">{r.menu}</div>}
+                {renderBadges(r)}
+                <div className="review-image">
+                  <img src={fallback} alt="감성 이미지" />
+                </div>
               </div>
-              <p className="review-text">
-                "{r.review?.slice(0, 40) || "내용 없음"}"
-              </p>
-              {r.menu && <div className="menu-tag">{r.menu}</div>}
-              {renderBadges(r)}
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -101,7 +115,10 @@ export default function ReviewSection() {
       </div>
 
       {selectedReview && (
-        <ReviewModal review={selectedReview} onClose={() => setSelectedReview(null)} />
+        <ReviewModal
+          review={selectedReview}
+          onClose={() => setSelectedReview(null)}
+        />
       )}
     </section>
   );
