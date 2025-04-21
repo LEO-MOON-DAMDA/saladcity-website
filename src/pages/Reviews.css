@@ -8,7 +8,7 @@
 }
 
 .review-hero.with-bg {
-  background-image: url("/images/review-hero03.jpg");
+  background-image: url(%PUBLIC_URL%/images/review-hero03.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
