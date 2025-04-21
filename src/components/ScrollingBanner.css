@@ -4,7 +4,7 @@
   background-color: #f8fcf9;
   border-top: 1px solid #d0e8d9;
   border-bottom: 1px solid #d0e8d9;
-  padding: 60px 0;
+  padding: 6px 0;
   margin-bottom: 24px;
   position: relative;
 }
@@ -30,7 +30,7 @@
   font-size: 34px;
   font-weight: 100;
   color: #1b5e20;
-  letter-spacing: 0.1px;
+  letter-spacing: 0px;
   line-height: 1.2;
   font-family: 'Pretendard', sans-serif;
 }
