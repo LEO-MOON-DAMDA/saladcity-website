@@ -1,4 +1,4 @@
-// ✅ Reviews.css (상단 이미지 경로를 절대 URL → 상대 경로로 복원)
+// ✅ Reviews.css (최신 안정버전 - 감성 카드 + 리뷰 CTA 포함)
 
 .reviews-page {
   padding: 60px 20px 80px;
@@ -210,4 +210,8 @@
   background-color: #f0f8f4;
   border: 2px dashed #a5d6a7;
   padding: 30px 20px;
-  border-radius:
+  border-radius: 16px;
+  margin: 40px auto;
+  width: 100%;
+  max-width: 600px;
+}
