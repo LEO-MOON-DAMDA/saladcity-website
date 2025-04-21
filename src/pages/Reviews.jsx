@@ -13,15 +13,19 @@ export default function Reviews() {
   const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
-    fetch("/data/review_with_emotion_random.json") // ✅ 랜덤 감성카드 버전 사용
+    fetch("/data/review_with_emotion_random.json")
       .then((res) => res.json())
       .then((data) => {
         const clean = data.filter((r) => {
           const text = r.review?.toLowerCase();
+          const score = r.rating || 0;
+          const bannedWords = ["사장님 댓글 등록하기", "사장님 댓글 추가하기", "머리카락", "이물질", "최악"];
+          const containsBannedWord = bannedWords.some((word) => text?.includes(word));
+
           return (
             text &&
-            !text.includes("사장님 댓글 등록하기") &&
-            !text.includes("사장님 댓글 추가하기")
+            !containsBannedWord &&
+            (r.emotion || score >= 4)
           );
         });
         setReviews(clean || []);
@@ -79,7 +83,6 @@ export default function Reviews() {
     </div>
   );
 
-  // ✅ 렌더링 그룹 분리
   const emotionReviews = reviews.filter((r) => r.emotion);
   const withImageReviews = reviews.filter(
     (r) =>
