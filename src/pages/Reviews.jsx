@@ -14,7 +14,7 @@ export default function Reviews() {
   const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
-    fetch("/data/success_review_dadamdav4_5.json")
+    fetch("/data/success_review_dadamdav4_5.json") // ✅ 경로 수정됨
       .then((res) => res.json())
       .then((data) => {
         const withImage = data.filter(
