@@ -8,6 +8,7 @@
 }
 
 .review-hero.with-bg {
+  background-image: url("/images/review-hero03.jpg"); /* ✅ 배경 이미지 추가 */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
