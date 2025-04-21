@@ -1,4 +1,5 @@
 import React from "react";
+import KakaoMap from "../components/KakaoMap";
 import "../styles/LocationsPage.css";
 
 const locations = [
@@ -74,6 +75,14 @@ export default function LocationsPage() {
           />
         </div>
       </div>
+
+      {/* ✅ 라이브 지도 삽입 */}
+      <section style={{ padding: "40px 20px" }}>
+        <h2 style={{ fontSize: "24px", color: "#2f5130", marginBottom: "16px", textAlign: "center" }}>
+          서울 매장 위치 안내
+        </h2>
+        <KakaoMap />
+      </section>
 
       <div className="locations-grid">
         {locations.map((loc, idx) => (
