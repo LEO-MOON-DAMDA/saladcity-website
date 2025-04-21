@@ -95,7 +95,7 @@
 }
 
 .rating.green {
-  color: #4CAF50;
+  color: #4CAF50 !important;
 }
 
 .rating.pink {
