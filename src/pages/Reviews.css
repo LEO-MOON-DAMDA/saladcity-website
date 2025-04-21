@@ -227,3 +227,20 @@
   background-color: #3c6e40;
   transform: translateY(-2px);
 }
+
+/* ✅ 반응형 카드 구조 */
+@media (max-width: 768px) {
+  .review-card.large,
+  .review-card.small,
+  .review-card.emotion {
+    width: 48%;
+  }
+}
+
+@media (max-width: 480px) {
+  .review-card.large,
+  .review-card.small,
+  .review-card.emotion {
+    width: 100%;
+  }
+}
