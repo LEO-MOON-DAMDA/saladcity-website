@@ -9,7 +9,7 @@ export default function SocialPage() {
         @saladcitykorea
       </h2>
       <iframe
-        src="https://widgets.sociablekit.com/instagram-feed/iframe/25547853"
+        src="https://widgets.sociablekit.com/instagram-feed/iframe/25548501"
         width="100%"
         height="800"
         style={{
