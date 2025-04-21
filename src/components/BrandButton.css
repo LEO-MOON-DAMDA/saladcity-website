@@ -1,21 +1,22 @@
 .brand-button {
   display: inline-block;
-  background-color: #2f7d32;
+  background-color: #2f7d32; /* 원래 색상 유지 */
   color: white;
-  padding: 12px 24px;
+  padding: 14px 28px; /* 약간 더 크게 */
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   border: none;
   border-radius: 32px;
   text-decoration: none;
   cursor: pointer;
   text-align: center;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 그림자 강화 */
+  transition: all 0.2s ease-in-out;
 }
 
 .brand-button:hover {
-  background-color: #256528;
+  background-color: #256528; /* 호버시 더 어두운 녹색 */
   transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); /* 호버 시 더 강한 그림자 */
 }
