@@ -21,12 +21,7 @@ export default function Reviews() {
           const score = r.rating || 0;
           const bannedWords = ["사장님 댓글 등록하기", "사장님 댓글 추가하기", "머리카락", "이물질", "최악"];
           const containsBannedWord = bannedWords.some((word) => text?.includes(word));
-
-          return (
-            text &&
-            !containsBannedWord &&
-            (r.emotion || score >= 4)
-          );
+          return text && !containsBannedWord && (r.emotion || score >= 4);
         });
         setReviews(clean || []);
         console.log("총 리뷰 수:", clean.length);
@@ -35,6 +30,13 @@ export default function Reviews() {
         console.error("리뷰 JSON 로딩 오류:", err);
       });
   }, []);
+
+  const calculateAverageRating = (reviews) => {
+    const rated = reviews.filter((r) => !r.emotion && r.rating);
+    if (rated.length === 0) return "-";
+    const avg = rated.reduce((sum, r) => sum + r.rating, 0) / rated.length;
+    return avg.toFixed(1);
+  };
 
   const renderEmotionCard = (r, idx) => (
     <div className="review-card emotion" key={`emotion-${idx}`}>
@@ -96,12 +98,14 @@ export default function Reviews() {
 
   return (
     <div className="reviews-page">
-      {/* ✅ 감성 헤드라인 + 배경 이미지 */}
+      {/* ✅ 배경 이미지 + 감성 헤드라인 + 평균 별점 문장 */}
       <section className="review-hero with-bg">
         <div className="review-hero-overlay">
           <h1 className="hero-headline">샐러드시티 고객님들이 오늘 보내주신 소중한 리뷰예요</h1>
           <p className="hero-subtext">
             총 <strong>{reviews.length}</strong>개의 리뷰가 남겨졌습니다.
+            <br />
+            평균 별점은 <strong>{calculateAverageRating(reviews)}</strong>점이에요. 정말 고마운 후기들이에요.
           </p>
         </div>
       </section>
