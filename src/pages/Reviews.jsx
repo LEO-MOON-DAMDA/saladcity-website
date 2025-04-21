@@ -14,7 +14,7 @@ export default function Reviews() {
   const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
-    fetch("/data/success_review_dadamdav4_5.json") // ✅ 경로 수정됨
+    fetch("/data/success_review_dadamdav4_5.json")
       .then((res) => res.json())
       .then((data) => {
         const withImage = data.filter(
@@ -52,6 +52,7 @@ export default function Reviews() {
               onClick={() => setSelectedReview(review)}
             >
               <div className="review-meta">
+                <span className="nickname">{review.nickname || "익명"}</span> {/* ✅ 추가 */}
                 <div className="review-badges">
                   <span className="badge store">{review.store}</span>
                   <span className="badge platform">{review.platform}</span>
@@ -86,6 +87,7 @@ export default function Reviews() {
                 onClick={() => setSelectedReview(review)}
               >
                 <div className="review-meta">
+                  <span className="nickname">{review.nickname || "익명"}</span> {/* ✅ 추가 */}
                   <div className="review-badges">
                     <span className="badge store">{review.store}</span>
                     <span className="badge platform">{review.platform}</span>
