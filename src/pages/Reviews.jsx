@@ -1,4 +1,4 @@
-// ✅ Reviews.jsx (정기배송 카피 수정 + 간격 조정 + 영어 번역 추가)
+// ✅ Reviews.jsx (감성 카드 한 줄 정렬 그룹핑 개선)
 import React, { useState, useEffect } from "react";
 import ReviewModal from "../components/ReviewModal";
 import ScrollingBanner from "../components/ScrollingBanner";
@@ -122,20 +122,19 @@ export default function Reviews() {
         <ScrollingBanner />
       </div>
 
+      {/* ✅ 감성 카드 전용 라인 */}
+      <div className="review-grid emotion-grid">
+        {emotionReviews.map(renderEmotionCard)}
+      </div>
+
       <div className="review-grid with-image">
-        {[
-          ...emotionReviews.map(renderEmotionCard),
-          ...withImageReviews.slice(0, 6).map(renderReviewCard),
-        ]}
+        {[...withImageReviews.slice(0, 6).map(renderReviewCard)]}
       </div>
 
       {renderMidCTA()}
 
       <div className="review-grid with-image">
-        {[
-          ...withImageReviews.slice(6).map(renderReviewCard),
-          ...withoutImageReviews.map(renderReviewCard),
-        ]}
+        {[...withImageReviews.slice(6).map(renderReviewCard), ...withoutImageReviews.map(renderReviewCard)]}
       </div>
 
       {selectedReview && (
