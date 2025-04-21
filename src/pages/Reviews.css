@@ -5,6 +5,7 @@
   color: #333;
 }
 
+/* 상단 감성 헤드라인 */
 .review-hero {
   text-align: center;
   padding: 60px 20px 40px;
@@ -24,6 +25,7 @@
   margin-top: 12px;
 }
 
+/* 제목/부제목 (혹시 기존 구조에 남아 있다면) */
 .reviews-title {
   text-align: center;
   font-size: 32px;
@@ -39,6 +41,7 @@
   margin-bottom: 32px;
 }
 
+/* 카드 그리드 공통 */
 .review-grid {
   display: flex;
   flex-wrap: wrap;
@@ -47,6 +50,7 @@
   margin-bottom: 40px;
 }
 
+/* 공통 카드 스타일 */
 .review-card {
   border-radius: 16px;
   padding: 16px;
@@ -75,6 +79,7 @@
   box-shadow: 0 10px 20px rgba(47, 81, 48, 0.12);
 }
 
+/* 리뷰 내용 내부 구조 */
 .review-meta {
   font-size: 13px;
   color: #999;
@@ -146,6 +151,7 @@
   filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
 }
 
+/* 뱃지 */
 .badge-container {
   margin-top: 6px;
   display: flex;
@@ -168,4 +174,36 @@
 
 .badge-store {
   background-color: #8884d8;
+}
+
+/* ✅ 감성 카드 (emotion:true) */
+.review-card.emotion {
+  background-color: #fefbe9;
+  border: 2px dashed #c5d8a4;
+  padding: 24px;
+  width: 260px;
+  border-radius: 16px;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #2f5130;
+  box-shadow: none;
+}
+
+.emotion-text {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.emotion-sub {
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.emotion-author {
+  font-size: 13px;
+  color: #2e7d32;
+  font-weight: 500;
 }
