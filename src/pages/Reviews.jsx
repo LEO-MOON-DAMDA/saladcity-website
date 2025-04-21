@@ -1,6 +1,7 @@
-// ✅ Reviews.jsx (최신 구조 + 닉네임 + 별점 한 줄 정렬 적용)
+// ✅ Reviews.jsx (상단 여백 + ScrollingBanner 추가 반영)
 import React, { useState, useEffect } from "react";
 import ReviewModal from "../components/ReviewModal";
+import ScrollingBanner from "../components/ScrollingBanner";
 import "./Reviews.css";
 
 const fallbackImages = [
@@ -89,9 +90,7 @@ export default function Reviews() {
   const renderMidCTA = () => (
     <div className="review-cta review-card emotion" key="mid-cta">
       <p className="emotion-text">“이제 당신도 매주 샐러드시티와 함께하세요.”</p>
-      <a href="/subscription" className="cta-button">
-        정기배송 시작하기 →
-      </a>
+      <a href="/subscription" className="cta-button">정기배송 시작하기 →</a>
     </div>
   );
 
@@ -115,6 +114,10 @@ export default function Reviews() {
           </p>
         </div>
       </section>
+
+      <div style={{ marginTop: "36px", marginBottom: "28px" }}>
+        <ScrollingBanner />
+      </div>
 
       <div className="review-grid with-image">
         {[
