@@ -1,3 +1,4 @@
+// ✅ Reviews.css (최종 통합 스타일 - nickname + 별점 한 줄 정렬 포함)
 
 .reviews-page {
   padding: 60px 20px 80px;
@@ -6,7 +7,6 @@
   color: #333;
 }
 
-/* ✅ 배경 이미지 헤드라인 */
 .review-hero.with-bg {
   background-image: url("https://saladcitykorea.com/images/review-hero03.jpg");
   background-size: cover;
@@ -77,11 +77,18 @@
   line-height: 1.3;
 }
 
+.meta-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
 .nickname {
   font-weight: 600;
   color: #2e7d32;
   font-size: 13px;
-  margin-bottom: 2px;
 }
 
 .rating {
@@ -132,7 +139,6 @@
   filter: brightness(0.97) saturate(0.95);
 }
 
-/* 뱃지 */
 .badge-container {
   margin-top: 6px;
   display: flex;
@@ -157,7 +163,6 @@
   background-color: #8884d8;
 }
 
-/* ✅ 감성 카드 (emotion:true) */
 .review-card.emotion {
   background-color: #fefbe9;
   border: 2px dashed #c5d8a4;
@@ -189,7 +194,6 @@
   font-weight: 500;
 }
 
-/* ✅ CTA 섹션 (중간/하단 모두 공용) */
 .review-cta-section,
 .review-cta {
   text-align: center;
@@ -227,7 +231,6 @@
   transform: translateY(-2px);
 }
 
-/* ✅ 반응형 카드 구조 */
 @media (max-width: 768px) {
   .review-card.large,
   .review-card.small,
