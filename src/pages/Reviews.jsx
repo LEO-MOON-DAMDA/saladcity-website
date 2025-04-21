@@ -1,4 +1,4 @@
-// ✅ Reviews.jsx (정기배송 CTA 줄바꿈 처리로 레이아웃 안정화)
+// ✅ Reviews.jsx (정기배송 카피 수정 + 간격 조정 + 영어 번역 추가)
 import React, { useState, useEffect } from "react";
 import ReviewModal from "../components/ReviewModal";
 import ScrollingBanner from "../components/ScrollingBanner";
@@ -89,7 +89,10 @@ export default function Reviews() {
 
   const renderMidCTA = () => (
     <div className="review-cta-section" key="mid-cta">
-      <h2 className="cta-headline">이제, 당신도 매주 샐러드시티와 함께해보세요.</h2>
+      <div style={{ marginBottom: "10px" }}>
+        <p className="cta-headline">매일 찾아오는 즐거움.<br />샐시는 meal이 아닌, 당신의 새로운 라이프스타일이에요.</p>
+        <p className="cta-subtext">Everyday SALCY, your new lifestyle — not just a meal.</p>
+      </div>
       <a href="/subscription" className="cta-button">정기배송 시작하기 →</a>
     </div>
   );
@@ -126,7 +129,6 @@ export default function Reviews() {
         ]}
       </div>
 
-      {/* ✅ 줄 바꿈 처리로 별도 출력 */}
       {renderMidCTA()}
 
       <div className="review-grid with-image">
@@ -141,7 +143,10 @@ export default function Reviews() {
       )}
 
       <section className="review-cta-section">
-        <h2 className="cta-headline">이제, 당신도 매주 샐러드시티와 함께해보세요.</h2>
+        <div style={{ marginBottom: "10px" }}>
+          <p className="cta-headline">매일 찾아오는 즐거움.<br />샐시는 meal이 아닌, 당신의 새로운 라이프스타일이에요.</p>
+          <p className="cta-subtext">Everyday SALCY, your new lifestyle — not just a meal.</p>
+        </div>
         <a href="/subscription" className="cta-button">정기배송 시작하기 →</a>
       </section>
     </div>
