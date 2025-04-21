@@ -1,3 +1,4 @@
+
 .reviews-page {
   padding: 60px 20px 80px;
   background-color: #fdfdf7;
@@ -46,17 +47,16 @@
   margin-bottom: 40px;
 }
 
-/* 공통 카드 */
 .review-card {
-  border-radius: 16px;
-  padding: 16px;
+  border-radius: 14px;
+  padding: 12px;
   cursor: pointer;
   transition: transform 0.2s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .review-card.large {
@@ -65,73 +65,62 @@
 
 .review-card.small {
   width: 200px;
-  background-color: #f8f8f8;
-  opacity: 0.92;
+  background-color: #f9f9f9;
+  opacity: 0.95;
   box-shadow: none;
 }
 
-.review-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(47, 81, 48, 0.12);
-}
-
 .review-meta {
-  font-size: 13px;
+  font-size: 12px;
   color: #999;
-  margin-top: 4px;
+  margin-top: 2px;
   line-height: 1.3;
 }
 
 .nickname {
-  display: block;
   font-weight: 600;
   color: #2e7d32;
-  font-size: 14px;
+  font-size: 13px;
   margin-bottom: 2px;
 }
 
 .rating {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
-}
-
-.rating.green {
   color: #4CAF50;
 }
 
-.rating.pink {
-  color: #E91E63;
-}
-
-.date {
-  font-size: 12px;
-  color: #aaa;
-}
-
 .review-content {
-  font-size: 14px;
+  font-size: 13px;
   color: #333;
-  margin: 8px 0;
-  line-height: 1.5;
+  margin: 6px 0 4px;
+  line-height: 1.4;
   font-style: italic;
-  min-height: 44px;
+  max-height: 2.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .menu-tag {
   background-color: #e8f5e9;
   color: #388e3c;
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: 20px;
   font-size: 12px;
-  display: inline-block;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .review-image-wrapper {
-  height: 180px;
+  height: 160px;
   overflow: hidden;
   border-radius: 12px;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 .review-image-wrapper img {
@@ -139,11 +128,8 @@
   height: 100%;
   object-fit: cover;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.review-image-wrapper img:hover {
-  filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  filter: brightness(0.97) saturate(0.95);
 }
 
 /* 뱃지 */
