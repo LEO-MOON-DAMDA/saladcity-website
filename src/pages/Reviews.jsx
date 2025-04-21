@@ -17,10 +17,17 @@ export default function ReviewsPage() {
     fetch("/data/success_review_dadamdav4.5.json")
       .then((res) => res.json())
       .then((data) => {
-        // 사진 있는 리뷰 먼저, 없는 리뷰는 아래로
         const withImage = data.filter((r) => r.image);
         const withoutImage = data.filter((r) => !r.image);
-        setReviews([...withImage, ...withoutImage]);
+        const merged = [...withImage, ...withoutImage];
+        setReviews(merged);
+
+        // ✅ 콘솔 로그 추가 (여기!)
+        console.log("불러온 리뷰 수:", merged.length);
+        console.log("예시 리뷰:", merged[0]);
+      })
+      .catch((err) => {
+        console.error("리뷰 JSON 로딩 오류:", err);
       });
   }, []);
 
