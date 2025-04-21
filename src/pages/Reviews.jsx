@@ -72,6 +72,13 @@ export default function Reviews() {
     );
   };
 
+  const renderMidCTA = () => (
+    <div className="review-cta review-card emotion" key="mid-cta">
+      <p className="emotion-text">“이제 당신도 매주 샐러드시티와 함께하세요.”</p>
+      <a href="/subscription" className="cta-button">정기배송 시작하기 →</a>
+    </div>
+  );
+
   return (
     <div className="reviews-page">
       <section className="review-hero">
@@ -84,9 +91,11 @@ export default function Reviews() {
       <ReviewStatsChart reviews={reviews} />
 
       <div className="review-grid with-image">
-        {reviews.map((r, idx) =>
-          r.emotion ? renderEmotionCard(r, idx) : renderReviewCard(r, idx)
-        )}
+        {reviews.map((r, idx) => {
+          // 중간 CTA 위치 삽입 (6번째 후에)
+          if (idx === 6) return [renderMidCTA(), r.emotion ? renderEmotionCard(r, idx) : renderReviewCard(r, idx)];
+          return r.emotion ? renderEmotionCard(r, idx) : renderReviewCard(r, idx);
+        })}
       </div>
 
       {selectedReview && (
@@ -95,6 +104,12 @@ export default function Reviews() {
           onClose={() => setSelectedReview(null)}
         />
       )}
+
+      {/* 하단 CTA */}
+      <section className="review-cta-section">
+        <h2 className="cta-headline">이제, 당신도 매주 샐러드시티와 함께해보세요.</h2>
+        <a href="/subscription" className="cta-button">정기배송 시작하기 →</a>
+      </section>
     </div>
   );
 }
