@@ -1,5 +1,5 @@
 import React from "react";
-import "./ScrollingBanner.css";
+import "./ReviewScrollingBanner.css";
 
 export default function ScrollingBanner() {
   const slogans = [
