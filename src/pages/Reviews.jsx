@@ -91,7 +91,7 @@ export default function Reviews() {
     <div className="review-cta-section" key="mid-cta">
       <div style={{ marginBottom: "10px" }}>
         <p className="cta-headline">매일 찾아오는 즐거움.<br />샐시는 meal이 아닌, 당신의 새로운 라이프스타일이에요.</p>
-        <p className="cta-subtext">Everyday SALCY, your new lifestyle — not just a meal.</p>
+        <p className="cta-subtext">Everyday SALCY, your new lifestyle &#8212; not just a meal.</p>
       </div>
       <a href="/subscription" className="cta-button">정기배송 시작하기 →</a>
     </div>
