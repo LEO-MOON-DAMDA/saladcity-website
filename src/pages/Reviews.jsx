@@ -37,8 +37,13 @@ export default function Reviews() {
 
   return (
     <div className="reviews-page">
-      <h1 className="reviews-title">SALCY CREW</h1>
-      <p className="reviews-subtitle">고객 리뷰 전체보기</p>
+      {/* ✅ 감성 헤드라인 섹션 */}
+      <section className="review-hero">
+        <h1 className="hero-headline">끝나지 않는 샐시크루들의 생생한 이야기</h1>
+        <p className="hero-subtext">
+          샐러드시티의 진짜 고객들이 남긴 리뷰를 소개합니다.
+        </p>
+      </section>
 
       <ReviewStatsChart reviews={reviews} />
 
@@ -52,7 +57,7 @@ export default function Reviews() {
               onClick={() => setSelectedReview(review)}
             >
               <div className="review-meta">
-                <span className="nickname">{review.nickname || "익명"}</span> {/* ✅ 추가 */}
+                <span className="nickname">{review.nickname || "익명"}</span>
                 <div className="review-badges">
                   <span className="badge store">{review.store}</span>
                   <span className="badge platform">{review.platform}</span>
@@ -87,7 +92,7 @@ export default function Reviews() {
                 onClick={() => setSelectedReview(review)}
               >
                 <div className="review-meta">
-                  <span className="nickname">{review.nickname || "익명"}</span> {/* ✅ 추가 */}
+                  <span className="nickname">{review.nickname || "익명"}</span>
                   <div className="review-badges">
                     <span className="badge store">{review.store}</span>
                     <span className="badge platform">{review.platform}</span>
