@@ -14,7 +14,7 @@ export default function Reviews() {
   const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
-    fetch("/data/review_with_emotions.json")
+    fetch("/data/review_with_emotion_v2.json")
       .then((res) => res.json())
       .then((data) => {
         const withImage = data.filter(
