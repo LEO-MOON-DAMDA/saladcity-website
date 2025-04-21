@@ -2,15 +2,15 @@
   width: 100%;
   overflow: hidden;
   background-color: #f8fcf9;
-  border-top: 2px dashed #aed9c7;
-  border-bottom: 2px dashed #aed9c7;
-  padding: 16px 0;
+  border-top: 1px solid #d0e8d9;
+  border-bottom: 1px solid #d0e8d9;
+  padding: 14px 0;
   position: relative;
 }
 
 .scrolling-banner-line {
-  height: 2px;
-  background: #cceee0;
+  height: 1px;
+  background: #d0e8d9;
   position: absolute;
   left: 0;
   right: 0;
@@ -25,17 +25,13 @@
 .scrolling-text {
   display: inline-block;
   padding-left: 100%;
-  animation: scroll-left 30s linear infinite;
-  font-size: 36px;
-  font-weight: 200;
-  color: #0e5138;
-  letter-spacing: 1.2px;
-  line-height: 1.2;
-  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
-  border: 1px solid #b2dfdb;
-  border-radius: 8px;
-  padding: 8px 24px;
-  background-color: rgba(255, 255, 255, 0.6);
+  animation: scroll-left 700s linear infinite;
+  font-size: 34px;
+  font-weight: 100;
+  color: #1b5e20;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  font-family: 'Pretendard', sans-serif;
 }
 
 @keyframes scroll-left {
