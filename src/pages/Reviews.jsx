@@ -1,4 +1,4 @@
-// ✅ Reviews.jsx (정기배송 CTA 카드 독립 줄바꿈 처리 반영)
+// ✅ Reviews.jsx (정기배송 CTA 줄바꿈 처리로 레이아웃 안정화)
 import React, { useState, useEffect } from "react";
 import ReviewModal from "../components/ReviewModal";
 import ScrollingBanner from "../components/ScrollingBanner";
@@ -88,8 +88,8 @@ export default function Reviews() {
   };
 
   const renderMidCTA = () => (
-    <div className="review-cta review-card emotion" key="mid-cta">
-      <p className="emotion-text">“이제 당신도 매주 샐러드시티와 함께하세요.”</p>
+    <div className="review-cta-section" key="mid-cta">
+      <h2 className="cta-headline">이제, 당신도 매주 샐러드시티와 함께해보세요.</h2>
       <a href="/subscription" className="cta-button">정기배송 시작하기 →</a>
     </div>
   );
@@ -126,10 +126,8 @@ export default function Reviews() {
         ]}
       </div>
 
-      {/* ✅ 정기배송 CTA 단독 줄 처리 */}
-      <div style={{ display: "flex", justifyContent: "center", margin: "32px 0" }}>
-        {renderMidCTA()}
-      </div>
+      {/* ✅ 줄 바꿈 처리로 별도 출력 */}
+      {renderMidCTA()}
 
       <div className="review-grid with-image">
         {[
