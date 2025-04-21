@@ -29,8 +29,9 @@
   animation: scroll-left 700s linear infinite;
   font-size: 20px;
   font-weight: 100;
+  font-stretch: condensed;
   color: #1b5e20;
-  letter-spacing: 0.1px;
+  letter-spacing: 0px;
   line-height: 1.2;
   font-family: 'Pretendard', sans-serif;
 }
