@@ -9,15 +9,6 @@
   position: relative;
 }
 
-.scrolling-banner-line {
-  height: 1px;
-  background: #d0e8d9;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-}
-
 .scrolling-banner-track {
   white-space: nowrap;
   overflow: hidden;
