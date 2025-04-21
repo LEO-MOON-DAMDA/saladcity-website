@@ -1,5 +1,5 @@
 // ✅ Reviews.css (최신 안정버전 - 감성 카드 + 리뷰 CTA 포함)
-
+/*
 .reviews-page {
   padding: 60px 20px 80px;
   background-color: #fdfdf7;
@@ -66,7 +66,7 @@
   background-color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
-
+*/
 .review-card.large {
   width: 260px;
 }
