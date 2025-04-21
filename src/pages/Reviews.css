@@ -25,23 +25,6 @@
   margin-top: 12px;
 }
 
-/* 제목/부제목 (혹시 기존 구조에 남아 있다면) */
-.reviews-title {
-  text-align: center;
-  font-size: 32px;
-  font-weight: 700;
-  color: #2f5130;
-  margin-bottom: 8px;
-}
-
-.reviews-subtitle {
-  text-align: center;
-  font-size: 16px;
-  color: #777;
-  margin-bottom: 32px;
-}
-
-/* 카드 그리드 공통 */
 .review-grid {
   display: flex;
   flex-wrap: wrap;
@@ -79,7 +62,6 @@
   box-shadow: 0 10px 20px rgba(47, 81, 48, 0.12);
 }
 
-/* 리뷰 내용 내부 구조 */
 .review-meta {
   font-size: 13px;
   color: #999;
@@ -206,4 +188,42 @@
   font-size: 13px;
   color: #2e7d32;
   font-weight: 500;
+}
+
+/* ✅ CTA 섹션 (중간/하단 모두 공용) */
+.review-cta-section,
+.review-cta {
+  text-align: center;
+  background-color: #f0f8f4;
+  border: 2px dashed #a5d6a7;
+  padding: 30px 20px;
+  border-radius: 16px;
+  margin: 40px auto;
+  width: 100%;
+  max-width: 600px;
+}
+
+.cta-headline {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2f5130;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #2f5130;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.cta-button:hover {
+  background-color: #3c6e40;
+  transform: translateY(-2px);
 }
