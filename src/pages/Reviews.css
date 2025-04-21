@@ -1,36 +1,27 @@
-// ✅ Reviews.css (최신 안정버전 - 감성 카드 + 리뷰 CTA 포함)
-/*
 .reviews-page {
   padding: 60px 20px 80px;
   background-color: #fdfdf7;
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   color: #333;
 }
-/*
+
+/* ✅ 배경 이미지 헤드라인 */
 .review-hero.with-bg {
+  background-image: url("/images/review-hero03.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   padding: 100px 20px;
   position: relative;
   color: #fff;
-  min-height: 360px;
 }
 
-@media (max-width: 480px) {
-  .review-hero.with-bg {
-    min-height: 460px;
-    padding: 120px 20px 60px;
-  }
-}
-*/
 .review-hero-overlay {
   background: rgba(0, 0, 0, 0.45);
-  padding: 32px 20px;
+  padding: 40px 20px;
   border-radius: 16px;
   max-width: 800px;
   margin: 0 auto;
-  margin-top: 24px;
   text-align: center;
 }
 
@@ -55,88 +46,92 @@
   margin-bottom: 40px;
 }
 
+/* 공통 카드 */
 .review-card {
-  border-radius: 14px;
-  padding: 12px;
+  border-radius: 16px;
+  padding: 16px;
   cursor: pointer;
   transition: transform 0.2s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
 }
-*/
+
 .review-card.large {
   width: 260px;
 }
 
 .review-card.small {
   width: 200px;
-  background-color: #f9f9f9;
-  opacity: 0.95;
+  background-color: #f8f8f8;
+  opacity: 0.92;
   box-shadow: none;
 }
 
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(47, 81, 48, 0.12);
+}
+
 .review-meta {
-  font-size: 12px;
+  font-size: 13px;
   color: #999;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin-top: 4px;
   line-height: 1.3;
 }
 
-.meta-top-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-
 .nickname {
+  display: block;
   font-weight: 600;
   color: #2e7d32;
-  font-size: 13px;
+  font-size: 14px;
+  margin-bottom: 2px;
 }
 
 .rating {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
-  color: #2f5130;
+}
+
+.rating.green {
+  color: #4CAF50;
+}
+
+.rating.pink {
+  color: #E91E63;
+}
+
+.date {
+  font-size: 12px;
+  color: #aaa;
 }
 
 .review-content {
-  font-size: 13px;
+  font-size: 14px;
   color: #333;
-  margin: 2px 0 4px;
-  line-height: 1.4;
+  margin: 8px 0;
+  line-height: 1.5;
   font-style: italic;
-  max-height: 2.8em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  min-height: 44px;
 }
 
 .menu-tag {
   background-color: #e8f5e9;
   color: #388e3c;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 20px;
   font-size: 12px;
-  margin-bottom: 4px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: inline-block;
+  margin-bottom: 8px;
 }
 
 .review-image-wrapper {
-  height: 160px;
+  height: 180px;
   overflow: hidden;
   border-radius: 12px;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .review-image-wrapper img {
@@ -144,10 +139,14 @@
   height: 100%;
   object-fit: cover;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-  //filter: brightness(0.97) saturate(0.95);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
+.review-image-wrapper img:hover {
+  filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
+}
+
+/* 뱃지 */
 .badge-container {
   margin-top: 6px;
   display: flex;
@@ -172,6 +171,7 @@
   background-color: #8884d8;
 }
 
+/* ✅ 감성 카드 (emotion:true) */
 .review-card.emotion {
   background-color: #fefbe9;
   border: 2px dashed #c5d8a4;
@@ -203,6 +203,7 @@
   font-weight: 500;
 }
 
+/* ✅ CTA 섹션 (중간/하단 모두 공용) */
 .review-cta-section,
 .review-cta {
   text-align: center;
@@ -213,4 +214,46 @@
   margin: 40px auto;
   width: 100%;
   max-width: 600px;
+}
+
+.cta-headline {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2f5130;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #2f5130;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.cta-button:hover {
+  background-color: #3c6e40;
+  transform: translateY(-2px);
+}
+
+/* ✅ 반응형 카드 구조 */
+@media (max-width: 768px) {
+  .review-card.large,
+  .review-card.small,
+  .review-card.emotion {
+    width: 48%;
+  }
+}
+
+@media (max-width: 480px) {
+  .review-card.large,
+  .review-card.small,
+  .review-card.emotion {
+    width: 100%;
+  }
 }
