@@ -58,12 +58,11 @@ export default function Reviews() {
           {r.review?.slice(0, 80) || "내용 없음"}
         </p>
         {r.menu && <div className="menu-tag">{r.menu}</div>}
-        {hasImage && (
+        {hasImage ? (
           <div className="review-image-wrapper">
             <img src={r.image} alt="리뷰 이미지" />
           </div>
-        )}
-        {!hasImage && (
+        ) : (
           <div className="review-image-wrapper">
             <img src={fallback} alt="감성 이미지" />
           </div>
@@ -79,6 +78,18 @@ export default function Reviews() {
     </div>
   );
 
+  // ✅ 렌더링 순서 분리
+  const emotionReviews = reviews.filter((r) => r.emotion);
+  const withImageReviews = reviews.filter(
+    (r) =>
+      !r.emotion &&
+      typeof r.image === "string" &&
+      r.image.startsWith("http")
+  );
+  const withoutImageReviews = reviews.filter(
+    (r) => !r.emotion && (!r.image || !r.image.startsWith("http"))
+  );
+
   return (
     <div className="reviews-page">
       <section className="review-hero">
@@ -91,11 +102,13 @@ export default function Reviews() {
       <ReviewStatsChart reviews={reviews} />
 
       <div className="review-grid with-image">
-        {reviews.map((r, idx) => {
-          // 중간 CTA 위치 삽입 (6번째 후에)
-          if (idx === 6) return [renderMidCTA(), r.emotion ? renderEmotionCard(r, idx) : renderReviewCard(r, idx)];
-          return r.emotion ? renderEmotionCard(r, idx) : renderReviewCard(r, idx);
-        })}
+        {[
+          ...emotionReviews.map(renderEmotionCard),
+          ...withImageReviews.slice(0, 6).map(renderReviewCard),
+          renderMidCTA(),
+          ...withImageReviews.slice(6).map(renderReviewCard),
+          ...withoutImageReviews.map(renderReviewCard)
+        ]}
       </div>
 
       {selectedReview && (
