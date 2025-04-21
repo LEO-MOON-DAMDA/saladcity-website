@@ -96,15 +96,17 @@ export default function Reviews() {
 
   return (
     <div className="reviews-page">
-      {/* 감성 헤드라인 */}
-      <section className="review-hero">
-        <h1 className="hero-headline">샐러드시티 고객님들이 오늘 보내주신 소중한 리뷰예요</h1>
-        <p className="hero-subtext">
-          총 <strong>{reviews.length}</strong>개의 리뷰가 남겨졌습니다.
-        </p>
+      {/* ✅ 감성 헤드라인 + 배경 이미지 */}
+      <section className="review-hero with-bg">
+        <div className="review-hero-overlay">
+          <h1 className="hero-headline">샐러드시티 고객님들이 오늘 보내주신 소중한 리뷰예요</h1>
+          <p className="hero-subtext">
+            총 <strong>{reviews.length}</strong>개의 리뷰가 남겨졌습니다.
+          </p>
+        </div>
       </section>
 
-      {/* 리뷰 목록 */}
+      {/* ✅ 리뷰 카드 렌더링 */}
       <div className="review-grid with-image">
         {[ 
           ...emotionReviews.map(renderEmotionCard),
@@ -115,7 +117,7 @@ export default function Reviews() {
         ]}
       </div>
 
-      {/* 모달 */}
+      {/* ✅ 모달 */}
       {selectedReview && (
         <ReviewModal
           review={selectedReview}
@@ -123,7 +125,7 @@ export default function Reviews() {
         />
       )}
 
-      {/* 하단 CTA */}
+      {/* ✅ 하단 CTA */}
       <section className="review-cta-section">
         <h2 className="cta-headline">이제, 당신도 매주 샐러드시티와 함께해보세요.</h2>
         <a href="/subscription" className="cta-button">정기배송 시작하기 →</a>
