@@ -5,14 +5,13 @@
   color: #333;
 }
 
-/* ✅ 배경 이미지 헤드라인 */
 .review-hero.with-bg {
-  background-image: url("/images/review-hero03.jpg");
+  background-image: url("../../images/review-hero03.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   padding: 100px 20px;
-  position: relative; 
+  position: relative;
   color: #fff;
 }
 
@@ -46,7 +45,6 @@
   margin-bottom: 40px;
 }
 
-/* 공통 카드 */
 .review-card {
   border-radius: 16px;
   padding: 16px;
@@ -146,7 +144,6 @@
   filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
 }
 
-/* 뱃지 */
 .badge-container {
   margin-top: 6px;
   display: flex;
@@ -171,7 +168,6 @@
   background-color: #8884d8;
 }
 
-/* ✅ 감성 카드 (emotion:true) */
 .review-card.emotion {
   background-color: #fefbe9;
   border: 2px dashed #c5d8a4;
@@ -203,7 +199,6 @@
   font-weight: 500;
 }
 
-/* ✅ CTA 섹션 (중간/하단 모두 공용) */
 .review-cta-section,
 .review-cta {
   text-align: center;
@@ -241,7 +236,6 @@
   transform: translateY(-2px);
 }
 
-/* ✅ 반응형 카드 구조 */
 @media (max-width: 768px) {
   .review-card.large,
   .review-card.small,
