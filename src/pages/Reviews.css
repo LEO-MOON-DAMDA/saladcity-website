@@ -5,8 +5,9 @@
   color: #333;
 }
 
+/* 🚫 헤더 배경이미지 주석처리 */
 .review-hero.with-bg {
-  background-image: url("/images/review-hero03.jpg");
+  /* background-image: url("/images/review-hero03.jpg"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
