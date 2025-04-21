@@ -1,4 +1,3 @@
-// ✅ Reviews.jsx (감성 카드 한 줄 정렬 그룹핑 개선)
 import React, { useState, useEffect } from "react";
 import ReviewModal from "../components/ReviewModal";
 import ScrollingBanner from "../components/ScrollingBanner";
@@ -90,16 +89,25 @@ export default function Reviews() {
   const renderMidCTA = () => (
     <div className="review-cta-section" key="mid-cta">
       <div style={{ marginBottom: "10px" }}>
-        <p className="cta-headline">매일 찾아오는 즐거움.<br />샐시는 meal이 아닌, 당신의 새로운 라이프스타일이에요.</p>
-        <p className="cta-subtext">Everyday SALCY, your new lifestyle &#8212; not just a meal.</p>
+        <p className="cta-headline">
+          매일 찾아오는 즐거움.<br />샐시는 meal이 아닌, 당신의 새로운 라이프스타일이에요.
+        </p>
+        <p className="cta-subtext">
+          Everyday SALCY, your new lifestyle &#8212; not just a meal.
+        </p>
       </div>
-      <a href="/subscription" className="cta-button">정기배송 시작하기 →</a>
+      <a href="/subscription" className="cta-button">
+        정기배송 시작하기 →
+      </a>
     </div>
   );
 
   const emotionReviews = reviews.filter((r) => r.emotion);
   const withImageReviews = reviews.filter(
-    (r) => !r.emotion && typeof r.image === "string" && r.image.startsWith("http")
+    (r) =>
+      !r.emotion &&
+      typeof r.image === "string" &&
+      r.image.startsWith("http")
   );
   const withoutImageReviews = reviews.filter(
     (r) => !r.emotion && (!r.image || !r.image.startsWith("http"))
@@ -109,7 +117,9 @@ export default function Reviews() {
     <div className="reviews-page">
       <section className="review-hero with-bg">
         <div className="review-hero-overlay">
-          <h1 className="hero-headline">샐러드시티 고객님들이 오늘 보내주신 소중한 리뷰예요</h1>
+          <h1 className="hero-headline">
+            샐러드시티 고객님들이 오늘 보내주신 소중한 리뷰예요
+          </h1>
           <p className="hero-subtext">
             총 <strong>{reviews.length}</strong>개의 리뷰가 남겨졌습니다.
             <br />
@@ -122,7 +132,6 @@ export default function Reviews() {
         <ScrollingBanner />
       </div>
 
-      {/* ✅ 감성 카드 전용 라인 */}
       <div className="review-grid emotion-grid">
         {emotionReviews.map(renderEmotionCard)}
       </div>
@@ -138,15 +147,24 @@ export default function Reviews() {
       </div>
 
       {selectedReview && (
-        <ReviewModal review={selectedReview} onClose={() => setSelectedReview(null)} />
+        <ReviewModal
+          review={selectedReview}
+          onClose={() => setSelectedReview(null)}
+        />
       )}
 
       <section className="review-cta-section">
         <div style={{ marginBottom: "10px" }}>
-          <p className="cta-headline">매일 찾아오는 즐거움.<br />샐시는 meal이 아닌, 당신의 새로운 라이프스타일이에요.</p>
-          <p className="cta-subtext">Everyday SALCY, your new lifestyle — not just a meal.</p>
+          <p className="cta-headline">
+            매일 찾아오는 즐거움.<br />샐시는 meal이 아닌, 당신의 새로운 라이프스타일이에요.
+          </p>
+          <p className="cta-subtext">
+            Everyday SALCY, your new lifestyle — not just a meal.
+          </p>
         </div>
-        <a href="/subscription" className="cta-button">정기배송 시작하기 →</a>
+        <a href="/subscription" className="cta-button">
+          정기배송 시작하기 →
+        </a>
       </section>
     </div>
   );
