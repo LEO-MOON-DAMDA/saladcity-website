@@ -4,7 +4,8 @@
   background-color: #f8fcf9;
   border-top: 1px solid #d0e8d9;
   border-bottom: 1px solid #d0e8d9;
-  padding: 14px 0;
+  padding: 10px 0;
+  margin-bottom: 32px;
   position: relative;
 }
 
@@ -29,7 +30,7 @@
   font-size: 34px;
   font-weight: 100;
   color: #1b5e20;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   line-height: 1.1;
   font-family: 'Pretendard', sans-serif;
 }
