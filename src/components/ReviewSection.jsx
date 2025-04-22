@@ -4,7 +4,7 @@ import SubTitle from "./SubTitle";
 import BrandButton from "./BrandButton";
 import ReviewModal from "./ReviewModal";
 import "./ReviewSection.css";
-
+            <span style={ {color: "#4CAF50"} }>⭐</span>
 const fallbackImages = [
   "/images/review-sample01.jpg",
   "/images/review-sample02.jpg",
@@ -56,8 +56,6 @@ export default function ReviewSection() {
         <div className="review-meta">
           <div className="review-badges">
             <span className="badge store">{r.store}</span>
-            
-            <span style={ {color: "#4CAF50"} }>⭐</span>
             <span className="badge platform platform-baemin">{r.platform}</span>
           </div>
           <div className="rating-date-row">
