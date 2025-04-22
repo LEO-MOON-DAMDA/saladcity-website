@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import SectionTitle from "./SectionTitle";
 import SubTitle from "./SubTitle";
 import BrandButton from "./BrandButton";
-import ReviewModal from "./ReviewModal";
 import "./ReviewSection.css";
 
 const fallbackImages = [
@@ -13,7 +12,6 @@ const fallbackImages = [
 
 export default function ReviewSection() {
   const [reviews, setReviews] = useState([]);
-  const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
     fetch("/data/review_preview.json")
@@ -27,17 +25,17 @@ export default function ReviewSection() {
   return (
     <section className="review-section">
       <SectionTitle style={{ textAlign: "center", marginTop: "48px" }}>
-        SALCY CREW INTERVIEW
+        SALCY CREW's Interview
       </SectionTitle>
       <SubTitle style={{ textAlign: "center" }}>최근 리뷰</SubTitle>
 
       <div className="review-slider-wrapper">
         <div className="review-slider">
           {withImage.map((r, idx) => (
-            <div
-              className="review-card large"
+            <a
               key={`img-${idx}`}
-              onClick={() => setSelectedReview(r)}
+              className="review-card large"
+              href={`/reviews#review-${r.id || idx}`}
             >
               <div className="review-meta">
                 <div className="meta-row">
@@ -59,7 +57,7 @@ export default function ReviewSection() {
               <div className="review-image-wrapper">
                 <img src={r.image} alt="리뷰 이미지" />
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
@@ -67,13 +65,6 @@ export default function ReviewSection() {
       <div className="review-button-wrap">
         <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
       </div>
-
-      {selectedReview && (
-        <ReviewModal
-          review={selectedReview}
-          onClose={() => setSelectedReview(null)}
-        />
-      )}
     </section>
   );
 }
