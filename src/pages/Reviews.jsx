@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReviewModal from "../components/ReviewModal";
-import ReviewScrollingBanner from "../components/ReviewScrollingBanner"; // ✅ 복구 완료
+import ReviewScrollingBanner from "../components/ReviewScrollingBanner";
 import "./Reviews.css";
 
 const fallbackImages = [
@@ -41,7 +41,7 @@ export default function Reviews() {
     const rated = reviews.filter((r) => !r.emotion && r.rating);
     if (rated.length === 0) return "-";
     const avg = rated.reduce((sum, r) => sum + r.rating, 0) / rated.length;
-    return avg.toFixed(1);
+    return avg.toFixed(2);
   };
 
   const renderEmotionCard = (r, idx) => (
@@ -65,9 +65,7 @@ export default function Reviews() {
         <div className="review-meta">
           <div className="meta-top-row">
             <span className="nickname">{r.nickname || "익명"}</span>
-            <span className={`rating ${r.rating >= 4 ? "green" : "pink"}`}>
-              {"⭐".repeat(r.rating || 5)}
-            </span>
+            <span className="rating green">{"⭐".repeat(r.rating || 5)}</span>
           </div>
           <div className="review-badges">
             <span className="badge store">{r.store}</span>
