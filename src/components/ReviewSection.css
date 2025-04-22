@@ -1,157 +1,230 @@
-import React, { useState, useEffect } from "react";
-import ReviewModal from "../components/ReviewModal";
-import ReviewScrollingBanner from "../components/ReviewScrollingBanner";
-import "./Reviews.css";
+.review-section {
+  padding: 40px 20px 60px;
+  background-color: #fdfdf7;
+  margin-top: 0px;
+}
 
-const fallbackImages = [
-  "/images/review-sample01.jpg",
-  "/images/review-sample02.jpg",
-  "/images/review-sample03.jpg",
-];
+.review-slider-wrapper {
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+  margin-top: 24px;
+}
 
-export default function Reviews() {
-  const [reviews, setReviews] = useState([]);
-  const [selectedReview, setSelectedReview] = useState(null);
+.review-slider {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 1000px;
+  justify-content: center;
+  overflow-x: hidden;
+}
 
-  useEffect(() => {
-    fetch("/data/review_with_emotion_random.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const clean = data.filter((r) => {
-          const text = r.review?.toLowerCase();
-          const score = r.rating || 0;
-          const bannedWords = [
-            "사장님 댓글 등록하기",
-            "사장님 댓글 추가하기",
-            "머리카락",
-            "이물질",
-            "최악",
-          ];
-          const containsBannedWord = bannedWords.some((word) =>
-            text?.includes(word)
-          );
-          return text && !containsBannedWord && (r.emotion || score >= 4);
-        });
-        setReviews(clean || []);
-      })
-      .catch((err) => console.error("리뷰 JSON 로딩 오류:", err));
-  }, []);
+.review-card.large {
+  width: 240px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 8px 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
 
-  const getPlatformClass = (platform) => {
-    if (platform.includes("배달")) return "baemin";
-    if (platform.includes("쿠팡")) return "coupang";
-    if (platform.includes("요기")) return "yogiyo";
-    return "etc";
-  };
+.review-card.large:hover {
+  transform: translateY(-4px);
+}
 
-  const renderReviewCard = (r, idx) => {
-    const hasImage = typeof r.image === "string" && r.image.startsWith("http");
-    const fallback = fallbackImages[idx % fallbackImages.length];
-    const platformClass = getPlatformClass(r.platform || "");
+.review-card.small {
+  width: 200px;
+  background: #f8f8f8;
+  border-radius: 12px;
+  padding: 12px;
+  opacity: 0.92;
+  box-shadow: none;
+}
 
-    return (
-      <div
-        className={`review-card ${hasImage ? "large" : "small"}`}
-        key={`review-${idx}`}
-        onClick={() => setSelectedReview(r)}
-      >
-        <div className="review-meta">
-          <div className="meta-top-row">
-            <div className="nickname-ellipsis">{r.nickname || "익명"}</div>
-            <span className="rating">
-              {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
-                <span key={i} style={{ fontSize: "12px" }}>⭐</span>
-              ))}
-            </span>
-          </div>
-          <div className="review-badges">
-            <span className="badge store">
-              {(r.store || "").replace("배민_", "").replace("쿠팡_", "").replace("요기_", "")}
-            </span>
-          </div>
-          <span className="date nowrap">{r.date || ""}</span>
-        </div>
-        <p className="review-text">{r.review || "내용 없음"}</p>
-        <div className="review-image-wrapper">
-          <img src={hasImage ? r.image : fallback} alt="리뷰 이미지" />
-        </div>
-      </div>
-    );
-  };
+.review-slider-wrapper.without-image-wrapper {
+  margin-top: 12px;
+}
 
-  const renderEmotionCard = (r, idx) => (
-    <div className="review-card emotion" key={`emotion-${idx}`}>
-      <p className="emotion-text">“{r.review}”</p>
-      <p className="emotion-sub">{r.english}</p>
-      <p className="emotion-author">— {r.author} —</p>
-    </div>
-  );
+.review-slider.without-image {
+  max-width: 900px;
+}
 
-  const calculateAverageRating = (reviews) => {
-    const rated = reviews.filter((r) => !r.emotion && r.rating);
-    if (rated.length === 0) return "-";
-    const avg = rated.reduce((sum, r) => sum + r.rating, 0) / rated.length;
-    return avg.toFixed(2);
-  };
+.review-meta {
+  font-size: 13px;
+  color: #999;
+  margin-top: 4px;
+  line-height: 1.3;
+}
 
-  const emotionReviews = reviews.filter((r) => r.emotion);
-  const withImageReviews = reviews.filter(
-    (r) => !r.emotion && typeof r.image === "string" && r.image.startsWith("http")
-  );
-  const withoutImageReviews = reviews.filter(
-    (r) => !r.emotion && (!r.image || !r.image.startsWith("http"))
-  );
+.nickname {
+  display: block;
+  font-weight: 600;
+  color: #2e7d32;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
 
-  return (
-    <div className="reviews-page">
-      <section className="review-hero with-bg">
-        <div className="review-hero-overlay">
-          <h1 className="hero-headline">
-            샐러드시티 고객님들이 오늘 보내주신 소중한 리뷰예요
-          </h1>
-          <p className="hero-subtext">
-            총 <strong>{reviews.length}</strong>개의 리뷰가 남겨졌습니다.
-            <br />
-            평균 별점 <strong>{calculateAverageRating(reviews)}</strong>점
-          </p>
-        </div>
-      </section>
+.rating {
+  font-size: 14px;
+  font-weight: bold;
+  color: #4CAF50 !important;
+}
 
-      <div style={{ marginTop: "2px", marginBottom: "28px" }}>
-        <ReviewScrollingBanner />
-      </div>
+.date {
+  font-size: 12px;
+  color: #aaa;
+  margin-bottom: 4px;
+}
 
-      <div className="review-grid emotion-grid">
-        {[...emotionReviews].sort(() => Math.random() - 0.5).slice(0, 3).map(renderEmotionCard)}
-      </div>
+.review-badges {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
 
-      <div className="review-grid with-image">
-        {withImageReviews.slice(0, 8).map(renderReviewCard)}
-      </div>
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+}
 
-      <div className="review-cta-section">
-        <p className="cta-headline">
-          매일 찾아오는 즐거움.<br />샐시는 meal이 아닌, 당신의 새로운 라이프스타일이에요.
-        </p>
-        <p className="cta-subtext">
-          Everyday SALCY, your new lifestyle — not just a meal.
-        </p>
-        <a href="/subscription" className="cta-button">
-          정기배송 시작하기 →
-        </a>
-      </div>
+.badge-platform {
+  background-color: #6abf69;
+}
 
-      <div className="review-grid with-image">
-        {withImageReviews.slice(8).map(renderReviewCard)}
-        {withoutImageReviews.map(renderReviewCard)}
-      </div>
+.badge-store {
+  background-color: #8884d8;
+}
 
-      {selectedReview && (
-        <ReviewModal
-          review={selectedReview}
-          onClose={() => setSelectedReview(null)}
-        />
-      )}
-    </div>
-  );
+.review-text {
+  font-size: 14px;
+  color: #333;
+  margin: 4px 0 6px;
+  line-height: 1.5;
+  font-style: italic;
+  min-height: 44px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-tag {
+  background-color: #e8f5e9;
+  color: #388e3c;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.review-image {
+  height: 180px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-top: 8px;
+}
+
+.review-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.review-image img:hover {
+  filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
+}
+
+.review-card.emotion {
+  background-color: #fefbe9;
+  border: 2px dashed #c5d8a4;
+  padding: 24px;
+  width: 260px;
+  border-radius: 16px;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #2f5130;
+  box-shadow: none;
+}
+
+.emotion-text {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.emotion-sub {
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.emotion-author {
+  font-size: 13px;
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+.review-cta-section,
+.review-cta {
+  text-align: center;
+  background-color: #f0f8f4;
+  border: 2px dashed #a5d6a7;
+  padding: 30px 20px;
+  border-radius: 16px;
+  margin: 40px auto;
+  width: 100%;
+  max-width: 600px;
+}
+
+.cta-headline {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2f5130;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #2f5130;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.cta-button:hover {
+  background-color: #3c6e40;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .review-card.large,
+  .review-card.small,
+  .review-card.emotion {
+    width: 48%;
+  }
+}
+
+@media (max-width: 480px) {
+  .review-card.large,
+  .review-card.small,
+  .review-card.emotion {
+    width: 100%;
+  }
 }
