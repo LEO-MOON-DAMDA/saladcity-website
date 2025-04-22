@@ -44,6 +44,19 @@ export default function Reviews() {
     return avg.toFixed(2);
   };
 
+  const getPlatformColorClass = (platform) => {
+    switch (platform) {
+      case "배달의민족":
+        return "platform-baemin";
+      case "쿠팡이츠":
+        return "platform-coupang";
+      case "요기요":
+        return "platform-yogiyo";
+      default:
+        return "";
+    }
+  };
+
   const renderEmotionCard = (r, idx) => (
     <div className="review-card emotion" key={`emotion-${idx}`}>
       <p className="emotion-text">“{r.review}”</p>
@@ -55,6 +68,7 @@ export default function Reviews() {
   const renderReviewCard = (r, idx) => {
     const hasImage = typeof r.image === "string" && r.image.startsWith("http");
     const fallback = fallbackImages[idx % fallbackImages.length];
+    const platformClass = getPlatformColorClass(r.platform);
 
     return (
       <div
@@ -65,11 +79,13 @@ export default function Reviews() {
         <div className="review-meta">
           <div className="meta-top-row">
             <span className="nickname">{r.nickname || "익명"}</span>
-            <span className="rating green">{"⭐".repeat(r.rating || 5)}</span>
+            <span className="rating">{"⭐".repeat(r.rating || 5)}</span>
           </div>
           <div className="review-badges">
             <span className="badge store">{r.store}</span>
-            <span className="badge platform">{r.platform}</span>
+            <span className={`badge platform ${platformClass}`}>
+              {r.platform}
+            </span>
           </div>
           <span className="date">{r.date || ""}</span>
         </div>
@@ -126,7 +142,7 @@ export default function Reviews() {
         </div>
       </section>
 
-      <div style={{ marginTop: "36px", marginBottom: "28px" }}>
+      <div className="review-banner-wrapper">
         <ReviewScrollingBanner />
       </div>
 
