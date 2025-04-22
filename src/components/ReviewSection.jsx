@@ -71,7 +71,7 @@ export default function ReviewSection() {
               <p className="review-content">
                 {r.review?.slice(0, 40) || "내용 없음"}
               </p>
-              {r.menu?.trim() && <div className="menu-tag">{r.menu}</div>}
+              {r.menu && <div className="menu-tag">{r.menu}</div>}
               {renderBadges(r)}
               <div className="review-image">
                 <img src={r.image} alt="리뷰 이미지" />
@@ -106,7 +106,7 @@ export default function ReviewSection() {
                 <p className="review-content">
                   {r.review?.slice(0, 40) || "내용 없음"}
                 </p>
-                {r.menu?.trim() && <div className="menu-tag">{r.menu}</div>}
+                {r.menu && <div className="menu-tag">{r.menu}</div>}
                 {renderBadges(r)}
                 <div className="review-image">
                   <img src={fallback} alt="감성 이미지" />
