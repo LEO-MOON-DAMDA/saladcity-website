@@ -105,9 +105,9 @@
 
 .review-badges {
   display: flex;
-  gap: 6px;
+  gap: 4px;
   margin: 6px 0;
-  align-items: center;
+  align-items: flex-end;
   line-height: 1; 
 }
 
