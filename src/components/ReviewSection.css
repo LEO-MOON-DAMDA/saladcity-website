@@ -80,11 +80,13 @@
   margin: 0 0 4px 0;
   line-height: 1.4;
   font-style: italic;
+
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+
   min-height: 2.8em;
 }
 
