@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReviewModal from "../components/ReviewModal";
 import ReviewScrollingBanner from "../components/ReviewScrollingBanner";
 import "./Reviews.css";
-  <span style={ {color: "#4CAF50"} }>⭐</span>
+
 const fallbackImages = [
   "/images/review-sample01.jpg",
   "/images/review-sample02.jpg",
