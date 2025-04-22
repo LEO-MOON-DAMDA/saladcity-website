@@ -40,6 +40,8 @@
 .review-banner-wrapper {
   margin-top: 2px;
   margin-bottom: 28px;
+  padding: 4px 0;
+  line-height: 1.2;
 }
 
 .review-grid {
@@ -106,7 +108,7 @@
 .date {
   font-size: 12px;
   color: #aaa;
-  margin-bottom: 4px;
+  margin: 6px 0;
 }
 
 .review-badges {
@@ -130,7 +132,7 @@
 }
 
 .badge.platform.platform-baemin {
-  background-color: #00c73c;
+  background-color: #00C73C;
 }
 
 .badge.platform.platform-coupang {
@@ -161,7 +163,7 @@
   font-size: 12px;
   display: inline-block;
   margin-bottom: 8px;
-  margin-top: 0;
+  margin-top: 2px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
