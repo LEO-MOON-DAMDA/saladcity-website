@@ -16,7 +16,7 @@ export default function Reviews() {
   useEffect(() => {
     fetch("/data/review_with_emotion_random.json")
       .then((res) => res.json())
-      .then((data) => {
+      .then((data) => { 
         const clean = data.filter((r) => {
           const text = r.review?.toLowerCase();
           const score = r.rating || 0;
