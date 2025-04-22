@@ -20,16 +20,8 @@ export default function Reviews() {
         const clean = data.filter((r) => {
           const text = r.review?.toLowerCase();
           const score = r.rating || 0;
-          const bannedWords = [
-            "사장님 댓글 등록하기",
-            "사장님 댓글 추가하기",
-            "머리카락",
-            "이물질",
-            "최악",
-          ];
-          const containsBannedWord = bannedWords.some((word) =>
-            text?.includes(word)
-          );
+          const bannedWords = ["사장님 댓글 등록하기", "사장님 댓글 추가하기", "머리카락", "이물질", "최악"];
+          const containsBannedWord = bannedWords.some((word) => text?.includes(word));
           return text && !containsBannedWord && (r.emotion || score >= 4);
         });
         setReviews(clean || []);
@@ -37,17 +29,9 @@ export default function Reviews() {
       .catch((err) => console.error("리뷰 JSON 로딩 오류:", err));
   }, []);
 
-  const getPlatformClass = (platform) => {
-    if (platform.includes("배달")) return "baemin";
-    if (platform.includes("쿠팡")) return "coupang";
-    if (platform.includes("요기")) return "yogiyo";
-    return "etc";
-  };
-
   const renderReviewCard = (r, idx) => {
     const hasImage = typeof r.image === "string" && r.image.startsWith("http");
     const fallback = fallbackImages[idx % fallbackImages.length];
-    const platformClass = getPlatformClass(r.platform || "");
 
     return (
       <div
@@ -55,30 +39,23 @@ export default function Reviews() {
         key={`review-${idx}`}
         onClick={() => setSelectedReview(r)}
       >
-<div className="review-meta">
-  <div className="meta-row">
-    <span className="nickname">{r.nickname || "익명"}</span>
-    <span className="divider"> | </span>
-    <span className="rating green">
-      {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
-        <span key={i}>⭐</span>
-      ))}
-    </span>
-  </div>
-
-  <div className="meta-row">
-    <span className="badge store">{r.store}</span>
-    <span className="divider"> | </span>
-    <span className={`badge platform badge-platform platform-${getPlatformClass(r.platform || "")}`}>
-      {r.platform}
-    </span>
-  </div>
-
-  <div className="date">{r.date || ""}</div>
-</div>
-
+        <div className="review-meta">
+          <div className="meta-top-row">
+            <div className="nickname-ellipsis">{r.nickname || "익명"}</div>
+            <span className="rating">
+              {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
+                <span key={i} style={{ fontSize: "12px" }}>⭐</span>
+              ))}
+            </span>
+          </div>
+          <div className="review-badges">
+            <span className="badge store">
+              {(r.store || "").replace("배민_", "").replace("쿠팡_", "").replace("요기_", "")}
+            </span>
+          </div>
+          <span className="date nowrap">{r.date || ""}</span>
+        </div>
         <p className="review-text">{r.review || "내용 없음"}</p>
-        {r.menu && <div className="menu-tag">{r.menu}</div>}
         <div className="review-image-wrapper">
           <img src={hasImage ? r.image : fallback} alt="리뷰 이미지" />
         </div>
@@ -113,9 +90,7 @@ export default function Reviews() {
     <div className="reviews-page">
       <section className="review-hero with-bg">
         <div className="review-hero-overlay">
-          <h1 className="hero-headline">
-            샐러드시티 고객님들이 오늘 보내주신 소중한 리뷰예요
-          </h1>
+          <h1 className="hero-headline">샐러드시티 고객님들이 오늘 보내주신 소중한 리뷰예요</h1>
           <p className="hero-subtext">
             총 <strong>{reviews.length}</strong>개의 리뷰가 남겨졌습니다.
             <br />
@@ -129,13 +104,8 @@ export default function Reviews() {
       </div>
 
       <div className="review-grid emotion-grid">
-        {[...emotionReviews]
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 3)
-          .map(renderEmotionCard)}
+        {[...emotionReviews].sort(() => Math.random() - 0.5).slice(0, 3).map(renderEmotionCard)}
       </div>
-
-
 
       <div className="review-grid with-image">
         {withImageReviews.slice(0, 8).map(renderReviewCard)}
