@@ -58,7 +58,7 @@ export default function Reviews() {
 <div className="review-meta">
   <div className="meta-row">
     <span className="nickname">{r.nickname || "익명"}</span>
-    <span className="divider"> / </span>
+    <span className="divider"> | </span>
     <span className="rating green">
       {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
         <span key={i}>⭐</span>
@@ -68,7 +68,7 @@ export default function Reviews() {
 
   <div className="meta-row">
     <span className="badge store">{r.store}</span>
-    <span className="divider"> / </span>
+    <span className="divider"> | </span>
     <span className={`badge platform badge-platform platform-${getPlatformClass(r.platform || "")}`}>
       {r.platform}
     </span>
