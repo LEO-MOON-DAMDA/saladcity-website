@@ -21,7 +21,7 @@
   font-size: 18px;                /* ✅ 크기 줄임 */
   font-weight: 100;
   color: #1b5e20;
-  line-height: 1.1;               /* ✅ 상하 압축 */
+  line-height: 1;               /* ✅ 상하 압축 */
   padding-top: 0;
   font-family: 'Pretendard', sans-serif;
 }
