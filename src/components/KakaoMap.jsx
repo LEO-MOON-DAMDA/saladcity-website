@@ -6,9 +6,12 @@ const KakaoMap = () => {
     const script = document.createElement("script");
     script.src = "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=261f12530740989e7f97fbb28840ed8a";
     script.async = true;
+
     script.onload = () => {
       window.kakao.maps.load(() => {
         const mapContainer = document.getElementById("map");
+        if (!mapContainer) return;
+
         const mapOption = {
           center: new window.kakao.maps.LatLng(37.5008, 127.0365),
           level: 6,
