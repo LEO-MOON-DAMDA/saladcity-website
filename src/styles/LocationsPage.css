@@ -16,6 +16,7 @@
   width: 100%;
   max-height: 400px;
   object-fit: cover;
+  object-position: top center; /* ✅ 얼굴 보이게 조정됨 */
   border-bottom: 4px solid #2f855a;
 }
 
