@@ -40,8 +40,8 @@
 .review-banner-wrapper {
   margin-top: 2px;
   margin-bottom: 28px;
-  padding: 4px 0;
-  line-height: 1.2;
+  padding: 0; /* ✅ 패딩 제거 */
+  line-height: 1; /* ✅ 줄 간격도 타이트하게 */
 }
 
 .review-grid {
