@@ -203,10 +203,18 @@
   color: #fff;
 }
 
-.badge.platform {
-  background-color: #48d1cc;
+.badge-platform.platform-baemin {
+  background-color: #48d1cc !important;
 }
 
-.badge.store {
+.badge-platform.platform-coupang {
+  background-color: #346aff !important;
+}
+
+.badge-platform.platform-yogiyo {
+  background-color: #ff0040 !important;
+}
+
+.badge-store {
   background-color: #8884d8;
 }
