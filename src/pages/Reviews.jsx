@@ -16,7 +16,7 @@ export default function Reviews() {
   useEffect(() => {
     fetch("/data/review_with_emotion_random.json")
       .then((res) => res.json())
-      .then((data) => { 
+      .then((data) => {
         const clean = data.filter((r) => {
           const text = r.review?.toLowerCase();
           const score = r.rating || 0;
@@ -41,19 +41,18 @@ export default function Reviews() {
       >
         <div className="review-meta">
           <div className="meta-top-row">
-            <div className="nickname-ellipsis">{r.nickname || "익명"}</div>
+            <span className="nickname">{r.nickname || "익명"}</span>
             <span className="rating">
               {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
-                <span key={i} style={{ fontSize: "12px" }}>⭐</span>
+                <span key={i} style={{ fontSize: "13px" }}>⭐</span>
               ))}
             </span>
           </div>
           <div className="review-badges">
-            <span className="badge store">
-              {(r.store || "").replace("배민_", "").replace("쿠팡_", "").replace("요기_", "")}
-            </span>
+            <span className="badge store">{r.store}</span>
+            <span className="badge platform">{r.platform}</span>
           </div>
-          <span className="date nowrap">{r.date || ""}</span>
+          <span className="date">{r.date || ""}</span>
         </div>
         <p className="review-text">{r.review || "내용 없음"}</p>
         <div className="review-image-wrapper">
