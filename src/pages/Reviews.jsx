@@ -37,24 +37,17 @@ export default function Reviews() {
       .catch((err) => console.error("리뷰 JSON 로딩 오류:", err));
   }, []);
 
-  const calculateAverageRating = (reviews) => {
-    const rated = reviews.filter((r) => !r.emotion && r.rating);
-    if (rated.length === 0) return "-";
-    const avg = rated.reduce((sum, r) => sum + r.rating, 0) / rated.length;
-    return avg.toFixed(2);
+  const getPlatformClass = (platform) => {
+    if (platform.includes("배달")) return "baemin";
+    if (platform.includes("쿠팡")) return "coupang";
+    if (platform.includes("요기")) return "yogiyo";
+    return "etc";
   };
-
-  const renderEmotionCard = (r, idx) => (
-    <div className="review-card emotion" key={`emotion-${idx}`}>
-      <p className="emotion-text">“{r.review}”</p>
-      <p className="emotion-sub">{r.english}</p>
-      <p className="emotion-author">— {r.author} —</p>
-    </div>
-  );
 
   const renderReviewCard = (r, idx) => {
     const hasImage = typeof r.image === "string" && r.image.startsWith("http");
     const fallback = fallbackImages[idx % fallbackImages.length];
+    const platformClass = getPlatformClass(r.platform || "");
 
     return (
       <div
@@ -73,7 +66,9 @@ export default function Reviews() {
           </div>
           <div className="review-badges">
             <span className="badge store">{r.store}</span>
-            <span className="badge platform">{r.platform}</span>
+            <span className={`badge platform badge-platform platform-${platformClass}`}>
+              {r.platform}
+            </span>
           </div>
           <span className="date">{r.date || ""}</span>
         </div>
@@ -84,6 +79,21 @@ export default function Reviews() {
         </div>
       </div>
     );
+  };
+
+  const renderEmotionCard = (r, idx) => (
+    <div className="review-card emotion" key={`emotion-${idx}`}>
+      <p className="emotion-text">“{r.review}”</p>
+      <p className="emotion-sub">{r.english}</p>
+      <p className="emotion-author">— {r.author} —</p>
+    </div>
+  );
+
+  const calculateAverageRating = (reviews) => {
+    const rated = reviews.filter((r) => !r.emotion && r.rating);
+    if (rated.length === 0) return "-";
+    const avg = rated.reduce((sum, r) => sum + r.rating, 0) / rated.length;
+    return avg.toFixed(2);
   };
 
   const emotionReviews = reviews.filter((r) => r.emotion);
@@ -104,7 +114,7 @@ export default function Reviews() {
           <p className="hero-subtext">
             총 <strong>{reviews.length}</strong>개의 리뷰가 남겨졌습니다.
             <br />
-            평균 별점 <strong>{calculateAverageRating(reviews)}</strong>점!
+            평균 별점 <strong>{calculateAverageRating(reviews)}</strong>점
           </p>
         </div>
       </section>
