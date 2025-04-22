@@ -101,7 +101,7 @@ export default function Reviews() {
           </div>
         )}
         <div className="review-image-wrapper">
-          <img src={hasImage ? r.image : fallback} alt="리뷰 이미지" />
+          <img src={r.image} alt="리뷰 이미지" />
         </div>
       </div>
     );
