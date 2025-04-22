@@ -14,18 +14,20 @@
 .review-slider {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 14px;
   justify-content: center;
   width: 100%;
 }
 
 .review-card.large {
-  width: 240px;
+  width: 200px; /* ✅ 카드 축소 */
   background: #ffffff;
   border-radius: 16px;
-  padding: 8px 16px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  padding: 8px 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
   transition: transform 0.2s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
 .review-card.large:hover {
@@ -52,17 +54,15 @@
 .review-text {
   font-size: 13px;
   color: #333;
-  margin: 0 0 4px 0;
+  margin: 0;
   line-height: 1.4;
   font-style: italic;
 
   display: -webkit-box;
-  -webkit-line-clamp: 1; /* ✅ 한 줄 제한 */
+  -webkit-line-clamp: 1; /* ✅ 한 줄로 제한 */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  min-height: 1.4em;
 }
 
 .menu-tag {
@@ -79,7 +79,7 @@
 }
 
 .review-image-wrapper {
-  height: 180px;
+  height: 140px; /* ✅ 축소 */
   overflow: hidden;
   border-radius: 12px;
   margin-top: 8px;
@@ -90,8 +90,8 @@
   height: 100%;
   object-fit: cover;
   transition: all 0.3s ease;
-  filter: brightness(0.85) saturate(1.2) hue-rotate(40deg); /* ✅ 녹색 필터 강하게 */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  filter: brightness(0.9) saturate(0.85); /* ✅ 녹색 필터 제거, 통일감만 유지 */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .review-button-wrap {
