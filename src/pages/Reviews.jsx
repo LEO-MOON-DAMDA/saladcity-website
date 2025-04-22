@@ -42,19 +42,22 @@ export default function Reviews() {
         <div className="review-meta">
           <div className="meta-top-row">
             <span className="nickname">{r.nickname || "익명"}</span>
-            <span className="rating">
+            <span className="divider"> | </span>
+            <span className="rating big">
               {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
-                <span key={i} style={{ fontSize: "13px" }}>⭐</span>
+                <span key={i}>⭐</span>
               ))}
             </span>
           </div>
-          <div className="review-badges">
-            <span className="badge store">{r.store}</span>
-            <span className="badge platform">{r.platform}</span>
+          <div className="review-badges bold-green">
+            <span className="badge-store-bold">{r.store}</span>
+            <span className="divider"> | </span>
+            <span className="badge-platform-bold">{r.platform}</span>
           </div>
-          <span className="date">{r.date || ""}</span>
+          <span className="date big">{r.date || ""}</span>
         </div>
         <p className="review-text">{r.review || "내용 없음"}</p>
+        {r.menu && <div className="menu-tag">{r.menu}</div>}
         <div className="review-image-wrapper">
           <img src={hasImage ? r.image : fallback} alt="리뷰 이미지" />
         </div>
