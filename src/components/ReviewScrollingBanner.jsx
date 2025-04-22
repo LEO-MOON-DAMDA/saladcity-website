@@ -1,7 +1,7 @@
 import React from "react";
 import "./ReviewScrollingBanner.css";
 
-export default function ScrollingBanner() {
+export default function ReviewScrollingBanner() {
   const slogans = [
     "오늘도 샐러드시티와 건강한 하루 시작 🌱",
     "리뷰는 사랑입니다 💚 여러분의 응원에 힘나요",
