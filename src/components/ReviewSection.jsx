@@ -34,14 +34,18 @@ export default function ReviewSection() {
           {withImage.map((r, idx) => (
             <a
               key={`img-${idx}`}
-              className="review-card large"
+              className="review-card mini"
               href={`/reviews#review-${r.id || idx}`}
             >
+              <div className="review-image-wrapper">
+                <img src={r.image} alt="리뷰 이미지" />
+              </div>
+              <p className="review-text">{r.review || "내용 없음"}</p>
               <div className="review-meta">
                 <div className="meta-row">
                   <span className="nickname">{r.nickname || "익명"}</span>
                   <span className="divider"> | </span>
-                  <span className="rating green">
+                  <span className="rating">
                     {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
                       <span key={i}>⭐</span>
                     ))}
@@ -49,13 +53,9 @@ export default function ReviewSection() {
                 </div>
                 <div className="meta-row">
                   <span className="badge store">{r.store}</span>
+                  <span className="divider"> · </span>
+                  <span className="date">{r.date || ""}</span>
                 </div>
-                <div className="date">{r.date || ""}</div>
-              </div>
-              <p className="review-text">{r.review || "내용 없음"}</p>
-              {r.menu?.trim() && <div className="menu-tag">{r.menu}</div>}
-              <div className="review-image-wrapper">
-                <img src={r.image} alt="리뷰 이미지" />
               </div>
             </a>
           ))}
