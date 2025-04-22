@@ -69,14 +69,7 @@
 .rating {
   font-size: 14px;
   font-weight: bold;
-}
-
-.rating.green {
-  color: #4CAF50;
-}
-
-.rating.pink {
-  color: #E91E63;
+  color: #4CAF50 !important; /* ✅ 초록 고정 */
 }
 
 .date {
@@ -84,15 +77,17 @@
   color: #999;
 }
 
+/* ✅ 간격 축소: 리뷰 텍스트 하단 */
 .review-text {
   font-size: 13px;
   color: #333;
-  margin: 8px 0;
+  margin: 0 0 2px 0;
   line-height: 1.4;
   font-style: italic;
   min-height: 42px;
 }
 
+/* ✅ 간격 축소: 메뉴 상단 */
 .menu-tag {
   background-color: #e8f5e9;
   color: #388e3c;
@@ -100,7 +95,7 @@
   border-radius: 20px;
   font-size: 11px;
   display: inline-block;
-  margin-bottom: 10px;
+  margin: 2px 0 10px 0;
 }
 
 .review-image img {
@@ -138,8 +133,9 @@
   color: #fff;
 }
 
-.badge-platform {
-  background-color: #6abf69;
+/* ✅ 배민 공식 색상 */
+.badge-platform.platform-baemin {
+  background-color: #00C73C !important;
 }
 
 .badge-store {
