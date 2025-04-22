@@ -14,7 +14,36 @@
   position: relative;
   color: #fff;
 }
+.review-card.emotion {
+  background-color: #fefbe9;
+  border: 2px dashed #c5d8a4;
+  padding: 24px;
+  width: 260px;
+  border-radius: 16px;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #2f5130;
+  box-shadow: none;
+}
 
+.emotion-text {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.emotion-sub {
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.emotion-author {
+  font-size: 13px;
+  color: #2e7d32;
+  font-weight: 500;
+}
 .review-hero-overlay {
   background: rgba(0, 0, 0, 0.45);
   padding: 40px 20px;
