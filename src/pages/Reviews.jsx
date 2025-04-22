@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReviewModal from "../components/ReviewModal";
 import ReviewScrollingBanner from "../components/ReviewScrollingBanner";
 import "./Reviews.css";
-
+  <span style={ {color: "#4CAF50"} }>⭐</span>
 const fallbackImages = [
   "/images/review-sample01.jpg",
   "/images/review-sample02.jpg",
@@ -79,7 +79,6 @@ export default function Reviews() {
         <div className="review-meta">
           <div className="meta-top-row">
             <span className="nickname">{r.nickname || "익명"}</span>
-            <span style={ {color: "#4CAF50"} }>⭐</span>
             <span className="rating">
               {Array.from({ length: r.rating || 5 }).map((_, i) => (
                 <span key={i} style={{ color: "#4CAF50" }}>⭐</span>
