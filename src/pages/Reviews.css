@@ -83,18 +83,19 @@
   text-overflow: ellipsis;
 }
 
-.nickname.full.large {
+.nickname.full.large.full-show {
   font-size: 15px;
   font-weight: 600;
   color: #2e7d32;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
+  text-overflow: unset;
 }
 
-.rating.large {
-  font-size: 18px;
+.rating.mid {
+  font-size: 15px;
   color: #4CAF50;
+  font-weight: 500;
 }
 
 .divider {
@@ -119,7 +120,7 @@
 }
 
 .badge.platform-badge.large {
-  background-color: #00C73C;
+  background-color: #48d1cc;
   color: #fff;
   padding: 4px 10px;
   border-radius: 12px;
