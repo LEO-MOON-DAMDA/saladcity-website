@@ -8,6 +8,7 @@ const fallbackImages = [
   "/images/review-sample02.jpg",
   "/images/review-sample03.jpg",
 ];
+<span>{"⭐".repeat(r.rating || 5)}</span>
 
 export default function Reviews() {
   const [reviews, setReviews] = useState([]);
