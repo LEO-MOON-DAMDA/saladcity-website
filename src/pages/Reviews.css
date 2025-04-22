@@ -1,5 +1,5 @@
 .reviews-page {
-  padding: 60px 0 80px; /* 좌우 여백 제거 */
+  padding: 60px 0 80px;
   background-color: #fdfdf7;
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   color: #333;
@@ -37,9 +37,8 @@
   margin-top: 12px;
 }
 
-/* ✅ 추가: 배너 위 여백 조정용 클래스 */
 .review-banner-wrapper {
-  margin-top: 2px !important;
+  margin-top: 2px;
   margin-bottom: 28px;
 }
 
@@ -77,6 +76,10 @@
 .review-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 20px rgba(47, 81, 48, 0.12);
+}
+
+.review-card:hover img {
+  filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
 }
 
 .review-meta {
@@ -126,8 +129,16 @@
   background-color: #81c784;
 }
 
-.badge.platform {
-  background-color: #64b5f6;
+.badge.platform.platform-baemin {
+  background-color: #00c73c;
+}
+
+.badge.platform.platform-coupang {
+  background-color: #1e90ff;
+}
+
+.badge.platform.platform-yogiyo {
+  background-color: #ff0050;
 }
 
 .review-content {
@@ -169,10 +180,6 @@
   object-fit: cover;
   transition: all 0.3s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.review-image-wrapper img:hover {
-  filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
 }
 
 .review-card.emotion {
