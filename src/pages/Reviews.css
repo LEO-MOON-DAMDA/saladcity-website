@@ -108,7 +108,7 @@
 .date {
   font-size: 12px;
   color: #aaa;
-  margin: 6px 0;
+  margin: 6px 0 2px 0; /* 하단 마진 줄임 */
 }
 
 .review-badges {
@@ -132,7 +132,7 @@
 }
 
 .badge.platform.platform-baemin {
-  background-color: #00C73C;
+  background-color: #00C73C !important; /* 공식 배민 민트 */
 }
 
 .badge.platform.platform-coupang {
