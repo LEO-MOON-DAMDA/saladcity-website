@@ -1,5 +1,5 @@
 .reviews-page {
-  padding: 60px 0 80px;
+  padding: 60px 20px 80px;
   background-color: #fdfdf7;
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   color: #333;
@@ -35,13 +35,6 @@
   font-size: 16px;
   color: #eee;
   margin-top: 12px;
-}
-
-.review-banner-wrapper {
-  margin-top: 2px;
-  margin-bottom: 20px;
-  padding: 0;
-  line-height: 1.1;
 }
 
 .review-grid {
@@ -80,10 +73,6 @@
   box-shadow: 0 10px 20px rgba(47, 81, 48, 0.12);
 }
 
-.review-card:hover img {
-  filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
-}
-
 .review-meta {
   font-size: 13px;
   color: #999;
@@ -91,68 +80,44 @@
   line-height: 1.3;
 }
 
+.meta-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .nickname {
-  display: block;
   font-weight: 600;
   color: #2e7d32;
   font-size: 14px;
-  margin-bottom: 2px;
 }
 
 .rating {
   font-size: 14px;
   font-weight: bold;
-  color: #4CAF50 !important;
+  color: #4CAF50;
 }
 
 .date {
   font-size: 12px;
   color: #aaa;
-  margin: 6px 0 2px 0; /* 하단 마진 줄임 */
-}
-
-.review-badges {
-  display: flex;
-  gap: 6px;
   margin-bottom: 4px;
-  margin-top: 4px;
 }
 
-.badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 11px;
-  font-weight: 500;
-  color: #fff;
-}
-
-.badge.store {
-  background-color: #81c784;
-}
-
-.badge.platform.platform-baemin {
-  background-color: #48D1CC !important; /* 공식 배민 민트 */
-}
-
-.badge.platform.platform-coupang {
-  background-color: #1e90ff;
-}
-
-.badge.platform.platform-yogiyo {
-  background-color: #ff0050;
-}
-
-.review-content {
-  font-size: 14px;
+.review-text {
+  font-size: 13px;
   color: #333;
-  margin: 4px 0 2px;
-  line-height: 1.5;
+  margin: 0 0 4px 0;
+  line-height: 1.4;
   font-style: italic;
-  min-height: 44px;
-  white-space: nowrap;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  min-height: 2.8em;
 }
 
 .menu-tag {
@@ -162,8 +127,7 @@
   border-radius: 20px;
   font-size: 12px;
   display: inline-block;
-  margin-bottom: 8px;
-  margin-top: 2px;
+  margin: 0 0 10px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -184,39 +148,11 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.review-card.emotion {
-  background-color: #fefbe9;
-  border: 2px dashed #c5d8a4;
-  padding: 24px;
-  width: 260px;
-  border-radius: 16px;
-  text-align: center;
-  font-family: 'Noto Sans KR', sans-serif;
-  color: #2f5130;
-  box-shadow: none;
+.review-image-wrapper img:hover {
+  filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
 }
 
-.emotion-text {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.emotion-sub {
-  font-size: 12px;
-  color: #888;
-  font-style: italic;
-  margin-bottom: 10px;
-}
-
-.emotion-author {
-  font-size: 13px;
-  color: #2e7d32;
-  font-weight: 500;
-}
-
-.review-cta-section,
-.review-cta {
+.review-cta-section {
   text-align: center;
   background-color: #f0f8f4;
   border: 2px dashed #a5d6a7;
@@ -233,6 +169,12 @@
   color: #2f5130;
   margin-bottom: 18px;
   line-height: 1.5;
+}
+
+.cta-subtext {
+  font-size: 14px;
+  color: #4a6f55;
+  margin-bottom: 12px;
 }
 
 .cta-button {
@@ -252,18 +194,19 @@
   transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
-  .review-card.large,
-  .review-card.small,
-  .review-card.emotion {
-    width: 48%;
-  }
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
 }
 
-@media (max-width: 480px) {
-  .review-card.large,
-  .review-card.small,
-  .review-card.emotion {
-    width: 100%;
-  }
+.badge.platform {
+  background-color: #48d1cc;
+}
+
+.badge.store {
+  background-color: #8884d8;
 }
