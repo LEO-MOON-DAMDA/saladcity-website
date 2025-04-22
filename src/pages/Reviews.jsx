@@ -41,9 +41,9 @@ export default function Reviews() {
       >
         <div className="review-meta">
           <div className="meta-top-row">
-            <span className="nickname full large">{r.nickname || "익명"}</span>
+            <span className="nickname full large full-show">{r.nickname || "익명"}</span>
             <span className="divider"> | </span>
-            <span className="rating large">
+            <span className="rating mid">
               {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
                 <span key={i}>⭐</span>
               ))}
@@ -56,7 +56,7 @@ export default function Reviews() {
           </div>
           <span className="date large">{r.date || ""}</span>
         </div>
-        <p className="review-text multiline">{r.review || "내용 없음"}</p>
+        <p className="review-text multiline">{(r.review || "내용 없음").trim()}</p>
         {r.menu && <div className="menu-tag">{r.menu}</div>}
         <div className="review-image-wrapper">
           <img src={hasImage ? r.image : fallback} alt="리뷰 이미지" />
