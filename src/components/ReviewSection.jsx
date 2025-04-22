@@ -58,9 +58,11 @@ export default function ReviewSection() {
                   <span className="badge store">{r.store}</span>
                   <span className="badge platform">{r.platform}</span>
                 </div>
-                <span className={`rating ${r.rating >= 4 ? "green" : "pink"}`}>
-                  {"⭐".repeat(Math.min(r.rating || 0, 5))}
-                </span>
+                  <span className={`rating ${r.rating >= 4 ? "green" : "pink"}`}>
+                  {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
+                  <span key={i} className={`star ${r.rating >= 4 ? "green" : "pink"}`}>⭐</span>
+                  ))}
+              </span>
                 &nbsp;|&nbsp; {r.date || ""}
               </div>
               <p className="review-content">
