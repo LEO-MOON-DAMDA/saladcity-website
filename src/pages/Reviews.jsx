@@ -55,23 +55,28 @@ export default function Reviews() {
         key={`review-${idx}`}
         onClick={() => setSelectedReview(r)}
       >
-        <div className="review-meta">
-          <div className="meta-top-row">
-            <span className="nickname">{r.nickname || "익명"}</span>
-            <span className="rating green">
-              {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
-                <span key={i}>⭐</span>
-              ))}
-            </span>
-          </div>
-          <div className="review-badges">
-            <span className="badge store">{r.store}</span>
-            <span className={`badge platform badge-platform platform-${platformClass}`}>
-              {r.platform}
-            </span>
-          </div>
-          <span className="date">{r.date || ""}</span>
-        </div>
+<div className="review-meta">
+  <div className="meta-row">
+    <span className="nickname">{r.nickname || "익명"}</span>
+    <span className="divider"> / </span>
+    <span className="rating green">
+      {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
+        <span key={i}>⭐</span>
+      ))}
+    </span>
+  </div>
+
+  <div className="meta-row">
+    <span className="badge store">{r.store}</span>
+    <span className="divider"> / </span>
+    <span className={`badge platform badge-platform platform-${getPlatformClass(r.platform || "")}`}>
+      {r.platform}
+    </span>
+  </div>
+
+  <div className="date">{r.date || ""}</div>
+</div>
+
         <p className="review-text">{r.review || "내용 없음"}</p>
         {r.menu && <div className="menu-tag">{r.menu}</div>}
         <div className="review-image-wrapper">
