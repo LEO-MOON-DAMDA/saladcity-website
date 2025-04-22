@@ -4,7 +4,7 @@ import SubTitle from "./SubTitle";
 import BrandButton from "./BrandButton";
 import ReviewModal from "./ReviewModal";
 import "./ReviewSection.css";
-            <span style={ {color: "#4CAF50"} }>⭐</span>
+
 const fallbackImages = [
   "/images/review-sample01.jpg",
   "/images/review-sample02.jpg",
