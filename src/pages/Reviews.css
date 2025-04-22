@@ -1,5 +1,3 @@
-/* 리뷰 페이지 스타일 최종 진보본 */
-
 .reviews-page {
   padding: 60px 20px 80px;
   background-color: #fdfdf7;
@@ -8,7 +6,7 @@
 }
 
 .review-hero.with-bg {
-  background-image: url("https://www.saladcitykorea.com/images/reviewhero03.jpg"); /* ✅ 배경 이미지 추가 */
+  background-image: url("https://www.saladcitykorea.com/images/reviewhero03.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -93,14 +91,7 @@
 .rating {
   font-size: 14px;
   font-weight: bold;
-}
-
-.rating.green {
   color: #4CAF50 !important;
-}
-
-.rating.pink {
-  color: #E91E63;
 }
 
 .date {
@@ -109,17 +100,40 @@
   margin-bottom: 4px;
 }
 
+.review-badges {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.badge.store {
+  background-color: #81c784;
+}
+
+.badge.platform {
+  background-color: #64b5f6;
+}
+
 .review-content {
   font-size: 14px;
   color: #333;
-  margin: 4px 0 6px;
+  margin: 4px 0 2px;
   line-height: 1.5;
   font-style: italic;
   min-height: 44px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
 }
 
 .menu-tag {
@@ -130,6 +144,7 @@
   font-size: 12px;
   display: inline-block;
   margin-bottom: 8px;
+  margin-top: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -152,30 +167,6 @@
 
 .review-image-wrapper img:hover {
   filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
-}
-
-.badge-container {
-  margin-top: 6px;
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 11px;
-  font-weight: 500;
-  color: #fff;
-}
-
-.badge-platform {
-  background-color: #6abf69;
-}
-
-.badge-store {
-  background-color: #8884d8;
 }
 
 .review-card.emotion {
