@@ -1,7 +1,7 @@
 .review-section {
-  padding: 40px 20px 60px;
+  padding: 40px 0 60px;
   background-color: #fdfdf7;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .review-slider-wrapper {
@@ -14,217 +14,101 @@
 .review-slider {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
-  max-width: 1000px;
+  gap: 12px;
   justify-content: center;
-  overflow-x: hidden;
+  width: 100%;
 }
 
 .review-card.large {
-  width: 240px;
+  width: 200px;
   background: #ffffff;
-  border-radius: 16px;
-  padding: 8px 16px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  padding: 8px 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  text-decoration: none;
+  color: inherit;
   transition: transform 0.2s ease;
 }
 
 .review-card.large:hover {
-  transform: translateY(-4px);
-}
-
-.review-card.small {
-  width: 200px;
-  background: #f8f8f8;
-  border-radius: 12px;
-  padding: 12px;
-  opacity: 0.92;
-  box-shadow: none;
-}
-
-.review-slider-wrapper.without-image-wrapper {
-  margin-top: 12px;
-}
-
-.review-slider.without-image {
-  max-width: 900px;
-}
-
-.review-meta {
-  font-size: 13px;
-  color: #999;
-  margin-top: 4px;
-  line-height: 1.3;
+  transform: translateY(-3px);
 }
 
 .nickname {
-  display: block;
   font-weight: 600;
   color: #2e7d32;
-  font-size: 14px;
-  margin-bottom: 2px;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90px;
 }
 
 .rating {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
-  color: #4CAF50 !important;
+  color: #4CAF50;
 }
 
 .date {
-  font-size: 12px;
-  color: #aaa;
-  margin-bottom: 4px;
-}
-
-.review-badges {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 4px;
-  margin-top: 4px;
-}
-
-.badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
   font-size: 11px;
-  font-weight: 500;
-  color: #fff;
-}
-
-.badge-platform {
-  background-color: #6abf69;
-}
-
-.badge-store {
-  background-color: #8884d8;
+  color: #999;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .review-text {
-  font-size: 14px;
-  color: #333;
-  margin: 4px 0 6px;
-  line-height: 1.5;
-  font-style: italic;
-  min-height: 44px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.menu-tag {
-  background-color: #e8f5e9;
-  color: #388e3c;
-  padding: 5px 12px;
-  border-radius: 20px;
   font-size: 12px;
-  display: inline-block;
-  margin-bottom: 8px;
-  white-space: nowrap;
+  color: #333;
+  font-style: italic;
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.review-image {
-  height: 180px;
+.review-image-wrapper {
+  width: 100%;
+  height: 140px;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 10px;
   margin-top: 8px;
 }
 
-.review-image img {
+.review-section .review-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: brightness(0.8) saturate(0.75);
   transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
-.review-image img:hover {
-  filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
-}
-
-.review-card.emotion {
-  background-color: #fefbe9;
-  border: 2px dashed #c5d8a4;
-  padding: 24px;
-  width: 260px;
-  border-radius: 16px;
+.review-button-wrap {
+  margin-top: 24px;
   text-align: center;
-  font-family: 'Noto Sans KR', sans-serif;
-  color: #2f5130;
-  box-shadow: none;
 }
 
-.emotion-text {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 6px;
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 2px;
 }
 
-.emotion-sub {
-  font-size: 12px;
-  color: #888;
-  font-style: italic;
-  margin-bottom: 10px;
+.divider {
+  color: #bbb;
+  font-size: 11px;
 }
 
-.emotion-author {
-  font-size: 13px;
-  color: #2e7d32;
-  font-weight: 500;
-}
-
-.review-cta-section,
-.review-cta {
-  text-align: center;
-  background-color: #f0f8f4;
-  border: 2px dashed #a5d6a7;
-  padding: 30px 20px;
-  border-radius: 16px;
-  margin: 40px auto;
-  width: 100%;
-  max-width: 600px;
-}
-
-.cta-headline {
-  font-size: 18px;
-  font-weight: 600;
-  color: #2f5130;
-  margin-bottom: 18px;
-  line-height: 1.5;
-}
-
-.cta-button {
-  display: inline-block;
-  background-color: #2f5130;
+.badge.store {
+  background-color: #4CAF50;
   color: #fff;
-  padding: 12px 24px;
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 15px;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
-}
-
-.cta-button:hover {
-  background-color: #3c6e40;
-  transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-  .review-card.large,
-  .review-card.small,
-  .review-card.emotion {
-    width: 48%;
-  }
-}
-
-@media (max-width: 480px) {
-  .review-card.large,
-  .review-card.small,
-  .review-card.emotion {
-    width: 100%;
-  }
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
 }
