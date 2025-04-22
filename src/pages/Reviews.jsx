@@ -118,7 +118,7 @@ export default function Reviews() {
       </div>
 
       <div className="review-grid with-image">
-        {withImageReviews.slice(0, 6).map(renderReviewCard)}
+        {withImageReviews.slice(0, 8).map(renderReviewCard)}
       </div>
 
       <div className="review-cta-section">
@@ -134,7 +134,7 @@ export default function Reviews() {
       </div>
 
       <div className="review-grid with-image">
-        {withImageReviews.slice(6).map(renderReviewCard)}
+        {withImageReviews.slice(8).map(renderReviewCard)}
         {withoutImageReviews.map(renderReviewCard)}
       </div>
 
