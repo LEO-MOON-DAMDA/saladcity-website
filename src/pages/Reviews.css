@@ -1,5 +1,5 @@
 .reviews-page {
-  padding: 60px 20px 80px;
+  padding: 60px 0 80px; /* 좌우 여백 제거 */
   background-color: #fdfdf7;
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   color: #333;
@@ -35,6 +35,12 @@
   font-size: 16px;
   color: #eee;
   margin-top: 12px;
+}
+
+/* ✅ 추가: 배너 위 여백 조정용 클래스 */
+.review-banner-wrapper {
+  margin-top: 2px !important;
+  margin-bottom: 28px;
 }
 
 .review-grid {
