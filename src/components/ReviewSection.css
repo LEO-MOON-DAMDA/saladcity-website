@@ -20,7 +20,6 @@
   overflow-x: hidden;
 }
 
-/* 사진 있는 카드 */
 .review-card.large {
   width: 240px;
   background: #ffffff;
@@ -34,7 +33,6 @@
   transform: translateY(-4px);
 }
 
-/* 사진 없는 카드 */
 .review-card.small {
   width: 200px;
   background: #f8f8f8;
@@ -79,10 +77,15 @@
 .review-text {
   font-size: 13px;
   color: #333;
-  margin: 0 0 2px 0;
+  margin: 0 0 4px 0;
   line-height: 1.4;
   font-style: italic;
-  min-height: 42px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 2.8em;
 }
 
 .menu-tag {
@@ -124,7 +127,7 @@
   display: inline-block;
   padding: 3px 8px;
   border-radius: 12px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   color: #fff;
 }
