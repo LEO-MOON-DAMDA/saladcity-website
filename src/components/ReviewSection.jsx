@@ -18,14 +18,8 @@ export default function ReviewSection() {
   useEffect(() => {
     fetch("/data/review_preview.json")
       .then((res) => res.json())
-      .then((data) => {
-        setReviews(data || []);
-        console.log("불러온 미리보기 리뷰 수:", data.length);
-        console.log("예시 리뷰:", data[0]);
-      })
-      .catch((err) => {
-        console.error("리뷰 preview JSON 로딩 오류:", err);
-      });
+      .then((data) => setReviews(data || []))
+      .catch((err) => console.error("리뷰 preview JSON 로딩 오류:", err));
   }, []);
 
   const withImage = reviews.filter((r) => r.image);
@@ -48,11 +42,7 @@ export default function ReviewSection() {
       <div className="review-slider-wrapper">
         <div className="review-slider">
           {withImage.map((r, idx) => (
-            <div
-              className="review-card large"
-              key={`img-${idx}`}
-              onClick={() => setSelectedReview(r)}
-            >
+            <div className="review-card large" key={`img-${idx}`} onClick={() => setSelectedReview(r)}>
               <div className="review-meta">
                 <div className="review-badges">
                   <span className="badge store">{r.store}</span>
@@ -68,9 +58,7 @@ export default function ReviewSection() {
                   <span className="date">{r.date || ""}</span>
                 </div>
               </div>
-              <p className="review-text">
-                {r.review || "내용 없음"}
-              </p>
+              <p className="review-text">{r.review || "내용 없음"}</p>
               {r.menu && <div className="menu-tag">{r.menu}</div>}
               {renderBadges(r)}
               <div className="review-image">
@@ -86,11 +74,7 @@ export default function ReviewSection() {
           {withoutImage.map((r, idx) => {
             const fallback = fallbackImages[idx % fallbackImages.length];
             return (
-              <div
-                className="review-card small"
-                key={`noimg-${idx}`}
-                onClick={() => setSelectedReview(r)}
-              >
+              <div className="review-card small" key={`noimg-${idx}`} onClick={() => setSelectedReview(r)}>
                 <div className="review-meta">
                   <div className="review-badges">
                     <span className="badge store">{r.store}</span>
@@ -103,9 +87,7 @@ export default function ReviewSection() {
                   </span>
                   &nbsp;|&nbsp; {r.date || ""}
                 </div>
-                <p className="review-text">
-                  {r.review || "내용 없음"}
-                </p>
+                <p className="review-text">{r.review || "내용 없음"}</p>
                 {r.menu && <div className="menu-tag">{r.menu}</div>}
                 {renderBadges(r)}
                 <div className="review-image">
@@ -122,10 +104,7 @@ export default function ReviewSection() {
       </div>
 
       {selectedReview && (
-        <ReviewModal
-          review={selectedReview}
-          onClose={() => setSelectedReview(null)}
-        />
+        <ReviewModal review={selectedReview} onClose={() => setSelectedReview(null)} />
       )}
     </section>
   );
