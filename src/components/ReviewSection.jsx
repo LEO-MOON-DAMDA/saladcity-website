@@ -14,7 +14,6 @@ const fallbackImages = [
 export default function ReviewSection() {
   const [reviews, setReviews] = useState([]);
   const [selectedReview, setSelectedReview] = useState(null);
-<span>{"⭐".repeat(r.rating || 5)}</span>
 
   useEffect(() => {
     fetch("/data/review_preview.json")
@@ -57,6 +56,7 @@ export default function ReviewSection() {
         <div className="review-meta">
           <div className="review-badges">
             <span className="badge store">{r.store}</span>
+            <span>{"⭐".repeat(r.rating || 5)}</span>
             <span className="badge platform platform-baemin">{r.platform}</span>
           </div>
           <div className="rating-date-row">
