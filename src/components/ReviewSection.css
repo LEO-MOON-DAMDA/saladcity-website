@@ -25,7 +25,7 @@
   width: 240px;
   background: #ffffff;
   border-radius: 16px;
-  padding: 4px 16px; /* ✅ 상하 padding 줄임 */
+  padding: 4px 16px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
 }
@@ -44,7 +44,6 @@
   box-shadow: none;
 }
 
-/* 하단 작은 카드 전용 컨테이너 (간격 좁힘) */
 .review-slider-wrapper.without-image-wrapper {
   margin-top: 12px;
 }
@@ -69,7 +68,7 @@
 .rating {
   font-size: 14px;
   font-weight: bold;
-  color: #4CAF50 !important; /* ✅ 초록 고정 */
+  color: #4CAF50 !important;
 }
 
 .date {
@@ -77,7 +76,6 @@
   color: #999;
 }
 
-/* ✅ 간격 극소화: 리뷰 텍스트 */
 .review-text {
   font-size: 12px;
   color: #333;
@@ -88,7 +86,6 @@
   min-height: 0;
 }
 
-/* ✅ 간격 최소화: 메뉴 상단 */
 .menu-tag {
   background-color: #e8f5e9;
   color: #388e3c;
@@ -96,7 +93,13 @@
   border-radius: 20px;
   font-size: 11px;
   display: inline-block;
-  margin: 0 0 10px 0; /* 상단 여백 제거 */
+  margin: 0 0 10px 0;
+}
+
+.menu-tag:empty {
+  display: none;
+  margin: 0;
+  padding: 0;
 }
 
 .review-image img {
@@ -117,7 +120,6 @@
   text-align: center;
 }
 
-/* ✅ 플랫폼/매장 뱃지 */
 .badge-container {
   margin-top: 6px;
   display: flex;
@@ -134,7 +136,6 @@
   color: #fff;
 }
 
-/* ✅ 배민 공식 색상 */
 .badge-platform.platform-baemin {
   background-color: #48d1cc !important;
 }
