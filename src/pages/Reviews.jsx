@@ -44,19 +44,6 @@ export default function Reviews() {
     return avg.toFixed(2);
   };
 
-  const getPlatformColorClass = (platform) => {
-    switch (platform) {
-      case "배달의민족":
-        return "platform-baemin";
-      case "쿠팡이츠":
-        return "platform-coupang";
-      case "요기요":
-        return "platform-yogiyo";
-      default:
-        return "";
-    }
-  };
-
   const renderEmotionCard = (r, idx) => (
     <div className="review-card emotion" key={`emotion-${idx}`}>
       <p className="emotion-text">“{r.review}”</p>
@@ -68,7 +55,6 @@ export default function Reviews() {
   const renderReviewCard = (r, idx) => {
     const hasImage = typeof r.image === "string" && r.image.startsWith("http");
     const fallback = fallbackImages[idx % fallbackImages.length];
-    const platformClass = getPlatformColorClass(r.platform);
 
     return (
       <div
@@ -79,49 +65,26 @@ export default function Reviews() {
         <div className="review-meta">
           <div className="meta-top-row">
             <span className="nickname">{r.nickname || "익명"}</span>
-            <span className="rating">
-              {Array.from({ length: r.rating || 5 }).map((_, i) => (
-                <span key={i} style={{ color: "#4CAF50" }}>⭐</span>
+            <span className="rating green">
+              {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
+                <span key={i}>⭐</span>
               ))}
             </span>
-
           </div>
           <div className="review-badges">
             <span className="badge store">{r.store}</span>
-            <span className={`badge platform ${platformClass}`}>{r.platform}</span>
+            <span className="badge platform">{r.platform}</span>
           </div>
           <span className="date">{r.date || ""}</span>
         </div>
-        <p className="review-content" style={{ marginBottom: "2px" }}>
-          {r.review?.slice(0, 80) || "내용 없음"}
-        </p>
-        {r.menu && (
-          <div className="menu-tag" style={{ marginTop: "2px" }}>
-            {r.menu}
-          </div>
-        )}
+        <p className="review-text">{r.review || "내용 없음"}</p>
+        {r.menu && <div className="menu-tag">{r.menu}</div>}
         <div className="review-image-wrapper">
-          <img src={r.image} alt="리뷰 이미지" />
+          <img src={hasImage ? r.image : fallback} alt="리뷰 이미지" />
         </div>
       </div>
     );
   };
-
-  const renderMidCTA = () => (
-    <div className="review-cta-section" key="mid-cta">
-      <div style={{ marginBottom: "10px" }}>
-        <p className="cta-headline">
-          매일 찾아오는 즐거움.<br />샐시는 meal이 아닌, 당신의 새로운 라이프스타일이에요.
-        </p>
-        <p className="cta-subtext">
-          Everyday SALCY, your new lifestyle &#8212; not just a meal.
-        </p>
-      </div>
-      <a href="/subscription" className="cta-button">
-        정기배송 시작하기 →
-      </a>
-    </div>
-  );
 
   const emotionReviews = reviews.filter((r) => r.emotion);
   const withImageReviews = reviews.filter(
@@ -141,12 +104,12 @@ export default function Reviews() {
           <p className="hero-subtext">
             총 <strong>{reviews.length}</strong>개의 리뷰가 남겨졌습니다.
             <br />
-            평균 별점 <strong>{calculateAverageRating(reviews)}</strong>점! 우리를 연결하는 소중한 후기입니다.
+            평균 별점 <strong>{calculateAverageRating(reviews)}</strong>점!
           </p>
         </div>
       </section>
 
-      <div className="review-banner-wrapper">
+      <div style={{ marginTop: "2px", marginBottom: "28px" }}>
         <ReviewScrollingBanner />
       </div>
 
@@ -155,13 +118,24 @@ export default function Reviews() {
       </div>
 
       <div className="review-grid with-image">
-        {[...withImageReviews.slice(0, 6).map(renderReviewCard)]}
+        {withImageReviews.slice(0, 6).map(renderReviewCard)}
       </div>
 
-      {renderMidCTA()}
+      <div className="review-cta-section">
+        <p className="cta-headline">
+          매일 찾아오는 즐거움.<br />샐시는 meal이 아닌, 당신의 새로운 라이프스타일이에요.
+        </p>
+        <p className="cta-subtext">
+          Everyday SALCY, your new lifestyle — not just a meal.
+        </p>
+        <a href="/subscription" className="cta-button">
+          정기배송 시작하기 →
+        </a>
+      </div>
 
       <div className="review-grid with-image">
-        {[...withImageReviews.slice(6).map(renderReviewCard), ...withoutImageReviews.map(renderReviewCard)]}
+        {withImageReviews.slice(6).map(renderReviewCard)}
+        {withoutImageReviews.map(renderReviewCard)}
       </div>
 
       {selectedReview && (
@@ -170,20 +144,6 @@ export default function Reviews() {
           onClose={() => setSelectedReview(null)}
         />
       )}
-
-      <section className="review-cta-section">
-        <div style={{ marginBottom: "10px" }}>
-          <p className="cta-headline">
-            매일 찾아오는 즐거움.<br />샐시는 Meal이 아닌, 새로운 라이프스타일이에요.
-          </p>
-          <p className="cta-subtext">
-            Everyday SALCY, your new lifestyle — not just a meal.
-          </p>
-        </div>
-        <a href="/subscription" className="cta-button">
-          정기배송 시작하기 →
-        </a>
-      </section>
     </div>
   );
 }
