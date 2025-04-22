@@ -4,8 +4,8 @@
   background-color: #f8fcf9;
   border-top: 1px solid #d0e8d9;
   border-bottom: 1px solid #d0e8d9;
-  padding: 2px 0;                 /* ✅ 상하 간격 최소 */
-  margin-bottom: 24px;
+  padding: 0;       /* ✅ 상하 간격 최소 */
+  margin-bottom: 2px;
   position: relative;
 }
 
@@ -19,11 +19,10 @@
   padding-left: 100%;
   animation: scroll-left 700s linear infinite;
   font-size: 18px;                /* ✅ 크기 줄임 */
-  font-weight: 400;
+  font-weight: 100;
   color: #1b5e20;
   line-height: 1.1;               /* ✅ 상하 압축 */
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 0;
   font-family: 'Pretendard', sans-serif;
 }
 
