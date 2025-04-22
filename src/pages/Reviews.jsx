@@ -83,16 +83,18 @@ export default function Reviews() {
           </div>
           <div className="review-badges">
             <span className="badge store">{r.store}</span>
-            <span className={`badge platform ${platformClass}`}>
-              {r.platform}
-            </span>
+            <span className={`badge platform ${platformClass}`}>{r.platform}</span>
           </div>
           <span className="date">{r.date || ""}</span>
         </div>
-        <p className="review-content">
+        <p className="review-content" style={{ marginBottom: "2px" }}>
           {r.review?.slice(0, 80) || "내용 없음"}
         </p>
-        {r.menu && <div className="menu-tag">{r.menu}</div>}
+        {r.menu && (
+          <div className="menu-tag" style={{ marginTop: "2px" }}>
+            {r.menu}
+          </div>
+        )}
         <div className="review-image-wrapper">
           <img src={hasImage ? r.image : fallback} alt="리뷰 이미지" />
         </div>
@@ -118,10 +120,7 @@ export default function Reviews() {
 
   const emotionReviews = reviews.filter((r) => r.emotion);
   const withImageReviews = reviews.filter(
-    (r) =>
-      !r.emotion &&
-      typeof r.image === "string" &&
-      r.image.startsWith("http")
+    (r) => !r.emotion && typeof r.image === "string" && r.image.startsWith("http")
   );
   const withoutImageReviews = reviews.filter(
     (r) => !r.emotion && (!r.image || !r.image.startsWith("http"))
