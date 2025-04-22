@@ -69,7 +69,7 @@ export default function ReviewSection() {
                 </div>
               </div>
               <p className="review-content">
-                {r.review?.slice(0, 20) || "내용 없음"}
+                {r.review?.slice(0, 6) || "내용 없음"}
               </p>
               {r.menu && <div className="menu-tag">{r.menu}</div>}
               {renderBadges(r)}
