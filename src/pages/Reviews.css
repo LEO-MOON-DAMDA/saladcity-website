@@ -113,8 +113,8 @@
 .badge.store-badge.large {
   background-color: #4CAF50;
   color: #fff;
-  padding: 4px 8px;
-  border-radius: 10px;
+  padding: 4px 12px;
+  border-radius: 12px;
   font-size: 12px;
   font-weight: 500;
 }
@@ -123,8 +123,8 @@
   background-color: #48d1cc;
   color: #fff;
   padding: 2px 8px;
-  border-radius: 10px;
-  font-size: 11px;
+  border-radius: 12px;
+  font-size: 12px;
   font-weight: 500;
 }
 
