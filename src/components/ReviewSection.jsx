@@ -56,7 +56,7 @@ export default function ReviewSection() {
         <div className="review-meta">
           <div className="review-badges">
             <span className="badge store">{r.store}</span>
-            <span>⭐</span>
+            <span style={{ color: "#4CAF50" }}></span>⭐</span>
             <span className="badge platform platform-baemin">{r.platform}</span>
           </div>
           <div className="rating-date-row">
