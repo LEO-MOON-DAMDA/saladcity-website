@@ -1,141 +1,132 @@
-.review-section {
-  padding: 40px 20px 60px;
-  background-color: #fdfdf7;
-  margin-top: 0px;
-}
+import React, { useEffect, useState } from "react";
+import SectionTitle from "./SectionTitle";
+import SubTitle from "./SubTitle";
+import BrandButton from "./BrandButton";
+import ReviewModal from "./ReviewModal";
+import "./ReviewSection.css";
 
-.review-slider-wrapper {
-  display: flex;
-  justify-content: center;
-  overflow: visible;
-  margin-top: 24px;
-}
+const fallbackImages = [
+  "/images/review-sample01.jpg",
+  "/images/review-sample02.jpg",
+  "/images/review-sample03.jpg"
+];
 
-.review-slider {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  max-width: 1000px;
-  justify-content: center;
-  overflow-x: hidden;
-}
+export default function ReviewSection() {
+  const [reviews, setReviews] = useState([]);
+  const [selectedReview, setSelectedReview] = useState(null);
 
-.review-card.large {
-  width: 240px;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 8px 16px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
-}
+  useEffect(() => {
+    fetch("/data/review_preview.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data || []);
+        console.log("불러온 미리보기 리뷰 수:", data.length);
+        console.log("예시 리뷰:", data[0]);
+      })
+      .catch((err) => {
+        console.error("리뷰 preview JSON 로딩 오류:", err);
+      });
+  }, []);
 
-.review-card.large:hover {
-  transform: translateY(-4px);
-}
+  const withImage = reviews.filter((r) => r.image);
+  const withoutImage = reviews.filter((r) => !r.image);
 
-.review-card.small {
-  width: 200px;
-  background: #f8f8f8;
-  border-radius: 12px;
-  padding: 12px;
-  opacity: 0.85;
-  box-shadow: none;
-}
+  const renderBadges = (r) => (
+    <div className="badge-container">
+      {r.platform && <span className="badge badge-platform">{r.platform}</span>}
+      {r.store && <span className="badge badge-store">{r.store}</span>}
+    </div>
+  );
 
-.review-slider-wrapper.without-image-wrapper {
-  margin-top: 12px;
-}
+  return (
+    <section className="review-section">
+      <SectionTitle style={{ textAlign: "center", marginTop: "48px" }}>
+        SALCY CREW
+      </SectionTitle>
+      <SubTitle style={{ textAlign: "center" }}>최근 리뷰</SubTitle>
 
-.review-slider.without-image {
-  max-width: 900px;
-}
+      <div className="review-slider-wrapper">
+        <div className="review-slider">
+          {withImage.map((r, idx) => (
+            <div
+              className="review-card large"
+              key={`img-${idx}`}
+              onClick={() => setSelectedReview(r)}
+            >
+              <div className="review-meta">
+                <div className="review-badges">
+                  <span className="badge store">{r.store}</span>
+                  <span className="badge platform platform-baemin">{r.platform}</span>
+                </div>
+                <div className="rating-date-row">
+                  <span className="rating">
+                    {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
+                      <span key={i} style={{ color: "#4CAF50" }}>⭐</span>
+                    ))}
+                  </span>
+                  &nbsp;|&nbsp;
+                  <span className="date">{r.date || ""}</span>
+                </div>
+              </div>
+              <p className="review-text">
+                {r.review || "내용 없음"}
+              </p>
+              {r.menu && <div className="menu-tag">{r.menu}</div>}
+              {renderBadges(r)}
+              <div className="review-image">
+                <img src={r.image} alt="리뷰 이미지" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
-.review-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
+      <div className="review-slider-wrapper without-image-wrapper">
+        <div className="review-slider without-image">
+          {withoutImage.map((r, idx) => {
+            const fallback = fallbackImages[idx % fallbackImages.length];
+            return (
+              <div
+                className="review-card small"
+                key={`noimg-${idx}`}
+                onClick={() => setSelectedReview(r)}
+              >
+                <div className="review-meta">
+                  <div className="review-badges">
+                    <span className="badge store">{r.store}</span>
+                    <span className="badge platform">{r.platform}</span>
+                  </div>
+                  <span className="rating">
+                    {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
+                      <span key={i} style={{ color: "#4CAF50" }}>⭐</span>
+                    ))}
+                  </span>
+                  &nbsp;|&nbsp; {r.date || ""}
+                </div>
+                <p className="review-text">
+                  {r.review || "내용 없음"}
+                </p>
+                {r.menu && <div className="menu-tag">{r.menu}</div>}
+                {renderBadges(r)}
+                <div className="review-image">
+                  <img src={fallback} alt="감성 이미지" />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
 
-.nickname {
-  font-weight: 600;
-  color: #2e7d32;
-  font-size: 14px;
-}
+      <div className="review-button-wrap">
+        <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
+      </div>
 
-.rating {
-  font-size: 14px;
-  font-weight: bold;
-  color: #4CAF50 !important;
-}
-
-.date {
-  font-size: 11px;
-  color: #999;
-}
-
-.review-text {
-  font-size: 13px;
-  color: #333;
-  margin: 0 0 4px 0;
-  line-height: 1.4;
-  font-style: italic;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-height: 2.8em; /* 2줄 높이 확보 (line-height 1.4 * 2) */
-}
-
-.menu-tag {
-  background-color: #e8f5e9;
-  color: #388e3c;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 11px;
-  display: inline-block;
-  margin: 2px 0 10px 0;
-}
-
-.review-image img {
-  width: 100%;
-  border-radius: 12px;
-  object-fit: cover;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  margin-top: 8px;
-}
-
-.review-image img:hover {
-  filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
-}
-
-.review-button-wrap {
-  margin-top: 24px;
-  text-align: center;
-}
-
-.badge-container {
-  margin-top: 6px;
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.badge {
-  display: inline-block;
-  padding: 3px 8px;
-  border-radius: 12px;
-  font-size: 10px;
-  font-weight: 500;
-  color: #fff;
-}
-
-.badge-platform.platform-baemin {
-  background-color: #48d1cc !important;
-}
-
-.badge-store {
-  background-color: #8884d8;
+      {selectedReview && (
+        <ReviewModal
+          review={selectedReview}
+          onClose={() => setSelectedReview(null)}
+        />
+      )}
+    </section>
+  );
 }
