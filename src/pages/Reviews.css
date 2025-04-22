@@ -247,3 +247,14 @@
 .badge.store {
   background-color: #4CAF50;
 }
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 2px;
+}
+
+.divider {
+  color: #aaa;
+  font-size: 13px;
+}
