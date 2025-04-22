@@ -41,20 +41,20 @@ export default function Reviews() {
       >
         <div className="review-meta">
           <div className="meta-top-row">
-            <span className="nickname full">{r.nickname || "익명"}</span>
+            <span className="nickname full large">{r.nickname || "익명"}</span>
             <span className="divider"> | </span>
-            <span className="rating medium">
+            <span className="rating large">
               {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
                 <span key={i}>⭐</span>
               ))}
             </span>
           </div>
           <div className="review-badges">
-            <span className="badge store-badge">{r.store}</span>
+            <span className="badge store-badge large">{r.store}</span>
             <span className="divider"> | </span>
-            <span className="badge platform-badge">{r.platform}</span>
+            <span className="badge platform-badge large">{r.platform}</span>
           </div>
-          <span className="date small">{r.date || ""}</span>
+          <span className="date large">{r.date || ""}</span>
         </div>
         <p className="review-text multiline">{r.review || "내용 없음"}</p>
         {r.menu && <div className="menu-tag">{r.menu}</div>}
