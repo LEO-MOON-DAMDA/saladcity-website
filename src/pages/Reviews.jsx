@@ -129,8 +129,12 @@ export default function Reviews() {
       </div>
 
       <div className="review-grid emotion-grid">
-        {emotionReviews.map(renderEmotionCard)}
+        {[...emotionReviews]
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3)
+          .map(renderEmotionCard)}
       </div>
+
 
       <div className="review-grid with-image">
         {withImageReviews.slice(0, 8).map(renderReviewCard)}
