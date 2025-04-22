@@ -2,18 +2,10 @@ import React, { useEffect, useState } from "react";
 import SectionTitle from "./SectionTitle";
 import SubTitle from "./SubTitle";
 import BrandButton from "./BrandButton";
-import ReviewModal from "./ReviewModal";
 import "./ReviewSection.css";
-
-const fallbackImages = [
-  "/images/review-sample01.jpg",
-  "/images/review-sample02.jpg",
-  "/images/review-sample03.jpg"
-];
 
 export default function ReviewSection() {
   const [reviews, setReviews] = useState([]);
-  const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
     fetch("/data/review_preview.json")
@@ -33,7 +25,7 @@ export default function ReviewSection() {
 
       <div className="review-slider-wrapper">
         <div className="review-slider">
-          {withImage.map((r, idx) => (
+          {withImage.slice(0, 10).map((r, idx) => (
             <a
               key={`img-${idx}`}
               className="review-card large"
@@ -43,9 +35,9 @@ export default function ReviewSection() {
                 <div className="meta-row">
                   <span className="nickname">{r.nickname || "익명"}</span>
                   <span className="divider"> | </span>
-                  <span className="rating green">
+                  <span className="rating">
                     {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
-                      <span key={i}>⭐</span>
+                      <span key={i} style={{ fontSize: "12px" }}>⭐</span>
                     ))}
                   </span>
                 </div>
