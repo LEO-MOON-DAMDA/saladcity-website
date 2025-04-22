@@ -1,5 +1,5 @@
 .review-section {
-  padding: 40px 20px 60px;
+  padding: 40px 0 60px;
   background-color: #fdfdf7;
   margin-top: 0px;
 }
@@ -15,9 +15,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  max-width: 1000px;
   justify-content: center;
-  overflow-x: hidden;
+  width: 100%;
 }
 
 .review-card.large {
@@ -33,30 +32,6 @@
   transform: translateY(-4px);
 }
 
-.review-card.small {
-  width: 200px;
-  background: #f8f8f8;
-  border-radius: 12px;
-  padding: 12px;
-  opacity: 0.85;
-  box-shadow: none;
-}
-
-.review-slider-wrapper.without-image-wrapper {
-  margin-top: 12px;
-}
-
-.review-slider.without-image {
-  max-width: 900px;
-}
-
-.review-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
 .nickname {
   font-weight: 600;
   color: #2e7d32;
@@ -66,7 +41,7 @@
 .rating {
   font-size: 14px;
   font-weight: bold;
-  color: #4CAF50 !important;
+  color: #4CAF50;
 }
 
 .date {
@@ -82,12 +57,12 @@
   font-style: italic;
 
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1; /* ✅ 한 줄 제한 */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 
-  min-height: 2.8em;
+  min-height: 1.4em;
 }
 
 .menu-tag {
@@ -98,19 +73,25 @@
   font-size: 11px;
   display: inline-block;
   margin: 2px 0 10px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.review-image img {
-  width: 100%;
+.review-image-wrapper {
+  height: 180px;
+  overflow: hidden;
   border-radius: 12px;
-  object-fit: cover;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   margin-top: 8px;
 }
 
-.review-image img:hover {
-  filter: brightness(1.03) drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
+.review-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+  filter: brightness(0.85) saturate(1.2) hue-rotate(40deg); /* ✅ 녹색 필터 강하게 */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .review-button-wrap {
@@ -118,26 +99,23 @@
   text-align: center;
 }
 
-.badge-container {
-  margin-top: 6px;
+.meta-row {
   display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 2px;
 }
 
-.badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #fff;
-}
-
-.badge-platform.platform-baemin {
-  background-color: #48d1cc !important;
+.divider {
+  color: #aaa;
+  font-size: 13px;
 }
 
 .badge.store {
   background-color: #4CAF50;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
 }
