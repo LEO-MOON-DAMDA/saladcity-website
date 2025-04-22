@@ -32,7 +32,7 @@
   font-size: 24px;
   font-weight: 100;
   color: #1b5e20;
-  line-height: 1;        /* ✅ 줄 간격 최소화 */
+  line-height: 0.1;        /* ✅ 줄 간격 최소화 */
   padding: 0;            /* ✅ 상하 여백 제거 */
   font-family: 'Pretendard', sans-serif;
 }
