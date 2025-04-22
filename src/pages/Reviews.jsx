@@ -79,7 +79,7 @@ export default function Reviews() {
         <div className="review-meta">
           <div className="meta-top-row">
             <span className="nickname">{r.nickname || "익명"}</span>
-            <span>{"⭐".repeat(r.rating || 5)}</span>
+            <span>⭐</span>
             <span className="rating">
               {Array.from({ length: r.rating || 5 }).map((_, i) => (
                 <span key={i} style={{ color: "#4CAF50" }}>⭐</span>
