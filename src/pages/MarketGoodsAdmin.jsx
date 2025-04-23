@@ -13,7 +13,11 @@ export default function MarketGoodsAdmin() {
 
   const fetchGoods = async () => {
     setLoading(true);
-    const { data, error } = await supabase.from("market_goods").select("*").order("created_at", { ascending: false });
+    const { data, error } = await supabase
+      .from("market_goods")
+      .select("*")
+      .eq("is_deleted", false)
+      .order("created_at", { ascending: false });
     if (error) {
       setStatus("❌ 불러오기 실패: " + error.message);
     } else {
@@ -24,7 +28,10 @@ export default function MarketGoodsAdmin() {
 
   const handleDelete = async (id) => {
     if (!window.confirm("정말 삭제하시겠습니까?")) return;
-    const { error } = await supabase.from("market_goods").delete().eq("id", id);
+    const { error } = await supabase
+      .from("market_goods")
+      .update({ is_deleted: true })
+      .eq("id", id);
     if (error) {
       setStatus("❌ 삭제 실패: " + error.message);
     } else {
