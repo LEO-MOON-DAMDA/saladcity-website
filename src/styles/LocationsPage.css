@@ -95,5 +95,15 @@
   z-index: 2;
   transition: all 0.3s ease;
 }
+.marker-tag {
+  background: #4CAF50;
+  color: white;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 12px;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+}
 
 
