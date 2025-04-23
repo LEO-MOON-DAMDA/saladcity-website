@@ -1,32 +1,26 @@
-// ✅ src/components/KakaoMap.jsx (디버깅 + UX 리디자인 기반 준비)
 import React, { useEffect } from "react";
 
 const KakaoMap = () => {
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=261f12530740989e7f97fbb28840ed8a";
-    script.async = true;
-
-    script.onload = () => {
+    const loadKakaoMap = () => {
       if (!window.kakao || !window.kakao.maps) {
-        console.error("⚠️ Kakao 객체가 로딩되지 않았습니다.");
+        console.error("⚠️ Kakao 객체 로딩 실패");
         return;
       }
 
       window.kakao.maps.load(() => {
-        const mapContainer = document.getElementById("map");
-        if (!mapContainer) {
-          console.error("❌ #map 요소가 DOM에 없습니다.");
+        const container = document.getElementById("map");
+        if (!container) {
+          console.error("❌ #map 요소 없음");
           return;
         }
+
         console.log("✅ Kakao 지도 로딩 시작됨");
 
-        const mapOption = {
+        const map = new window.kakao.maps.Map(container, {
           center: new window.kakao.maps.LatLng(37.5008, 127.0365),
           level: 6,
-        };
-
-        const map = new window.kakao.maps.Map(mapContainer, mapOption);
+        });
 
         const locations = [
           {
@@ -37,43 +31,40 @@ const KakaoMap = () => {
             phone: "02-555-8501",
             image: "/images/Locations/1LOYS08.jpg",
           },
-          {
-            name: "샐러드시티 제천농장",
-            lat: 37.137,
-            lng: 128.196,
-            address: "충북 제천시 금성면",
-            phone: "043-651-1234",
-            image: "/images/Locations/1LOJC02.jpg",
-          },
-          // ✅ 전체 리스트 생략 가능 → 실제 구현 시 모두 넣기
         ];
 
         locations.forEach(({ name, lat, lng, address, phone, image }) => {
           const marker = new window.kakao.maps.Marker({
-            position: new window.kakao.maps.LatLng(lat, lng),
             map,
+            position: new window.kakao.maps.LatLng(lat, lng),
           });
 
-          const iwContent = `
-            <div style=\"padding:8px 12px; max-width:240px;\">
-              <div style=\"font-weight:600; font-size:14px; color:#2f5130; margin-bottom:4px;\">${name}</div>
-              <img src=\"${image}\" style=\"width:100%; height:100px; object-fit:cover; border-radius:8px; margin-bottom:6px;\" />
-              <div style=\"font-size:13px; color:#555;\">${address}</div>
-              <div style=\"font-size:13px; color:#888;\">${phone}</div>
+          const content = `
+            <div style="padding:10px; max-width:240px;">
+              <strong style="color:#2f5130;">${name}</strong><br/>
+              <img src="${image}" style="width:100%; height:100px; object-fit:cover; margin:6px 0; border-radius:8px;" />
+              <p style="margin:0; font-size:13px;">${address}<br/><span style="color:#888">${phone}</span></p>
             </div>
           `;
-
-          const infowindow = new window.kakao.maps.InfoWindow({ content: iwContent });
+          const iw = new window.kakao.maps.InfoWindow({ content });
 
           window.kakao.maps.event.addListener(marker, "click", () => {
-            infowindow.open(map, marker);
+            iw.open(map, marker);
             console.log(`📍 ${name} 마커 클릭됨`);
           });
         });
       });
     };
 
-    document.head.appendChild(script);
+    if (!window.kakao || !window.kakao.maps) {
+      const script = document.createElement("script");
+      script.src = "https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=261f12530740989e7f97fbb28840ed8a";
+      script.async = true;
+      script.onload = loadKakaoMap;
+      document.head.appendChild(script);
+    } else {
+      loadKakaoMap();
+    }
   }, []);
 
   return (
@@ -83,8 +74,13 @@ const KakaoMap = () => {
       </h2>
       <div
         id="map"
-        style={{ width: "100%", height: "500px", borderRadius: "16px", backgroundColor: "#e2f5e7" }}
-      ></div>
+        style={{
+          width: "100%",
+          height: "500px",
+          borderRadius: "16px",
+          backgroundColor: "#e2f5e7",
+        }}
+      />
     </div>
   );
 };
