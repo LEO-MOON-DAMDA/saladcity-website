@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 export default function Header() {
   const location = useLocation();
@@ -8,6 +9,8 @@ export default function Header() {
 
   const [isMobile, setIsMobile] = useState(window.matchMedia('(max-width: 768px)').matches);
   const [isOpen, setIsOpen] = useState(false);
+  const { cart } = useCart();
+  const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -107,6 +110,29 @@ export default function Header() {
           }}>
             ORDER
           </a>
+
+          {/* 🛒 장바구니 배지 */}
+          <div
+            onClick={() => window.location.href = "/cart"}
+            style={{ position: "relative", cursor: "pointer", marginLeft: "16px" }}
+          >
+            🛒
+            {totalCount > 0 && (
+              <span style={{
+                position: "absolute",
+                top: "-6px",
+                right: "-8px",
+                backgroundColor: "#e53e3e",
+                color: "#fff",
+                borderRadius: "50%",
+                padding: "2px 6px",
+                fontSize: "11px",
+                fontWeight: "bold"
+              }}>
+                {totalCount}
+              </span>
+            )}
+          </div>
         </>
       )}
 
