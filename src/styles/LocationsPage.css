@@ -144,3 +144,6 @@
 .custom-top {
   object-position: top center !important;
 }
+.custom-offset {
+  object-position: 40% center !important;
+}
