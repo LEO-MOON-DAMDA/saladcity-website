@@ -106,6 +106,27 @@
   transition: all 0.3s ease;
 }
 
+/* 매장 유형 뱃지 */
+.store-type-badge {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+}
+
+.type-headquarter {
+  background-color: #795548; /* 본사 - 브라운 */
+}
+.type-farm {
+  background-color: #4CAF50; /* 농장 - 그린 */
+}
+.type-factory {
+  background-color: #607D8B; /* 공장 - 블루그레이 */
+}
+
 /* 마커 태그 오버레이 */
 .marker-tag {
   background: #4CAF50;
