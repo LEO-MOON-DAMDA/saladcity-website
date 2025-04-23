@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from "react";
 import MenuCard from "./MenuCard";
 import "./MenuSlider.css";
 
-// ✅ 슬라이드 효과음 (짧은 whoosh)
 const slideSound =
   "data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCAAMEAAAC7nAAA";
 
@@ -10,12 +9,10 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
   const scrollRef = useRef(null);
   const audioRef = useRef(null);
 
-  // 사운드 초기화
   useEffect(() => {
     audioRef.current = new Audio(slideSound);
   }, []);
 
-  // 카드 애니메이션 + 확대/회전/블러
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -44,10 +41,9 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
       });
     };
 
-    // ✅ 한 프레임 딜레이 후 애니메이션 실행
     const timeout = setTimeout(() => {
       container.addEventListener("scroll", handleScroll, { passive: true });
-      handleScroll(); // 최초 실행
+      handleScroll();
     }, 50);
 
     return () => {
@@ -56,21 +52,18 @@ export default function MenuSlider({ items, onTagClick, selectedTags }) {
     };
   }, [items]);
 
-  // ✅ 3배 복제 구조
   const tripledItems = [...items, ...items, ...items];
   const centerIndex = items.length;
 
-  // 중앙 정렬
   useEffect(() => {
     const container = scrollRef.current;
     const card = container?.querySelector(".scroll-card");
     if (container && card) {
-      const cardWidth = card.offsetWidth + 6; // 마진 포함
+      const cardWidth = card.offsetWidth + 6;
       container.scrollLeft = centerIndex * cardWidth;
     }
   }, [items]);
 
-  // 사운드 재생
   const playSound = () => {
     if (audioRef.current) {
       try {
