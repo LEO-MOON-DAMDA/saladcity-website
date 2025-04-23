@@ -17,6 +17,8 @@ export default function Shop() {
           .eq("is_deleted", false)
           .order("created_at", { ascending: false });
 
+        console.log("Supabase 응답:", { data, error }); // ✅ 디버깅용 로그 추가
+
         if (error) {
           console.error("❌ 굿즈 불러오기 실패:", error.message);
         } else {
