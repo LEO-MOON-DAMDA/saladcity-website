@@ -8,57 +8,61 @@ const KakaoMap = () => {
     if (loadedRef.current) return;
     loadedRef.current = true;
 
-    let retries = 0;
-
-    const tryInit = () => {
-      if (!window.kakao || !window.kakao.maps) {
-        if (retries < 10) {
-          console.warn(`⏳ Kakao SDK 로딩 대기 중... (${retries + 1}/10)`);
-          retries += 1;
-          setTimeout(tryInit, 500); // 0.5초마다 재시도
-        } else {
-          console.error("❌ Kakao SDK 로딩 실패");
-        }
+    const loadKakaoMapScript = (callback) => {
+      const scriptId = "kakao-map-script";
+      if (document.getElementById(scriptId)) {
+        callback();
         return;
       }
 
-      console.log("✅ Kakao 지도 로딩 성공");
-
-      const map = new window.kakao.maps.Map(mapRef.current, {
-        center: new window.kakao.maps.LatLng(37.5008, 127.0365),
-        level: 6,
-      });
-
-      const markerPosition = new window.kakao.maps.LatLng(37.5008, 127.0365);
-      const marker = new window.kakao.maps.Marker({
-        position: markerPosition,
-        map: map,
-      });
-
-      const infowindow = new window.kakao.maps.InfoWindow({
-        content: '<div style="padding:8px 14px;font-size:13px;">샐러드시티 역삼점</div>',
-      });
-      infowindow.open(map, marker);
-
-      marker.addListener("click", () => {
-        infowindow.open(map, marker);
-        console.log("📍 샐러드시티 역삼점 마커 클릭됨");
-      });
+      const script = document.createElement("script");
+      script.id = scriptId;
+      script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=0e43a107fbe290452441d453e0ae2026&autoload=false";
+      script.onload = callback;
+      script.onerror = () => console.error("❌ SDK script 로딩 실패");
+      document.head.appendChild(script);
     };
 
-    tryInit(); // 시작
+    loadKakaoMapScript(() => {
+      if (!window.kakao || !window.kakao.maps) {
+        console.error("❌ window.kakao.maps가 없음");
+        return;
+      }
+
+      window.kakao.maps.load(() => {
+        console.log("✅ Kakao 지도 로딩 성공 (우회)");
+
+        const map = new window.kakao.maps.Map(mapRef.current, {
+          center: new window.kakao.maps.LatLng(37.5008, 127.0365),
+          level: 6,
+        });
+
+        const marker = new window.kakao.maps.Marker({
+          position: new window.kakao.maps.LatLng(37.5008, 127.0365),
+          map,
+        });
+
+        const infowindow = new window.kakao.maps.InfoWindow({
+          content: '<div style="padding:6px 10px;font-size:13px;">샐러드시티 역삼점</div>',
+        });
+
+        infowindow.open(map, marker);
+        marker.addListener("click", () => {
+          infowindow.open(map, marker);
+        });
+      });
+    });
   }, []);
 
   return (
     <div
-      id="map"
       ref={mapRef}
       style={{
         width: "100%",
         height: "400px",
         margin: "20px 0",
         borderRadius: "16px",
-        overflow: "hidden",
+        backgroundColor: "#eee",
       }}
     />
   );
