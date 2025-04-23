@@ -13,28 +13,32 @@ export function ToastProvider({ children }) {
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      {toast && (
-        <div style={{
-          position: "fixed",
-          bottom: "20px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          backgroundColor: "#333",
-          color: "#fff",
-          padding: "12px 20px",
-          borderRadius: "8px",
-          zIndex: 9999,
-          fontSize: "14px",
-          opacity: 0.95,
-          boxShadow: "0 2px 6px rgba(0,0,0,0.3)"
-        }}>
-          {toast}
-        </div>
-      )}
+      {toast && <Toast message={toast} />}
     </ToastContext.Provider>
   );
 }
 
 export function useToast() {
   return useContext(ToastContext);
+}
+
+function Toast({ message }) {
+  return (
+    <div style={{
+      position: "fixed",
+      bottom: "20px",
+      left: "50%",
+      transform: "translateX(-50%)",
+      backgroundColor: "#333",
+      color: "#fff",
+      padding: "12px 20px",
+      borderRadius: "8px",
+      zIndex: 9999,
+      fontSize: "14px",
+      opacity: 0.95,
+      boxShadow: "0 2px 6px rgba(0,0,0,0.3)"
+    }}>
+      {message}
+    </div>
+  );
 }
