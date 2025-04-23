@@ -16,13 +16,23 @@ export default function MarketPage() {
     <div className="market-page" style={{ fontFamily: "'Pretendard', sans-serif" }}>
       <MarketHeroSection />
 
-      <section style={{ maxWidth: "1080px", margin: "0 auto", padding: "60px 20px" }}>
-        <h2 style={{ fontSize: "24px", fontWeight: 600, textAlign: "center", marginBottom: "32px", color: "#2f5130" }}>
+      {/* 상품 섹션 */}
+      <section style={{ maxWidth: "1080px", margin: "0 auto", padding: "60px 20px 20px" }}>
+        <h2
+          style={{
+            fontSize: "28px",
+            fontWeight: "700",
+            textAlign: "center",
+            marginBottom: "40px",
+            color: "#2f5130",
+          }}
+        >
           SALADCITY GOODS
         </h2>
+
         <MarketProductSlider />
 
-        <div style={{ textAlign: "center", marginTop: "32px" }}>
+        <div style={{ textAlign: "center", marginTop: "36px" }}>
           <button
             onClick={() => navigate("/shop")}
             style={{
@@ -30,11 +40,12 @@ export default function MarketPage() {
               color: "white",
               padding: "12px 28px",
               fontSize: "16px",
+              fontWeight: 600,
               borderRadius: "8px",
               border: "none",
               cursor: "pointer",
               boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-              transition: "all 0.3s ease"
+              transition: "all 0.3s ease",
             }}
           >
             전체 상품 보기 →
@@ -42,11 +53,22 @@ export default function MarketPage() {
         </div>
       </section>
 
+      {/* 브랜드 철학 */}
       <MarketPhilosophySection />
+
+      {/* 감성 리뷰 */}
       <MarketReviewHighlightSection />
+
+      {/* 배송 안내 */}
       <MarketShippingNotice />
+
+      {/* VIP 안내 */}
       <MarketVIPNotice />
+
+      {/* 브랜드 영상 */}
       <MarketBrandVideoSection />
+
+      {/* 소셜 갤러리 */}
       <MarketSocialGallery />
     </div>
   );
