@@ -87,3 +87,13 @@
 .filter-warm:hover {
   filter: brightness(1.02) saturate(1.05);
 }
+/* ✅ 선택된 카드 강조 효과 */
+.location-card.selected {
+  border: 2px solid #4CAF50;
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2);
+  transform: scale(1.03);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+
