@@ -1,0 +1,48 @@
+/* ✅ 파일 경로: /src/styles/MarketReviewHighlightSection.css */
+
+.review-highlight-section {
+  padding: 100px 20px;
+  background-color: #f8fcf9;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.review-highlight-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.review-highlight-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2f5130;
+  margin-bottom: 40px;
+}
+
+.review-highlight-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.review-card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.review-comment {
+  font-size: 16px;
+  font-style: italic;
+  color: #444;
+  line-height: 1.6;
+}
+
+.review-name {
+  margin-top: 14px;
+  font-size: 14px;
+  color: #888;
+  font-weight: 500;
+}
