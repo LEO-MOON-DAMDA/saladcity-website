@@ -1,4 +1,4 @@
-// ✅ src/pages/LocationsPage.jsx
+// ✅ src/pages/LocationsPage.jsx (브랜드 UX 기반 재구성)
 import React, { useRef } from "react";
 import HeroSection from "../components/HeroSection";
 import KakaoMap from "../components/KakaoMap";
@@ -37,32 +37,50 @@ export default function LocationsPage() {
 
   return (
     <div className="locations-page">
+      {/* 1. Hero 섹션 */}
       <HeroSection />
 
-      <section style={{ padding: "40px 20px" }}>
-        <h2 style={{ fontSize: "24px", color: "#2f5130", marginBottom: "16px", textAlign: "center" }}>
-          서울 매장 위치 안내
-        </h2>
+      {/* 2. 브랜드 인트로 메시지 */}
+      <section className="intro-section" style={{ padding: "60px 20px 40px", textAlign: "center" }}>
+        <h2 style={{ fontSize: "26px", marginBottom: "12px", color: "#2f5130" }}>샐러드시티, 오늘을 담다</h2>
+        <p style={{ fontSize: "15px", color: "#666" }}>
+          From farm to fork, a journey of honesty and health.
+        </p>
+      </section>
+
+      {/* 3. Kakao 지도 섹션 */}
+      <section className="map-section" style={{ padding: "40px 20px" }}>
         <KakaoMap ref={mapRef} locations={locations} onMarkerClick={scrollToCard} />
       </section>
 
-      <div className="locations-grid">
-        {locations.map((loc, idx) => (
-          <div
-            key={idx}
-            className="location-card"
-            ref={(el) => (cardRefs.current[idx] = el)}
-            onClick={() => handleCardClick(idx)}
-          >
-            <img src={loc.image} alt={loc.name} className="filter-warm" />
-            <div className="location-info">
-              <h3>{loc.name}</h3>
-              <p>{loc.address}</p>
-              <p>{loc.phone}</p>
+      {/* 4. 매장 카드 섹션 */}
+      <section className="store-list-section" style={{ padding: "40px 20px" }}>
+        <div className="locations-grid">
+          {locations.map((loc, idx) => (
+            <div
+              key={idx}
+              className="location-card"
+              ref={(el) => (cardRefs.current[idx] = el)}
+              onClick={() => handleCardClick(idx)}
+            >
+              <img src={loc.image} alt={loc.name} className="filter-warm" />
+              <div className="location-info">
+                <h3>{loc.name}</h3>
+                <p>{loc.address}</p>
+                <p>{loc.phone}</p>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 5. CTA 정기식 구독 연결 */}
+      <section className="cta-section" style={{ padding: "60px 20px", textAlign: "center" }}>
+        <h3 style={{ fontSize: "20px", marginBottom: "16px", color: "#2f5130" }}>이 매장에서 만나볼 수 있어요</h3>
+        <button className="subscribe-button" style={{ padding: "12px 24px", fontSize: "16px", backgroundColor: "#4CAF50", color: "white", border: "none", borderRadius: "8px" }}>
+          정기식 구독 바로가기
+        </button>
+      </section>
     </div>
   );
 }
