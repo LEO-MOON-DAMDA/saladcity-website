@@ -1,9 +1,23 @@
 // ✅ src/components/KakaoMap.jsx
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 
-const KakaoMap = ({ locations, onMarkerClick }) => {
+const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
   const mapRef = useRef(null);
   const loadedRef = useRef(false);
+  const kakaoMapRef = useRef(null);
+  const markersRef = useRef([]);
+  const infoWindowsRef = useRef([]);
+
+  useImperativeHandle(ref, () => ({
+    focusMarker: (index) => {
+      const marker = markersRef.current[index];
+      const infowindow = infoWindowsRef.current[index];
+      if (marker && kakaoMapRef.current) {
+        kakaoMapRef.current.panTo(marker.getPosition());
+        infowindow.open(kakaoMapRef.current, marker);
+      }
+    },
+  }));
 
   useEffect(() => {
     if (loadedRef.current) return;
@@ -19,7 +33,7 @@ const KakaoMap = ({ locations, onMarkerClick }) => {
       const script = document.createElement("script");
       script.id = scriptId;
       script.src =
-        "https://dapi.kakao.com/v2/maps/sdk.js?appkey=57c4769f8b8532d54ee295e6705802b6&autoload=false";
+        "https://dapi.kakao.com/v2/maps/sdk.js?appkey=57c4769f8b8532d54ee295e6705802b6&autoload=false&libraries=services";
       script.onload = callback;
       script.onerror = () =>
         console.error("❌ SDK script 로딩 실패 (AppKey 권한 문제일 수 있음)");
@@ -33,15 +47,17 @@ const KakaoMap = ({ locations, onMarkerClick }) => {
       }
 
       window.kakao.maps.load(() => {
-        console.log("✅ Kakao 지도 로딩 성공 (다중 마커)");
+        console.log("✅ Kakao 지도 로딩 성공 (다중 마커 + 제어)");
 
         const map = new window.kakao.maps.Map(mapRef.current, {
           center: new window.kakao.maps.LatLng(37.5008, 127.0365),
           level: 6,
         });
+        kakaoMapRef.current = map;
+
+        const geocoder = new window.kakao.maps.services.Geocoder();
 
         locations.forEach((loc, idx) => {
-          const geocoder = new window.kakao.maps.services.Geocoder();
           geocoder.addressSearch(loc.address, (result, status) => {
             if (status === window.kakao.maps.services.Status.OK) {
               const coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
@@ -50,10 +66,12 @@ const KakaoMap = ({ locations, onMarkerClick }) => {
                 map,
                 position: coords,
               });
+              markersRef.current[idx] = marker;
 
               const infowindow = new window.kakao.maps.InfoWindow({
                 content: `<div style="padding:6px 10px;font-size:13px;">${loc.name}</div>`,
               });
+              infoWindowsRef.current[idx] = infowindow;
 
               marker.addListener("click", () => {
                 infowindow.open(map, marker);
@@ -79,6 +97,6 @@ const KakaoMap = ({ locations, onMarkerClick }) => {
       }}
     />
   );
-};
+});
 
 export default KakaoMap;
