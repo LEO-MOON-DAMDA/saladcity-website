@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import MarketHeroSection from "../components/MarketHeroSection";
 import MarketProductSlider from "../components/MarketProductSlider";
 import MarketPhilosophySection from "../components/MarketPhilosophySection";
-import MarketVIPNotice from "../components/MarketVIPNotice";
-import MarketSocialGallery from "../components/MarketSocialGallery";
 import MarketReviewHighlightSection from "../components/MarketReviewHighlightSection";
 import MarketShippingNotice from "../components/MarketShippingNotice";
+import MarketVIPNotice from "../components/MarketVIPNotice";
 import MarketBrandVideoSection from "../components/MarketBrandVideoSection";
+import MarketSocialGallery from "../components/MarketSocialGallery";
 
 export default function MarketPage() {
   const navigate = useNavigate();
@@ -16,17 +16,9 @@ export default function MarketPage() {
     <div className="market-page" style={{ fontFamily: "'Pretendard', sans-serif" }}>
       <MarketHeroSection />
 
-      {/* 상품 섹션 */}
+      {/* 상품 영역 */}
       <section style={{ maxWidth: "1080px", margin: "0 auto", padding: "60px 20px 20px" }}>
-        <h2
-          style={{
-            fontSize: "28px",
-            fontWeight: "700",
-            textAlign: "center",
-            marginBottom: "40px",
-            color: "#2f5130",
-          }}
-        >
+        <h2 style={{ fontSize: "28px", fontWeight: "700", textAlign: "center", marginBottom: "40px", color: "#2f5130" }}>
           SALADCITY GOODS
         </h2>
 
@@ -53,7 +45,7 @@ export default function MarketPage() {
         </div>
       </section>
 
-      {/* 브랜드 철학 */}
+      {/* WHY GOODS */}
       <MarketPhilosophySection />
 
       {/* 감성 리뷰 */}
@@ -62,7 +54,7 @@ export default function MarketPage() {
       {/* 배송 안내 */}
       <MarketShippingNotice />
 
-      {/* VIP 안내 */}
+      {/* VIP 전용 안내 */}
       <MarketVIPNotice />
 
       {/* 브랜드 영상 */}
