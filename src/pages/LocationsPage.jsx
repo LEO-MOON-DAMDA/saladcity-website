@@ -1,5 +1,5 @@
 import React from "react";
-import HeroSection from "../components/HeroSection"; // ✅ 추가
+import HeroSection from "../components/HeroSection";
 import KakaoMap from "../components/KakaoMap";
 import "../styles/LocationsPage.css";
 
@@ -63,31 +63,25 @@ const locations = [
 export default function LocationsPage() {
   return (
     <div className="locations-page">
-      {/* ✅ Hero 이미지 섹션 삽입 */}
+      {/* Hero Section */}
       <HeroSection />
 
-      <div className="locations-header">
-        <img
-          src="/images/Locations/1LOJC01.jpg"
-          alt="메인"
-          className="main-banner"
-        />
-        <div className="rank-image">
-          <img
-            src="/images/Locations/rank.jpg"
-            alt="서울지역 브랜드 영향력"
-          />
-        </div>
-      </div>
-
-      {/* ✅ 라이브 지도 삽입 */}
+      {/* Live KakaoMap */}
       <section style={{ padding: "40px 20px" }}>
-        <h2 style={{ fontSize: "24px", color: "#2f5130", marginBottom: "16px", textAlign: "center" }}>
+        <h2
+          style={{
+            fontSize: "24px",
+            color: "#2f5130",
+            marginBottom: "16px",
+            textAlign: "center",
+          }}
+        >
           서울 매장 위치 안내
         </h2>
         <KakaoMap />
       </section>
 
+      {/* 매장 리스트 카드 */}
       <div className="locations-grid">
         {locations.map((loc, idx) => (
           <div key={idx} className="location-card">
