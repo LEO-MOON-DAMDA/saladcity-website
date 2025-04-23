@@ -1,6 +1,15 @@
 // ✅ src/components/KakaoMap.jsx
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 
+const tagMap = {
+  "샐러드시티 역삼점": "본점",
+  "샐러드시티 제천농장": "농장",
+  "샐러드시티 경기허브": "전처리공장",
+  "샐러드시티 송파점": "오픈예정",
+  "샐러드시티 반포점": "오픈예정",
+  "샐러드시티 서초점": "아웃포스트점",
+};
+
 const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
   const mapRef = useRef(null);
   const loadedRef = useRef(false);
@@ -77,6 +86,18 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
                 infowindow.open(map, marker);
                 onMarkerClick && onMarkerClick(idx);
               });
+
+              // ✅ 태그가 있을 경우 커스텀 오버레이 생성
+              const tag = tagMap[loc.name];
+              if (tag) {
+                const overlayContent = `<div class='marker-tag'>${tag}</div>`;
+                const customOverlay = new window.kakao.maps.CustomOverlay({
+                  position: coords,
+                  content: overlayContent,
+                  yAnchor: 1.3,
+                });
+                customOverlay.setMap(map);
+              }
             } else {
               console.warn("⚠️ 주소 좌표 변환 실패:", loc.address);
             }
