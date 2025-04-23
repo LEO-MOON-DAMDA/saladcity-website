@@ -77,3 +77,13 @@
   color: #555;
   line-height: 1.4;
 }
+
+/* ✅ 추가: 브랜드 톤 필터 */
+.filter-warm {
+  filter: brightness(0.96) saturate(0.9) sepia(0.08);
+  transition: filter 0.3s ease;
+}
+
+.filter-warm:hover {
+  filter: brightness(1.02) saturate(1.05);
+}
