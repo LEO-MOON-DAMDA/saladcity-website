@@ -1,0 +1,45 @@
+/* ✅ 파일 경로: /src/styles/MarketBrandVideoSection.css */
+
+.brand-video-section {
+  background-color: #fdfdf7;
+  padding: 100px 20px;
+  font-family: 'Pretendard', sans-serif;
+  text-align: center;
+}
+
+.brand-video-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.brand-video-title {
+  font-size: 30px;
+  color: #2f5130;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.brand-video-sub {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.brand-video-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 비율 */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.brand-video-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
