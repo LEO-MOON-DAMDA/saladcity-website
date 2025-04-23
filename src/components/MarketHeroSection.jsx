@@ -1,27 +1,26 @@
+// ✅ 파일 경로: /src/components/MarketHeroSection.jsx
+
 import React from "react";
-import "./MarketHeroSection.css";
+import { Link } from "react-router-dom";
+import "../styles/MarketHeroSection.css";
 
 export default function MarketHeroSection() {
   return (
     <section className="market-hero">
-      <div className="market-hero-background">
-        <img
-          src="/images/market/hero_bg.jpg"
-          alt="The Market"
-          className="market-hero-image"
-        />
-        <div className="market-hero-overlay" />
-      </div>
-      <div className="market-hero-text">
-        <h1>SALCY THE MARKET</h1>
-        <p>
-          우리는 단순히 굿즈를 만들지 않습니다.  
-          <br />
-          SALCY의 하루, 철학, 감각을 담았습니다.
-        </p>
-        <button className="market-hero-button">
-          🎁 감성을 만나보세요 →
-        </button>
+      <video
+        className="market-hero-video"
+        src="/videos/saladcity-market-hero.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+      <div className="market-hero-overlay">
+        <h1 className="market-hero-title">당신의 하루에 감정을 더합니다</h1>
+        <p className="market-hero-sub">샐러드시티는 삶의 온기를 굿즈로 담아내는 브랜드입니다.</p>
+        <Link to="/shop" className="market-hero-button">
+          감성 쇼핑하러 가기 →
+        </Link>
       </div>
     </section>
   );
