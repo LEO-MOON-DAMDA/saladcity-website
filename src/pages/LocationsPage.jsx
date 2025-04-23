@@ -23,7 +23,7 @@ const locations = [
     phone: "02-444-2020",
   },
   {
-    name: "샐러드시티 반포점 (본사)",
+    name: "샐러드시티 반포점",
     image: "/images/Locations/1LOBP001.jpg",
     address: "서울 서초구 반포대로 123",
     phone: "02-123-4567",
@@ -63,10 +63,8 @@ const locations = [
 export default function LocationsPage() {
   return (
     <div className="locations-page">
-      {/* Hero Section */}
       <HeroSection />
 
-      {/* Live KakaoMap */}
       <section style={{ padding: "40px 20px" }}>
         <h2
           style={{
@@ -81,11 +79,10 @@ export default function LocationsPage() {
         <KakaoMap />
       </section>
 
-      {/* 매장 리스트 카드 */}
       <div className="locations-grid">
         {locations.map((loc, idx) => (
           <div key={idx} className="location-card">
-            <img src={loc.image} alt={loc.name} />
+            <img src={loc.image} alt={loc.name} className="filter-warm" />
             <div className="location-info">
               <h3>{loc.name}</h3>
               <p>{loc.address}</p>
