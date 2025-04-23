@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import MarketHeroSection from "../components/MarketHeroSection";
 import MarketProductSlider from "../components/MarketProductSlider";
-import MarketPhilosophy from "../components/MarketPhilosophy";
+import MarketPhilosophySection from "../components/MarketPhilosophySection";
 import MarketVIPNotice from "../components/MarketVIPNotice";
 import MarketSocialGallery from "../components/MarketSocialGallery";
 import MarketReviewHighlightSection from "../components/MarketReviewHighlightSection";
@@ -42,11 +42,11 @@ export default function MarketPage() {
         </div>
       </section>
 
-      <MarketPhilosophy />
-      <MarketReviewHighlightSection /> {/* ✅ 대표 리뷰 섹션 */}
-      <MarketShippingNotice /> {/* ✅ 배송 안내 섹션 */}
+      <MarketPhilosophySection />
+      <MarketReviewHighlightSection />
+      <MarketShippingNotice />
       <MarketVIPNotice />
-      <MarketBrandVideoSection /> {/* ✅ 브랜드 영상 섹션 */}
+      <MarketBrandVideoSection />
       <MarketSocialGallery />
     </div>
   );
