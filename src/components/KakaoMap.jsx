@@ -1,7 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 const KakaoMap = () => {
+  const loadedRef = useRef(false); // ✅ 중복 로딩 방지
+
   useEffect(() => {
+    if (loadedRef.current) return;
+    loadedRef.current = true;
+
     const loadKakaoMap = () => {
       if (!window.kakao || !window.kakao.maps) {
         console.error("⚠️ Kakao 객체 로딩 실패");
