@@ -9,15 +9,16 @@ export default function Layout() {
 
   return (
     <>
-      <Header /> {/* ✅ 모든 페이지에 Header 렌더링 */}
+      <Header />
       <div
         style={{
-          paddingTop: isHome ? '0px' : '80px',
-          backgroundColor: isHome ? 'transparent' : '#f6fdf8',
-          position: 'relative',      // ✅ 카드 hover 등 z-index 기준
-          overflow: 'visible',       // ✅ hover 카드 상단 짤림 방지
-          minHeight: '100vh',        // ✅ 푸터 포함 전체 높이 확보
-          pointerEvents: 'auto'      // ✅ 클릭 이벤트 차단 해제
+          paddingTop: isHome ? "0px" : "80px",
+          backgroundColor: "#f6fdf8",
+          minHeight: "100vh",
+          position: "relative",
+          zIndex: 0,               // 안전하게 낮은 z-index
+          overflow: "visible"      // hover/클릭 문제 방지
+          // pointerEvents 제거됨
         }}
       >
         <Outlet />
