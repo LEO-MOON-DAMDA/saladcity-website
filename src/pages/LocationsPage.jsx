@@ -5,6 +5,7 @@ import KakaoMap from "../components/KakaoMap";
 import "../styles/LocationsPage.css";
 
 const locations = [
+  { name: "샐러드시티 본사", image: "/images/Locations/1LOHQ01.jpg", address: "서울특별시 강남구 테헤란로22길 15", phone: "02-000-0000" },
   { name: "샐러드시티 역삼점", image: "/images/Locations/1LOYS08.jpg", address: "서울 강남구 테헤란로22길 15", phone: "02-555-8501" },
   { name: "샐러드시티 구디점", image: "/images/Locations/1LOGD03.jpg", address: "서울 구로구 디지털로34길 27", phone: "02-888-3030" },
   { name: "샐러드시티 강동점", image: "/images/Locations/1LOKD01.jpg", address: "서울 강동구 천호대로175길 52", phone: "02-444-2020" },
@@ -63,7 +64,11 @@ export default function LocationsPage() {
               ref={(el) => (cardRefs.current[idx] = el)}
               onClick={() => handleCardClick(idx)}
             >
-              <img src={loc.image} alt={loc.name} className="filter-warm" />
+              <img
+                src={loc.image}
+                alt={loc.name}
+                className={`filter-warm ${["샐러드시티 서초점", "샐러드시티 제천농장", "샐러드시티 포천농장"].includes(loc.name) ? "custom-top" : ""} ${["샐러드시티 제천농장", "샐러드시티 포천농장"].includes(loc.name) ? "custom-offset" : ""}`}
+              />
               <div className="location-info">
                 <h3>{loc.name}</h3>
                 <p>{loc.address}</p>
