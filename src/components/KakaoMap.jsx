@@ -17,7 +17,7 @@ const KakaoMap = () => {
 
       const script = document.createElement("script");
       script.id = scriptId;
-      script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=19779cb249b3d46022f7284fea6b15c6&autoload=false";
+      script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=57c4769f8b8532d54ee295e6705802b6&autoload=false";
       script.onload = callback;
       script.onerror = () => console.error("❌ SDK script 로딩 실패 (AppKey 권한 문제일 수 있음)");
       document.head.appendChild(script);
@@ -30,7 +30,7 @@ const KakaoMap = () => {
       }
 
       window.kakao.maps.load(() => {
-        console.log("✅ Kakao 지도 로딩 성공 (최종 AppKey)");
+        console.log("✅ Kakao 지도 로딩 성공 (새 앱)");
 
         const map = new window.kakao.maps.Map(mapRef.current, {
           center: new window.kakao.maps.LatLng(37.5008, 127.0365),
