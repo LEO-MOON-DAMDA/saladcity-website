@@ -1,0 +1,109 @@
+.cart-page {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 16px;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.cart-title {
+  font-size: 26px;
+  margin-bottom: 24px;
+  color: #2f5130;
+}
+
+.cart-empty {
+  text-align: center;
+  font-size: 16px;
+  color: #888;
+}
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart-item {
+  border-bottom: 1px solid #eee;
+  padding: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cart-info {
+  flex: 1;
+}
+
+.cart-name {
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+.cart-desc {
+  font-size: 14px;
+  color: #666;
+  margin: 6px 0;
+}
+
+.cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.cart-controls input[type="number"] {
+  width: 60px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.cart-price {
+  font-size: 15px;
+  color: #2f855a;
+}
+
+.cart-remove {
+  background: none;
+  border: none;
+  color: #e53e3e;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cart-summary {
+  margin-top: 24px;
+  text-align: right;
+  font-size: 16px;
+  color: #333;
+}
+
+.cart-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.cart-clear {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #e53e3e;
+  color: white;
+  cursor: pointer;
+}
+
+.cart-pay {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #2f855a;
+  color: white;
+  cursor: pointer;
+}
