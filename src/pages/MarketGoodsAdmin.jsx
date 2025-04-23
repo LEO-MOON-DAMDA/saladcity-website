@@ -6,18 +6,18 @@ export default function MarketGoodsAdmin() {
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState("");
   const [search, setSearch] = useState("");
+  const [showDeleted, setShowDeleted] = useState(false);
 
   useEffect(() => {
     fetchGoods();
-  }, []);
+  }, [showDeleted]);
 
   const fetchGoods = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from("market_goods")
-      .select("*")
-      .eq("is_deleted", false)
-      .order("created_at", { ascending: false });
+    const query = supabase.from("market_goods").select("*").order("created_at", { ascending: false });
+    const { data, error } = showDeleted
+      ? await query
+      : await query.eq("is_deleted", false);
     if (error) {
       setStatus("❌ 불러오기 실패: " + error.message);
     } else {
@@ -40,8 +40,24 @@ export default function MarketGoodsAdmin() {
     }
   };
 
+  const handleRestore = async (id) => {
+    const { error } = await supabase
+      .from("market_goods")
+      .update({ is_deleted: false })
+      .eq("id", id);
+    if (error) {
+      setStatus("❌ 복구 실패: " + error.message);
+    } else {
+      setStatus("✅ 복구 완료");
+      fetchGoods();
+    }
+  };
+
   const handleUpdate = async (id, field, value) => {
-    const { error } = await supabase.from("market_goods").update({ [field]: value }).eq("id", id);
+    const { error } = await supabase
+      .from("market_goods")
+      .update({ [field]: value })
+      .eq("id", id);
     if (error) {
       setStatus("❌ 수정 실패: " + error.message);
     } else {
@@ -50,7 +66,7 @@ export default function MarketGoodsAdmin() {
     }
   };
 
-  const filteredGoods = goods.filter(item =>
+  const filteredGoods = goods.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -69,14 +85,25 @@ export default function MarketGoodsAdmin() {
         <div>총 재고: {totalStock}개</div>
       </div>
 
-      {/* 검색창 */}
-      <input
-        type="text"
-        placeholder="상품명 검색"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        style={{ padding: "10px 12px", marginBottom: "20px", width: "100%", border: "1px solid #ddd", borderRadius: "6px" }}
-      />
+      {/* 검색창 + 숨김 보기 토글 */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+        <input
+          type="text"
+          placeholder="상품명 검색"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={{ padding: "10px 12px", width: "80%", border: "1px solid #ddd", borderRadius: "6px" }}
+        />
+        <label style={{ fontSize: "13px" }}>
+          <input
+            type="checkbox"
+            checked={showDeleted}
+            onChange={() => setShowDeleted(!showDeleted)}
+            style={{ marginLeft: "12px", marginRight: "6px" }}
+          />
+          숨김 포함 보기
+        </label>
+      </div>
 
       {status && <p style={{ marginBottom: 16, color: status.startsWith("✅") ? "green" : "red" }}>{status}</p>}
 
@@ -106,13 +133,20 @@ export default function MarketGoodsAdmin() {
                 onBlur={(e) => handleUpdate(item.id, "price", parseInt(e.target.value))}
                 style={{ fontSize: "14px", color: item.stock < 10 ? "#e53e3e" : "#2f855a", fontWeight: "bold", width: "100%", border: "none", borderBottom: "1px solid #ccc" }}
               />원
-              <div style={{ marginTop: "6px", display: "flex", justifyContent: "space-between" }}>
+              <div style={{ marginTop: "6px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <div style={{ fontSize: "13px", color: item.stock < 10 ? "#e53e3e" : "#333" }}>
                   재고: {item.stock}
+                  {item.is_deleted && <span style={{ marginLeft: "6px", color: "#e53e3e", fontWeight: "bold" }}> (숨김됨)</span>}
                 </div>
-                <button onClick={() => handleDelete(item.id)} style={{ backgroundColor: "#e53e3e", color: "#fff", border: "none", borderRadius: "6px", padding: "6px 10px", fontSize: "12px", cursor: "pointer" }}>
-                  삭제
-                </button>
+                {item.is_deleted ? (
+                  <button onClick={() => handleRestore(item.id)} style={{ backgroundColor: "#319795", color: "#fff", border: "none", borderRadius: "6px", padding: "6px 10px", fontSize: "12px", cursor: "pointer" }}>
+                    복구
+                  </button>
+                ) : (
+                  <button onClick={() => handleDelete(item.id)} style={{ backgroundColor: "#e53e3e", color: "#fff", border: "none", borderRadius: "6px", padding: "6px 10px", fontSize: "12px", cursor: "pointer" }}>
+                    삭제
+                  </button>
+                )}
               </div>
             </div>
           ))}
