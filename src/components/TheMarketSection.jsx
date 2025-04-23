@@ -12,7 +12,7 @@ export default function TheMarketSection() {
     const fetchGoods = async () => {
       const { data, error } = await supabase
         .from("market_goods")
-        .select("*")
+        .select("id, name, price, image_main, url")
         .order("created_at", { ascending: false });
 
       if (error) {
@@ -32,25 +32,29 @@ export default function TheMarketSection() {
       </SectionTitle>
 
       <div className="market-slider" ref={sliderRef}>
-        {goods.map((item) => (
-          <div key={item.id} className="market-card">
-            <img src={item.image_main} alt={item.name} />
-            <h3>{item.name}</h3>
-            <p>{item.price.toLocaleString()}원</p>
-            <a
-              href={item.url || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="market-buy"
-            >
-              구매하기 →
-            </a>
-          </div>
-        ))}
+        {goods.length === 0 ? (
+          <p className="market-empty">현재 판매 중인 굿즈가 없습니다.</p>
+        ) : (
+          goods.map((item) => (
+            <div key={item.id} className="market-card">
+              <img src={item.image_main} alt={item.name} />
+              <h3>{item.name}</h3>
+              <p>{item.price.toLocaleString()}원</p>
+              <a
+                href={item.url || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="market-buy"
+              >
+                구매하기 →
+              </a>
+            </div>
+          ))
+        )}
       </div>
 
       <div className="market-button-wrap">
-        <BrandButton href="/market">전체 굿즈 보기 →</BrandButton>
+        <BrandButton href="/shop">전체 굿즈 보기 →</BrandButton>
       </div>
     </section>
   );
