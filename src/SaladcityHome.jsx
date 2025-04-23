@@ -12,6 +12,7 @@ import TheMarketSection from "./components/TheMarketSection";
 import Footer from "./components/Footer";
 import ScrollingBanner from "./components/ScrollingBanner";
 import SubTitle from "./components/SubTitle";
+import HeroSection from "./components/HeroSection"; // ✅ 추가된 import
 
 export default function SaladcityHome() {
   const videoRef = useRef(null);
@@ -82,6 +83,9 @@ export default function SaladcityHome() {
         </div>
 
         <ScrollingBanner />
+
+        {/* ✅ Hero 이미지 섹션 삽입 */}
+        <HeroSection />
 
         <FeaturedMenuSection items={homepageMenuItems} />
         <OurMissionSection />
