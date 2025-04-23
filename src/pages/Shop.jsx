@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ 페이지 이동용
 import { supabase } from "../lib/supabase";
 import { useCart } from "../context/CartContext";
-import { useToast } from "../context/ToastContext"; // ✅ Toast 추가
+import { useToast } from "../context/ToastContext";
 
 export default function Shop() {
   const [goods, setGoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const { addToCart } = useCart();
-  const { showToast } = useToast(); // ✅ Toast 훅 사용
+  const { showToast } = useToast();
+  const navigate = useNavigate(); // ✅ 페이지 이동 훅
 
   useEffect(() => {
     const fetchGoods = async () => {
@@ -36,6 +38,12 @@ export default function Shop() {
   const filtered = goods.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
   );
+
+  const handleAddToCart = (item) => {
+    addToCart(item);
+    showToast("장바구니에 담겼어요!");
+    setTimeout(() => navigate("/cart"), 1200); // ✅ 1.2초 후 이동
+  };
 
   return (
     <div style={{ maxWidth: "1080px", margin: "40px auto", padding: "0 16px" }}>
@@ -68,10 +76,7 @@ export default function Shop() {
               <p style={{ fontSize: "14px", color: "#666", marginBottom: "8px" }}>{item.description}</p>
               <p style={{ fontWeight: "bold", fontSize: "15px", color: "#2f855a" }}>{item.price.toLocaleString()}원</p>
               <button
-                onClick={() => {
-                  addToCart(item);
-                  showToast("장바구니에 담겼어요!"); // ✅ Toast 메시지 추가
-                }}
+                onClick={() => handleAddToCart(item)} // ✅ 통합된 클릭 함수
                 style={{ marginTop: "8px", width: "100%", padding: "10px", backgroundColor: "#2f855a", color: "white", border: "none", borderRadius: "6px", cursor: "pointer" }}
               >
                 장바구니 담기
