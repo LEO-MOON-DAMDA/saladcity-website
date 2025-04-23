@@ -10,12 +10,13 @@ import MarketPage from "./pages/MarketPage";
 import SuccessPage from "./pages/SuccessPage";
 import CancelPage from "./pages/CancelPage";
 import DashboardReviews from "./pages/DashboardReviews";
-import AddGoods from "./pages/AddGoods"; // ✅ 여기에 추가해야 함
+import AddGoods from "./pages/AddGoods"; // ✅ 관리자 굿즈 등록 페이지
 
 export default function App() {
   return (
     <Router>
       <Routes>
+        {/* 🧱 Layout 안에 들어가는 메인 페이지들 */}
         <Route element={<Layout />}>
           <Route path="/" element={<SaladcityHome />} />
           <Route path="/menu" element={<MenuPage />} />
@@ -26,11 +27,13 @@ export default function App() {
           <Route path="/market" element={<MarketPage />} />
         </Route>
 
+        {/* ✅ 감성 단독 페이지들 */}
         <Route path="/success" element={<SuccessPage />} />
         <Route path="/cancel" element={<CancelPage />} />
         <Route path="/dashboard/reviews" element={<DashboardReviews />} />
 
-        <Route path="/admin/add-goods" element={<AddGoods />} /> {/* ✅ 반드시 이 줄이 있어야 함 */}
+        {/* ✅ 관리자 굿즈 등록 페이지 (단독 페이지!) */}
+        <Route path="/admin/add-goods" element={<AddGoods />} />
       </Routes>
     </Router>
   );
