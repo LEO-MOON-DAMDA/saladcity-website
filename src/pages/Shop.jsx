@@ -45,11 +45,13 @@ export default function Shop() {
         style={{ padding: "10px 12px", width: "100%", borderRadius: "6px", border: "1px solid #ddd", marginBottom: "24px" }}
       />
 
-      {loading ? (
-        <p>⏳ 로딩 중...</p>
-      ) : filtered.length === 0 ? (
+      {loading && <p>⏳ 로딩 중...</p>}
+
+      {!loading && filtered.length === 0 && (
         <p>등록된 상품이 없습니다.</p>
-      ) : (
+      )}
+
+      {!loading && filtered.length > 0 && (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "20px" }}>
           {filtered.map((item) => (
             <div key={item.id} style={{ border: "1px solid #eee", borderRadius: "12px", padding: "12px", background: "#fff" }}>
