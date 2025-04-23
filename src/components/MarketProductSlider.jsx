@@ -1,5 +1,4 @@
-// ✅ 파일 경로: /src/components/MarketProductSlider.jsx (Stripe 연동 + Supabase 최종본)
-
+// ✅ /src/components/MarketProductSlider.jsx (제목 제거 + 상품 없을 때 메시지 포함)
 import React, { useEffect, useState } from "react";
 import { loadGoodsFromSupabase } from "../utils/loadGoodsFromSupabase";
 import { loadStripe } from "@stripe/stripe-js";
@@ -39,10 +38,21 @@ export default function MarketProductSlider() {
   };
 
   return (
-    <section className="market-slider-section">
-      <h2 className="market-slider-title">SALADCITY GOODS</h2>
-      <div className="market-slider">
-        {goods.map((product) => (
+    <div className="market-slider">
+      {goods.length === 0 ? (
+        <div
+          style={{
+            width: "100%",
+            textAlign: "center",
+            color: "#999",
+            fontSize: "15px",
+            padding: "40px 0",
+          }}
+        >
+          🕐 상품을 준비 중입니다. 곧 만나보실 수 있어요!
+        </div>
+      ) : (
+        goods.map((product) => (
           <div key={product.id} className="market-slide-card">
             <div className="product-image-wrapper">
               <img src={product.mainImage} alt={product.name} />
@@ -58,7 +68,6 @@ export default function MarketProductSlider() {
                   ? `₩${Number(product.price).toLocaleString()}`
                   : "문의"}
               </p>
-
               {product.stripePriceId ? (
                 <button
                   className="buy-button"
@@ -73,8 +82,8 @@ export default function MarketProductSlider() {
               )}
             </div>
           </div>
-        ))}
-      </div>
-    </section>
+        ))
+      )}
+    </div>
   );
 }
