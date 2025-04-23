@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/MissionPage.css";
+import MarketPhilosophySection from "../components/MarketPhilosophySection";
 
 export default function MissionPage() {
   return (
@@ -18,6 +19,8 @@ export default function MissionPage() {
           <p>We don’t just serve salad. We cultivate a philosophy of eating.</p>
         </div>
       </section>
+
+      <MarketPhilosophySection />
 
       <section className="mission-zigzag-section">
         <div className="mission-zigzag-item">
