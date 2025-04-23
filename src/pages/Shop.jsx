@@ -10,18 +10,21 @@ export default function Shop() {
 
   useEffect(() => {
     const fetchGoods = async () => {
-      const { data, error } = await supabase
-        .from("market_goods")
-        .select("*")
-        .eq("is_deleted", false)
-        .order("created_at", { ascending: false });
+      try {
+        const { data, error } = await supabase
+          .from("market_goods")
+          .select("*")
+          .eq("is_deleted", false)
+          .order("created_at", { ascending: false });
 
-      if (error) {
-        console.error("❌ 굿즈 불러오기 실패:", error.message);
-      } else {
-        setGoods(data || []);
+        if (error) {
+          console.error("❌ 굿즈 불러오기 실패:", error.message);
+        } else {
+          setGoods(data || []);
+        }
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
     fetchGoods();
   }, []);
