@@ -11,6 +11,7 @@ import SuccessPage from "./pages/SuccessPage";
 import CancelPage from "./pages/CancelPage";
 import DashboardReviews from "./pages/DashboardReviews";
 import AddGoods from "./pages/AddGoods"; // ✅ 관리자 굿즈 등록 페이지
+import MarketGoodsAdmin from "./pages/MarketGoodsAdmin"; // ✅ 관리자 굿즈 리스트 관리 페이지
 
 export default function App() {
   return (
@@ -32,8 +33,9 @@ export default function App() {
         <Route path="/cancel" element={<CancelPage />} />
         <Route path="/dashboard/reviews" element={<DashboardReviews />} />
 
-        {/* ✅ 관리자 굿즈 등록 페이지 (단독 페이지!) */}
+        {/* ✅ 관리자 페이지들 (Layout 없이 단독으로) */}
         <Route path="/admin/add-goods" element={<AddGoods />} />
+        <Route path="/admin/market-goods" element={<MarketGoodsAdmin />} /> {/* ✅ 추가된 라우트 */}
       </Routes>
     </Router>
   );
