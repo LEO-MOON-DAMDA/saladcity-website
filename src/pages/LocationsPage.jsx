@@ -1,4 +1,5 @@
-import React from "react";
+// ✅ src/pages/LocationsPage.jsx
+import React, { useRef } from "react";
 import HeroSection from "../components/HeroSection";
 import KakaoMap from "../components/KakaoMap";
 import "../styles/LocationsPage.css";
@@ -61,6 +62,17 @@ const locations = [
 ];
 
 export default function LocationsPage() {
+  const cardRefs = useRef([]);
+
+  const scrollToCard = (index) => {
+    const card = cardRefs.current[index];
+    if (card) {
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+      card.classList.add("selected");
+      setTimeout(() => card.classList.remove("selected"), 2000);
+    }
+  };
+
   return (
     <div className="locations-page">
       <HeroSection />
@@ -76,12 +88,16 @@ export default function LocationsPage() {
         >
           서울 매장 위치 안내
         </h2>
-        <KakaoMap />
+        <KakaoMap locations={locations} onMarkerClick={scrollToCard} />
       </section>
 
       <div className="locations-grid">
         {locations.map((loc, idx) => (
-          <div key={idx} className="location-card">
+          <div
+            key={idx}
+            className="location-card"
+            ref={(el) => (cardRefs.current[idx] = el)}
+          >
             <img src={loc.image} alt={loc.name} className="filter-warm" />
             <div className="location-info">
               <h3>{loc.name}</h3>
