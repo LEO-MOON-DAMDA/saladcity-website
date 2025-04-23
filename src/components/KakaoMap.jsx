@@ -17,9 +17,9 @@ const KakaoMap = () => {
 
       const script = document.createElement("script");
       script.id = scriptId;
-      script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=0e43a107fbe290452441d453e0ae2026&autoload=false";
+      script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=261f12530740989e7f97fbb28840ed8a&autoload=false"; // ← 너의 AppKey
       script.onload = callback;
-      script.onerror = () => console.error("❌ SDK script 로딩 실패");
+      script.onerror = () => console.error("❌ SDK script 로딩 실패 (AppKey 권한 문제일 가능성)");
       document.head.appendChild(script);
     };
 
@@ -30,7 +30,7 @@ const KakaoMap = () => {
       }
 
       window.kakao.maps.load(() => {
-        console.log("✅ Kakao 지도 로딩 성공 (우회)");
+        console.log("✅ Kakao 지도 로딩 성공 (내 AppKey)");
 
         const map = new window.kakao.maps.Map(mapRef.current, {
           center: new window.kakao.maps.LatLng(37.5008, 127.0365),
@@ -62,7 +62,7 @@ const KakaoMap = () => {
         height: "400px",
         margin: "20px 0",
         borderRadius: "16px",
-        backgroundColor: "#eee",
+        backgroundColor: "#eee", // 회색은 fallback임
       }}
     />
   );
