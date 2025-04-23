@@ -1,4 +1,3 @@
-// ✅ src/pages/LocationsPage.jsx (브랜드 UX 기반 재구성)
 import React, { useRef } from "react";
 import HeroSection from "../components/HeroSection";
 import KakaoMap from "../components/KakaoMap";
@@ -38,7 +37,7 @@ export default function LocationsPage() {
 
   return (
     <div className="locations-page">
-      {/* 1. Hero 섹션 */}
+      {/* 1. Hero 인트로 */}
       <HeroSection />
 
       {/* 2. 브랜드 인트로 메시지 */}
@@ -67,7 +66,15 @@ export default function LocationsPage() {
               <img
                 src={loc.image}
                 alt={loc.name}
-                className={`filter-warm ${["샐러드시티 서초점", "샐러드시티 제천농장", "샐러드시티 포천농장"].includes(loc.name) ? "custom-top" : ""} ${["샐러드시티 제천농장", "샐러드시티 포천농장"].includes(loc.name) ? "custom-offset" : ""}`}
+                className={`filter-warm ${
+                  ["샐러드시티 서초점", "샐러드시티 제천농장", "샐러드시티 포천농장"].includes(loc.name)
+                    ? "custom-top"
+                    : ""
+                } ${
+                  ["샐러드시티 제천농장", "샐러드시티 포천농장"].includes(loc.name)
+                    ? "custom-offset"
+                    : ""
+                }`}
               />
               <div className="location-info">
                 <h3>{loc.name}</h3>
