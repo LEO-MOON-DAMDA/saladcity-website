@@ -124,9 +124,13 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
           color: "#2f5130",
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
           zIndex: 10,
+          lineHeight: 1.5,
         }}
       >
-        🥗 샐러드시티의 오늘을 만나는 지도
+        🥗 샐러드시티의 오늘을 만나는 지도<br />
+        <span style={{ fontSize: "13px", fontWeight: 400 }}>
+          A map of Saladcity's living presence
+        </span>
       </div>
 
       <div
