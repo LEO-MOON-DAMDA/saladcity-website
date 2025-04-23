@@ -1,8 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
+// ✅ 파일 경로: /src/context/CartContext.js
+
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext();
 
-export function CartProvider({ children }) {
+export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
     const stored = localStorage.getItem("cart");
     return stored ? JSON.parse(stored) : [];
@@ -14,13 +16,14 @@ export function CartProvider({ children }) {
 
   const addToCart = (item) => {
     setCart((prev) => {
-      const existing = prev.find((p) => p.id === item.id);
-      if (existing) {
-        return prev.map((p) =>
-          p.id === item.id ? { ...p, quantity: p.quantity + 1 } : p
+      const exists = prev.find((i) => i.id === item.id);
+      if (exists) {
+        return prev.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
         );
+      } else {
+        return [...prev, { ...item, quantity: 1 }];
       }
-      return [...prev, { ...item, quantity: 1 }];
     });
   };
 
@@ -29,9 +32,10 @@ export function CartProvider({ children }) {
   };
 
   const updateQuantity = (id, quantity) => {
+    if (quantity < 1) return;
     setCart((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
+        item.id === id ? { ...item, quantity } : item
       )
     );
   };
@@ -39,12 +43,12 @@ export function CartProvider({ children }) {
   const clearCart = () => setCart([]);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart }}
+    >
       {children}
     </CartContext.Provider>
   );
-}
+};
 
-export function useCart() {
-  return useContext(CartContext);
-}
+export const useCart = () => useContext(CartContext);
