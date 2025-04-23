@@ -1,13 +1,39 @@
 import React from "react";
-import "../styles/HeroSection.css"; // 기존 유지
 
 export default function HeroSection() {
   return (
-    <section className="hero-locations with-bg">
-      <div className="hero-text">
-        <h1>샐러드시티가 있는 곳엔<br />자연이 있습니다.</h1>
-        <p>서울 곳곳, 그리고 초록 들녘까지<br />우리는 매일 당신 곁에 있습니다.</p>
-        <div className="scroll-down">↓</div>
+    <section
+      style={{
+        backgroundImage: 'url("/images/hero/hero-locations.jpg")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        padding: "140px 20px 100px",
+        position: "relative",
+        color: "#fff",
+        textAlign: "center",
+      }}
+    >
+      <div style={{
+        position: "absolute",
+        top: 0, left: 0, right: 0, height: "40%",
+        background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent)",
+        zIndex: 1
+      }} />
+      <div style={{ position: "relative", zIndex: 2, maxWidth: "960px", margin: "0 auto" }}>
+        <h1 style={{ fontSize: "36px", fontWeight: "700", marginBottom: "10px", lineHeight: 1.4 }}>
+          샐러드시티가 있는 곳엔<br />자연이 있습니다.
+        </h1>
+        <p style={{ fontSize: "18px", fontWeight: "400", lineHeight: 1.5 }}>
+          서울 곳곳, 그리고 초록 들녘까지<br />우리는 매일 당신 곁에 있습니다.
+        </p>
+        <div style={{
+          marginTop: "20px",
+          fontSize: "32px",
+          animation: "bounce 1.8s infinite"
+        }}>
+          ↓
+        </div>
       </div>
     </section>
   );
