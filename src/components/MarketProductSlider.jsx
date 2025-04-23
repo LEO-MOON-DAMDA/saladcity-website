@@ -1,9 +1,10 @@
+// ✅ 파일 경로: /src/components/MarketProductSlider.jsx (Stripe 연동 + Supabase 최종본)
+
 import React, { useEffect, useState } from "react";
 import { loadGoodsFromSupabase } from "../utils/loadGoodsFromSupabase";
 import { loadStripe } from "@stripe/stripe-js";
-import "./MarketProductSlider.css";
+import "../styles/MarketProductSlider.css";
 
-// ✅ CRA 환경에 맞게 수정된 Stripe 키 참조
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 export default function MarketProductSlider() {
@@ -39,7 +40,7 @@ export default function MarketProductSlider() {
 
   return (
     <section className="market-slider-section">
-      <h2 className="market-slider-title">SALCY GOODS</h2>
+      <h2 className="market-slider-title">SALADCITY GOODS</h2>
       <div className="market-slider">
         {goods.map((product) => (
           <div key={product.id} className="market-slide-card">
