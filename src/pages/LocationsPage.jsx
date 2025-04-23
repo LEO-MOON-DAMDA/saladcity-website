@@ -1,4 +1,5 @@
 import React from "react";
+import HeroSection from "../components/HeroSection"; // ✅ 추가
 import KakaoMap from "../components/KakaoMap";
 import "../styles/LocationsPage.css";
 
@@ -62,6 +63,9 @@ const locations = [
 export default function LocationsPage() {
   return (
     <div className="locations-page">
+      {/* ✅ Hero 이미지 섹션 삽입 */}
+      <HeroSection />
+
       <div className="locations-header">
         <img
           src="/images/Locations/1LOJC01.jpg"
