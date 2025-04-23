@@ -141,3 +141,6 @@
     font-size: 15px;
   }
 }
+.custom-top {
+  object-position: top center !important;
+}
