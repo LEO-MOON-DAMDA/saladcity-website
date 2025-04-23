@@ -1,46 +1,39 @@
+// ✅ 파일 경로: /src/components/MarketReviewHighlightSection.jsx
+
 import React from "react";
+import "../styles/MarketReviewHighlightSection.css";
+
+const reviews = [
+  {
+    id: 1,
+    name: "sugarpepper",
+    comment: "받자마자 포장을 뜯었는데 향기까지 감성적이네요 🍋",
+  },
+  {
+    id: 2,
+    name: "콩이맘",
+    comment: "생각보다 더 고급스러워요. 사진보다 실물이 더 이쁨. 강추!",
+  },
+  {
+    id: 3,
+    name: "sundaybrunch",
+    comment: "이건 그냥 예술입니다. 굿즈 아닌 감성 오브제예요 💚",
+  },
+];
 
 export default function MarketReviewHighlightSection() {
   return (
-    <section style={{ padding: "60px 20px", backgroundColor: "#f8fcf9" }}>
-      <div style={{ maxWidth: "960px", margin: "0 auto" }}>
-        <h2 style={{ fontSize: "24px", marginBottom: "16px", color: "#2f5130" }}>
-          샐시 고객들이 남긴 생생한 후기 💬
-        </h2>
-        <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "20px" }}>
-          {[
-            {
-              nickname: "saladylover",
-              text: "너무 신선하고 양도 많아요! 계속 시킬 듯...",
-            },
-            {
-              nickname: "건강중독자",
-              text: "진짜 야채가 살아있어요... 드레싱까지 완벽!",
-            },
-            {
-              nickname: "greenqueen",
-              text: "배달도 빠르고 정기배송 최고예요!",
-            },
-          ].map((review, index) => (
-            <li
-              key={index}
-              style={{
-                backgroundColor: "#fff",
-                border: "1px solid #e2e8f0",
-                borderRadius: "12px",
-                padding: "16px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.05)"
-              }}
-            >
-              <p style={{ fontSize: "14px", fontStyle: "italic", color: "#555" }}>
-                "{review.text}"
-              </p>
-              <p style={{ fontSize: "13px", fontWeight: "bold", color: "#999", marginTop: "10px" }}>
-                - {review.nickname}
-              </p>
-            </li>
+    <section className="review-highlight-section">
+      <div className="review-highlight-inner">
+        <h2 className="review-highlight-title">고객님들의 감성 리뷰</h2>
+        <div className="review-highlight-cards">
+          {reviews.map((r) => (
+            <div key={r.id} className="review-card">
+              <p className="review-comment">“{r.comment}”</p>
+              <p className="review-name">- {r.name}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
