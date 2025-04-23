@@ -1,6 +1,7 @@
+// ✅ src/components/KakaoMap.jsx
 import React, { useEffect, useRef } from "react";
 
-const KakaoMap = () => {
+const KakaoMap = ({ locations, onMarkerClick }) => {
   const mapRef = useRef(null);
   const loadedRef = useRef(false);
 
@@ -17,9 +18,11 @@ const KakaoMap = () => {
 
       const script = document.createElement("script");
       script.id = scriptId;
-      script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=57c4769f8b8532d54ee295e6705802b6&autoload=false";
+      script.src =
+        "https://dapi.kakao.com/v2/maps/sdk.js?appkey=57c4769f8b8532d54ee295e6705802b6&autoload=false";
       script.onload = callback;
-      script.onerror = () => console.error("❌ SDK script 로딩 실패 (AppKey 권한 문제일 수 있음)");
+      script.onerror = () =>
+        console.error("❌ SDK script 로딩 실패 (AppKey 권한 문제일 수 있음)");
       document.head.appendChild(script);
     };
 
@@ -30,29 +33,40 @@ const KakaoMap = () => {
       }
 
       window.kakao.maps.load(() => {
-        console.log("✅ Kakao 지도 로딩 성공 (새 앱)");
+        console.log("✅ Kakao 지도 로딩 성공 (다중 마커)");
 
         const map = new window.kakao.maps.Map(mapRef.current, {
           center: new window.kakao.maps.LatLng(37.5008, 127.0365),
           level: 6,
         });
 
-        const marker = new window.kakao.maps.Marker({
-          position: new window.kakao.maps.LatLng(37.5008, 127.0365),
-          map,
-        });
+        locations.forEach((loc, idx) => {
+          const geocoder = new window.kakao.maps.services.Geocoder();
+          geocoder.addressSearch(loc.address, (result, status) => {
+            if (status === window.kakao.maps.services.Status.OK) {
+              const coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
 
-        const infowindow = new window.kakao.maps.InfoWindow({
-          content: '<div style="padding:6px 10px;font-size:13px;">샐러드시티 역삼점</div>',
-        });
+              const marker = new window.kakao.maps.Marker({
+                map,
+                position: coords,
+              });
 
-        infowindow.open(map, marker);
-        marker.addListener("click", () => {
-          infowindow.open(map, marker);
+              const infowindow = new window.kakao.maps.InfoWindow({
+                content: `<div style="padding:6px 10px;font-size:13px;">${loc.name}</div>`,
+              });
+
+              marker.addListener("click", () => {
+                infowindow.open(map, marker);
+                onMarkerClick && onMarkerClick(idx);
+              });
+            } else {
+              console.warn("⚠️ 주소 좌표 변환 실패:", loc.address);
+            }
+          });
         });
       });
     });
-  }, []);
+  }, [locations, onMarkerClick]);
 
   return (
     <div
