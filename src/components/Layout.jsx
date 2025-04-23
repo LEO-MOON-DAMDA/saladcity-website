@@ -1,4 +1,3 @@
-// src/components/Layout.jsx
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
@@ -13,12 +12,12 @@ export default function Layout() {
       <div
         style={{
           paddingTop: isHome ? "0px" : "80px",
-          backgroundColor: "#f6fdf8",
-          minHeight: "100vh",
+          backgroundColor: isHome ? "transparent" : "#f6fdf8",
           position: "relative",
-          zIndex: 0,               // 안전하게 낮은 z-index
-          overflow: "visible"      // hover/클릭 문제 방지
-          // pointerEvents 제거됨
+          overflow: "visible",
+          minHeight: "100vh",
+          zIndex: 0 // ✅ 안전한 기본값
+          // ❌ pointerEvents 제거
         }}
       >
         <Outlet />
