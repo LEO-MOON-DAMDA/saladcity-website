@@ -69,7 +69,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
               markersRef.current[idx] = marker;
 
               const infowindow = new window.kakao.maps.InfoWindow({
-                content: `<div style="padding:6px 10px;font-size:13px;">${loc.name}</div>`,
+                content: `<div style=\"padding:6px 10px;font-size:13px;\">${loc.name}</div>`,
               });
               infoWindowsRef.current[idx] = infowindow;
 
@@ -87,15 +87,37 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
   }, [locations, onMarkerClick]);
 
   return (
-    <div
-      ref={mapRef}
-      style={{
-        width: "100%",
-        height: "400px",
-        margin: "20px 0",
-        borderRadius: "16px",
-      }}
-    />
+    <div style={{ position: "relative" }}>
+      {/* 🌿 감성 지도 오버레이 */}
+      <div
+        className="map-overlay"
+        style={{
+          position: "absolute",
+          top: 24,
+          left: 24,
+          background: "rgba(255, 255, 255, 0.85)",
+          padding: "10px 16px",
+          borderRadius: "12px",
+          fontWeight: 600,
+          fontSize: "15px",
+          color: "#2f5130",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+          zIndex: 10,
+        }}
+      >
+        🥗 샐러드시티의 오늘을 만나는 지도
+      </div>
+
+      <div
+        ref={mapRef}
+        style={{
+          width: "100%",
+          height: "400px",
+          margin: "20px 0",
+          borderRadius: "16px",
+        }}
+      />
+    </div>
   );
 });
 
