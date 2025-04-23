@@ -1,5 +1,6 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
+import "../styles/Cart.css";
 
 export default function Cart() {
   const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
@@ -14,60 +15,46 @@ export default function Cart() {
   );
 
   return (
-    <div style={{ maxWidth: "800px", margin: "40px auto", padding: "0 16px" }}>
-      <h2 style={{ fontSize: "24px", marginBottom: "24px" }}>장바구니</h2>
+    <div className="cart-page">
+      <h2 className="cart-title">장바구니</h2>
 
       {cart.length === 0 ? (
-        <p>장바구니가 비어있습니다.</p>
+        <p className="cart-empty">장바구니가 비어있습니다.</p>
       ) : (
         <>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+          <ul className="cart-list">
             {cart.map((item) => (
-              <li
-                key={item.id}
-                style={{ borderBottom: "1px solid #eee", padding: "16px 0" }}
-              >
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                  <div style={{ flex: 1 }}>
-                    <strong>{item.name}</strong>
-                    <p style={{ margin: "6px 0", color: "#666", fontSize: "14px" }}>{item.description}</p>
+              <li key={item.id} className="cart-item">
+                <div className="cart-info">
+                  <div className="cart-name">{item.name}</div>
+                  <div className="cart-desc">{item.description}</div>
+                  <div className="cart-controls">
                     <input
                       type="number"
                       min={1}
                       value={item.quantity}
                       onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
-                      style={{ width: "60px", marginRight: "12px", padding: "4px" }}
                     />
-                    x {item.price.toLocaleString()}원
-                  </div>
-                  <div>
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      style={{ background: "none", border: "none", color: "#e53e3e", cursor: "pointer" }}
-                    >
-                      삭제
-                    </button>
+                    <span className="cart-price">x {item.price.toLocaleString()}원</span>
                   </div>
                 </div>
+                <button className="cart-remove" onClick={() => removeFromCart(item.id)}>
+                  삭제
+                </button>
               </li>
             ))}
           </ul>
 
-          <div style={{ marginTop: "24px", textAlign: "right" }}>
-            <p style={{ fontSize: "16px", fontWeight: "bold" }}>
-              총 {total.count}개 / 총합 {total.price.toLocaleString()}원
+          <div className="cart-summary">
+            <p>
+              총 <strong>{total.count}</strong>개 / 총합 <strong>{total.price.toLocaleString()}</strong>원
             </p>
-            <button
-              onClick={clearCart}
-              style={{ marginTop: "12px", padding: "10px 16px", borderRadius: "6px", border: "none", backgroundColor: "#e53e3e", color: "#fff", cursor: "pointer" }}
-            >
-              장바구니 비우기
-            </button>
-            <button
-              style={{ marginLeft: "12px", padding: "10px 16px", borderRadius: "6px", border: "none", backgroundColor: "#2f855a", color: "#fff", cursor: "pointer" }}
-            >
-              결제하기
-            </button>
+            <div className="cart-actions">
+              <button className="cart-clear" onClick={clearCart}>
+                장바구니 비우기
+              </button>
+              <button className="cart-pay">결제하기</button>
+            </div>
           </div>
         </>
       )}
