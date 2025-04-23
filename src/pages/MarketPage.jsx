@@ -4,7 +4,6 @@ import MarketHeroSection from "../components/MarketHeroSection";
 import MarketProductSlider from "../components/MarketProductSlider";
 import MarketPhilosophySection from "../components/MarketPhilosophySection";
 import MarketReviewHighlightSection from "../components/MarketReviewHighlightSection";
-import MarketShippingNotice from "../components/MarketShippingNotice";
 import MarketVIPNotice from "../components/MarketVIPNotice";
 import MarketBrandVideoSection from "../components/MarketBrandVideoSection";
 import MarketSocialGallery from "../components/MarketSocialGallery";
@@ -46,22 +45,28 @@ export default function MarketPage() {
       </section>
 
       {/* WHY GOODS */}
-      <MarketPhilosophySection />
+      <section style={{ backgroundColor: "#fefdf7", padding: "80px 20px" }}>
+        <MarketPhilosophySection />
+      </section>
 
       {/* 감성 리뷰 */}
-      <MarketReviewHighlightSection />
+      <section style={{ backgroundColor: "#f6fdf9", padding: "80px 20px" }}>
+        <MarketReviewHighlightSection />
+      </section>
 
-      {/* 배송 안내 */}
-      <MarketShippingNotice />
-
-      {/* VIP 전용 안내 */}
-      <MarketVIPNotice />
-
-      {/* 브랜드 영상 */}
-      <MarketBrandVideoSection />
+      {/* VIP + 브랜드영상 연결 */}
+      <section style={{ backgroundColor: "#fdfcf8", padding: "80px 20px" }}>
+        <div style={{ maxWidth: "1080px", margin: "0 auto" }}>
+          <MarketVIPNotice />
+          <div style={{ height: "40px" }} />
+          <MarketBrandVideoSection />
+        </div>
+      </section>
 
       {/* 소셜 갤러리 */}
-      <MarketSocialGallery />
+      <section style={{ backgroundColor: "#ffffff", padding: "80px 20px 100px" }}>
+        <MarketSocialGallery />
+      </section>
     </div>
   );
 }
