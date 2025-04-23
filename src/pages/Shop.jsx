@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ 페이지 이동용
 import { supabase } from "../lib/supabase";
 import { useCart } from "../context/CartContext";
 import { useToast } from "../context/ToastContext";
+import { useNavigate } from "react-router-dom";
+import MarketBrandVideoSection from "../components/MarketBrandVideoSection";
 
 export default function Shop() {
   const [goods, setGoods] = useState([]);
@@ -10,7 +11,7 @@ export default function Shop() {
   const [search, setSearch] = useState("");
   const { addToCart } = useCart();
   const { showToast } = useToast();
-  const navigate = useNavigate(); // ✅ 페이지 이동 훅
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchGoods = async () => {
@@ -42,7 +43,7 @@ export default function Shop() {
   const handleAddToCart = (item) => {
     addToCart(item);
     showToast("장바구니에 담겼어요!");
-    setTimeout(() => navigate("/cart"), 1200); // ✅ 1.2초 후 이동
+    setTimeout(() => navigate("/cart"), 1500);
   };
 
   return (
@@ -56,6 +57,8 @@ export default function Shop() {
         onChange={(e) => setSearch(e.target.value)}
         style={{ padding: "10px 12px", width: "100%", borderRadius: "6px", border: "1px solid #ddd", marginBottom: "24px" }}
       />
+
+      <MarketBrandVideoSection />
 
       {loading && <p>⏳ 로딩 중...</p>}
 
@@ -76,7 +79,7 @@ export default function Shop() {
               <p style={{ fontSize: "14px", color: "#666", marginBottom: "8px" }}>{item.description}</p>
               <p style={{ fontWeight: "bold", fontSize: "15px", color: "#2f855a" }}>{item.price.toLocaleString()}원</p>
               <button
-                onClick={() => handleAddToCart(item)} // ✅ 통합된 클릭 함수
+                onClick={() => handleAddToCart(item)}
                 style={{ marginTop: "8px", width: "100%", padding: "10px", backgroundColor: "#2f855a", color: "white", border: "none", borderRadius: "6px", cursor: "pointer" }}
               >
                 장바구니 담기
