@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import { useCart } from "../context/CartContext";
+import { useToast } from "../context/ToastContext"; // ✅ Toast 추가
 
 export default function Shop() {
   const [goods, setGoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const { addToCart } = useCart();
+  const { showToast } = useToast(); // ✅ Toast 훅 사용
 
   useEffect(() => {
     const fetchGoods = async () => {
@@ -17,7 +19,7 @@ export default function Shop() {
           .eq("is_deleted", false)
           .order("created_at", { ascending: false });
 
-        console.log("Supabase 응답:", { data, error }); // ✅ 디버깅용 로그 추가
+        console.log("Supabase 응답:", { data, error });
 
         if (error) {
           console.error("❌ 굿즈 불러오기 실패:", error.message);
@@ -66,7 +68,10 @@ export default function Shop() {
               <p style={{ fontSize: "14px", color: "#666", marginBottom: "8px" }}>{item.description}</p>
               <p style={{ fontWeight: "bold", fontSize: "15px", color: "#2f855a" }}>{item.price.toLocaleString()}원</p>
               <button
-                onClick={() => addToCart(item)}
+                onClick={() => {
+                  addToCart(item);
+                  showToast("장바구니에 담겼어요!"); // ✅ Toast 메시지 추가
+                }}
                 style={{ marginTop: "8px", width: "100%", padding: "10px", backgroundColor: "#2f855a", color: "white", border: "none", borderRadius: "6px", cursor: "pointer" }}
               >
                 장바구니 담기
