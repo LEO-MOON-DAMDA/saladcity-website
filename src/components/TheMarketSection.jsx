@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { supabase } from "../lib/supabase";
 import BrandButton from "./BrandButton";
 import SectionTitle from "./SectionTitle";
 import "./TheMarketSection.css";
@@ -8,9 +9,20 @@ export default function TheMarketSection() {
   const sliderRef = useRef(null);
 
   useEffect(() => {
-    fetch("/data/goods.json")
-      .then((res) => res.json())
-      .then((data) => setGoods(data || []));
+    const fetchGoods = async () => {
+      const { data, error } = await supabase
+        .from("market_goods")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("❌ Supabase fetch error:", error.message);
+      } else {
+        setGoods(data || []);
+      }
+    };
+
+    fetchGoods();
   }, []);
 
   return (
@@ -22,15 +34,21 @@ export default function TheMarketSection() {
       <div className="market-slider" ref={sliderRef}>
         {goods.map((item) => (
           <div key={item.id} className="market-card">
-            <img src={item.image} alt={item.name} />
+            <img src={item.image_main} alt={item.name} />
             <h3>{item.name}</h3>
-            <p>{item.price}</p>
-            <a href={item.url} target="_blank" rel="noopener noreferrer" className="market-buy">
+            <p>{item.price.toLocaleString()}원</p>
+            <a
+              href={item.url || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="market-buy"
+            >
               구매하기 →
             </a>
           </div>
         ))}
       </div>
+
       <div className="market-button-wrap">
         <BrandButton href="/market">전체 굿즈 보기 →</BrandButton>
       </div>
