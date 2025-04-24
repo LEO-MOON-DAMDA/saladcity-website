@@ -5,6 +5,18 @@
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
 }
 
+.insta-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.insta-icon {
+  width: 28px;
+  height: 28px;
+}
+
 .insta-title {
   font-size: 28px;
   font-weight: 700;
