@@ -64,7 +64,8 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
         });
         kakaoMapRef.current = map;
 
-        map.setLevel(3); // ✅ 확대 레벨 강제 한 번 더 적용
+        map.relayout(); // ✅ display: none → block 대응 지도 재계산
+        map.setLevel(3); // ✅ 확대 레벨 유지
 
         const geocoder = new window.kakao.maps.services.Geocoder();
 
