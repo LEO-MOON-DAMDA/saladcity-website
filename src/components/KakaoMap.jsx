@@ -1,4 +1,17 @@
-// ...생략된 import 및 tagMap 동일...
+import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
+
+// ✅ 현재 locations 기준 정확 매칭된 tagMap
+const tagMap = {
+  "샐러드시티 역삼점": "매장",
+  "샐러드시티 구디점": "매장",
+  "샐러드시티 강동점": "매장",
+  "샐러드시티 송파점": "오픈예정",
+  "샐러드시티 반포점": "오픈예정",
+  "샐러드시티 서초점": "아웃포스트점",
+  "샐러드시티 본사": "본사",
+  "셀시 채소농장": "농장",
+  "샐시 채소전처리공장": "공장"
+};
 
 const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
   const mapRef = useRef(null);
@@ -12,7 +25,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       const marker = markersRef.current[index];
       const infowindow = infoWindowsRef.current[index];
       if (marker && kakaoMapRef.current) {
-        kakaoMapRef.current.setLevel(10); // ✅ 확대 레벨 고정
+        kakaoMapRef.current.setLevel(10);
         kakaoMapRef.current.panTo(marker.getPosition());
         infowindow.open(kakaoMapRef.current, marker);
       }
@@ -50,13 +63,13 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       window.kakao.maps.load(() => {
         const map = new window.kakao.maps.Map(mapRef.current, {
           center: new window.kakao.maps.LatLng(37.5008, 127.0365),
-          level: 10, // ✅ 최초 생성 시 level
+          level: 10,
         });
         kakaoMapRef.current = map;
 
         setTimeout(() => {
-          map.relayout();      // ✅ DOM 반영 후 재계산
-          map.setLevel(10);    // ✅ level 10 다시 고정
+          map.relayout();
+          map.setLevel(10);
         }, 150);
 
         const geocoder = new window.kakao.maps.services.Geocoder();
@@ -80,7 +93,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
               infoWindowsRef.current[idx] = infowindow;
 
               marker.addListener("click", () => {
-                kakaoMapRef.current.setLevel(10); // ✅ 클릭 후에도 level 유지
+                kakaoMapRef.current.setLevel(10);
                 infowindow.open(map, marker);
                 onMarkerClick && onMarkerClick(idx);
               });
