@@ -64,6 +64,12 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
 
         const geocoder = new window.kakao.maps.services.Geocoder();
 
+        const markerImage = new window.kakao.maps.MarkerImage(
+          "/images/map/green-flag.png",
+          new window.kakao.maps.Size(34, 38),
+          { offset: new window.kakao.maps.Point(17, 38) }
+        );
+
         locations.forEach((loc, idx) => {
           geocoder.addressSearch(loc.address, (result, status) => {
             if (status === window.kakao.maps.services.Status.OK) {
@@ -72,6 +78,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
               const marker = new window.kakao.maps.Marker({
                 map,
                 position: coords,
+                image: markerImage,
               });
               markersRef.current[idx] = marker;
 
@@ -106,6 +113,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
 
   return (
     <div style={{ position: "relative" }}>
+      {/* 🌿 지도 설명 오버레이 */}
       <div
         className="map-overlay"
         style={{
@@ -128,6 +136,21 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
           A map of Saladcity's living presence
         </span>
       </div>
+
+      {/* 🔲 어두운 필터 오버레이 */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "rgba(0, 0, 0, 0.1)",
+          zIndex: 5,
+          pointerEvents: "none",
+          borderRadius: "16px",
+        }}
+      />
 
       <div
         ref={mapRef}
