@@ -1,5 +1,5 @@
 import React from "react";
-import "./MenuSlider.css"; // 또는 MenuCard.css 사용
+import "./MenuSlider.css";
 
 export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
   const lowerName = item.name.toLowerCase();
@@ -14,25 +14,21 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
 
   const tags = allTags.filter((tag) => lowerName.includes(tag.key));
 
-  // ✅ 드레싱 자동 감지 (폴더 없이 루트 경로 기준)
+  // ✅ 파일명 기준 드레싱 키워드
   const dressingMap = {
-    "그릭요거트": "greek",
-    "발사믹": "balsamic",
-    "수제오리엔탈": "oriental_premade",
-    "스리라차마요": "sriracha_mayo",
-    "오렌지": "orange",
-    "오리엔탈": "oriental",
-    "이탈리안": "italian",
-    "크림시저": "caesar",
+    "greek": "greek.webp",
+    "balsamic": "balsamic.webp",
+    "oriental_premade": "oriental_premade.webp",
+    "sriracha_mayo": "sriracha_mayo.webp",
+    "orange": "orange.webp",
+    "oriental": "oriental.webp",
+    "italian": "italian.webp",
+    "caesar": "caesar.webp"
   };
 
-  const dressingSource = `${item.name}${item.summary || ""}${item.description || ""}${item.dressing || ""}`;
-  const matchedDressing = Object.entries(dressingMap).find(([keyword]) =>
-    dressingSource.includes(keyword)
-  );
-  const dressingImg = matchedDressing
-    ? `/images/${matchedDressing[1]}.webp`
-    : null;
+  const dressingSource = `${item.name}${item.summary || ""}${item.description || ""}${item.dressing || ""}`.toLowerCase();
+  const matchedKey = Object.keys(dressingMap).find((key) => dressingSource.includes(key));
+  const dressingImg = matchedKey ? `/images/${dressingMap[matchedKey]}` : null;
 
   return (
     <div className="scroll-card">
@@ -80,7 +76,6 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
           </p>
         )}
 
-        {/* ✅ 드레싱 자동 이미지 삽입 (샐러드/포케 등만 적용) */}
         {item.category !== "DRESSING" && dressingImg && (
           <div className="card-dressing">
             <img src={dressingImg} alt="드레싱" onError={(e) => (e.target.style.display = "none")} />
