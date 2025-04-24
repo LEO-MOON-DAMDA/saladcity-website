@@ -1,14 +1,4 @@
-import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
-
-const tagMap = {
-  "샐러드시티 역삼점": "본점",
-  "샐러드시티 제천농장": "농장",
-  "샐러드시티 포천농장": "농장",
-  "샐러드시티 전처리 공장": "공장",
-  "샐러드시티 송파점": "오픈예정",
-  "샐러드시티 반포점": "오픈예정",
-  "샐러드시티 서초점": "아웃포스트점",
-};
+// ...생략된 import 및 tagMap 동일...
 
 const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
   const mapRef = useRef(null);
@@ -22,7 +12,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       const marker = markersRef.current[index];
       const infowindow = infoWindowsRef.current[index];
       if (marker && kakaoMapRef.current) {
-        kakaoMapRef.current.setLevel(6); // ✅ 확대 레벨 고정 (요청 기준)
+        kakaoMapRef.current.setLevel(10); // ✅ 확대 레벨 고정
         kakaoMapRef.current.panTo(marker.getPosition());
         infowindow.open(kakaoMapRef.current, marker);
       }
@@ -60,13 +50,13 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       window.kakao.maps.load(() => {
         const map = new window.kakao.maps.Map(mapRef.current, {
           center: new window.kakao.maps.LatLng(37.5008, 127.0365),
-          level: 6, // ✅ 최초 생성 시 레벨
+          level: 10, // ✅ 최초 생성 시 level
         });
         kakaoMapRef.current = map;
 
         setTimeout(() => {
-          map.relayout();      // ✅ display: none → block 대응
-          map.setLevel(6);     // ✅ 축척 다시 세팅
+          map.relayout();      // ✅ DOM 반영 후 재계산
+          map.setLevel(10);    // ✅ level 10 다시 고정
         }, 150);
 
         const geocoder = new window.kakao.maps.services.Geocoder();
@@ -90,7 +80,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
               infoWindowsRef.current[idx] = infowindow;
 
               marker.addListener("click", () => {
-                kakaoMapRef.current.setLevel(6); // ✅ 클릭 시에도 확대 고정
+                kakaoMapRef.current.setLevel(10); // ✅ 클릭 후에도 level 유지
                 infowindow.open(map, marker);
                 onMarkerClick && onMarkerClick(idx);
               });
