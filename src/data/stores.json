@@ -5,7 +5,8 @@
     "phone": "02-555-8501",
     "hours": "월요일~금요일 오전 08:30 ~ 오후 08:30 토요일오전 10:00 ~ 오후 07:30\n일요일오전 11:30 ~ 오후 07:30",
     "description": "넓은홀. 감각적인테리어, 마스터쉐프, 푸드코트",
-    "image": "Dosal01.jpg"
+    "image": "Dosal01.jpg",
+    "type": "store"
   },
   {
     "name": "샐러드시티 구디점",
@@ -13,7 +14,8 @@
     "phone": "070-4471-7118",
     "hours": "오전 09:30 ~ 오후 06:00",
     "description": "넓은홀. 쾌적한 환경, 오픈형주방, 넓은 주차장, 푸트코드",
-    "image": "Dosal04.jpg"
+    "image": "Dosal04.jpg",
+    "type": "store"
   },
   {
     "name": "샐러드시티 강동점",
@@ -21,7 +23,8 @@
     "phone": "02-477-8501",
     "hours": "오전 09:00 ~ 오후 08:30",
     "description": "홀보유, 오픈형주방, 1층매장",
-    "image": "Dosal07.jpg"
+    "image": "Dosal07.jpg",
+    "type": "store"
   },
   {
     "name": "샐러드시티 송파점",
