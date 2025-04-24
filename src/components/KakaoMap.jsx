@@ -3,7 +3,8 @@ import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react
 const tagMap = {
   "샐러드시티 역삼점": "본점",
   "샐러드시티 제천농장": "농장",
-  "샐러드시티 경기허브": "전처리공장",
+  "샐러드시티 포천농장": "농장",
+  "샐러드시티 전처리 공장": "공장",
   "샐러드시티 송파점": "오픈예정",
   "샐러드시티 반포점": "오픈예정",
   "샐러드시티 서초점": "아웃포스트점",
@@ -21,7 +22,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       const marker = markersRef.current[index];
       const infowindow = infoWindowsRef.current[index];
       if (marker && kakaoMapRef.current) {
-        kakaoMapRef.current.setLevel(3); // ✅ 강제 고정
+        kakaoMapRef.current.setLevel(3); // ✅ 확대 레벨 고정
         kakaoMapRef.current.panTo(marker.getPosition());
         infowindow.open(kakaoMapRef.current, marker);
       }
@@ -63,10 +64,12 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
         });
         kakaoMapRef.current = map;
 
+        map.setLevel(3); // ✅ 확대 레벨 강제 한 번 더 적용
+
         const geocoder = new window.kakao.maps.services.Geocoder();
 
         locations.forEach((loc, idx) => {
-          const locName = loc.name.trim(); // 🔥 정확 일치
+          const locName = loc.name.trim();
 
           geocoder.addressSearch(loc.address, (result, status) => {
             if (status === window.kakao.maps.services.Status.OK) {
@@ -84,12 +87,11 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
               infoWindowsRef.current[idx] = infowindow;
 
               marker.addListener("click", () => {
-                kakaoMapRef.current.setLevel(3); // 🔐 클릭 시 레벨 유지
+                kakaoMapRef.current.setLevel(3); // 🔐 클릭 시에도 레벨 유지
                 infowindow.open(map, marker);
                 onMarkerClick && onMarkerClick(idx);
               });
 
-              // ✅ 텍스트 태그 오버레이 + zIndex
               const tag = tagMap[locName];
               if (tag) {
                 const overlayContent = `<div class='marker-tag'>${tag}</div>`;
