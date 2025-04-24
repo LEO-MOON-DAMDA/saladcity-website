@@ -1,3 +1,4 @@
+// ✅ src/components/KakaoMap.jsx
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 
 const tagMap = {
@@ -92,6 +93,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
                 onMarkerClick && onMarkerClick(idx);
               });
 
+              // ✅ 텍스트 오버레이 다시 활성화
               const tag = tagMap[loc.name];
               if (tag) {
                 const overlayContent = `<div class='marker-tag'>${tag}</div>`;
@@ -113,7 +115,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
 
   return (
     <div style={{ position: "relative" }}>
-      {/* 🌿 지도 설명 오버레이 */}
+      {/* 텍스트 설명 */}
       <div
         className="map-overlay"
         style={{
@@ -137,7 +139,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
         </span>
       </div>
 
-      {/* 🔲 어두운 필터 오버레이 */}
+      {/* 어두운 오버레이 */}
       <div
         style={{
           position: "absolute",
@@ -152,11 +154,12 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
         }}
       />
 
+      {/* 지도 본체 */}
       <div
         ref={mapRef}
         style={{
           width: "100%",
-          height: "400px",
+          height: "560px",
           margin: "20px 0",
           borderRadius: "16px",
         }}
