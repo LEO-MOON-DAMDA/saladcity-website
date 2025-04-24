@@ -4,9 +4,23 @@ import React from "react";
 
 export default function SocialPage() {
   return (
-    <section className="insta-section" style={{ padding: "60px 16px", textAlign: "center", backgroundColor: "#fdfdf7" }}>
-      <h2 className="insta-title" style={{ fontSize: "28px", marginBottom: "24px", color: "#2f5130" }}>
-        @saladcitykorea
+    <section
+      className="insta-section"
+      style={{
+        padding: "60px 16px",
+        textAlign: "center",
+        backgroundColor: "#fdfdf7",
+      }}
+    >
+      <h2
+        className="insta-title"
+        style={{
+          fontSize: "28px",
+          marginBottom: "24px",
+          color: "#2f5130",
+        }}
+      >
+        @saladcityglobal
       </h2>
       <iframe
         src="https://widgets.sociablekit.com/instagram-feed/iframe/25548501"
@@ -19,7 +33,7 @@ export default function SocialPage() {
           boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)",
           maxWidth: "1000px",
           margin: "0 auto",
-          display: "block"
+          display: "block",
         }}
         allowFullScreen
         loading="lazy"
