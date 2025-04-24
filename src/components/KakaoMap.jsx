@@ -1,4 +1,3 @@
-// ✅ src/components/KakaoMap.jsx
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 
 const tagMap = {
@@ -42,7 +41,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       const script = document.createElement("script");
       script.id = scriptId;
       script.src =
-        "https://dapi.kakao.com/v2/maps/sdk.js?appkey=57c4769f8b8532d54ee295e6705802b6&autoload=false&libraries=services";
+        "https://dapi.kakao.com/v2/maps/sdk.js?appkey=19779cb249b34d6022f784fea6b15c6&autoload=false&libraries=services";
       script.onload = callback;
       script.onerror = () =>
         console.error("❌ SDK script 로딩 실패 (AppKey 권한 문제일 수 있음)");
@@ -56,8 +55,6 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       }
 
       window.kakao.maps.load(() => {
-        console.log("✅ Kakao 지도 로딩 성공 (다중 마커 + 제어)");
-
         const map = new window.kakao.maps.Map(mapRef.current, {
           center: new window.kakao.maps.LatLng(37.5008, 127.0365),
           level: 6,
@@ -78,7 +75,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
               markersRef.current[idx] = marker;
 
               const infowindow = new window.kakao.maps.InfoWindow({
-                content: `<div style=\"padding:6px 10px;font-size:13px;\">${loc.name}</div>`,
+                content: `<div style="padding:6px 10px;font-size:13px;">${loc.name}</div>`,
               });
               infoWindowsRef.current[idx] = infowindow;
 
@@ -87,7 +84,6 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
                 onMarkerClick && onMarkerClick(idx);
               });
 
-              // ✅ 태그가 있을 경우 커스텀 오버레이 생성
               const tag = tagMap[loc.name];
               if (tag) {
                 const overlayContent = `<div class='marker-tag'>${tag}</div>`;
@@ -109,7 +105,6 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
 
   return (
     <div style={{ position: "relative" }}>
-      {/* 🌿 감성 지도 오버레이 */}
       <div
         className="map-overlay"
         style={{
