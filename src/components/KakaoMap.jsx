@@ -21,24 +21,23 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       const marker = markersRef.current[index];
       const infowindow = infoWindowsRef.current[index];
       if (marker && kakaoMapRef.current) {
+        kakaoMapRef.current.setLevel(3); // ✅ 확대 레벨 고정
         kakaoMapRef.current.panTo(marker.getPosition());
         infowindow.open(kakaoMapRef.current, marker);
       }
     },
   }));
 
-  useImperativeHandle(ref, () => ({
-  focusMarker: (index) => {
-    const marker = markersRef.current[index];
-    const infowindow = infoWindowsRef.current[index];
-    if (marker && kakaoMapRef.current) {
-      kakaoMapRef.current.setLevel(3); // ✅ 확대 레벨 강제 고정
-      kakaoMapRef.current.panTo(marker.getPosition());
-      infowindow.open(kakaoMapRef.current, marker);
-    }
-  },
-}));
+  useEffect(() => {
+    if (loadedRef.current) return;
+    loadedRef.current = true;
 
+    const loadKakaoMapScript = (callback) => {
+      const scriptId = "kakao-map-script";
+      if (document.getElementById(scriptId)) {
+        callback();
+        return;
+      }
 
       const script = document.createElement("script");
       script.id = scriptId;
@@ -87,7 +86,6 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
                 onMarkerClick && onMarkerClick(idx);
               });
 
-              // ✅ 초록 배경 텍스트 태그 오버레이
               const tag = tagMap[loc.name];
               if (tag) {
                 const overlayContent = `<div class='marker-tag'>${tag}</div>`;
@@ -109,7 +107,6 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
 
   return (
     <div style={{ position: "relative" }}>
-      {/* 지도 설명 */}
       <div
         className="map-overlay"
         style={{
@@ -133,7 +130,6 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
         </span>
       </div>
 
-      {/* 어두운 필터 */}
       <div
         style={{
           position: "absolute",
