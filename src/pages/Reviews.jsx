@@ -46,7 +46,7 @@ export default function Reviews() {
             <span className="rating mid">
               {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
                 <span key={i}>⭐</span>
-              ))}
+              ))} 
             </span>
           </div>
           <div className="review-badges">
