@@ -75,7 +75,7 @@
 
 /* 카드 내용 */
 .location-info {
-  padding: 4px 16px 16px; /* ✅ 상단 간격 축소 */
+  padding: 8px 16px 4px; /* ✅ 상단 간격 축소 */
   text-align: left;
 }
 
