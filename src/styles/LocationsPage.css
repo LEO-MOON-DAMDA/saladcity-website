@@ -75,7 +75,7 @@
 
 /* 카드 내용 */
 .location-info {
-  padding: 12px 16px 16px; /* ✅ 상단 간격 축소 */
+  padding: 4px 16px 16px; /* ✅ 상단 간격 축소 */
   text-align: left;
 }
 
@@ -116,7 +116,7 @@
 /* 매장 유형 뱃지 */
 .store-type-badge {
   display: inline-block;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
   padding: 4px 10px;
   border-radius: 12px;
   font-size: 12px;
