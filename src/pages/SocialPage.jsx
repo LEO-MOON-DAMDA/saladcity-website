@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "../styles/SocialPage.css"; // ✅ CSS 연결됨
 
 export default function SocialPage() {
   useEffect(() => {
@@ -9,32 +10,12 @@ export default function SocialPage() {
   }, []);
 
   return (
-    <section
-      className="insta-section"
-      style={{
-        padding: "60px 16px",
-        textAlign: "center",
-        backgroundColor: "#fdfdf7",
-      }}
-    >
-      <h2
-        className="insta-title"
-        style={{
-          fontSize: "28px",
-          marginBottom: "24px",
-          color: "#2f5130",
-        }}
-      >
-        @saladcityglobal
-      </h2>
+    <section className="insta-section">
+      <h2 className="insta-title">@saladcityglobal</h2>
 
       <div
         className="elfsight-app-b4c3613b-1bba-4927-bb96-94af2cb564c2"
         data-elfsight-app-lazy
-        style={{
-          maxWidth: "1000px",
-          margin: "0 auto",
-        }}
       ></div>
     </section>
   );
