@@ -73,7 +73,7 @@ export default function SaladcityHome() {
         />
         <div className="hero-overlay" />
         <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', color: '#ffffff', padding: '0 16px' }}>
-          <img src="/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '160px', marginBottom: '24px', filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))' }} />
+          <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/saladcity_origin.png" alt="Saladcity Logo" style={{ height: '160px', marginBottom: '24px', filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))' }} />
           <h1 style={{ fontSize: '42px', fontWeight: '600', margin: '0 0 10px' }}>건강하고 맛있는 샐러드</h1>
           <p style={{ fontSize: '18px', color: '#e0e0e0', marginBottom: '4px' }}>자연에서 온 재료로 매일 새롭게, 신선하게</p>
           <p style={{ fontSize: '15px', color: '#cccccc' }}>Fresh ingredients, made daily with care.</p>

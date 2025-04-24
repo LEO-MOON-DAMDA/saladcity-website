@@ -5,14 +5,14 @@ const printableMenuData = [
   {
     name: "로스트베지 샐러드 Vegan",
     price: "₩10,900",
-    image: "/images/ABC01.jpg",
+    image: "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/ABC01.jpg",
     description: "구운 당근, 브로콜리, 렌틸콩 등 구운 채소 조합",
     kcal: 320, protein: 10, carbs: 28, fat: 12, co2: 0.9
   },
   {
     name: "수비드 치킨 샐러드",
     price: "₩13,800",
-    image: "/images/sc모짜렐라01.jpg",
+    image: "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/sc모짜렐라01.jpg",
     description: "수비드한 닭가슴살과 슈퍼푸드 구성",
     kcal: 490, protein: 32, carbs: 22, fat: 18, co2: 1.3
   }

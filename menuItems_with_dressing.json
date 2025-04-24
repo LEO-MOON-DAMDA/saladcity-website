@@ -1,0 +1,28 @@
+[
+  {
+    "category": "샐시 프리미엄 샐러드",
+    "name": "샐시업타운 부라타 슈퍼푸드샐러드",
+    "summary": "샐러드로 완성한 건강한 한 끼",
+    "price": 26000,
+    "image": "/images/s_prs_bu.jpg",
+    "kcal": 500,
+    "protein": 15,
+    "carbs": 20,
+    "fat": 20,
+    "co2": "1.5kg",
+    "dressing": "발사믹"
+  },
+  {
+    "category": "샐시 프리미엄 샐러드",
+    "name": "샐시업타운 리코타 슈퍼푸드샐러드",
+    "summary": "샐러드로 완성한 건강한 한 끼",
+    "price": 24000,
+    "image": "/images/s_prs_ri.jpg",
+    "kcal": 480,
+    "protein": 13,
+    "carbs": 18,
+    "fat": 19,
+    "co2": "1.4kg",
+    "dressing": "그릭요거트"
+  }
+]

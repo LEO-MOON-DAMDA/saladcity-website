@@ -1,0 +1,72 @@
+{
+  "menu_items": [
+    {
+      "category": "샐시 프리미엄 샐러드",
+      "name": "샐시업타운 부라타 샐러드",
+      "summary": "슈퍼푸드 부라타 조합",
+      "price": 26000,
+      "image": "/images/s_prs_bu.jpg",
+      "kcal": 500,
+      "protein": 15,
+      "carbs": 20,
+      "fat": 20,
+      "co2": "1.5kg",
+      "dressing": "발사믹"
+    }
+  ],
+  "reviews": [
+    {
+      "platform": "배달의민족",
+      "store": "역삼점",
+      "nickname": "워니",
+      "rating": 5,
+      "review": "정말 맛있어요!",
+      "date": "2025-04-20",
+      "image": null,
+      "menu": "부라타 샐러드",
+      "response": "감사합니다!"
+    }
+  ],
+  "locations": [
+    {
+      "name": "샐러드시티 역삼점",
+      "address": "서울 강남구 테헤란로22길 15",
+      "phone": "02-555-8501",
+      "type": "store",
+      "image": "/images/Locations/1LOYS08.jpg",
+      "tags": [
+        "서울",
+        "강남",
+        "매장"
+      ]
+    }
+  ],
+  "market_goods": [
+    {
+      "name": "샐러드 보울",
+      "description": "고급 도자기 그릇",
+      "price": 12000,
+      "stock": 50,
+      "is_active": true,
+      "images": [
+        "/images/goods/bowl.webp"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "email": "user@example.com",
+      "name": "홍길동",
+      "phone": "010-1234-5678"
+    }
+  ],
+  "subscriptions": [
+    {
+      "user_id": "fc7e820b-eda5-4bca-b8e0-e8120267d432",
+      "menu": "부라타 샐러드",
+      "frequency": "주 3회",
+      "delivery_day": "월,수,금",
+      "status": "active"
+    }
+  ]
+}

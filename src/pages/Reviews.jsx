@@ -4,9 +4,9 @@ import ReviewScrollingBanner from "../components/ReviewScrollingBanner";
 import "./Reviews.css";
 
 const fallbackImages = [
-  "/images/review-sample01.jpg",
-  "/images/review-sample02.jpg",
-  "/images/review-sample03.jpg",
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample01.jpg",
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample02.jpg",
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample03.jpg",
 ];
 
 export default function Reviews() {

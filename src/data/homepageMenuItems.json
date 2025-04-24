@@ -8,7 +8,7 @@
     "protein": 15,
     "fat": 20,
     "co2e": 1.5,
-    "image": "/images/s_prs_prspk.jpg",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/s_prs_prspk.jpg",
     "category": "PASTA SALAD"
   },
   {
@@ -20,7 +20,7 @@
     "protein": 12,
     "fat": 18,
     "co2e": 1.0,
-    "image": "/images/s_pok_prrv.jpg",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/s_pok_prrv.jpg",
     "category": "POKE (DIET BOWL)"
   },
   {
@@ -32,7 +32,7 @@
     "protein": 22,
     "fat": 20,
     "co2e": 1.8,
-    "image": "/images/s_pok_prchk.jpg",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/s_pok_prchk.jpg",
     "category": "POKE (DIET BOWL)"
   },
   {
@@ -44,7 +44,7 @@
     "protein": 15,
     "fat": 20,
     "co2e": 1.5,
-    "image": "/images/s_prs_bu.jpg",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/s_prs_bu.jpg",
     "category": "샐시 프리미엄 샐러드"
   },
   {
@@ -56,7 +56,7 @@
     "protein": 1,
     "fat": 0,
     "co2e": 0.3,
-    "image": "/images/s_AKB.jpg",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/s_AKB.jpg",
     "category": "샐시 JUICE"
   },
   {
@@ -68,7 +68,7 @@
     "protein": 15,
     "fat": 20,
     "co2e": 1.5,
-    "image": "/images/s_prs_ri.jpg",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/s_prs_ri.jpg",
     "category": "샐시 프리미엄 샐러드"
   }
 ]
