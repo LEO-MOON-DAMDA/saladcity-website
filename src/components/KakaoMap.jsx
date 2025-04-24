@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 
-// ✅ 현재 locations 기준 정확 매칭된 tagMap
+// ✅ tagMap은 그대로 유지
 const tagMap = {
   "샐러드시티 역삼점": "매장",
   "샐러드시티 구디점": "매장",
@@ -25,7 +25,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       const marker = markersRef.current[index];
       const infowindow = infoWindowsRef.current[index];
       if (marker && kakaoMapRef.current) {
-        kakaoMapRef.current.setLevel(10);
+        kakaoMapRef.current.setLevel(8); // ✅ 확대 레벨 고정
         kakaoMapRef.current.panTo(marker.getPosition());
         infowindow.open(kakaoMapRef.current, marker);
       }
@@ -63,13 +63,13 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       window.kakao.maps.load(() => {
         const map = new window.kakao.maps.Map(mapRef.current, {
           center: new window.kakao.maps.LatLng(37.5008, 127.0365),
-          level: 10,
+          level: 8, // ✅ 여기만 level 8로
         });
         kakaoMapRef.current = map;
 
         setTimeout(() => {
           map.relayout();
-          map.setLevel(10);
+          map.setLevel(8); // ✅ 다시 고정
         }, 150);
 
         const geocoder = new window.kakao.maps.services.Geocoder();
@@ -93,7 +93,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
               infoWindowsRef.current[idx] = infowindow;
 
               marker.addListener("click", () => {
-                kakaoMapRef.current.setLevel(10);
+                kakaoMapRef.current.setLevel(8);
                 infowindow.open(map, marker);
                 onMarkerClick && onMarkerClick(idx);
               });
