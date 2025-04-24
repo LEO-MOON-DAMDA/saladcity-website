@@ -21,7 +21,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       const marker = markersRef.current[index];
       const infowindow = infoWindowsRef.current[index];
       if (marker && kakaoMapRef.current) {
-        kakaoMapRef.current.setLevel(3); // ✅ 확대 레벨 고정
+        kakaoMapRef.current.setLevel(3); // ✅ 강제 고정
         kakaoMapRef.current.panTo(marker.getPosition());
         infowindow.open(kakaoMapRef.current, marker);
       }
@@ -66,6 +66,8 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
         const geocoder = new window.kakao.maps.services.Geocoder();
 
         locations.forEach((loc, idx) => {
+          const locName = loc.name.trim(); // 🔥 정확 일치
+
           geocoder.addressSearch(loc.address, (result, status) => {
             if (status === window.kakao.maps.services.Status.OK) {
               const coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
@@ -82,17 +84,20 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
               infoWindowsRef.current[idx] = infowindow;
 
               marker.addListener("click", () => {
+                kakaoMapRef.current.setLevel(3); // 🔐 클릭 시 레벨 유지
                 infowindow.open(map, marker);
                 onMarkerClick && onMarkerClick(idx);
               });
 
-              const tag = tagMap[loc.name];
+              // ✅ 텍스트 태그 오버레이 + zIndex
+              const tag = tagMap[locName];
               if (tag) {
                 const overlayContent = `<div class='marker-tag'>${tag}</div>`;
                 const customOverlay = new window.kakao.maps.CustomOverlay({
                   position: coords,
                   content: overlayContent,
                   yAnchor: 1.3,
+                  zIndex: 999,
                 });
                 customOverlay.setMap(map);
               }
