@@ -27,16 +27,18 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
     },
   }));
 
-  useEffect(() => {
-    if (loadedRef.current) return;
-    loadedRef.current = true;
+  useImperativeHandle(ref, () => ({
+  focusMarker: (index) => {
+    const marker = markersRef.current[index];
+    const infowindow = infoWindowsRef.current[index];
+    if (marker && kakaoMapRef.current) {
+      kakaoMapRef.current.setLevel(3); // ✅ 확대 레벨 강제 고정
+      kakaoMapRef.current.panTo(marker.getPosition());
+      infowindow.open(kakaoMapRef.current, marker);
+    }
+  },
+}));
 
-    const loadKakaoMapScript = (callback) => {
-      const scriptId = "kakao-map-script";
-      if (document.getElementById(scriptId)) {
-        callback();
-        return;
-      }
 
       const script = document.createElement("script");
       script.id = scriptId;
