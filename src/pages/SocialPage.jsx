@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 import "../styles/SocialPage.css";
-import { ReactComponent as InstaIcon } from "../assets/icons/instagram-icon.svg"; // SVG 아이콘 연결
+import { ReactComponent as InstaIcon } from "../assets/icons/instagram-icon.svg"; // ✅ SVG 아이콘
 
 export default function SocialPage() {
   useEffect(() => {
-    if (typeof window !== "undefined" && typeof document !== "undefined") {
-      const script = document.createElement("script");
-      script.src = "https://static.elfsight.com/platform/platform.js";
-      script.async = true;
-      document.body.appendChild(script);
+    if (typeof window !== "undefined") {
+      window.addEventListener("load", () => {
+        const script = document.createElement("script");
+        script.src = "https://static.elfsight.com/platform/platform.js";
+        script.async = true;
+        document.body.appendChild(script);
+      });
     }
   }, []);
 
