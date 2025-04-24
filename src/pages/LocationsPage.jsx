@@ -8,11 +8,11 @@ const locations = [
   { name: "샐러드시티 역삼점", image: "/images/Locations/1LOYS08.jpg", address: "서울 강남구 역삼동 736-58", phone: "02-555-8501", type: "store" },
   { name: "샐러드시티 구디점", image: "/images/Locations/1LOGD03.jpg", address: "서울 구로구 디지털로34길 27", phone: "070-4471-7118", type: "store" },
   { name: "샐러드시티 강동점", image: "/images/Locations/1LOKD01.jpg", address: "서울 강동구 천호대로175길 52", phone: "02-477-8501", type: "store" },
-  { name: "샐러드시티 반포점", image: "/images/Locations/1LOBP001.jpg", address: "서울 서초구 반포대로 123", phone: "070-4027-7880", type: "store" },
-  { name: "샐러드시티 서초점", image: "/images/Locations/1LOSC01.jpg", address: "서울 서초구 서초대로 45길", phone: "070-4027-7880", type: "store" },
-  { name: "샐러드시티 송파점", image: "/images/Locations/1LOSP01.jpg", address: "서울 송파구 올림픽로 300", phone: "02-777-0707", type: "store" },
-  { name: "샐러드시티 제천농장", image: "/images/Locations/1LOJC02.jpg", address: "충북 제천시 금성면", phone: "070-4027-7880", type: "farm" },
-  { name: "샐러드시티 포천농장", image: "/images/Locations/1LOPC01.jpg", address: "경기 포천시 군내면", phone: "070-4027-7880", type: "farm" },
+  { name: "샐러드시티 반포점", image: "/images/Locations/1LOBP001.jpg", address: "서울 서초구 신반포로 194", phone: "070-4027-7880", type: "store" },
+  { name: "샐러드시티 서초점", image: "/images/Locations/1LOSC01.jpg", address: "서울특별시 서초구 반포대로21길 17", phone: "070-4027-7880", type: "store" },
+  { name: "샐러드시티 송파점", image: "/images/Locations/1LOSP01.jpg", address: "서울특별시 송파구 송파대로45길 3-24", phone: "02-777-0707", type: "store" },
+  { name: "샐러드시티 제천농장", image: "/images/Locations/1LOJC02.jpg", address: "충청북도 제천시 봉양읍 학산리 725", phone: "070-4027-7880", type: "farm" },
+  { name: "샐러드시티 포천농장", image: "/images/Locations/1LOPC01.jpg", address: "경기도 포천시 이동면 도리돌길 21", phone: "070-4027-7880", type: "farm" },
   { name: "샐러드시티 전처리 공장", image: "/images/Locations/1LOBD01.jpg", address: "경기도 광주시 신현동 5", phone: "070-4027-7880", type: "factory" }
 ];
 
