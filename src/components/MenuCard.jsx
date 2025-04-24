@@ -14,13 +14,15 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
 
   const tags = allTags.filter((tag) => lowerName.includes(tag.key));
 
-  // ✅ 드레싱 키워드 자동 감지 (이름, 설명, 드레싱 필드 모두 포함)
+  // ✅ 드레싱 감지는 DRESSING이 아닌 항목에만 적용
   const dressingList = [
     "그릭요거트", "발사믹", "수제오리엔탈", "스리라차마요",
     "오렌지", "오리엔탈", "이탈리안", "크림시저"
   ];
   const dressingSource = `${item.name}${item.summary || ""}${item.description || ""}${item.dressing || ""}`;
-  const matchedDressing = dressingList.find((name) => dressingSource.includes(name));
+  const matchedDressing = item.category !== "DRESSING"
+    ? dressingList.find((name) => dressingSource.includes(name))
+    : null;
   const dressingImg = matchedDressing ? `/images/${matchedDressing}.png` : null;
 
   return (
@@ -31,7 +33,10 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
           alt={item.name}
           className="card-image"
           loading="lazy"
-          onError={(e) => (e.target.style.display = "none")}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/images/fallback.jpg"; // ✅ fallback 이미지 지정
+          }}
         />
       )}
 
@@ -66,6 +71,7 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
           </p>
         )}
 
+        {/* ✅ 드레싱 자동 이미지 삽입 (샐러드만 적용) */}
         {dressingImg && (
           <div className="card-dressing">
             <img src={dressingImg} alt="드레싱" onError={(e) => (e.target.style.display = "none")} />
