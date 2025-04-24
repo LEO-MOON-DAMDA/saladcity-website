@@ -59,7 +59,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       window.kakao.maps.load(() => {
         const map = new window.kakao.maps.Map(mapRef.current, {
           center: new window.kakao.maps.LatLng(37.5008, 127.0365),
-          level: 6,
+          level: 3,
         });
         kakaoMapRef.current = map;
 
