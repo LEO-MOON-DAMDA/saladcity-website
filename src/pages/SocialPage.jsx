@@ -1,8 +1,13 @@
-// ✅ SocialPage.jsx - 실제 인스타그램 피드 자동 표시 (iframe)
-
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function SocialPage() {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://static.elfsight.com/platform/platform.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <section
       className="insta-section"
@@ -22,23 +27,15 @@ export default function SocialPage() {
       >
         @saladcityglobal
       </h2>
-      <iframe
-        src="https://widgets.sociablekit.com/instagram-feed/iframe/25548501"
-        width="100%"
-        height="800"
+
+      <div
+        className="elfsight-app-b4c3613b-1bba-4927-bb96-94af2cb564c2"
+        data-elfsight-app-lazy
         style={{
-          border: "none",
-          overflow: "hidden",
-          borderRadius: "16px",
-          boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)",
           maxWidth: "1000px",
           margin: "0 auto",
-          display: "block",
         }}
-        allowFullScreen
-        loading="lazy"
-        title="Instagram Feed"
-      ></iframe>
+      ></div>
     </section>
   );
 }
