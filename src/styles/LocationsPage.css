@@ -82,19 +82,25 @@
   font-size: 18px;
   font-weight: 600;
   color: #2f5130;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .location-info .type {
   font-size: 13px;
   color: #2f855a;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
 }
 
 .location-info .address {
   font-size: 14px;
   color: #555;
-  line-height: 1.4;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.location-info p {
+  margin: 0;
+  line-height: 1.3;
 }
 
 /* 선택된 카드 강조 효과 */
@@ -118,13 +124,15 @@
 }
 
 .type-headquarter {
-  background-color: #795548; /* 본사 - 브라운 */
+  background-color: #795548;
 }
+
 .type-farm {
-  background-color: #4CAF50; /* 농장 - 그린 */
+  background-color: #4CAF50;
 }
+
 .type-factory {
-  background-color: #607D8B; /* 공장 - 블루그레이 */
+  background-color: #607D8B;
 }
 
 /* 마커 태그 오버레이 */
