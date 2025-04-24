@@ -17,7 +17,7 @@
   },
   {
     "name": "샐러드시티 강동점",
-    "address": "(05353) 서울특별시 강동구 천호대로175길 52 1층 110호(길동, 영일빌딩)    ",
+    "address": "(05353) 서울특별시 강동구 천호대로175길 52 1층 110호(길동, 영일빌딩)",
     "phone": "02-477-8501",
     "hours": "오전 09:00 ~ 오후 08:30",
     "description": "홀보유, 오픈형주방, 1층매장",
@@ -29,7 +29,8 @@
     "phone": "070-4027-7880",
     "hours": "정보 없음",
     "description": "오픈준비중",
-    "image": "Dosal10.jpg"
+    "image": "Dosal10.jpg",
+    "type": "upcoming"
   },
   {
     "name": "샐러드시티 반포점",
@@ -37,7 +38,8 @@
     "phone": "070-4027-7880",
     "hours": "정보 없음",
     "description": "오픈준비중",
-    "image": "Dosal13.jpg"
+    "image": "Dosal13.jpg",
+    "type": "upcoming"
   },
   {
     "name": "샐러드시티 서초점",
@@ -45,7 +47,8 @@
     "phone": "070-4027-7880",
     "hours": "정보 없음",
     "description": "아웃포스트, 케이터링 매장",
-    "image": "Dosal16.jpg"
+    "image": "Dosal16.jpg",
+    "type": "outpost"
   },
   {
     "name": "샐러드시티 본사",
@@ -53,7 +56,8 @@
     "phone": "070-4027-7880",
     "hours": "정보 없음",
     "description": "정보 없음",
-    "image": "default.jpg"
+    "image": "default.jpg",
+    "type": "headquarter"
   },
   {
     "name": "셀시 채소농장",
@@ -61,7 +65,8 @@
     "phone": "070-4027-7880",
     "hours": "정보 없음",
     "description": "정보 없음",
-    "image": "default.jpg"
+    "image": "default.jpg",
+    "type": "farm"
   },
   {
     "name": "셀시 채소농장",
@@ -69,7 +74,8 @@
     "phone": "070-4027-7880",
     "hours": "정보 없음",
     "description": "정보 없음",
-    "image": "default.jpg"
+    "image": "default.jpg",
+    "type": "farm"
   },
   {
     "name": "샐시 채소전처리공장",
@@ -77,6 +83,7 @@
     "phone": "070-4027-7880",
     "hours": "정보 없음",
     "description": "정보 없음",
-    "image": "default.jpg"
+    "image": "default.jpg",
+    "type": "factory"
   }
 ]
