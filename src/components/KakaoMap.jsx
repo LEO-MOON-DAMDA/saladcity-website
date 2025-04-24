@@ -40,7 +40,9 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
 
       const script = document.createElement("script");
       script.id = scriptId;
-      script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=57c4769f8b8532d54ee295e6705802b6&autoload=false&libraries=services";
+      script.src =
+        "https://dapi.kakao.com/v2/maps/sdk.js?appkey=57c4769f8b8532d54ee295e6705802b6&autoload=false&libraries=services&ts=" +
+        Date.now();
       script.onload = callback;
       script.onerror = () =>
         console.error("❌ SDK script 로딩 실패 (AppKey 권한 문제일 수 있음)");
