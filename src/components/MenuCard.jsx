@@ -14,16 +14,25 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
 
   const tags = allTags.filter((tag) => lowerName.includes(tag.key));
 
-  // ✅ 드레싱 감지는 DRESSING이 아닌 항목에만 적용
-  const dressingList = [
-    "그릭요거트", "발사믹", "수제오리엔탈", "스리라차마요",
-    "오렌지", "오리엔탈", "이탈리안", "크림시저"
-  ];
+  // ✅ 드레싱 자동 감지 (웹p 기준 경로)
+  const dressingMap = {
+    "그릭요거트": "greek",
+    "발사믹": "balsamic",
+    "수제오리엔탈": "oriental_premade",
+    "스리라차마요": "sriracha_mayo",
+    "오렌지": "orange",
+    "오리엔탈": "oriental",
+    "이탈리안": "italian",
+    "크림시저": "caesar",
+  };
+
   const dressingSource = `${item.name}${item.summary || ""}${item.description || ""}${item.dressing || ""}`;
-  const matchedDressing = item.category !== "DRESSING"
-    ? dressingList.find((name) => dressingSource.includes(name))
+  const matchedDressing = Object.entries(dressingMap).find(([keyword]) =>
+    dressingSource.includes(keyword)
+  );
+  const dressingImg = matchedDressing
+    ? `/images/dressing/${matchedDressing[1]}.webp`
     : null;
-  const dressingImg = matchedDressing ? `/images/${matchedDressing}.png` : null;
 
   return (
     <div className="scroll-card">
@@ -35,7 +44,7 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
           loading="lazy"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = "/images/fallback.jpg"; // ✅ fallback 이미지 지정
+            e.target.src = "/images/fallback.jpg";
           }}
         />
       )}
@@ -71,8 +80,8 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
           </p>
         )}
 
-        {/* ✅ 드레싱 자동 이미지 삽입 (샐러드만 적용) */}
-        {dressingImg && (
+        {/* ✅ 드레싱 자동 이미지 삽입 (샐러드/포케 등만 적용) */}
+        {item.category !== "DRESSING" && dressingImg && (
           <div className="card-dressing">
             <img src={dressingImg} alt="드레싱" onError={(e) => (e.target.style.display = "none")} />
           </div>
