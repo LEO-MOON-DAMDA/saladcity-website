@@ -1,4 +1,3 @@
-// ✅ src/components/KakaoMap.jsx
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 
 const tagMap = {
@@ -65,12 +64,6 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
 
         const geocoder = new window.kakao.maps.services.Geocoder();
 
-        const markerImage = new window.kakao.maps.MarkerImage(
-          "/images/map/green-flag.png",
-          new window.kakao.maps.Size(34, 38),
-          { offset: new window.kakao.maps.Point(17, 38) }
-        );
-
         locations.forEach((loc, idx) => {
           geocoder.addressSearch(loc.address, (result, status) => {
             if (status === window.kakao.maps.services.Status.OK) {
@@ -79,7 +72,6 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
               const marker = new window.kakao.maps.Marker({
                 map,
                 position: coords,
-                image: markerImage,
               });
               markersRef.current[idx] = marker;
 
@@ -93,7 +85,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
                 onMarkerClick && onMarkerClick(idx);
               });
 
-              // ✅ 텍스트 오버레이 다시 활성화
+              // ✅ 초록 배경 텍스트 태그 오버레이
               const tag = tagMap[loc.name];
               if (tag) {
                 const overlayContent = `<div class='marker-tag'>${tag}</div>`;
@@ -115,7 +107,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
 
   return (
     <div style={{ position: "relative" }}>
-      {/* 텍스트 설명 */}
+      {/* 지도 설명 */}
       <div
         className="map-overlay"
         style={{
@@ -139,7 +131,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
         </span>
       </div>
 
-      {/* 어두운 오버레이 */}
+      {/* 어두운 필터 */}
       <div
         style={{
           position: "absolute",
@@ -154,7 +146,6 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
         }}
       />
 
-      {/* 지도 본체 */}
       <div
         ref={mapRef}
         style={{
