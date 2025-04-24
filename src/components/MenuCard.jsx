@@ -14,7 +14,7 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
 
   const tags = allTags.filter((tag) => lowerName.includes(tag.key));
 
-  // ✅ 드레싱 자동 감지 (웹p 기준 경로)
+  // ✅ 드레싱 자동 감지 (폴더 없이 루트 경로 기준)
   const dressingMap = {
     "그릭요거트": "greek",
     "발사믹": "balsamic",
@@ -31,7 +31,7 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
     dressingSource.includes(keyword)
   );
   const dressingImg = matchedDressing
-    ? `/images/dressing/${matchedDressing[1]}.webp`
+    ? `/images/${matchedDressing[1]}.webp`
     : null;
 
   return (
