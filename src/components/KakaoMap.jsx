@@ -22,7 +22,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       const marker = markersRef.current[index];
       const infowindow = infoWindowsRef.current[index];
       if (marker && kakaoMapRef.current) {
-        kakaoMapRef.current.setLevel(3); // ✅ 확대 레벨 고정
+        kakaoMapRef.current.setLevel(6); // ✅ 확대 레벨 고정 (요청 기준)
         kakaoMapRef.current.panTo(marker.getPosition());
         infowindow.open(kakaoMapRef.current, marker);
       }
@@ -60,12 +60,14 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
       window.kakao.maps.load(() => {
         const map = new window.kakao.maps.Map(mapRef.current, {
           center: new window.kakao.maps.LatLng(37.5008, 127.0365),
-          level: 3,
+          level: 6, // ✅ 최초 생성 시 레벨
         });
         kakaoMapRef.current = map;
 
-        map.relayout(); // ✅ display: none → block 대응 지도 재계산
-        map.setLevel(3); // ✅ 확대 레벨 유지
+        setTimeout(() => {
+          map.relayout();      // ✅ display: none → block 대응
+          map.setLevel(6);     // ✅ 축척 다시 세팅
+        }, 150);
 
         const geocoder = new window.kakao.maps.services.Geocoder();
 
@@ -88,7 +90,7 @@ const KakaoMap = forwardRef(({ locations, onMarkerClick }, ref) => {
               infoWindowsRef.current[idx] = infowindow;
 
               marker.addListener("click", () => {
-                kakaoMapRef.current.setLevel(3); // 🔐 클릭 시에도 레벨 유지
+                kakaoMapRef.current.setLevel(6); // ✅ 클릭 시에도 확대 고정
                 infowindow.open(map, marker);
                 onMarkerClick && onMarkerClick(idx);
               });
