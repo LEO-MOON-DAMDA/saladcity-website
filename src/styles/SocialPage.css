@@ -5,23 +5,11 @@
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
 }
 
-.insta-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 8px;
-}
-
-.insta-icon {
-  width: 28px;
-  height: 28px;
-}
-
 .insta-title {
   font-size: 28px;
   font-weight: 700;
   color: #2f5130;
+  margin-bottom: 8px;
 }
 
 .insta-subtext {
@@ -33,7 +21,7 @@
 .elfsight-app-b4c3613b-1bba-4927-bb96-94af2cb564c2 {
   max-width: 1000px;
   margin: 0 auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
