@@ -35,7 +35,7 @@ export default function MenuPage() {
       <div className="menu-background">
         <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/salad/salcy_menu04.webp" alt="kitchen background" />
       </div>
-
+      
       {/* 🧭 상단 고정 네비게이션 */}
       <MenuCategoryNav />
 
