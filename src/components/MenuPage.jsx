@@ -33,7 +33,7 @@ export default function MenuPage() {
     <div className="menu-page">
       {/* 📸 시네마틱 배경 */}
       <div className="menu-background">
-        <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/publichttps://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/salcy_menu04.webp" alt="kitchen background" />
+        <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/salad/salcy_menu04.webp" alt="kitchen background" />
       </div>
 
       {/* 🧭 상단 고정 네비게이션 */}
