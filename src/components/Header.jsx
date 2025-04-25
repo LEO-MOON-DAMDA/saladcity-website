@@ -156,7 +156,7 @@ export default function Header() {
               overflow: 'hidden'
             }}>
               <img
-                src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/saladcity.jpg"
+                src="/images/saladcitylogo_small.png"
                 alt="home"
                 style={{
                   height: '100%',
