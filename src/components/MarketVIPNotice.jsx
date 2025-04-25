@@ -6,7 +6,7 @@ export default function MarketVIPNotice() {
     <section className="vip-notice">
       <div className="vip-background">
         <img
-          src="/images/market/vip_bg.jpg"
+          src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/market/vip_bg.webp"
           alt="SALCY VIP"
           className="vip-image"
         />

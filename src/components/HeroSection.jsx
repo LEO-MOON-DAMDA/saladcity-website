@@ -4,7 +4,7 @@ export default function HeroSection() {
   return (
     <section
       style={{
-        backgroundImage: 'url("/images/hero/hero-locations.jpg")',
+        backgroundImage: 'url("https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/hero/hero-locations.webp")',
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

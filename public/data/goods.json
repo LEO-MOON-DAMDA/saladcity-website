@@ -1,1 +1,32 @@
-[{"id": 1, "name": "SALCY CAP – WAVE EDITION", "price": "56,000원", "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods/goods_C01.png", "subImage": "/images/goods/goods_C02.png", "url": "https://yourstore.com/product/salcy-cap-wave"}, {"id": 2, "name": "ORGANIC ECHO BIGBAG – GREEN SIGNAL", "price": "98,000원", "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods/goods_B01.png", "url": "https://yourstore.com/product/echo-bigbag"}, {"id": 3, "name": "SALCY CAP – MOSS DROP", "price": "67,000원", "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods/goods_C11.png", "subImage": "/images/goods/goods_C10.png", "url": "https://yourstore.com/product/salcy-cap-moss"}, {"id": 4, "name": "ORGANIC ECHOBAG – BAG TO THE ROOT", "price": "64,000원", "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods/goods_B02.png", "url": "https://yourstore.com/product/echobag-root"}]
+[
+  {
+    "id": 1,
+    "name": "SALCY CAP – WAVE EDITION",
+    "price": "56,000원",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods/goods_C01.webp",
+    "subImage": "/images/goods/goods_C02.png",
+    "url": "https://yourstore.com/product/salcy-cap-wave"
+  },
+  {
+    "id": 2,
+    "name": "ORGANIC ECHO BIGBAG – GREEN SIGNAL",
+    "price": "98,000원",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods/goods_B01.webp",
+    "url": "https://yourstore.com/product/echo-bigbag"
+  },
+  {
+    "id": 3,
+    "name": "SALCY CAP – MOSS DROP",
+    "price": "67,000원",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods/goods_C11.webp",
+    "subImage": "/images/goods/goods_C10.png",
+    "url": "https://yourstore.com/product/salcy-cap-moss"
+  },
+  {
+    "id": 4,
+    "name": "ORGANIC ECHOBAG – BAG TO THE ROOT",
+    "price": "64,000원",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods/goods_B02.webp",
+    "url": "https://yourstore.com/product/echobag-root"
+  }
+]

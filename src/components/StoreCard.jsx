@@ -5,10 +5,10 @@ export default function StoreCard({ store }) {
   return (
     <div className="store-card">
       <img
-        src={`/images/${store.image}`}
+        src={`https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods/${store.image}`}
         alt={store.name}
         className="store-image"
-        onError={(e) => (e.target.src = "/images/default.jpg")}
+        onError={(e) => (e.target.src = "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/default.webp")}
       />
       <div className="store-content">
         <h3>{store.name}</h3>

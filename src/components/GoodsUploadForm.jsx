@@ -82,7 +82,7 @@ export default function GoodsUploadForm() {
           name="mainImage"
           value={formData.mainImage}
           onChange={handleChange}
-          placeholder="/images/goods/goods_C01.png"
+          placeholder="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/publichttps://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods/goods_C01.webp"
         />
       </label>
 

@@ -8,7 +8,7 @@ export default function MissionPage() {
       <section
         className="mission-hero"
         style={{
-          backgroundImage: 'url("https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission04.jpg")',
+          backgroundImage: 'url("https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission04.webp")',
           backgroundSize: "cover",
           backgroundPosition: "center 30%"
         }}
@@ -25,7 +25,7 @@ export default function MissionPage() {
       <section className="mission-zigzag-section">
         <div className="mission-zigzag-item">
           <div className="mission-zigzag-image">
-            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission17.jpg" alt="정직한 재료" />
+            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission17.webp" alt="정직한 재료" />
           </div>
           <div className="mission-zigzag-text">
             <h3>정직한 재료</h3>
@@ -35,7 +35,7 @@ export default function MissionPage() {
 
         <div className="mission-zigzag-item">
           <div className="mission-zigzag-image">
-            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission19.jpg" alt="지속가능한 선택" />
+            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission19.webp" alt="지속가능한 선택" />
           </div>
           <div className="mission-zigzag-text">
             <h3>지속가능한 선택</h3>
@@ -45,7 +45,7 @@ export default function MissionPage() {
 
         <div className="mission-zigzag-item">
           <div className="mission-zigzag-image">
-            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission20.jpg" alt="건강한 연결" />
+            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission20.webp" alt="건강한 연결" />
           </div>
           <div className="mission-zigzag-text">
             <h3>건강한 연결</h3>

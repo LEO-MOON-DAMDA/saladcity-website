@@ -58,11 +58,15 @@ export default function Header() {
         <>
           {isDetail && (
             <a href="/" style={{ marginRight: '16px' }}>
-              <img src="/images/saladcity_origin.png" alt="home" style={{
-                height: '54px',
-                objectFit: 'cover',
-                objectPosition: 'center'
-              }} />
+              <img src="/images/saladcitylogo_small.png"
+		alt="home"
+		style={{
+		height: '54px',
+		objectFit: 'contain',
+		objectPosition: 'center'
+		}}
+	/>
+
             </a>
           )}
 
@@ -152,7 +156,7 @@ export default function Header() {
               overflow: 'hidden'
             }}>
               <img
-                src="/images/saladcity_origin.png"
+                src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/saladcity.jpg"
                 alt="home"
                 style={{
                   height: '100%',

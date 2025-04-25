@@ -28,7 +28,7 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
 
   const dressingSource = `${item.name}${item.summary || ""}${item.description || ""}${item.dressing || ""}`.toLowerCase();
   const matchedKey = Object.keys(dressingMap).find((key) => dressingSource.includes(key));
-  const dressingImg = matchedKey ? `/images/${dressingMap[matchedKey]}` : null;
+  const dressingImg = matchedKey ? `https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/${dressingMap[matchedKey]}` : null;
 
   return (
     <div className="scroll-card">
@@ -40,7 +40,7 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
           loading="lazy"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = "/images/fallback.jpg";
+            e.target.src = "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/fallback.webp";
           }}
         />
       )}

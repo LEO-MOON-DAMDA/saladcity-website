@@ -11,7 +11,7 @@ export default function HomePage() {
   return (
     <div className="home-page">
       <header className="home-hero">
-        <img src="/images/salad/salcy_home_hero.jpg" alt="hero" />
+        <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/saladcity.jpg" alt="hero" />
       </header>
 
       <FeaturedMenuSection items={featuredItems} />

@@ -7,7 +7,7 @@ export default function SubscriptionSection() {
   return (
     <section className="subscription-section">
       <div className="subscription-image">
-        <img src="/images/cater01.jpg" alt="정기식 이미지" />
+        <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/cater01.webp" alt="정기식 이미지" />
       </div>
 
       <div className="subscription-text">

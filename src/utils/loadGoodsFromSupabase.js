@@ -2,8 +2,9 @@ import { supabase } from "../lib/supabase";
 
 export async function loadGoodsFromSupabase() {
   const { data, error } = await supabase
-    .from("goods")
+    .from("market_goods") // ✅ 테이블명 수정
     .select("*")
+    .eq("is_deleted", false) // ✅ 숨긴 상품 제외
     .order("created_at", { ascending: false });
 
   if (error) {

@@ -4,11 +4,11 @@ import BrandButton from "./BrandButton";
 import SectionTitle from "./SectionTitle";
 
 const images = [
-  "/images/insta01.jpg",
-  "/images/insta02.jpg",
-  "/images/insta03.jpg",
-  "/images/insta04.jpg",
-  "/images/insta05.jpg"
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/socialimage/insta01.webp",
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/socialimage/insta02.webp",
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/socialimage/insta03.webp",
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/socialimage/insta04.webp",
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/socialimage/insta05.webp"
 ];
 
 export default function InstaFeedSection() {

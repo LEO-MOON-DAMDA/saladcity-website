@@ -4,9 +4,9 @@ import ReviewScrollingBanner from "../components/ReviewScrollingBanner";
 import "./Reviews.css";
 
 const fallbackImages = [
-  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample01.jpg",
-  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample02.jpg",
-  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample03.jpg",
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/publichttps://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample01.webp",
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/publichttps://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample02.webp",
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/publichttps://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample03.webp",
 ];
 
 export default function Reviews() {

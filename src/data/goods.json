@@ -3,28 +3,28 @@
     "id": 1,
     "name": "샐러드시티 에코백",
     "price": "18,000원",
-    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods01.jpg",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/menu/goods01.webp",
     "url": "https://yourstore.com/product/eco-bag"
   },
   {
     "id": 2,
     "name": "샐러드시티 텀블러",
     "price": "15,000원",
-    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods02.jpg",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/menu/goods02.webp",
     "url": "https://yourstore.com/product/tumbler"
   },
   {
     "id": 3,
     "name": "샐러드시티 우드 트레이",
     "price": "22,000원",
-    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods03.jpg",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/menu/goods03.webp",
     "url": "https://yourstore.com/product/tray"
   },
   {
     "id": 4,
     "name": "샐러드시티 앞치마",
     "price": "28,000원",
-    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/goods04.jpg",
+    "image": "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/menu/goods04.webp",
     "url": "https://yourstore.com/product/apron"
   }
 ]

@@ -2,12 +2,12 @@ import React from "react";
 import "./MarketSocialGallery.css";
 
 const galleryItems = [
-  { id: 1, image: "/images/social/social01.jpg", alt: "SALCY 감성컷 1" },
-  { id: 2, image: "/images/social/social02.jpg", alt: "SALCY 감성컷 2" },
-  { id: 3, image: "/images/social/social03.jpg", alt: "SALCY 감성컷 3" },
-  { id: 4, image: "/images/social/social04.jpg", alt: "SALCY 감성컷 4" },
-  { id: 5, image: "/images/social/social05.jpg", alt: "SALCY 감성컷 5" },
-  { id: 6, image: "/images/social/social06.jpg", alt: "SALCY 감성컷 6" },
+  { id: 1, image: "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/social/social01.webp", alt: "SALCY 감성컷 1" },
+  { id: 2, image: "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/social/social02.webp", alt: "SALCY 감성컷 2" },
+  { id: 3, image: "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/social/social03.webp", alt: "SALCY 감성컷 3" },
+  { id: 4, image: "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/social/social04.webp", alt: "SALCY 감성컷 4" },
+  { id: 5, image: "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/social/social05.webp", alt: "SALCY 감성컷 5" },
+  { id: 6, image: "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/social/social06.webp", alt: "SALCY 감성컷 6" },
 ];
 
 export default function MarketSocialGallery() {

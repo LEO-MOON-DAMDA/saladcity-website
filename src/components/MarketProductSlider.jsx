@@ -1,4 +1,3 @@
-// ✅ /src/components/MarketProductSlider.jsx (제목 제거 + 상품 없을 때 메시지 포함)
 import React, { useEffect, useState } from "react";
 import { loadGoodsFromSupabase } from "../utils/loadGoodsFromSupabase";
 import { loadStripe } from "@stripe/stripe-js";
@@ -55,7 +54,7 @@ export default function MarketProductSlider() {
         goods.map((product) => (
           <div key={product.id} className="market-slide-card">
             <div className="product-image-wrapper">
-              <img src={product.mainImage} alt={product.name} />
+              <img src={product.image_main} alt={product.name} /> {/* ✅ mainImage → image_main */}
               {product.isSubscription && (
                 <span className="product-label">SUBSCRIPTION</span>
               )}

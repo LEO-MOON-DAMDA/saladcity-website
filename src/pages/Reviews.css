@@ -6,9 +6,9 @@
 }
 
 .review-hero.with-bg {
-  background-image: url("https://www.saladcitykorea.com/images/reviewhero03.jpg");
+  background-image: url("https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/hero/reviewhero03.webp");
   background-size: cover;
-  background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
   padding: 100px 20px;
   position: relative;

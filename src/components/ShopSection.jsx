@@ -11,7 +11,7 @@ export default function ShopSection() {
         <br />
         Coming soon: Lifestyle goods curated with Saladcity’s spirit.
       </p>
-      <img src="/images/shop-comingsoon.png" alt="Saladcity Market" style={{ width: "100%", maxWidth: "600px", borderRadius: "12px", boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }} />
+      <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/shop-comingsoon.webp" alt="Saladcity Market" style={{ width: "100%", maxWidth: "600px", borderRadius: "12px", boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }} />
     </section>
   );
 }

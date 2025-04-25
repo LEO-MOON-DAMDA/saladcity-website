@@ -16,7 +16,7 @@ export default function MarketBrandVideoSection() {
           <video
             src="/videos/saladcity-story.mp4"
             controls
-            poster="/images/market/video_poster.jpg"
+            poster="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/market/video_poster.webp"
           />
         </div>
       </div>

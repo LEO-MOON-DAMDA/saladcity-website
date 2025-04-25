@@ -46,14 +46,14 @@ const CustomPrintableMenu = () => {
     {
       name: "로스트베지 샐러드",
       price: "₩10,900",
-      image: "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/ABC01.jpg",
+      image: "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/publichttps://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/ABC01.webp",
       description: "구운 채소와 렌틸콩의 영양 만점 조합",
       kcal: 320, protein: 10, carbs: 30, fat: 12, co2: 0.9
     },
     {
       name: "수비드 치킨 샐러드",
       price: "₩13,800",
-      image: "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/sc모짜렐라01.jpg",
+      image: "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/publichttps://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/sc모짜렐라01.webp",
       description: "수비드한 닭가슴살과 슈퍼푸드 구성",
       kcal: 490, protein: 32, carbs: 22, fat: 18, co2: 1.3
     }

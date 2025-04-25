@@ -6,7 +6,7 @@
 
 /* Hero Section */
 .catering-hero {
-  background: url('/images/catering-hero.jpg') center/cover no-repeat;
+  background: url('https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/catering-hero.webp') center/cover no-repeat;
   padding: 120px 20px;
   text-align: center;
   color: white;

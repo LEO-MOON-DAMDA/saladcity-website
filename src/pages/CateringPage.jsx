@@ -33,17 +33,17 @@ export default function CateringPage() {
         <h2>케이터링 예시 메뉴</h2>
         <div className="menu-grid">
           <div className="menu-card">
-            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/menu01.jpg" alt="샐러드 플래터" />
+            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/publichttps://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/menu01.webp" alt="샐러드 플래터" />
             <h4>샐러드 플래터</h4>
             <p>10인 이상 단체용 / 프리미엄 토핑 포함</p>
           </div>
           <div className="menu-card">
-            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/menu02.jpg" alt="베이글 박스" />
+            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/publichttps://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/menu02.webp" alt="베이글 박스" />
             <h4>베이글 박스</h4>
             <p>베이글 + 샐러드 + 음료 조합</p>
           </div>
           <div className="menu-card">
-            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/menu03.jpg" alt="샐시 파스타 플레이트" />
+            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/publichttps://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/menu03.webp" alt="샐시 파스타 플레이트" />
             <h4>파스타 플레이트</h4>
             <p>다양한 파스타 옵션 제공 / 웜푸드 선택 가능</p>
           </div>
