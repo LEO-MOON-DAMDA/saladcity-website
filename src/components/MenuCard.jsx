@@ -14,7 +14,6 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
 
   const tags = allTags.filter((tag) => lowerName.includes(tag.key));
 
-  // ✅ 파일명 기준 드레싱 키워드
   const dressingMap = {
     "greek": "greek.webp",
     "balsamic": "balsamic.webp",
@@ -28,7 +27,9 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
 
   const dressingSource = `${item.name}${item.summary || ""}${item.description || ""}${item.dressing || ""}`.toLowerCase();
   const matchedKey = Object.keys(dressingMap).find((key) => dressingSource.includes(key));
-  const dressingImg = matchedKey ? `https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/${dressingMap[matchedKey]}` : null;
+  const dressingImg = matchedKey
+    ? `https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/${dressingMap[matchedKey]}`
+    : null;
 
   return (
     <div className="scroll-card">
@@ -37,7 +38,7 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
           src={item.image}
           alt={item.name}
           className="card-image"
-          loading="lazy"
+          loading="lazy" // ✅ lazy loading
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/fallback.webp";
@@ -78,7 +79,12 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
 
         {item.category !== "DRESSING" && dressingImg && (
           <div className="card-dressing">
-            <img src={dressingImg} alt="드레싱" onError={(e) => (e.target.style.display = "none")} />
+            <img
+              src={dressingImg}
+              alt="드레싱"
+              loading="lazy"
+              onError={(e) => (e.target.style.display = "none")}
+            />
           </div>
         )}
 
