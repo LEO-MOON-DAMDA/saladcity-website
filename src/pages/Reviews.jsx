@@ -4,9 +4,9 @@ import ReviewScrollingBanner from "../components/ReviewScrollingBanner";
 import "./Reviews.css";
 
 const fallbackImages = [
-  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/publichttps://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample01.webp",
-  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/publichttps://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample02.webp",
-  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/publichttps://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample03.webp",
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample01.webp",
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample02.webp",
+  "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample03.webp",
 ];
 
 export default function Reviews() {
@@ -46,7 +46,7 @@ export default function Reviews() {
             <span className="rating mid">
               {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
                 <span key={i}>⭐</span>
-              ))} 
+              ))}
             </span>
           </div>
           <div className="review-badges">
@@ -59,7 +59,11 @@ export default function Reviews() {
         <p className="review-text multiline">{(r.review || "내용 없음").trim()}</p>
         {r.menu && <div className="menu-tag">{r.menu}</div>}
         <div className="review-image-wrapper">
-          <img src={hasImage ? r.image : fallback} alt="리뷰 이미지" />
+          <img
+            src={hasImage ? r.image : fallback}
+            alt="리뷰 이미지"
+            loading="lazy"  // ✅ lazy loading 적용
+          />
         </div>
       </div>
     );
