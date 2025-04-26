@@ -6,7 +6,7 @@ export default function DelayedSpinner() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShow(true), 1000); // 1초 후에 스피너 보이게
+    const timer = setTimeout(() => setShow(true), 3000); // ⏰ 3초 후에 스피너 뜨게 일부러 늦춤
     return () => clearTimeout(timer);
   }, []);
 
