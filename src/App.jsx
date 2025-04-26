@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import LoadingSpinner from "./components/LoadingSpinner"; // ✅ 원래 로딩 스피너
+import LoadingSpinner from "./components/LoadingSpinner";
+import ErrorBoundary from "./components/ErrorBoundary"; // ✅ 추가
 
 import Layout from "./components/Layout";
 import SaladcityHome from "./SaladcityHome";
@@ -22,28 +23,28 @@ const Cart = lazy(() => import("./pages/Cart"));
 export default function App() {
   return (
     <Router>
-      <Suspense fallback={<LoadingSpinner />}> {/* ✅ 딱 여기! */}
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<SaladcityHome />} />
-            <Route path="/menu" element={<MenuPage />} />
-            <Route path="/reviews" element={<Reviews />} />
-            <Route path="/mission" element={<MissionPage />} />
-            <Route path="/social" element={<SocialPage />} />
-            <Route path="/locations" element={<LocationsPage />} />
-            <Route path="/market" element={<MarketPage />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/cart" element={<Cart />} />
-          </Route>
-
-          <Route path="/success" element={<SuccessPage />} />
-          <Route path="/cancel" element={<CancelPage />} />
-          <Route path="/dashboard/reviews" element={<DashboardReviews />} />
-
-          <Route path="/admin/add-goods" element={<AddGoods />} />
-          <Route path="/admin/market-goods" element={<MarketGoodsAdmin />} />
-        </Routes>
-      </Suspense>
+      <ErrorBoundary> {/* ✅ ErrorBoundary로 감싸기 */}
+        <Suspense fallback={<LoadingSpinner />}>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<SaladcityHome />} />
+              <Route path="/menu" element={<MenuPage />} />
+              <Route path="/reviews" element={<Reviews />} />
+              <Route path="/mission" element={<MissionPage />} />
+              <Route path="/social" element={<SocialPage />} />
+              <Route path="/locations" element={<LocationsPage />} />
+              <Route path="/market" element={<MarketPage />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/cart" element={<Cart />} />
+            </Route>
+            <Route path="/success" element={<SuccessPage />} />
+            <Route path="/cancel" element={<CancelPage />} />
+            <Route path="/dashboard/reviews" element={<DashboardReviews />} />
+            <Route path="/admin/add-goods" element={<AddGoods />} />
+            <Route path="/admin/market-goods" element={<MarketGoodsAdmin />} />
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
     </Router>
   );
 }
