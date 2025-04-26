@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import DelayedSpinner from "./components/DelayedSpinner"; // ✅ 여기! (LoadingSpinner 아님)
+import LoadingSpinner from "./components/LoadingSpinner"; // ✅ 원래 로딩 스피너
 
 import Layout from "./components/Layout";
 import SaladcityHome from "./SaladcityHome";
@@ -22,7 +22,7 @@ const Cart = lazy(() => import("./pages/Cart"));
 export default function App() {
   return (
     <Router>
-      <Suspense fallback={<DelayedSpinner />}>
+      <Suspense fallback={<LoadingSpinner />}> {/* ✅ 딱 여기! */}
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<SaladcityHome />} />
