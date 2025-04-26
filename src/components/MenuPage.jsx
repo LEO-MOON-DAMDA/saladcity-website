@@ -1,14 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import menuItems from "../data/menuItems.json";
+import { createClient } from "@supabase/supabase-js"; 
 import MenuSectionSlider from "./MenuSectionSlider";
-import MenuCategoryNav from "./MenuCategoryNav"; // ✅ 고정 네비게이션 추가
+import MenuCategoryNav from "./MenuCategoryNav";
 import "./MenuPage.css";
+
+// ✅ Supabase 연결 설정
+const supabaseUrl = "https://bjcetaznlmqgjvozeeen.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqY2V0YXpubG1xZ2p2b3plZWVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ1MzI1MjksImV4cCI6MjA2MDEwODUyOX0.5Y86eiA_14SibBxOHjVU8p60lvPjj5BBT2WhQrd_5oE"; 
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function MenuPage() {
   const location = useLocation();
+  const [menuItems, setMenuItems] = useState([]);
 
-  // ✅ 해시(#카테고리명)로 부드럽게 이동
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      const { data, error } = await supabase.from("menu_items").select("*");
+      if (error) {
+        console.error("Supabase Fetch Error:", error.message);
+      } else {
+        setMenuItems(data || []);
+      }
+    };
+    fetchMenuItems();
+  }, []);
+
   useEffect(() => {
     if (location.hash) {
       const sectionId = decodeURIComponent(location.hash.replace("#", ""));
@@ -21,7 +38,6 @@ export default function MenuPage() {
     }
   }, [location]);
 
-  // ✅ 카테고리별 메뉴 그룹핑
   const groupedItems = menuItems.reduce((acc, item) => {
     const section = item.category || "기타";
     if (!acc[section]) acc[section] = [];
@@ -31,15 +47,12 @@ export default function MenuPage() {
 
   return (
     <div className="menu-page">
-      {/* 📸 시네마틱 배경 */}
       <div className="menu-background">
         <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/salad/salcy_menu04.webp" alt="kitchen background" />
       </div>
-      
-      {/* 🧭 상단 고정 네비게이션 */}
+
       <MenuCategoryNav />
 
-      {/* 🧾 메뉴 콘텐츠 */}
       <div className="menu-content">
         {Object.entries(groupedItems).map(([section, items]) => (
           <div key={section} id={section}>

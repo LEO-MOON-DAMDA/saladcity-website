@@ -12,6 +12,7 @@ export default function Header() {
   const { cart } = useCart();
   const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
+  // ✅ 모바일 화면 체크용
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.matchMedia('(max-width: 768px)').matches);
@@ -20,6 +21,17 @@ export default function Header() {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  // ✅ 스크롤 시 햄버거 메뉴 자동 닫기
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isOpen) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isOpen]);
 
   const menuItems = [
     { text: "OUR MENU", href: "/menu" },
@@ -52,21 +64,20 @@ export default function Header() {
       height: '60px',
       boxSizing: 'border-box'
     }}>
-
+      
       {/* ✅ PC 화면 */}
       {!isMobile && (
         <>
           {isDetail && (
             <a href="/" style={{ marginRight: '16px' }}>
               <img src="/images/saladcitylogo_small.png"
-		alt="home"
-		style={{
-		height: '54px',
-		objectFit: 'contain',
-		objectPosition: 'center'
-		}}
-	/>
-
+                alt="home"
+                style={{
+                  height: '54px',
+                  objectFit: 'contain',
+                  objectPosition: 'center'
+                }}
+              />
             </a>
           )}
 

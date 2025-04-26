@@ -1,34 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MenuSlider from "./MenuSlider";
 import "./MenuSectionSlider.css";
 
 export default function MenuSectionSlider({ title, items }) {
   const [activeTags, setActiveTags] = useState([]);
-  const [showFilterBar, setShowFilterBar] = useState(true);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const current = window.pageYOffset || document.documentElement.scrollTop;
-
-      if (current > lastScrollTop) {
-        setShowFilterBar(false); // 아래로 스크롤 → 숨김
-      } else {
-        setShowFilterBar(true); // 위로 스크롤 → 다시 보여줌
-      }
-
-      setLastScrollTop(current <= 0 ? 0 : current);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollTop]);
 
   const handleTagClick = (tagKey) => {
+    const normalizedTag = tagKey.toLowerCase().replace(/\s/g, "");
     setActiveTags((prev) =>
-      prev.includes(tagKey)
-        ? prev.filter((tag) => tag !== tagKey)
-        : [...prev, tagKey]
+      prev.includes(normalizedTag)
+        ? prev.filter((tag) => tag !== normalizedTag)
+        : [...prev, normalizedTag]
     );
   };
 
@@ -43,8 +25,8 @@ export default function MenuSectionSlider({ title, items }) {
   const filteredItems =
     activeTags.length > 0
       ? items.filter((item) => {
-          const name = item.name.toLowerCase();
-          return activeTags.some((tag) => name.includes(tag.toLowerCase()));
+          const normalizedType = item.type?.toLowerCase().replace(/\s/g, "");
+          return activeTags.some((tag) => tag === normalizedType);
         })
       : items;
 
@@ -60,8 +42,9 @@ export default function MenuSectionSlider({ title, items }) {
         {title}
       </h2>
 
+      {/* ✅ 항상 보여주는 filter-bar */}
       {activeTags.length > 0 && (
-        <div className={`filter-bar ${showFilterBar ? "show" : "hide"}`}>
+        <div className="filter-bar show">
           선택된 필터:
           {activeTags.map((tag, idx) => (
             <span key={idx} className="filter-tag selected">

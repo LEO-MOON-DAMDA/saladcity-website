@@ -1,8 +1,8 @@
-/* 카드 자체 (hover 대응 포함) */
+/* 카드 자체 */
 .featured-card {
   width: 260px;
   scroll-snap-align: start;
-  position: relative;  /* ✅ z-index 작동 위해 필요 */
+  position: relative;
   z-index: 1;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 16px;
@@ -13,15 +13,15 @@
 }
 
 .featured-card:hover {
-  transform: translateY(-6px);  /* ✅ 위로 살짝 뜨게 */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);  /* ✅ 더 진한 입체감 */
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   z-index: 10;
 }
 
 /* 카드 내부 이미지 */
 .featured-image {
   width: 100%;
-  height: 180px;
+  height: 200px; /* ✅ 더 크게 */
   object-fit: cover;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
@@ -31,11 +31,14 @@
 .featured-text {
   padding: 16px;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* ✅ 메뉴명 ↔ 설명 간격 여유 */
 }
 
 .featured-text h3 {
   font-size: 16px;
-  margin-bottom: 6px;
+  margin: 0;
   color: #222;
   font-weight: 600;
 }
@@ -43,12 +46,14 @@
 .featured-text p {
   font-size: 14px;
   color: #444;
+  margin: 0;
 }
 
+/* 영양정보 */
 .nutrient {
   font-size: 13px;
   color: #666;
-  margin-top: 8px;
+  margin-top: 10px; /* ✅ 설명과 영양정보 사이 간격 */
 }
 
 /* 모바일 대응 */

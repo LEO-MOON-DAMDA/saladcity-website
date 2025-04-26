@@ -1,34 +1,32 @@
 import React from "react";
-import "./MenuSlider.css";
+import "./MenuSlider.css"; // ✅ MenuSlider.css 안에 스타일 통합되어 있어야 함
+
+const allTags = [
+  { key: "vegan", label: "Vegan 🥦", className: "badge-green" },
+  { key: "vegetarian", label: "Vegetarian 🥕", className: "badge-orange" },
+  { key: "ovovegetarian", label: "Ovo Vegetarian 🥚", className: "badge-yellow" },
+  { key: "flexitarian", label: "Flexitarian 🍽️", className: "badge-gray" },
+  { key: "pollo", label: "Pollo 🍗", className: "badge-beige" },
+  { key: "pesco", label: "Pesco 🐟", className: "badge-blue" },
+];
 
 export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
-  const lowerName = item.name.toLowerCase();
-
-  const allTags = [
-    { key: "vegan", label: "Vegan 🥦", className: "badge-green" },
-    { key: "vegetarian", label: "Vegetarian 🥕", className: "badge-orange" },
-    { key: "flexitarian", label: "Flexitarian 🍽️", className: "badge-gray" },
-    { key: "pollo", label: "Pollo 🍗", className: "badge-beige" },
-    { key: "pesco", label: "Pesco 🐟", className: "badge-blue" },
-  ];
-
-  const tags = allTags.filter((tag) => lowerName.includes(tag.key));
-
-  const dressingMap = {
-    "greek": "greek.webp",
-    "balsamic": "balsamic.webp",
-    "oriental_premade": "oriental_premade.webp",
-    "sriracha_mayo": "sriracha_mayo.webp",
-    "orange": "orange.webp",
-    "oriental": "oriental.webp",
-    "italian": "italian.webp",
-    "caesar": "caesar.webp"
+  const typeAlias = {
+    "ovovegetarian": "ovovegetarian",
+    "pesco": "pesco",
+    "pollo": "pollo",
+    "vegan": "vegan",
+    "flexitarian": "flexitarian",
   };
 
-  const dressingSource = `${item.name}${item.summary || ""}${item.description || ""}${item.dressing || ""}`.toLowerCase();
-  const matchedKey = Object.keys(dressingMap).find((key) => dressingSource.includes(key));
-  const dressingImg = matchedKey
-    ? `https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/${dressingMap[matchedKey]}`
+  const normalizedType = item.type
+    ? item.type.toLowerCase().replace(/\s/g, "")
+    : null;
+
+  const mappedType = normalizedType ? typeAlias[normalizedType] : null;
+
+  const tagInfo = mappedType
+    ? allTags.find((t) => t.key === mappedType)
     : null;
 
   return (
@@ -38,7 +36,7 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
           src={item.image}
           alt={item.name}
           className="card-image"
-          loading="lazy" // ✅ lazy loading
+          loading="lazy"
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/fallback.webp";
@@ -47,17 +45,16 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
       )}
 
       <div className="card-text">
-        <div className="card-badges">
-          {tags.map((tag, idx) => (
+        {tagInfo && (
+          <div className="card-badges">
             <span
-              key={idx}
-              className={`card-badge ${tag.className} ${selectedTags.includes(tag.key) ? "selected" : ""}`}
-              onClick={() => onTagClick?.(tag.key)}
+              className={`card-badge ${tagInfo.className}`}
+              onClick={() => onTagClick?.(tagInfo.key.toLowerCase())}
             >
-              {tag.label}
+              {tagInfo.label}
             </span>
-          ))}
-        </div>
+          </div>
+        )}
 
         <h3>{item.name}</h3>
 
@@ -69,37 +66,18 @@ export default function MenuCard({ item, onTagClick, selectedTags = [] }) {
           </p>
         )}
 
-        {item.ingredients && (
-          <p className="card-ingredients">
-            {item.ingredients.length > 40
-              ? item.ingredients.slice(0, 40) + "..."
-              : item.ingredients}
-          </p>
-        )}
-
-        {item.category !== "DRESSING" && dressingImg && (
-          <div className="card-dressing">
-            <img
-              src={dressingImg}
-              alt="드레싱"
-              loading="lazy"
-              onError={(e) => (e.target.style.display = "none")}
-            />
-          </div>
-        )}
-
-        <div className="card-bottom">
+        {item.kcal && (
           <p className="card-nutrition">
-            {item.kcal ? `${item.kcal} kcal` : ""}
+            {`${item.kcal}kcal`}
             {item.protein ? ` | 단백질 ${item.protein}g` : ""}
             {item.carbs ? ` | 탄수 ${item.carbs}g` : ""}
             {item.fat ? ` | 지방 ${item.fat}g` : ""}
-            {item.co2 !== undefined ? ` | CO₂e ${parseFloat(item.co2).toFixed(1)}kg` : ""}
           </p>
-          <p className="card-price">
-            {item.price !== undefined ? `${item.price.toLocaleString()}원` : ""}
-          </p>
-        </div>
+        )}
+
+        <p className="card-price">
+          {item.price !== undefined ? `${item.price.toLocaleString()}원` : ""}
+        </p>
       </div>
     </div>
   );

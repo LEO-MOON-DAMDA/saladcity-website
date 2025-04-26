@@ -1,9 +1,9 @@
+/* ✅ 슬라이더 전체 구조 */
 .slider-wrapper {
   position: relative;
   padding: 40px 0;
 }
 
-/* 슬라이더 스크롤 */
 .slider-scroll-wrapper {
   display: flex;
   overflow-x: auto;
@@ -11,12 +11,10 @@
   min-height: 480px;
   align-items: center;
   perspective: 2000px;
-
   scroll-snap-type: x mandatory;
   scroll-padding: 0 12px;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-
   overscroll-behavior-x: auto;
   touch-action: pan-y pan-x;
   scrollbar-width: none;
@@ -26,7 +24,6 @@
   display: none;
 }
 
-/* 카드 */
 .scroll-card {
   flex: 0 0 auto;
   width: 260px;
@@ -42,9 +39,13 @@
   overflow: hidden;
   position: relative;
   margin: 0 3px;
-
   scroll-snap-align: center;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+}
+
+.scroll-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 /* 이미지 */
@@ -54,19 +55,22 @@
   object-fit: cover;
 }
 
-/* 카드 내용 */
 .card-text {
-  padding: 8px 12px 6px;               /* ✅ 여백 최소화 */
-  font-size: 13px;
-  color: #333;
-  background: rgba(255, 255, 255, 0.95);
-  flex: 1;
+  padding: 4px 14px 12px;
+  background: rgba(255, 255, 255, 0.96);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  line-height: 1.2;                    /* ✅ 행간 최소화 */
-  gap: 0px;                            /* ✅ 요소 간 간격 제거 */
+  gap: 6px;
 }
+
+
+/* ✅ 배지 */
+.card-badges {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 
 /* 카테고리 텍스트 */
 .card-text .category {
@@ -75,48 +79,494 @@
   color: #2c8f5b;
   text-transform: uppercase;
   letter-spacing: 0.4px;
-  margin-bottom: 1px;
-  line-height: 1.1;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  line-height: 1.1;.featured-menu-section {
+  padding: 0px 20px 40px;
+  margin-top: 0px;
+  background: #f8fcf9;
+  overflow: visible;
+  position: relative;
+  z-index: 0;
 }
 
-/* 제품명 */
-.card-text h3 {
-  font-size: 15px;
+.featured-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 12px;
+  color: #2c8f5b;
+}
+
+.featured-slider-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.featured-slider-scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  width: fit-content;
+}
+
+
+/* ✅ 카드 하나 */
+.featured-slider-item {
+  flex: 0 0 auto;
+  width: 260px;
+  max-width: 300px;
+  scroll-snap-align: start;
+}
+
+/* 카드 디자인 */
+.featured-card {
+  width: 100%;
+  min-width: 260px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.featured-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  z-index: 5;.featured-menu-section {
+  padding: 0px 20px 40px;
+  margin-top: 0px;
+  background: #f8fcf9;
+  overflow: visible;
+  position: relative;
+  z-index: 0;
+}
+
+.featured-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 12px;
+  color: #2c8f5b;
+}
+
+.featured-slider-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.featured-slider-scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  width: fit-content;
+}
+
+
+/* ✅ 카드 하나 */
+.featured-slider-item {
+  flex: 0 0 auto;
+  width: 260px;
+  max-width: 300px;
+  scroll-snap-align: start;
+}
+
+/* 카드 디자인 */
+.featured-card {
+  width: 100%;
+  min-width: 260px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.featured-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  z-index: 5;
+}/* ✅ 카드 자체 */
+.featured-card {
+  width: 260px;
+  min-width: 260px;
+  scroll-snap-align: start;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 16px;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.featured-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  z-index: 5;
+}
+
+.featured-card:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+/* ✅ 카드 이미지 */
+.featured-image {
+  width: 100%;
+  height: 200px; /* ✅ 더 크게 */
+  object-fit: cover;
+}
+
+/* ✅ 카드 텍스트 */
+.featured-text {
+  padding: 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* ✅ 메뉴명 ↔ 설명 간격 살짝 증가 */
+}
+
+.featured-text h3 {
+  font-size: 16px;
   margin: 0;
-  color: #111;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.3px;
+  color: #222;
+  font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.featured-text p {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ✅ 영양정보 */
+.nutrient {
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+  white-space: nowrap; /* ✅ 한 줄 유지 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ✅ 섹션 */
+.featured-menu-section {
+  padding: 0px 20px 40px;
+  margin-top: 0px;
+  background: #f8fcf9;
+  overflow: visible;
+  position: relative;
+  z-index: 0;
+}
+
+.featured-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 12px;
+  color: #2c8f5b;
+}
+
+/* ✅ 슬라이더 */
+.featured-slider-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.featured-slider-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.featured-slider-scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  width: fit-content;
+  gap: 16px;
+}
+
+/* ✅ 버튼 영역 */
+.featured-menu-cta {
+  margin-top: 24px;
+  text-align: center;
+}
+
+/* ✅ 모바일 대응 */
+@media (max-width: 768px) {
+  .featured-slider-wrapper {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-card {
+    width: 80vw;
+    min-width: 240px;
+    max-width: 90vw;
+  }
+
+  .featured-text h3 {
+    font-size: 14px;
+  }
+
+  .featured-text p,
+  .nutrient {
+    font-size: 12px;
+  }
+}
+
+
+.featured-card:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+/* 카드 이미지 */
+.featured-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* 카드 텍스트 */
+.featured-text {
+  padding: 16px;
+  text-align: left;
+}
+
+.featured-text h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #222;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.featured-text p {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 4px;
+  word-break: keep-all;
+}
+
+.nutrient {
+  font-size: 12px;
+  color: #999;
+  word-break: keep-all;
+}
+
+/* 버튼영역 */
+.featured-menu-cta {
+  margin-top: 24px;
+  text-align: center;
+}
+
+/* ✅ PC/모바일 분기 */
+@media (max-width: 768px) {
+  .featured-slider-wrapper {
+    justify-content: flex-start; /* 모바일은 왼쪽 정렬 */
+  }
+}
+
+/* ✅ 추가 모바일 최적화 */
+@media (max-width: 480px) {
+  .featured-card {
+    width: 80vw;
+    min-width: 240px;
+    max-width: 90vw;
+  }
+
+  .featured-text h3 {
+    font-size: 14px;
+  }
+
+  .featured-text p,
+  .nutrient {
+    font-size: 12px;
+  }
+}
+@media (max-width: 768px) {
+  .featured-slider-wrapper {
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .featured-slider-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+}
+}
+
+.featured-card:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+/* 카드 이미지 */
+.featured-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* 카드 텍스트 */
+.featured-text {
+  padding: 16px;
+  text-align: left;
+}
+
+.featured-text h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #222;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.featured-text p {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 4px;
+  word-break: keep-all;
+}
+
+.nutrient {
+  font-size: 12px;
+  color: #999;
+  word-break: keep-all;
+}
+
+/* 버튼영역 */
+.featured-menu-cta {
+  margin-top: 24px;
+  text-align: center;
+}
+
+/* ✅ PC/모바일 분기 */
+@media (max-width: 768px) {
+  .featured-slider-wrapper {
+    justify-content: flex-start; /* 모바일은 왼쪽 정렬 */
+  }
+}
+
+/* ✅ 추가 모바일 최적화 */
+@media (max-width: 480px) {
+  .featured-card {
+    width: 80vw;
+    min-width: 240px;
+    max-width: 90vw;
+  }
+
+  .featured-text h3 {
+    font-size: 14px;
+  }
+
+  .featured-text p,
+  .nutrient {
+    font-size: 12px;
+  }
+}
+@media (max-width: 768px) {
+  .featured-slider-wrapper {
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .featured-slider-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+}
+}
+
+.card-badge {
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  border-radius: 6px; /* 약간만 둥글게 */
+  font-weight: 600;
+  background: none; /* ✅ 배경 제거 */
+  display: inline-block;
+}
+
+/* ✅ type별 글자색만 다르게 */
+.badge-green {
+  color: #38a169; /* vegan */
+}
+
+.badge-orange {
+  color: #dd6b20; /* vegetarian */
+}
+
+.badge-yellow {
+  color: #d69e2e; /* ovo vegetarian */
+}
+
+.badge-gray {
+  color: #718096; /* flexitarian */
+}
+
+.badge-beige {
+  color: #b7791f; /* pollo */
+}
+
+.badge-blue {
+  color: #3182ce; /* pesco */
+}
+
+
+
+
+/* ✅ 제품명 */
+.card-text h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #222;
   line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 /* 설명 */
 .card-text p {
-  margin: 0;
-  font-size: 12px;
-  color: #666;
-  line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* 가격 */
-.card-text span {
-  font-weight: bold;
-  color: #2c8f5b;
   font-size: 13px;
-  margin-top: 1px;
+  color: #555;
+  line-height: 1.2;
+  margin: 0;
+ 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ✅ 가격 */
+.card-price {
+  font-weight: bold;
+  color: #2c7a7b;
+  font-size: 14px;
+  margin-top: auto;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
-/* 화살표 */
+
+/* ✅ 화살표 */
 .slider-arrow {
   position: absolute;
   top: 50%;
@@ -133,7 +583,6 @@
   justify-content: center;
   cursor: pointer;
   z-index: 20;
-
   backdrop-filter: blur(6px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.25s ease;
@@ -152,7 +601,7 @@
   right: 12px;
 }
 
-/* 모바일 화살표 숨김 */
+/* ✅ 모바일 화살표 숨김 */
 @media (max-width: 768px) {
   .slider-arrow {
     display: none;

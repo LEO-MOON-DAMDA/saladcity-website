@@ -1,5 +1,6 @@
+/* ✅ 섹션 */
 .featured-menu-section {
-  padding: 0px 20px 40px; /* ✅ 상단 여백 줄임 (8px) */
+  padding: 0px 20px 40px;
   margin-top: 0px;
   background: #f8fcf9;
   overflow: visible;
@@ -16,18 +17,10 @@
 
 .featured-slider-wrapper {
   overflow-x: auto;
-  overflow-y: visible;
+  overflow-y: hidden;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  scroll-snap-type: x mandatory;
-  scroll-padding: 0 16px;
-  position: relative;
-  z-index: 1;
-}
-
-.featured-slider-wrapper::-webkit-scrollbar {
-  display: none;
+  scrollbar-width: thin; /* ✅ 얇은 스크롤바 표시 */
 }
 
 .featured-slider-scroll {
@@ -39,11 +32,19 @@
   position: relative;
 }
 
-.featured-card {
+/* ✅ 카드 하나 */
+.featured-slider-item {
+  flex: 0 0 auto;
   width: 260px;
+  max-width: 300px;
+  scroll-snap-align: start;
+}
+
+/* 카드 디자인 */
+.featured-card {
+  width: 100%;
   min-width: 260px;
   flex-shrink: 0;
-  scroll-snap-align: start;
   border-radius: 16px;
   overflow: hidden;
   background-color: #fff;
@@ -64,45 +65,62 @@
   transform: translateY(-2px) scale(0.98);
 }
 
+/* ✅ 카드 이미지 */
 .featured-image {
   width: 100%;
-  height: 180px;
+  height: 200px; /* ✅ 더 크게 */
   object-fit: cover;
 }
 
+/* ✅ 카드 텍스트 */
 .featured-text {
   padding: 16px;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* ✅ 메뉴명 ↔ 설명 간격 살짝 증가 */
 }
 
 .featured-text h3 {
   font-size: 16px;
-  margin-bottom: 6px;
+  margin: 0;
   color: #222;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .featured-text p {
   font-size: 13px;
   color: #666;
-  margin: 0 0 4px;
-  word-break: keep-all;
+  margin: 0;
+  line-height: 1.4;
 }
 
+/* ✅ 영양정보 */
 .nutrient {
   font-size: 12px;
   color: #999;
-  word-break: keep-all;
+  margin-top: 4px;
+  white-space: nowrap; /* ✅ 한 줄 유지 */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* 버튼영역 */
 .featured-menu-cta {
-  margin-top: 20px;
+  margin-top: 24px;
   text-align: center;
 }
 
+/* ✅ PC/모바일 분기 */
+@media (max-width: 768px) {
+  .featured-slider-wrapper {
+    justify-content: flex-start; /* 모바일은 왼쪽 정렬 */
+  }
+}
+
+/* ✅ 추가 모바일 최적화 */
 @media (max-width: 480px) {
   .featured-card {
     width: 80vw;
@@ -118,10 +136,13 @@
   .nutrient {
     font-size: 12px;
   }
+}
+@media (max-width: 768px) {
+  .featured-slider-wrapper {
+    scrollbar-width: none; /* Firefox */
+  }
 
-  .featured-slider-scroll {
-    gap: 8px;
-    padding: 8px 12px;
-    justify-content: flex-start; /* ✅ 모바일에서는 기본처럼 왼쪽 정렬 유지 */
+  .featured-slider-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
   }
 }
