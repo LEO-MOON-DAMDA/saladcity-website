@@ -6,7 +6,7 @@ export default function LoadingSpinner() {
   return (
     <div className="loading-spinner">
       <img
-        src="/images/logo/saladcity-logo.png" // ✅ 로딩용 로고 경로 (너가 쓰는 로고로 수정 가능)
+        src="/images/saladcitylogo.png" // ✅ 로딩용 로고 경로 (너가 쓰는 로고로 수정 가능)
         alt="Loading..."
         className="spinner-logo"
       />
