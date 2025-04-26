@@ -1,0 +1,28 @@
+/* src/components/LoadingSpinner.css */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* 화면 전체 가운데 */
+  background-color: #fdfdf7; /* 샐러드시티 배경색 */
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+}
+
+.spinner-logo {
+  width: 80px;
+  height: 80px;
+  animation: spin 1.8s linear infinite; /* 부드럽게 회전 */
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-spinner p {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
