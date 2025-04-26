@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import LoadingSpinner from "./components/LoadingSpinner";
-import ErrorBoundary from "./components/ErrorBoundary"; // ✅ 추가
+import ErrorBoundary from "./components/ErrorBoundary";
 
 import Layout from "./components/Layout";
 import SaladcityHome from "./SaladcityHome";
@@ -19,11 +19,12 @@ const AddGoods = lazy(() => import("./pages/AddGoods"));
 const MarketGoodsAdmin = lazy(() => import("./pages/MarketGoodsAdmin"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Cart = lazy(() => import("./pages/Cart"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage")); // ✅ 추가
 
 export default function App() {
   return (
     <Router>
-      <ErrorBoundary> {/* ✅ ErrorBoundary로 감싸기 */}
+      <ErrorBoundary>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route element={<Layout />}>
@@ -37,11 +38,15 @@ export default function App() {
               <Route path="/shop" element={<Shop />} />
               <Route path="/cart" element={<Cart />} />
             </Route>
+
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/cancel" element={<CancelPage />} />
             <Route path="/dashboard/reviews" element={<DashboardReviews />} />
             <Route path="/admin/add-goods" element={<AddGoods />} />
             <Route path="/admin/market-goods" element={<MarketGoodsAdmin />} />
+
+            {/* ✅ 잘못된 경로 fallback 처리 */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </ErrorBoundary>
