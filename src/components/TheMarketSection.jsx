@@ -21,7 +21,7 @@ export default function TheMarketSection() {
   }, []);
 
   return (
-    <section className="market-section" style={{ marginTop: "80px" }}>
+    <section className="market-section" style={{ marginTop: "20px" }}>
       <SectionTitle style={{ textAlign: "center", marginBottom: "32px" }}>
         THE MARKET
       </SectionTitle>

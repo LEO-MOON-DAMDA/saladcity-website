@@ -1,0 +1,165 @@
+.home-review-card {
+  min-height: 160px;
+  max-width: 240px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 0px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.home-review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.home-meta-top {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 12px;
+  margin-top: -6px;
+  margin-bottom: -20px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.home-nickname,
+.home-store,
+.home-date {
+  flex: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.home-nickname {
+  color: #2e7d32;
+}
+
+.home-store {
+  color: #4CAF50;
+  margin-left: 4px;
+}
+
+.home-date {
+  color: #999;
+  margin-left: 4px;
+}
+
+.home-rating {
+  font-size: 12px;
+  color: #4CAF50;
+  text-align: left;
+  margin-top: -6px;
+  margin-bottom: -6px;
+}
+
+.home-rating span {
+  font-size: 10px; /* ✅ 별 크기 조정 */
+  letter-spacing: 1px; /* ✅ 별 간격 1px 추가 */
+}
+
+.home-review-text {
+  font-size: 12px;
+  color: #333;
+  text-align: left;
+  margin-top: -12px;
+  margin-bottom: -600px;
+  line-height: 1.0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.home-review-image-wrapper {
+  width: 100%;
+  height: 90px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin: 0;
+}
+
+.home-review-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.review-slider {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px 1px;
+  overflow-x: auto;
+}
+
+.review-more-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 31%;
+  min-width: unset;
+  background: #3C8050 !important; /* ✅ 카드랑 통일 */
+  border-radius: 12px;
+  padding: 16px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.review-more-card:hover {
+  background: #326b44 !important;
+  transform: translateY(-3px);
+}
+
+.review-more-text {
+  font-size: 18px; /* ✅ 폰트 키움 */
+  font-weight: 700; /* ✅ 더 굵게 */
+  color: #ffffff;
+  text-align: center;
+}
+
+/* ✅ 반응형: 매장명, 날짜 순서대로 숨김 */
+@media (max-width: 1024px) {
+  .home-store {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-date {
+    display: none !important;
+  }
+
+  .home-review-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: unset;
+  }
+
+  .review-more-card {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .review-more-text {
+    white-space: normal; /* ✅ 모바일에서는 줄바꿈 허용 */
+  }
+}
+
+@media (max-width: 480px) {
+  .home-nickname {
+    width: 100%;
+    text-align: left;
+  }
+
+  .home-review-image-wrapper {
+    height: 140px; /* ✅ 이미지 박스 높이 키우기 */
+  }
+
+  .home-review-image-wrapper img {
+    height: auto; /* ✅ 이미지도 박스 높이에 맞춰 늘어나게 */
+  }
+}

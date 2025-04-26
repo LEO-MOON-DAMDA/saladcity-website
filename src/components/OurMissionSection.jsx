@@ -21,7 +21,7 @@ export default function OurMissionSection() {
           </span>
         </p>
 
-        <div style={{ marginTop: "24px" }}>
+        <div style={{ marginTop: "40px" }}>
           <BrandButton href="/mission">브랜드 철학 더 보기 →</BrandButton>
         </div>
       </div>

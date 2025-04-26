@@ -1,3 +1,4 @@
+
 import React from "react";
 
 export default function HeroSection() {
@@ -9,6 +10,7 @@ export default function HeroSection() {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         padding: "140px 20px 100px",
+        marginBottom: "2px",
         position: "relative",
         color: "#fff",
         textAlign: "center",

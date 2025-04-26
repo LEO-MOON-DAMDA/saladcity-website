@@ -1,114 +1,129 @@
 .review-section {
-  padding: 40px 0 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
   background-color: #fdfdf7;
-  margin-top: 0;
+  padding: 0px 20px 40px;
+  gap: 20px;
 }
 
 .review-slider-wrapper {
   display: flex;
   justify-content: center;
   overflow: visible;
-  margin-top: 24px;
+  margin-top: 18px;
 }
 
 .review-slider {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 3px 8px; /* ✅ gap 줄임 */
   justify-content: center;
   width: 100%;
 }
 
-.review-card.large {
-  width: 200px;
+.home-review-card {
+  width: 31%;
+  min-width: unset;
   background: #ffffff;
-  border-radius: 14px;
-  padding: 8px 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  border-radius: 12px;
+  padding: 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s ease;
 }
 
-.review-card.large:hover {
+.home-review-card:hover {
   transform: translateY(-3px);
 }
 
-.nickname {
-  font-weight: 600;
-  color: #2e7d32;
-  font-size: 13px;
+.home-meta-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 4px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 90px;
 }
 
-.rating {
+.home-nickname,
+.home-store,
+.home-date {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  font-weight: 600;
   font-size: 12px;
-  font-weight: bold;
+}
+
+.home-nickname {
+  text-align: left;
+  margin: 0px 2px;
+  color: #2e7d32;
+}
+
+.home-store {
   color: #4CAF50;
 }
 
-.date {
-  font-size: 11px;
+.home-date {
   color: #999;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
-.review-text {
+.home-rating {
+  text-align: left;
+  align-items: center; 
   font-size: 12px;
+  color: #4CAF50;
+   margin: -6px 0px;
+}
+
+.home-review-text {
+  font-size: 12px;
+  display: flex;
+  align-items: flex-start;
   color: #333;
-  font-style: italic;
-  margin: 0 0 6px 0;
+  text-align: left;
+  margin: -4px 2px;
   line-height: 1.2;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.review-image-wrapper {
+.home-review-image-wrapper {
   width: 100%;
   height: 140px;
   overflow: hidden;
-  border-radius: 10px;
-  margin-top: 8px;
+  border-radius: 8px;
+  margin-top: 5px;
 }
 
-.review-section .review-image-wrapper img {
+.home-review-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.8) saturate(0.75);
-  transition: all 0.3s ease;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .review-button-wrap {
-  margin-top: 24px;
+  margin-top: 0; /* ✅ 여기 margin-top 필요 없음 */
   text-align: center;
 }
 
-.meta-row {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-bottom: 2px;
+@media (max-width: 768px) {
+  .home-review-card {
+    width: 31%;
+    min-width: unset;
+  }
+
+  .sub-title {
+    margin-top: 16px;
+    padding: 0 16px;
+  }
 }
 
-.divider {
-  color: #bbb;
-  font-size: 11px;
-}
 
-.badge.store {
-  background-color: #4CAF50;
-  color: #fff;
-  padding: 3px 8px;
-  border-radius: 12px;
-  font-size: 11px;
-  font-weight: 500;
-}

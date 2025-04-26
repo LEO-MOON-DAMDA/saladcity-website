@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SectionTitle from "./SectionTitle";
 import SubTitle from "./SubTitle";
 import BrandButton from "./BrandButton";
+import HomeReviewCard from "./HomeReviewCard"; // ✅ 유지
 import "./ReviewSection.css";
 
 export default function ReviewSection() {
@@ -18,46 +19,25 @@ export default function ReviewSection() {
 
   return (
     <section className="review-section">
-      <SectionTitle style={{ textAlign: "center", marginTop: "48px" }}>
+      <SectionTitle style={{ textAlign: "center", lineHeight: "1.0" }}>
         SALCY CREW's Interview
       </SectionTitle>
-      <SubTitle style={{ textAlign: "center" }}>최근 리뷰</SubTitle>
+      <SubTitle style={{ marginTop: "16px", marginBottom: "-14px", }}>
+  	최근 리뷰
+       </SubTitle>
+
 
       <div className="review-slider-wrapper">
         <div className="review-slider">
-          {withImage.slice(0, 10).map((r, idx) => (
-            <a
-              key={`img-${idx}`}
-              className="review-card large"
-              href={`/reviews#review-${r.id || idx}`}
-            >
-              <div className="review-meta">
-                <div className="meta-row">
-                  <span className="nickname">{r.nickname || "익명"}</span>
-                  <span className="divider"> | </span>
-                  <span className="rating">
-                    {Array.from({ length: Math.min(r.rating || 0, 5) }).map((_, i) => (
-                      <span key={i} style={{ fontSize: "12px" }}>⭐</span>
-                    ))}
-                  </span>
-                </div>
-                <div className="meta-row">
-                  <span className="badge store">{r.store}</span>
-                </div>
-                <div className="date">{r.date || ""}</div>
-              </div>
-              <p className="review-text">{r.review || "내용 없음"}</p>
-              <div className="review-image-wrapper">
-                <img src={r.image} alt="리뷰 이미지" />
-              </div>
-            </a>
+          {withImage.slice(0, 17).map((r, idx) => (
+            <HomeReviewCard key={idx} review={r} idx={idx} />
           ))}
+          {/* ✅ 마지막에 전체 리뷰 버튼 카드 추가 */}
+          <HomeReviewCard isMoreButton={true} />
         </div>
       </div>
 
-      <div className="review-button-wrap">
-        <BrandButton href="/reviews">전체 리뷰 보기 →</BrandButton>
-      </div>
+      {/* ✅ 기존 버튼 div 완전히 삭제 */}
     </section>
   );
 }

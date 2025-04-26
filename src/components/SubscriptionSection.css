@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #e8f5e9;
-  padding: 40px 20px;
+  padding: 48px 20px 40px;
   gap: 20px;
 }
 
@@ -55,4 +55,22 @@
     max-height: none;
     min-height: 200px;
   }
+}
+
+.subscription-button {
+  background-color: #2f855a;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(47, 133, 90, 0.3);
+}
+
+.subscription-button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(47, 133, 90, 0.4);
 }

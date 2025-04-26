@@ -19,3 +19,7 @@ body {
   background-color: #f6fdf8;
   color: #333;
 }
+section {
+  margin: 0;
+  padding: 0;
+}

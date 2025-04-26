@@ -1,5 +1,7 @@
 import React from "react";
 import SectionTitle from "./SectionTitle";
+import BrandButton from "./BrandButton";
+import "./StoreLocatorSection.css";
 
 const storeData = [
   {
@@ -24,7 +26,7 @@ const storeData = [
 
 export default function StoreLocatorSection({ showMap = true }) {
   return (
-    <section className="store-locator-section" style={{ marginTop: "80px" }}>
+    <section className="store-locator-section" style={{ marginTop: "0px" }}>
       <SectionTitle style={{ textAlign: "center", marginBottom: "32px" }}>
         LOCATIONS
       </SectionTitle>

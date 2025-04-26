@@ -7,12 +7,15 @@ export default function SubscriptionSection() {
   return (
     <section className="subscription-section">
       <div className="subscription-image">
-        <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/cater01.webp" alt="정기식 이미지" />
+        <img
+          src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/cater01.webp"
+          alt="정기식 이미지"
+        />
       </div>
 
       <div className="subscription-text">
         <SectionTitle style={{ textAlign: "right" }}>
-          정기식 구독으로 더 간편하게
+          정기식 구독으로<br />더 간편하게
         </SectionTitle>
 
         <p>
@@ -27,8 +30,8 @@ export default function SubscriptionSection() {
           </span>
         </p>
 
-        <div style={{ marginTop: "24px" }}>
-          <BrandButton onClick={() => alert("정기식 시작! 🚀")}>
+        <div style={{ marginTop: "32px" }}>
+          <BrandButton className="subscription-button" onClick={() => alert("정기식 시작! 🚀")}>
             정기식 시작하기
           </BrandButton>
         </div>

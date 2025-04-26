@@ -1,3 +1,4 @@
+
 import React from "react";
 import SectionTitle from "./SectionTitle";
 import FeaturedMenuCard from "./FeaturedMenuCard";
@@ -22,15 +23,30 @@ export default function FeaturedMenuSection({ items }) {
         샐러드시티 추천메뉴
       </SectionTitle>
 
-      <div className="featured-slider-wrapper">
-        <div className="featured-slider-scroll">
+      <div className="featured-slider-wrapper" style={{ overflowX: "auto", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", padding: "8px 0 8px 16px" }}>
+        <div style={{
+          display: "flex",
+          gap: "16px",
+          paddingRight: "24px",
+          width: "fit-content",
+        }}>
           {items.map((item, idx) => (
-            <FeaturedMenuCard key={idx} item={item} />
+            <div
+              key={idx}
+              style={{
+                scrollSnapAlign: "start",
+                flex: "0 0 auto",
+                width: "65vw",
+                maxWidth: "320px",
+              }}
+            >
+              <FeaturedMenuCard item={item} />
+            </div>
           ))}
         </div>
       </div>
 
-      <div className="featured-menu-cta">
+      <div className="featured-menu-cta" style={{ textAlign: "center", marginTop: "24px" }}>
         <BrandButton onClick={() => window.print()}>
           📄 메뉴 프린트하기
         </BrandButton>

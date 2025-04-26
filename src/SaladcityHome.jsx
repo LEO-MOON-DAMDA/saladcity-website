@@ -28,10 +28,11 @@ export default function SaladcityHome() {
   };
 
   return (
-    <div style={{ fontFamily: "sans-serif", backgroundColor: "#f6fdf8", paddingTop: "0px", overflow: "visible", position: "relative", minHeight: "100vh" }}>
+    <div style={{ fontFamily: "sans-serif", backgroundColor: "#f6fdf8", margin: "0", padding: "0", paddingTop: "0px", overflow: "visible", position: "relative", minHeight: "100vh" }}>
       <Header hideLogo={location.pathname === "/"} />
 
-      <section style={{ minHeight: "80vh", marginBottom: "2px", position: "relative", overflow: "hidden", display: "flex", justifyContent: "center", alignItems: "center" }}>
+<section style={{ minHeight: "80vh", marginBottom: "2px", position: "relative", overflow: "hidden", display: "flex", justifyContent: "center", alignItems: "center" }}>
+
         <video
           key={videoIndex}
           ref={videoRef}
