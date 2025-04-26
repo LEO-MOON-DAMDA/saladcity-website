@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react"; // ✅ 추가
+import LoadingSpinner from "./components/LoadingSpinner";
 
 import Layout from "./components/Layout";
 import SaladcityHome from "./SaladcityHome";
