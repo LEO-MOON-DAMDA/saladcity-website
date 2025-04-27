@@ -12,14 +12,16 @@ const MissionPage = lazy(() => import("./pages/MissionPage"));
 const SocialPage = lazy(() => import("./pages/SocialPage"));
 const LocationsPage = lazy(() => import("./pages/LocationsPage"));
 const MarketPage = lazy(() => import("./pages/MarketPage"));
+const Shop = lazy(() => import("./pages/Shop"));
+const Cart = lazy(() => import("./pages/Cart"));
 const SuccessPage = lazy(() => import("./pages/SuccessPage"));
 const CancelPage = lazy(() => import("./pages/CancelPage"));
 const DashboardReviews = lazy(() => import("./pages/DashboardReviews"));
 const AddGoods = lazy(() => import("./pages/AddGoods"));
 const MarketGoodsAdmin = lazy(() => import("./pages/MarketGoodsAdmin"));
-const Shop = lazy(() => import("./pages/Shop"));
-const Cart = lazy(() => import("./pages/Cart"));
-const NotFoundPage = lazy(() => import("./pages/NotFoundPage")); // ✅ 추가
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+const OutpostPage = lazy(() => import("./pages/OutpostPage")); // ✅ 추가 완료
+const OutpostSuccessPage = lazy(() => import("./pages/OutpostSuccessPage")); // ✅ 새로 추가 (성공화면)
 
 export default function App() {
   return (
@@ -37,6 +39,8 @@ export default function App() {
               <Route path="/market" element={<MarketPage />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/outpost" element={<OutpostPage />} />
+              <Route path="/outpost/success" element={<OutpostSuccessPage />} /> {/* ✅ 성공화면 추가 */}
             </Route>
 
             <Route path="/success" element={<SuccessPage />} />

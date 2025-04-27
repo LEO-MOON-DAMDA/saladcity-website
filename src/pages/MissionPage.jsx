@@ -1,6 +1,5 @@
 import React from "react";
-import "../styles/MissionPage.css";
-import MarketPhilosophySection from "../components/MarketPhilosophySection";
+import "./MissionPage.css";
 
 export default function MissionPage() {
   return (
@@ -20,43 +19,59 @@ export default function MissionPage() {
         </div>
       </section>
 
-      <MarketPhilosophySection />
-
       <section className="mission-zigzag-section">
         <div className="mission-zigzag-item">
           <div className="mission-zigzag-image">
-            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission17.webp" alt="정직한 재료" />
+            <img
+              src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission19.webp"
+              alt="정직한 재료"
+            />
           </div>
           <div className="mission-zigzag-text">
             <h3>정직한 재료</h3>
-            <p>농장의 뿌리부터 당신의 접시까지. Every bowl we serve begins with a real story.</p>
+            <p>
+              농장의 뿌리부터 당신의 접시까지.
+              <span className="en">Every bowl we serve begins with a real story.</span>
+            </p>
           </div>
         </div>
 
         <div className="mission-zigzag-item">
           <div className="mission-zigzag-image">
-            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission19.webp" alt="지속가능한 선택" />
+            <img
+              src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission20.webp"
+              alt="지속가능한 선택"
+            />
           </div>
           <div className="mission-zigzag-text">
             <h3>지속가능한 선택</h3>
-            <p>우리의 샐러드는 환경을 생각합니다. Sustainability is not a trend, it’s our principle.</p>
+            <p>
+              우리의 샐러드는 환경을 생각합니다.
+              <span className="en">Sustainability is not a trend, it’s our principle.</span>
+            </p>
           </div>
         </div>
 
         <div className="mission-zigzag-item">
           <div className="mission-zigzag-image">
-            <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission20.webp" alt="건강한 연결" />
+            <img
+              src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission17.webp"
+              alt="건강한 연결"
+            />
           </div>
           <div className="mission-zigzag-text">
             <h3>건강한 연결</h3>
-            <p>음식은 사람을 잇습니다. From soil to soul — food brings us together.</p>
+            <p>
+              음식은 사람을 잇습니다.
+              <span className="en">From soil to soul — food brings us together.</span>
+            </p>
           </div>
         </div>
       </section>
 
       <section className="mission-cta">
-        <h2>우리는 한 끼를 팔지 않습니다</h2>
-        <p>We serve values, not just food.</p>
+        <h2>우리는 샐러드를 팔지 않습니다</h2>
+        <p>We don't sell salads, we serve values.</p>
         <button className="mission-button" onClick={() => window.location.href = "/menu"}>
           메뉴 보기 →
         </button>

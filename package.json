@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@stripe/stripe-js": "^7.1.0",
     "@supabase/supabase-js": "^1.35.6",
     "@testing-library/jest-dom": "^5.17.0",

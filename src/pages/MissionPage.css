@@ -11,6 +11,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-size: cover;
+  background-position: center 30%;
 }
 
 .mission-overlay {
@@ -50,7 +52,10 @@
   display: flex;
   align-items: center;
   gap: 40px;
-  flex-wrap: wrap;
+}
+
+.mission-zigzag-item:nth-child(even) {
+  flex-direction: row-reverse;
 }
 
 .mission-zigzag-image img {
@@ -108,7 +113,7 @@
   background-color: #276c48;
 }
 
-/* Responsive */
+/* Mobile Responsive */
 @media (max-width: 768px) {
   .mission-hero {
     height: 50vh;
@@ -119,12 +124,59 @@
     font-size: 24px;
   }
 
-  .mission-zigzag-item {
+  .mission-zigzag-item,
+  .mission-zigzag-item:nth-child(even) {
     flex-direction: column;
+    text-align: center;
     gap: 24px;
+  }
+
+  .mission-zigzag-image img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .mission-zigzag-text {
+    text-align: center;
+    padding: 0 12px;
   }
 
   .mission-cta {
     padding: 60px 16px;
   }
+
+  .mission-cta h2 {
+    font-size: 24px;
+  }
+
+  .mission-cta p {
+    font-size: 14px;
+  }
 }
+
+.mission-zigzag-text p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #555;
+}
+
+/* 영문 강조 스타일 추가 */
+.mission-zigzag-text p span.en {
+  display: block;
+  margin-top: 6px;
+  font-family: 'Playfair Display', serif; /* 고급스러운 감성 폰트 유지 */
+  font-size: 16px;
+  font-style: normal; /* 기울기 제거하여 가독성 확보 */
+  font-weight: 500; /* 살짝 굵게 조정 */
+  color: #2f855a;
+  letter-spacing: 0.4px;
+}
+
+/* 모바일에서 더 선명하게 */
+@media (max-width: 768px) {
+  .mission-zigzag-text p span.en {
+    font-size: 15px;
+  }
+}
+
+
