@@ -71,3 +71,28 @@
     font-size: 12px;
   }
 }
+.featured-image-wrapper {
+  position: relative;
+}
+
+.type-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background-color: rgba(44, 143, 91, 0.9);
+  padding: 4px 8px;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Type별 색상 지정 예시 */
+.badge-vegan { background-color: rgba(56, 161, 105, 0.9); }
+.badge-vegetarian { background-color: rgba(221, 107, 32, 0.9); }
+.badge-flexitarian { background-color: rgba(113, 128, 150, 0.9); }
+.badge-pollo { background-color: rgba(183, 121, 31, 0.9); }
+.badge-pesco { background-color: rgba(49, 130, 206, 0.9); }
+.badge-ovovegetarian { background-color: rgba(223, 132, 69, 0.9); }

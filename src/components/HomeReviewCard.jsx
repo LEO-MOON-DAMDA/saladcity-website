@@ -1,7 +1,7 @@
 import React from "react";
 import "./HomeReviewCard.css";
 
-export default function HomeReviewCard({ review, idx, isMoreButton }) {
+export default function HomeReviewCard({ review, idx, isMoreButton, onClick }) {
   if (!review && !isMoreButton) return null;
 
   if (isMoreButton) {
@@ -24,7 +24,7 @@ export default function HomeReviewCard({ review, idx, isMoreButton }) {
   };
 
   return (
-    <a className="home-review-card" href={`/reviews#review-${review.id || idx}`}>
+    <div className="home-review-card" onClick={onClick} style={{ cursor: "pointer" }}>
       <div className="home-meta-top">
         <span className="home-nickname">{review.nickname || "익명"}</span>
         {review.store && (
@@ -52,6 +52,6 @@ export default function HomeReviewCard({ review, idx, isMoreButton }) {
       <div className="home-review-image-wrapper">
         <img src={review.image} alt="리뷰 이미지" />
       </div>
-    </a>
+    </div>
   );
 }

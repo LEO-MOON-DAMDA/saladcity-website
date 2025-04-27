@@ -23,9 +23,33 @@
   transition: background 0.2s ease;
   white-space: nowrap;
 }
+/* ✅ 카테고리바 글자 스타일 통일감 있게 수정 */
+.menu-category-nav a {
+  font-size: 15px;             /* 글씨 크기 */
+  font-weight: 500;            /* 글씨 두께 조정 */
+  padding: 6px 14px;           /* 안쪽 여백 */
+  color: #333;                 /* 글씨 색상 */
+  transition: color 0.3s, background-color 0.3s;
+  border-radius: 16px;         /* 둥근 모서리로 부드러운 느낌 */
+}
+
+.menu-category-nav a.active,
+.menu-category-nav a:hover {
+  color: #fff;                 /* 활성화 시 글씨 색상 */
+  background-color: #4CAF50;   /* 활성화 시 배경색 (브랜드 컬러 추천) */
+}
 
 .menu-nav-btn:hover {
   background: #2c8f5b;
   color: white;
 }
 
+/* ✅ 상단 카테고리바 스크롤바 숨김 처리 */
+.menu-category-nav {
+  overflow-x: auto; /* 유지 */
+  scrollbar-width: none; /* Firefox 대응 */
+}
+
+.menu-category-nav::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge 대응 */
+}

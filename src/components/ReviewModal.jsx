@@ -25,8 +25,13 @@ export default function ReviewModal({ review, onClose }) {
         <button className="close-button" onClick={onClose}>×</button>
 
         <h2>{nickname || "익명"}님의 리뷰</h2>
+
         <p className="review-meta">
-          ⭐ {rating}점 &nbsp;|&nbsp; {date} &nbsp;|&nbsp; {platform} · {store}
+          {/* ✅ 별(⭐) 여러개로 출력 */}
+          {Array.from({ length: Math.min(rating || 0, 5) }).map((_, idx) => (
+            <span key={idx}>⭐</span>
+          ))}
+          &nbsp;({rating}점) | {date} | {platform} · {store}
         </p>
 
         {image && (

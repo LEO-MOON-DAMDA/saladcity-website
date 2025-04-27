@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
+  animation: fadeInOverlay 0.4s ease forwards; /* ✅ fade-in 부드럽게 */
 }
 
 .review-modal-content {
@@ -17,35 +18,36 @@
   border-radius: 16px;
   max-width: 600px;
   width: 100%;
-  padding: 32px;
+  padding: 24px; /* ✅ 전체 패딩 살짝 줄임 */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   position: relative;
   font-family: 'Noto Sans KR', sans-serif;
 }
 
 .review-modal-content h2 {
-  font-size: 20px;
-  margin-bottom: 8px;
+  font-size: 22px; /* ✅ 폰트 살짝 키움 */
+  margin-bottom: 10px;
   color: #2f5130;
+  font-weight: 700;
 }
 
 .review-meta {
-  font-size: 14px;
+  font-size: 13px; /* ✅ 좀 더 부드럽게 */
   color: #666;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .review-text {
-  font-size: 16px;
+  font-size: 15px; /* ✅ 본문 줄임 */
   color: #333;
-  margin-top: 16px;
+  margin-top: 20px;
   line-height: 1.6;
 }
 
 .review-menu,
 .review-platform {
   font-size: 14px;
-  margin-top: 12px;
+  margin-top: 16px;
   color: #555;
 }
 
@@ -54,11 +56,12 @@
   margin-top: 20px;
   border-radius: 12px;
   object-fit: cover;
+  max-height: 300px; /* ✅ 긴 이미지 방지 */
 }
 
 .review-reply {
   margin-top: 28px;
-  background: #f1fdf3;
+  background: #f6fdf7; /* ✅ 답변 배경 더 부드럽게 */
   padding: 16px;
   border-radius: 12px;
   color: #222;
@@ -76,4 +79,15 @@
   background: none;
   cursor: pointer;
   color: #888;
+  transition: color 0.2s ease;
+}
+
+.close-button:hover {
+  color: #555; /* ✅ hover 시 색 변경 */
+}
+
+/* ✅ fadeIn 애니메이션 */
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

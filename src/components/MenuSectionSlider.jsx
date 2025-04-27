@@ -31,20 +31,22 @@ export default function MenuSectionSlider({ title, items }) {
       : items;
 
   return (
-    <div style={{ margin: "60px 0" }}>
-      <h2
-        style={{
-          textAlign: "center",
-          fontSize: "2rem",
-          marginBottom: "10px",
-        }}
-      >
-        {title}
-      </h2>
-
-      {/* ✅ 항상 보여주는 filter-bar */}
+    <div className="menu-section">
+<h2
+  className="menu-section-title"
+  style={{
+    position: 'relative',
+    zIndex: 10,
+    color: '#ffffff',
+    opacity: 1,
+    mixBlendMode: 'normal',
+    textShadow: '0 4px 8px rgba(0,0,0,0.8)',
+  }}
+>
+  {title}
+</h2>
       {activeTags.length > 0 && (
-        <div className="filter-bar show">
+       <div className="filter-bar show" style={{ marginBottom: '-30px', marginTop: '12px' }}>
           선택된 필터:
           {activeTags.map((tag, idx) => (
             <span key={idx} className="filter-tag selected">

@@ -1,10 +1,19 @@
 .subscription-section {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;  
+  background-color: #fdfdf7;
+  padding: 24px 20px 28px;
+  gap: 20px;
+}
+
+.subscription-inner {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  background-color: #e8f5e9;
-  padding: 48px 20px 40px;
+  max-width: 100%;
+  margin: 0 auto;
   gap: 20px;
 }
 
@@ -13,21 +22,24 @@
   min-width: 280px;
   max-width: 500px;
   text-align: right;
+  flex-grow: 1;
+  margin-top: -20px;
 }
 
-.subscription-text p {
+.subscription-description {
   font-size: 16px;
-  color: #222;
+  color: #444;
   line-height: 1.6;
-  margin-bottom: 16px;
+  margin-bottom: -10px;
+  text-align: right;
 }
 
 .subscription-sub {
   font-size: 14px;
-  color: #666;
+  color: #888;
   font-style: italic;
   display: block;
-  margin-top: 8px;
+  margin-top: -16px;
 }
 
 .subscription-image {
@@ -37,40 +49,62 @@
   justify-content: center;
 }
 
-.subscription-image img {
+.subscription-thumbnail {
   width: 100%;
   height: auto;
-  max-height: 280px;
+  max-height: 680px;
   object-fit: cover;
+  object-position: top; /* ✅ 상단을 기준으로 보여줌 */
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  flex-grow: 1;
 }
 
+/* ✅ 반응형: 768px 이하만 처리 */
 @media (max-width: 768px) {
-  .subscription-section {
-    flex-direction: column-reverse;
+  .subscription-inner {
+    display: flex;
+    flex-direction: column; /* ✅ 위에서 아래로 쌓기 */
+    align-items: flex-end;
+    margin-right: 2px;
   }
 
-  .subscription-image img {
+  .subscription-text {
+    text-align: right;
+    order: 1; /* ✅ 텍스트가 먼저 */
+  }
+
+  .subscription-image {
+    order: 2; /* ✅ 사진이 두번째 */
+  }
+
+  .subscription-button-area {
+    text-align: right;
+    margin-top: 0px; /* ✅ 위쪽 2px */
+    margin-bottom: 2px; /* ✅ 아래쪽 2px */
+    order: 3; /* ✅ 버튼이 세번째 */
+  }
+
+  .subscription-thumbnail {
     max-height: none;
     min-height: 200px;
   }
 }
-
 .subscription-button {
   background-color: #2f855a;
   color: white;
   border: none;
   border-radius: 999px;
-  padding: 14px 28px;
-  font-size: 16px;
-  font-weight: 600;
+  padding: 18px 32px;
+  font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 16px rgba(47, 133, 90, 0.3);
+  box-shadow: 0 6px 20px rgba(47, 133, 90, 0.4);
+  transition: all 0.3s ease;
 }
 
 .subscription-button:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 20px rgba(47, 133, 90, 0.4);
+  background-color: #256c47;
+  transform: scale(1.05);
+  box-shadow: 0 10px 28px rgba(47, 133, 90, 0.5);
 }

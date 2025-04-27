@@ -1,7 +1,7 @@
 /* ✅ 슬라이더 전체 구조 */
 .slider-wrapper {
   position: relative;
-  padding: 40px 0;
+  padding: 0px 0;
 }
 
 .slider-scroll-wrapper {
@@ -18,6 +18,7 @@
   overscroll-behavior-x: auto;
   touch-action: pan-y pan-x;
   scrollbar-width: none;
+
 }
 
 .slider-scroll-wrapper::-webkit-scrollbar {
@@ -27,7 +28,7 @@
 .scroll-card {
   flex: 0 0 auto;
   width: 260px;
-  height: 400px;
+  height: auto;
   background: white;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -38,7 +39,7 @@
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  margin: 0 3px;
+  margin: 0 -8px;
   scroll-snap-align: center;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
 }

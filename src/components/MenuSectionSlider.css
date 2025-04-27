@@ -1,4 +1,23 @@
-/* filter-bar 기본 스타일 */
+/* 메뉴 섹션 전체 스타일 */
+.menu-section {
+  padding: 10px 0;
+}
+
+/* 각 메뉴 위 카테고리명 스타일 (섹션 제목) */
+.menu-section-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+  text-align: center;
+  border-left: none;
+  text-shadow: 
+    0 4px 8px rgba(0,0,0,0.9), 
+    0 0 12px rgba(0,0,0,0.6);
+}
+
+
+/* 상단 고정 필터바 스타일 */
 .filter-bar {
   position: sticky;
   top: 0;
@@ -8,17 +27,15 @@
   gap: 8px;
   justify-content: center;
   align-items: center;
-  padding: 12px 24px;
-
+  padding: 6px 24px;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
-
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* 자동 숨김/등장 상태 제어 */
+/* 필터바 자동 숨김 처리 */
 .filter-bar.hide {
   transform: translateY(-100%);
   opacity: 0;
@@ -30,7 +47,7 @@
   opacity: 1;
 }
 
-/* 필터 배지 */
+/* 필터바 내 태그 스타일 */
 .filter-tag {
   background-color: #f0f0f0;
   padding: 6px 10px;
@@ -48,7 +65,7 @@
   border: 1px solid #2c8f5b;
 }
 
-/* 삭제 버튼 */
+/* 필터 제거 버튼 */
 .filter-remove {
   margin-left: 6px;
   background: transparent;
@@ -59,7 +76,7 @@
   line-height: 1;
 }
 
-/* 모두 초기화 버튼 */
+/* 전체 필터 초기화 버튼 */
 .filter-clear {
   margin-left: 12px;
   background: transparent;
@@ -70,7 +87,7 @@
   font-weight: 500;
 }
 
-/* 모바일 대응 */
+/* 모바일 대응 반응형 */
 @media (max-width: 768px) {
   .filter-bar {
     padding: 8px 12px;
@@ -88,4 +105,13 @@
   .filter-clear {
     font-size: 11px;
   }
+}
+
+/* ✅ 스크롤바 숨김 처리 */
+.filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-bar {
+  scrollbar-width: none;
 }

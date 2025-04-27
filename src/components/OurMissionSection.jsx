@@ -6,6 +6,7 @@ import "./OurMissionSection.css";
 export default function OurMissionSection() {
   return (
     <section className="our-mission-section">
+      {/* 텍스트 */}
       <div className="mission-text">
         <SectionTitle style={{ textAlign: "left" }}>
           우리는 왜 샐러드를 만들까요?
@@ -20,14 +21,18 @@ export default function OurMissionSection() {
             We grow more than greens — we grow goodness.
           </span>
         </p>
-
-        <div style={{ marginTop: "40px" }}>
-          <BrandButton href="/mission">브랜드 철학 더 보기 →</BrandButton>
-        </div>
       </div>
 
+      {/* 사진 */}
       <div className="mission-image">
         <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/1salcymission04.webp" alt="우리의 철학" />
+      </div>
+
+      {/* 버튼 (바깥으로 분리) */}
+      <div className="mission-button-area" style={{ marginTop: "24px", textAlign: "left", width: "100%" }}>
+        <BrandButton href="/mission">
+          브랜드 철학 더 보기 →
+        </BrandButton>
       </div>
     </section>
   );

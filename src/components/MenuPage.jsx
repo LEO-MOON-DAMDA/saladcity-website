@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js"; 
 import MenuSectionSlider from "./MenuSectionSlider";
-import MenuCategoryNav from "./MenuCategoryNav";
 import "./MenuPage.css";
+import "./MenuCategoryNav.css";
 
-// ✅ Supabase 연결 설정
 const supabaseUrl = "https://bjcetaznlmqgjvozeeen.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqY2V0YXpubG1xZ2p2b3plZWVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ1MzI1MjksImV4cCI6MjA2MDEwODUyOX0.5Y86eiA_14SibBxOHjVU8p60lvPjj5BBT2WhQrd_5oE"; 
 const supabase = createClient(supabaseUrl, supabaseKey);
@@ -13,6 +12,8 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 export default function MenuPage() {
   const location = useLocation();
   const [menuItems, setMenuItems] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [showNav, setShowNav] = useState(true);
 
   useEffect(() => {
     const fetchMenuItems = async () => {
@@ -21,9 +22,30 @@ export default function MenuPage() {
         console.error("Supabase Fetch Error:", error.message);
       } else {
         setMenuItems(data || []);
+        const uniqueCategories = Array.from(new Set((data || []).map((item) => item.category))).filter(Boolean);
+        setCategories(uniqueCategories);
       }
     };
     fetchMenuItems();
+  }, []);
+
+  useEffect(() => {
+    let lastScrollTop = 0;
+
+    const handleScroll = () => {
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > lastScrollTop) {
+        setShowNav(false); // 아래로 스크롤 -> 숨김
+      } else {
+        setShowNav(true); // 위로 스크롤 -> 보임
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -45,13 +67,27 @@ export default function MenuPage() {
     return acc;
   }, {});
 
+  const handleCategoryClick = (category) => {
+    const el = document.getElementById(category);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <div className="menu-page">
       <div className="menu-background">
         <img src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/salad/salcy_menu04.webp" alt="kitchen background" />
       </div>
 
-      <MenuCategoryNav />
+      {/* ✅ Supabase 카테고리 네비 */}
+      <nav className={`menu-category-nav ${showNav ? "show" : "hide"}`}>
+        {categories.map((cat) => (
+          <button key={cat} onClick={() => handleCategoryClick(cat)} className="menu-nav-btn">
+            {cat}
+          </button>
+        ))}
+      </nav>
 
       <div className="menu-content">
         {Object.entries(groupedItems).map(([section, items]) => (

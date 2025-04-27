@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "./components/Header";
@@ -31,8 +30,7 @@ export default function SaladcityHome() {
     <div style={{ fontFamily: "sans-serif", backgroundColor: "#f6fdf8", margin: "0", padding: "0", paddingTop: "0px", overflow: "visible", position: "relative", minHeight: "100vh" }}>
       <Header hideLogo={location.pathname === "/"} />
 
-<section style={{ minHeight: "80vh", marginBottom: "2px", position: "relative", overflow: "hidden", display: "flex", justifyContent: "center", alignItems: "center" }}>
-
+      <section style={{ minHeight: "80vh", marginBottom: "2px", position: "relative", overflow: "hidden", display: "flex", justifyContent: "center", alignItems: "center" }}>
         <video
           key={videoIndex}
           ref={videoRef}
@@ -66,7 +64,6 @@ export default function SaladcityHome() {
           animation: 'fadeInOverlay 1.8s ease-in-out forwards',
           opacity: 0
         }} />
-
         <div style={{
           position: 'relative',
           zIndex: 2,
@@ -103,8 +100,8 @@ export default function SaladcityHome() {
       <FeaturedMenuSection items={homepageMenuItems} />
       <OurMissionSection />
       <SubscriptionSection />
+      <StoreLocatorSection showMap={true} />   {/* ✅ 여기로 이동 */}
       <ReviewSection />
-      <StoreLocatorSection showMap={true} />
       <InstaFeedSection />
       <TheMarketSection />
       <Footer />

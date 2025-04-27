@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./MenuCategoryNav.css";
 
 const categories = [
-  "샐시 프리미엄 샐러드",
-  "PASTA SALAD",
+  "샐시프리미엄 샐러드",
+  "PASTAX SALAD",
   "PLATTER",
   "POKE (DIET BOWL)",
   "샐시 JUICE",

@@ -11,7 +11,7 @@ export default function TheMarketSection() {
   useEffect(() => {
     const fetchGoods = async () => {
       try {
-        const data = await loadGoodsFromSupabase(); // ✅ 통일된 fetch
+        const data = await loadGoodsFromSupabase();
         setGoods(data || []);
       } catch (error) {
         console.error("❌ 상품 불러오기 실패:", error.message);
@@ -34,17 +34,21 @@ export default function TheMarketSection() {
             .filter((item) => item.image_main && item.name && item.price)
             .map((item) => (
               <div key={item.id} className="market-card">
-                <img src={item.image_main} alt={item.name} />
+                <div className="market-image-wrapper">
+                  <img src={item.image_main} alt={item.name} />
+                </div>
                 <h3>{item.name}</h3>
                 <p>{item.price.toLocaleString()}원</p>
-                <a
-                  href={item.url || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="market-buy"
-                >
-                  구매하기 →
-                </a>
+                <div className="market-buy-wrap">
+                  <a
+                    href={item.url || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="market-buy"
+                  >
+                    구매하기 →
+                  </a>
+                </div>
               </div>
             ))
         )}
