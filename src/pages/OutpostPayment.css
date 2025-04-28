@@ -1,0 +1,49 @@
+/* OutpostPayment.css */
+.outpost-payment-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff, #f9fff9);
+  font-family: 'Pretendard', sans-serif;
+  padding: 20px;
+}
+
+.outpost-payment-box {
+  width: 100%;
+  max-width: 400px;
+  background: linear-gradient(135deg, #eaffea, #f9fff9);
+  border: 1px solid #b2d8b2;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform 0.3s ease;
+}
+
+.outpost-payment-box:hover {
+  transform: translateY(-4px);
+}
+
+.outpost-payment-button {
+  padding: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #3C8050;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.outpost-payment-button:hover {
+  background-color: #326b45;
+}

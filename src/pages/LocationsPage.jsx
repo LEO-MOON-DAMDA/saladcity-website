@@ -23,6 +23,13 @@ export default function LocationsPage() {
     }
   };
 
+  const scrollToMap = () => {
+    const mapSection = document.querySelector(".map-section");
+    if (mapSection) {
+      mapSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <div className="locations-page">
       <HeroSection />
@@ -71,7 +78,6 @@ export default function LocationsPage() {
                 <h3>{store.name}</h3>
                 <p className="store-address">{store.address}</p>
                 <p className="store-phone">{store.phone}</p>
-                {/* ✅ description이 있고, \"정보 없음\"이 아닐 때만 출력 */}
                 {store.description && store.description !== "정보 없음" && (
                   <p className="store-description">{store.description}</p>
                 )}
@@ -81,11 +87,24 @@ export default function LocationsPage() {
         </div>
       </section>
 
+      {/* ✅ 하단 구독 CTA 수정 */}
       <section className="cta-section" style={{ padding: "60px 20px", textAlign: "center" }}>
         <h3 style={{ fontSize: "20px", marginBottom: "16px", color: "#2f5130" }}>
           이 매장에서 만나볼 수 있어요
         </h3>
-        <button className="subscribe-button" style={{ padding: "12px 24px", fontSize: "16px", backgroundColor: "#4CAF50", color: "white", border: "none", borderRadius: "8px" }}>
+        <button
+          className="subscribe-button"
+          style={{
+            padding: "12px 24px",
+            fontSize: "16px",
+            backgroundColor: "#4CAF50",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+          }}
+          onClick={() => window.location.href = "/outpost/start"}
+        >
           정기식 구독 바로가기
         </button>
       </section>

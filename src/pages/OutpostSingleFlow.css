@@ -1,0 +1,45 @@
+/* src/pages/OutpostSingleFlow.css */
+.outpost-single-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #ffffff, #f8fff8);
+  text-align: center;
+}
+
+.outpost-single-form {
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.outpost-single-form input,
+.outpost-single-form select,
+.outpost-single-form textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.outpost-single-form button {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  padding: 14px;
+  background-color: #3C8050;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.outpost-single-form button:hover {
+  background-color: #2d6140;
+}

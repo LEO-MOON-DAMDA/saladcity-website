@@ -1,0 +1,77 @@
+/* src/pages/AdminDashboardPage.css */
+
+.admin-dashboard-page {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+}
+
+.admin-dashboard-page h1 {
+  font-size: 36px;
+  color: #3c8050;
+  margin-bottom: 50px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 50px;
+}
+
+.stat-card {
+  background: #f9f9f9;
+  border-radius: 16px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-card h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.stat-card p {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+}
+
+.stat-card.total {
+  background: #e8f5e9;
+}
+
+.stat-card.approved {
+  background: #e3f2fd;
+}
+
+.stat-card.rejected {
+  background: #ffebee;
+}
+
+.stat-card.pending {
+  background: #fff8e1;
+}
+
+.home-button {
+  background-color: #3c8050;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #2e6440;
+}

@@ -1,8 +1,8 @@
+// App.jsx 수정 버전
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import LoadingSpinner from "./components/LoadingSpinner";
 import ErrorBoundary from "./components/ErrorBoundary";
-
 import Layout from "./components/Layout";
 import SaladcityHome from "./SaladcityHome";
 import MenuPage from "./components/MenuPage";
@@ -20,8 +20,22 @@ const DashboardReviews = lazy(() => import("./pages/DashboardReviews"));
 const AddGoods = lazy(() => import("./pages/AddGoods"));
 const MarketGoodsAdmin = lazy(() => import("./pages/MarketGoodsAdmin"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
-const OutpostPage = lazy(() => import("./pages/OutpostPage")); // ✅ 추가 완료
-const OutpostSuccessPage = lazy(() => import("./pages/OutpostSuccessPage")); // ✅ 새로 추가 (성공화면)
+
+const OutpostStart = lazy(() => import("./pages/OutpostStart"));        // ✅
+const OutpostSingleFlow = lazy(() => import("./pages/OutpostSingleFlow"));
+const OutpostGroupFlow = lazy(() => import("./pages/OutpostGroupFlow"));
+const OutpostJoin = lazy(() => import("./pages/OutpostJoin"));          // ✅
+const OutpostSummary = lazy(() => import("./pages/OutpostSummary"));
+const OutpostPayment = lazy(() => import("./pages/OutpostPayment"));
+const OutpostComplete = lazy(() => import("./pages/OutpostComplete"));
+const OutpostSuccessPage = lazy(() => import("./pages/OutpostSuccessPage"));
+const OutpostQuestionnaire = lazy(() => import("./pages/OutpostQuestionnaire"));
+
+const AdminHome = lazy(() => import("./pages/AdminHome"));
+const AdminOutpostApplications = lazy(() => import("./pages/AdminOutpostApplications"));
+const AdminDashboardPage = lazy(() => import("./pages/AdminDashboardPage"));
+const AdminStoresPage = lazy(() => import("./pages/AdminStoresPage"));
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 
 export default function App() {
   return (
@@ -39,8 +53,23 @@ export default function App() {
               <Route path="/market" element={<MarketPage />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/cart" element={<Cart />} />
-              <Route path="/outpost" element={<OutpostPage />} />
-              <Route path="/outpost/success" element={<OutpostSuccessPage />} /> {/* ✅ 성공화면 추가 */}
+
+              <Route path="/outpost" element={<OutpostStart />} /> {/* ✅ 수정 완료 */}
+              <Route path="/outpost/start" element={<OutpostStart />} /> {/* (start도 예외로 허용 가능) */}
+              <Route path="/outpost/single" element={<OutpostSingleFlow />} /> {/* ✅ 수정 완료 */}
+              <Route path="/outpost/group-flow" element={<OutpostGroupFlow />} />
+              <Route path="/outpost/join" element={<OutpostJoin />} /> {/* ✅ 추가 완료 */}
+              <Route path="/outpost/summary" element={<OutpostSummary />} />
+              <Route path="/outpost/payment" element={<OutpostPayment />} />
+              <Route path="/outpost/complete" element={<OutpostComplete />} />
+              <Route path="/outpost/success" element={<OutpostSuccessPage />} />
+              <Route path="/outpost/questionnaire" element={<OutpostQuestionnaire />} />
+
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin" element={<AdminHome />} />
+              <Route path="/admin/outpost-applications" element={<AdminOutpostApplications />} />
+              <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+              <Route path="/admin/stores" element={<AdminStoresPage />} />
             </Route>
 
             <Route path="/success" element={<SuccessPage />} />
@@ -48,8 +77,6 @@ export default function App() {
             <Route path="/dashboard/reviews" element={<DashboardReviews />} />
             <Route path="/admin/add-goods" element={<AddGoods />} />
             <Route path="/admin/market-goods" element={<MarketGoodsAdmin />} />
-
-            {/* ✅ 잘못된 경로 fallback 처리 */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>

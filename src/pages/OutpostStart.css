@@ -1,0 +1,45 @@
+.outpost-start-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff, #f9fff9);
+  font-family: 'Pretendard', sans-serif;
+  padding: 20px;
+}
+
+.outpost-start-button-apply,
+.outpost-start-button-join {
+  padding: 18px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.outpost-start-button-apply {
+  background: linear-gradient(135deg, #4CAF50, #2e7d32); /* 더 생기있는 그라데이션 */
+  color: white;
+}
+
+.outpost-start-button-apply:hover {
+  background: linear-gradient(135deg, #43a047, #1b5e20);
+  transform: scale(1.05); /* 🚀 hover 시 버튼 전체 살짝 커짐 */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* 🚀 hover 시 그림자 강화 */
+}
+
+.outpost-start-button-join {
+  background-color: #A3C09D;
+  color: white;
+}
+
+.outpost-start-button-join:hover {
+  background-color: #7aa07d;
+  transform: translateY(-3px);
+}

@@ -34,9 +34,12 @@ export default function SubscriptionSection() {
           </p>
         </div>
 
-        {/* 버튼 - ✅ 우측정렬 */}
+        {/* 버튼 - ✅ 링크로 이동 */}
         <div className="subscription-button-area" style={{ marginTop: "24px", textAlign: "right", width: "100%" }}>
-          <BrandButton className="subscription-button" onClick={() => alert("정기식 시작! 🚀")}>
+          <BrandButton
+            className="subscription-button"
+            onClick={() => window.location.href = "/outpost/start"}
+          >
             정기식 시작하기 →
           </BrandButton>
         </div>

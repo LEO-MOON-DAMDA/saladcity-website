@@ -1,0 +1,57 @@
+.outpost-join-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff, #f9fff9);
+  font-family: 'Pretendard', sans-serif;
+  padding: 20px;
+}
+
+.outpost-join-container h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #3C8050;
+}
+
+.outpost-join-container p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.outpost-join-form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.outpost-join-form input,
+.outpost-join-form select,
+.outpost-join-form textarea {
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.outpost-join-form button {
+  margin-top: 20px;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #3C8050;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.outpost-join-form button:hover {
+  background-color: #2d6140;
+}

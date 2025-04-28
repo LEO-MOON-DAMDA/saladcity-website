@@ -1,0 +1,133 @@
+.admin-outpost-page {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.admin-outpost-applications {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.search-box {
+  position: relative;
+  display: inline-block;
+}
+
+.search-box input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  width: 240px;
+}
+
+.clear-button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.download-button {
+  padding: 8px 16px;
+  background-color: #3c8050;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+  background-color: #2e6440;
+}
+
+.application-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.application-table th,
+.application-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  text-align: center;
+}
+
+.application-table th {
+  background-color: #f4f4f4;
+}
+
+.application-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.no-results {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+}
+
+.approve-button,
+.reject-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.approve-button {
+  background-color: #27ae60;
+}
+
+.reject-button {
+  background-color: #f39c12;
+  margin-left: 8px;
+}
+
+.approve-button:hover {
+  background-color: #219150;
+}
+
+.reject-button:hover {
+  background-color: #d78b09;
+}
+
+.back-button {
+  margin-top: 30px;
+  background: none;
+  border: none;
+  color: #3c8050;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+}

@@ -1,0 +1,121 @@
+/* src/pages/AdminStoresPage.css */
+
+.admin-stores-page {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+}
+
+.admin-stores-page h1 {
+  font-size: 36px;
+  color: #3c8050;
+  margin-bottom: 40px;
+}
+
+.store-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.store-form input {
+  padding: 12px;
+  width: 300px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.store-form button {
+  padding: 12px 24px;
+  background-color: #3c8050;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.store-form button:hover {
+  background-color: #2e6440;
+}
+
+.store-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.store-card {
+  background: #f9f9f9;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.store-card:hover {
+  transform: translateY(-5px);
+}
+
+.store-card h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.store-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+.button-group {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+.back-button {
+  margin-top: 40px;
+  background-color: #3c8050;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #2e6440;
+}
+
+.no-results {
+  font-size: 18px;
+  color: #888;
+  margin-top: 40px;
+}

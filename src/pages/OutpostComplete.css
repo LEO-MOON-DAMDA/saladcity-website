@@ -1,0 +1,38 @@
+/* src/pages/OutpostComplete.css */
+.outpost-complete-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #ffffff, #f5fff5);
+  text-align: center;
+}
+
+.outpost-complete-container h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.outpost-complete-container p {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.outpost-complete-container button {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 30px;
+  background-color: #3C8050;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.outpost-complete-container button:hover {
+  background-color: #2d6140;
+}

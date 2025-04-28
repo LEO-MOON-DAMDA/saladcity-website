@@ -124,7 +124,7 @@ export default function Reviews() {
         <p className="cta-subtext">
           Everyday SALCY, your new lifestyle — not just a meal.
         </p>
-        <a href="/subscription" className="cta-button">
+        <a href="/outpost/start" className="cta-button">
           정기배송 시작하기 →
         </a>
       </div>

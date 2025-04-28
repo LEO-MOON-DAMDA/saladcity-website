@@ -66,23 +66,29 @@ export default function HeroSection() {
         >
           From seed to city, 샐러드시티는 오늘도 자랍니다.
         </p>
-        <a
-          href="#map"
-          style={{
-            display: "inline-block",
-            marginTop: "28px",
-            padding: "12px 24px",
-            fontSize: "16px",
-            backgroundColor: "#4CAF50",
-            color: "#fff",
-            borderRadius: "8px",
-            textDecoration: "none",
-            fontWeight: "500",
-            boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-          }}
-        >
-          지도에서 매장 보기 →
-        </a>
+<button
+  onClick={() => {
+    const mapSection = document.querySelector(".map-section");
+    if (mapSection) {
+      mapSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }}
+  style={{
+    display: "inline-block",
+    marginTop: "28px",
+    padding: "12px 24px",
+    fontSize: "16px",
+    backgroundColor: "#4CAF50",
+    color: "#fff",
+    borderRadius: "8px",
+    fontWeight: "500",
+    textDecoration: "none",
+    boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+    cursor: "pointer"
+  }}
+>
+  지도에서 매장 보기 →
+</button>
         <div
           style={{
             marginTop: "20px",

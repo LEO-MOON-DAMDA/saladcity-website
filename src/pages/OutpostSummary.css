@@ -1,0 +1,64 @@
+/* OutpostSummary.css */
+.outpost-summary-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff, #f9fff9);
+  font-family: 'Pretendard', sans-serif;
+  padding: 20px;
+}
+
+.outpost-summary-box {
+  width: 100%;
+  max-width: 400px;
+  background: #f7fff7;
+  border: 1px solid #cce5cc;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 50px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  line-height: 1.8;
+  transition: box-shadow 0.3s ease;
+}
+
+.outpost-summary-box:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.outpost-summary-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.outpost-summary-buttons button {
+  padding: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.outpost-summary-buttons button:first-child {
+  background-color: #3C8050;
+  color: white;
+}
+
+.outpost-summary-buttons button:last-child {
+  background-color: #A3C09D;
+  color: white;
+}
+
+.outpost-summary-buttons button:hover {
+  transform: translateY(-3px);
+}

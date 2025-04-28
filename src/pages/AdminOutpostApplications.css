@@ -1,0 +1,95 @@
+/* AdminOutpostApplications.css */
+
+.admin-outpost-applications {
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #ffffff, #f8fff8);
+  min-height: 100vh;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.admin-outpost-applications h1 {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  color: #3c8050;
+  margin-bottom: 40px;
+}
+
+.filter-bar {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.filter-select,
+.filter-input,
+.filter-date {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.download-button,
+.approve-button,
+.reject-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #3c8050;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.download-button:hover,
+.approve-button:hover,
+.reject-button:hover {
+  background-color: #2e6440;
+}
+
+.reject-button {
+  background-color: #f39c12;
+}
+
+.reject-button:hover {
+  background-color: #d78b09;
+}
+
+.application-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.application-table th,
+.application-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.application-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.application-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.no-results {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 20px;
+  color: #999;
+}
