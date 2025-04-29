@@ -1,5 +1,3 @@
-// ✅ 파일 경로: /src/components/MarketBrandVideoSection.jsx
-
 import React from "react";
 import "../styles/MarketBrandVideoSection.css";
 
@@ -14,7 +12,7 @@ export default function MarketBrandVideoSection() {
         </p>
         <div className="brand-video-wrapper">
           <video
-            src="/videos/saladcity-story.mp4"
+            src="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/video/saladcity-story.mp4"
             controls
             poster="https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/market/video_poster.webp"
           />
