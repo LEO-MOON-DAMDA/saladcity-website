@@ -1,5 +1,5 @@
-// src/pages/OutpostComplete.jsx
 import { useLocation, useNavigate } from "react-router-dom";
+import "../components/BrandButton.css";
 
 export default function OutpostComplete() {
   const location = useLocation();
@@ -38,22 +38,20 @@ export default function OutpostComplete() {
         </p>
       )}
 
-      <button
-        onClick={handleGoHome}
-        style={{
-          padding: "16px 36px",
-          fontSize: "18px",
-          fontWeight: "bold",
-          backgroundColor: "#3C8050",
-          color: "#fff",
-          border: "none",
-          borderRadius: "12px",
-          cursor: "pointer",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-        }}
-      >
-        🏡 홈으로 돌아가기
-      </button>
+      <div style={{ textAlign: "center" }}>
+        <button
+          onClick={handleGoHome}
+          className="brand-button"
+          style={{
+            width: "100%",
+            maxWidth: "320px",
+            fontSize: "17px",
+            whiteSpace: "nowrap",
+          }}
+        >
+          🏡 홈으로 돌아가기
+        </button>
+      </div>
     </div>
   );
 }

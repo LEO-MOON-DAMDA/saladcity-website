@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { saveOutpostApplication } from "../apis/saveApplication";
+import "../components/cta-subscribe-button.css";
 
 export default function OutpostGroupFlow() {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ export default function OutpostGroupFlow() {
       setSubmissionSuccess(true);
       setTimeout(() => navigate("/outpost/summary", { state: form }), 2000);
     } catch (error) {
-      alert("😥 정보가 빠지면, 토핑이나 숟가락도 빠질 수 있어요 ㅠ");
+      alert("😥 저장 실패했습니다. 잠시 후 다시 시도해주세요.");
     }
   };
 
@@ -80,11 +81,17 @@ export default function OutpostGroupFlow() {
           <option value="기타요청">기타 요청</option>
         </select>
         <textarea name="request" value={form.request} onChange={handleChange} placeholder="📝 요청사항 (선택사항)" style={{ ...inputStyle, minHeight: "100px" }} />
-        <button onClick={handleSubmit} style={buttonStyle}>
+
+        {/* ✅ 변경된 신청 버튼 */}
+        <button
+          onClick={handleSubmit}
+          className="cta-subscribe-button"
+          style={{ marginTop: "30px", fontSize: "17px", whiteSpace: "nowrap" }}
+        >
           🎁 샐러드시티 특별 혜택 받기
         </button>
 
-        {/* ✅ 성공 메시지 추가 */}
+        {/* ✅ 성공 메시지 */}
         {submissionSuccess && (
           <div
             style={{
@@ -113,17 +120,4 @@ const inputStyle = {
   fontSize: "16px",
   borderRadius: "8px",
   border: "1px solid #ccc",
-};
-
-const buttonStyle = {
-  marginTop: "30px",
-  padding: "18px",
-  fontSize: "20px",
-  fontWeight: "bold",
-  backgroundColor: "#3C8050",
-  color: "#fff",
-  border: "none",
-  borderRadius: "24px",
-  cursor: "pointer",
-  boxShadow: "0 6px 14px rgba(0,0,0,0.08)",
 };

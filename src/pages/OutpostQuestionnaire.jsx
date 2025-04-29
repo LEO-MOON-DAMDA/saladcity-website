@@ -1,16 +1,17 @@
-// src/pages/OutpostQuestionnaire.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./OutpostQuestionnaire.css"; // 기존 CSS 활용
+import "../components/cta-subscribe-button.css";
+import "../components/BrandButton.css";
+import "./OutpostQuestionnaire.css";
 
 export default function OutpostQuestionnaire() {
   const navigate = useNavigate();
 
   const handleSelect = (peopleType) => {
-    if (peopleType === "single") {
-      navigate("/outpost/single-flow");
-    } else if (peopleType === "group") {
+    if (peopleType === "group") {
       navigate("/outpost/group-flow");
+    } else if (peopleType === "single") {
+      navigate("/outpost/single");
     }
   };
 
@@ -33,40 +34,26 @@ export default function OutpostQuestionnaire() {
         혼자만의 건강한 시작? <br /> 함께하는 특별한 경험?
       </p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%", maxWidth: "400px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "100%", maxWidth: "400px" }}>
+        
+        {/* 🏢 단체 버튼 (형광연두) */}
+        <button
+          onClick={() => handleSelect("group")}
+          className="cta-subscribe-button"
+          style={{ width: "100%", fontSize: "17px", whiteSpace: "nowrap" }}
+        >
+          🏢 함께하는 OUTPOST 만들기 (15인 이상)
+        </button>
+
+        {/* 🌿 개인 버튼 (표준 초록) */}
         <button
           onClick={() => handleSelect("single")}
-          style={{
-            padding: "16px",
-            fontSize: "18px",
-            fontWeight: "bold",
-            backgroundColor: "#3C8050",
-            color: "#fff",
-            border: "none",
-            borderRadius: "12px",
-            cursor: "pointer",
-            boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-          }}
+          className="brand-button"
+          style={{ width: "100%", fontSize: "17px", whiteSpace: "nowrap" }}
         >
           🌿 나만의 OUTPOST 시작하기 (1인)
         </button>
 
-        <button
-          onClick={() => handleSelect("group")}
-          style={{
-            padding: "16px",
-            fontSize: "18px",
-            fontWeight: "bold",
-            backgroundColor: "#A3C09D",
-            color: "#fff",
-            border: "none",
-            borderRadius: "12px",
-            cursor: "pointer",
-            boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-          }}
-        >
-          🏢 함께하는 OUTPOST 만들기 (15인 이상 단체)
-        </button>
       </div>
     </div>
   );

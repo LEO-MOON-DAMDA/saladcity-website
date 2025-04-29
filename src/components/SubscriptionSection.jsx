@@ -1,7 +1,9 @@
+// SubscriptionSection.jsx
 import React from "react";
 import SectionTitle from "./SectionTitle";
-import BrandButton from "./BrandButton";
+import CtaSubscribeButton from "./CtaSubscribeButton";
 import "./SubscriptionSection.css";
+import "./cta-subscribe-button.css";
 
 export default function SubscriptionSection() {
   return (
@@ -34,14 +36,11 @@ export default function SubscriptionSection() {
           </p>
         </div>
 
-        {/* 버튼 - ✅ 링크로 이동 */}
+        {/* CTA 버튼 */}
         <div className="subscription-button-area" style={{ marginTop: "24px", textAlign: "right", width: "100%" }}>
-          <BrandButton
-            className="subscription-button"
-            onClick={() => window.location.href = "/outpost/start"}
-          >
+          <CtaSubscribeButton onClick={() => window.location.href = "/outpost/start"}>
             정기식 시작하기 →
-          </BrandButton>
+          </CtaSubscribeButton>
         </div>
 
       </div>

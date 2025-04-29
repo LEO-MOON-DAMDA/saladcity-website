@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReviewModal from "../components/ReviewModal";
 import ReviewScrollingBanner from "../components/ReviewScrollingBanner";
 import "./Reviews.css";
+import "../components/cta-subscribe-button.css";
 
 const fallbackImages = [
   "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample01.webp",
@@ -124,9 +125,10 @@ export default function Reviews() {
         <p className="cta-subtext">
           Everyday SALCY, your new lifestyle — not just a meal.
         </p>
-        <a href="/outpost/start" className="cta-button">
-          정기배송 시작하기 →
-        </a>
+        <a href="/outpost/start" className="cta-subscribe-button">
+	  정기배송 시작하기 →
+         </a>
+
       </div>
 
       <div className="review-grid with-image">

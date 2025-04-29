@@ -1,7 +1,8 @@
-// src/pages/OutpostPayment.jsx
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabaseOutpost } from "../utils/supabaseOutpostClient";
+import "../components/cta-subscribe-button.css";
+import "../components/BrandButton.css";
 import "./OutpostPayment.css";
 
 export default function OutpostPayment() {
@@ -71,54 +72,50 @@ export default function OutpostPayment() {
         </p>
       </div>
 
-      <button onClick={handleSelectBenefit} style={{
-        backgroundColor: "#FFA500",
-        color: "#fff",
-        padding: "14px 28px",
-        borderRadius: "12px",
-        fontSize: "18px",
-        fontWeight: "bold",
-        cursor: "pointer",
-        border: "none",
-        marginBottom: "20px",
-        boxShadow: "0 4px 10px rgba(0,0,0,0.1)"
-      }}>
-        🎁 혜택 선택하기
-      </button>
+{/* 🎁 혜택 선택하기 */}
+<div style={{ textAlign: "center", marginTop: "30px", marginBottom: "10px" }}>
+  <button
+    onClick={handleSelectBenefit}
+    className="cta-subscribe-button"
+    style={{
+      width: "360px", /* ✅ 폭 고정 */
+      fontSize: "17px",
+      whiteSpace: "nowrap",
+    }}
+  >
+    🎁 혜택 선택하기
+  </button>
+</div>
 
       {showOptions && (
         <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "20px" }}>
-          <button onClick={handleGetCoupon} style={{
-            backgroundColor: "#3C8050",
-            color: "#fff",
-            padding: "14px",
-            borderRadius: "12px",
-            fontSize: "16px",
-            fontWeight: "bold",
-            border: "none"
-          }}>
-            💸 할인쿠폰 받기
-          </button>
-          <button onClick={handleSelectGift} style={{
-            backgroundColor: "#A3C09D",
-            color: "#fff",
-            padding: "14px",
-            borderRadius: "12px",
-            fontSize: "16px",
-            fontWeight: "bold",
-            border: "none"
-          }}>
-            🎁 랜덤박스 받기
-          </button>
+<button onClick={handleGetCoupon} className="outpost-option-button">
+  💸 할인쿠폰 받기
+</button>
+<button onClick={handleSelectGift} className="outpost-option-button">
+  🎁 랜덤박스 받기
+</button>
         </div>
       )}
 
-      <button onClick={handleCompletePayment} className="outpost-payment-button">
-        💳 결제 완료하고 시작하기
-      </button>
+{/* 💳 결제 완료하고 시작하기 */}
+<div style={{ textAlign: "center" }}>
+  <button
+    onClick={handleCompletePayment}
+    className="brand-button"
+    style={{
+      width: "360px", /* ✅ 폭 고정 */
+      fontSize: "17px",
+      whiteSpace: "nowrap",
+      marginTop: "5px",
+    }}
+  >
+    💳 결제 완료하고 시작하기
+  </button>
+</div>
 
       {giftSelected && (
-        <p style={{ marginTop: "20px", fontSize: "16px", color: "#FF5722", fontWeight: "bold" }}>
+        <p style={{ marginTop: "20px", fontSize: "16px", color: "#FF5722", fontWeight: "bold", textAlign: "center" }}>
           🎁 결제 완료 후 랜덤박스가 지급됩니다!
         </p>
       )}

@@ -1,6 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./OutpostStart.css";
+import "../components/cta-subscribe-button.css"; // ✅ 형광연두 버튼 스타일 불러오기
+import "../components/BrandButton.css";          // ✅ 표준 버튼 스타일도 불러오기
+
 
 export default function OutpostStart() {
   const navigate = useNavigate();
@@ -26,18 +29,29 @@ export default function OutpostStart() {
 
       <div style={{ display: "flex", flexDirection: "column", gap: "20px", width: "100%", maxWidth: "320px" }}>
         <button
-          onClick={handleApply}
-          className="outpost-start-button-apply"
-        >
-          🚀 샐러드시티 OUTPOST 신청하기
-        </button>
+  onClick={handleApply}
+  className="cta-subscribe-button"
+  style={{
+    width: "100%",
+    fontSize: "17px",     // ✅ 폰트 사이즈 16px로 줄임
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  }}
+>
+  🚀 샐러드시티 OUTPOST 신청하기
+</button>
+
+
 
         <button
-          onClick={handleJoin}
-          className="outpost-start-button-join"
-        >
-          🌿 샐러드시티 크루 가입하기
-        </button>
+  onClick={handleJoin}
+  className="brand-button"
+  style={{ width: "100%" }}
+>
+  🌿 샐러드시티 크루 가입하기
+</button>
+
       </div>
     </div>
   );

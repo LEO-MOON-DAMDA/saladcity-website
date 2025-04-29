@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./OutpostJoin.css";
-import { saveOutpostCrew } from "../apis/saveOutpostCrew";  // ✅ Supabase 저장 함수 연결
+import "../components/BrandButton.css";
+import { saveOutpostCrew } from "../apis/saveOutpostCrew";
 
 export default function OutpostJoin() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function OutpostJoin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await saveOutpostCrew(form);  // ✅ Supabase로 가입 정보 저장
+      await saveOutpostCrew(form);
       alert("🎉 가입 신청이 완료되었습니다! 샐러드시티 크루가 곧 연락드릴게요.");
       navigate("/");
     } catch (error) {
@@ -49,9 +50,15 @@ export default function OutpostJoin() {
           <option value="기타">기타</option>
         </select>
         <textarea name="note" value={form.note} onChange={handleChange} placeholder="자유메모 (선택사항)" />
-
-        <button type="submit">🌿 가입 신청하기</button>
+        <button
+  type="submit"
+  className="brand-button"
+>
+  🌿 가입 신청하기
+</button>
       </form>
+
+
     </div>
   );
 }

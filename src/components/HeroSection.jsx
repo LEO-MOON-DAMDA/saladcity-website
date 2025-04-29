@@ -1,7 +1,14 @@
-
 import React from "react";
+import BrandButton from "./BrandButton"; // ✅ BrandButton 가져오기
 
 export default function HeroSection() {
+  const scrollToMap = () => {
+    const mapSection = document.querySelector(".map-section");
+    if (mapSection) {
+      mapSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <section
       style={{
@@ -66,29 +73,14 @@ export default function HeroSection() {
         >
           From seed to city, 샐러드시티는 오늘도 자랍니다.
         </p>
-<button
-  onClick={() => {
-    const mapSection = document.querySelector(".map-section");
-    if (mapSection) {
-      mapSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }}
-  style={{
-    display: "inline-block",
-    marginTop: "28px",
-    padding: "12px 24px",
-    fontSize: "16px",
-    backgroundColor: "#4CAF50",
-    color: "#fff",
-    borderRadius: "8px",
-    fontWeight: "500",
-    textDecoration: "none",
-    boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-    cursor: "pointer"
-  }}
->
-  지도에서 매장 보기 →
-</button>
+
+        {/* ✅ BrandButton 적용 */}
+        <div style={{ marginTop: "28px" }}>
+          <BrandButton onClick={scrollToMap}>
+            지도에서 매장 보기 →
+          </BrandButton>
+        </div>
+
         <div
           style={{
             marginTop: "20px",

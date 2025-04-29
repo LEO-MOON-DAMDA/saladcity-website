@@ -24,23 +24,9 @@ export default function MarketPage() {
         <MarketProductSlider />
 
         <div style={{ textAlign: "center", marginTop: "36px" }}>
-          <button
-            onClick={() => navigate("/shop")}
-            style={{
-              backgroundColor: "#2f855a",
-              color: "white",
-              padding: "12px 28px",
-              fontSize: "16px",
-              fontWeight: 600,
-              borderRadius: "8px",
-              border: "none",
-              cursor: "pointer",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-              transition: "all 0.3s ease",
-            }}
-          >
-            전체 상품 보기 →
-          </button>
+<button className="brand-button" onClick={() => navigate("/shop")}>
+  전체 상품 보기 →
+</button>
         </div>
       </section>
 

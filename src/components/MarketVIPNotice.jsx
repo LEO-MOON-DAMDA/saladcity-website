@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./MarketVIPNotice.css";
 
 export default function MarketVIPNotice() {
@@ -12,9 +13,9 @@ export default function MarketVIPNotice() {
           <br />
           리미티드 에디션 굿즈입니다.
         </p>
-        <a href="/subscription" className="vip-button">
-          정기구독 가입하고 굿즈 받기 →
-        </a>
+        <Link to="/outpost/start" className="vip-button">
+          아웃포스트 신청하러 가기 →
+        </Link>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { saveOutpostApplication } from "../apis/saveApplication";
 import "./OutpostSingleFlow.css";
+import "../components/BrandButton.css";
 
 export default function OutpostSingleFlow() {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ export default function OutpostSingleFlow() {
         request: form.request,
         status: "pending",
       });
-      navigate("/outpost/payment", { state: form }); // ✅ 수정된 이동 경로
+      navigate("/outpost/payment", { state: form });
     } catch (error) {
       alert("😥 정보가 빠지면, 토핑이나 숟가락도 빠질 수 있어요 ㅠ");
     }
@@ -76,7 +77,16 @@ export default function OutpostSingleFlow() {
           <option value="Flexitarian">Flexitarian</option>
         </select>
         <textarea name="request" value={form.request} onChange={handleChange} placeholder="📝 요청사항 (선택사항)" style={{ ...inputStyle, minHeight: "100px" }} />
-        <button onClick={handleNext} style={buttonStyle}>
+        
+        <button
+          onClick={handleNext}
+          className="brand-button"
+          style={{
+            marginTop: "30px",
+            fontSize: "17px",
+            whiteSpace: "nowrap",
+          }}
+        >
           🚀 다음 단계로
         </button>
       </div>
@@ -89,17 +99,4 @@ const inputStyle = {
   fontSize: "16px",
   borderRadius: "8px",
   border: "1px solid #ccc",
-};
-
-const buttonStyle = {
-  marginTop: "30px",
-  padding: "16px",
-  fontSize: "18px",
-  fontWeight: "bold",
-  backgroundColor: "#3C8050",
-  color: "#fff",
-  border: "none",
-  borderRadius: "12px",
-  cursor: "pointer",
-  boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
 };

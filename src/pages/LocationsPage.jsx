@@ -3,6 +3,8 @@ import HeroSection from "../components/HeroSection";
 import KakaoMap from "../components/KakaoMap";
 import stores from "../data/stores.json";
 import "../styles/LocationsPage.css";
+import "../components/cta-subscribe-button.css"; // ✅ 이렇게
+
 
 export default function LocationsPage() {
   const cardRefs = useRef([]);
@@ -92,21 +94,13 @@ export default function LocationsPage() {
         <h3 style={{ fontSize: "20px", marginBottom: "16px", color: "#2f5130" }}>
           이 매장에서 만나볼 수 있어요
         </h3>
-        <button
-          className="subscribe-button"
-          style={{
-            padding: "12px 24px",
-            fontSize: "16px",
-            backgroundColor: "#4CAF50",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-          }}
-          onClick={() => window.location.href = "/outpost/start"}
-        >
-          정기식 구독 바로가기
-        </button>
+        <a
+  href="/outpost/start"
+  className="cta-subscribe-button"
+  style={{ display: "inline-block", marginTop: "12px" }}
+>
+  정기식 구독 바로가기 →
+</a>
       </section>
     </div>
   );

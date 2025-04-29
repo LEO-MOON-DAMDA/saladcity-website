@@ -50,7 +50,7 @@
   font-size: 16px;
   padding: 12px 24px;
   border: 2px solid #2f5130;
-  border-radius: 8px;
+  border-radius: 32px; /* ✅ 브랜드 표준 둥글기 반영 */
   color: #2f5130;
   font-weight: 600;
   text-decoration: none;

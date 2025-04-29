@@ -47,3 +47,24 @@
 .outpost-payment-button:hover {
   background-color: #326b45;
 }
+
+.outpost-option-button {
+  background-color: #ffffff; /* ✅ 하얀 배경 */
+  color: #2e7d32; /* ✅ 초록 글자색 */
+  padding: 16px 28px;
+  border-radius: 32px;
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px dashed #a8f028; /* ✅ 형광 점선 테두리 */
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.outpost-option-button:hover {
+  background-color: #f8fff0; /* ✅ 살짝 형광빛 백색으로 호버 */
+  color: #8ac51d; /* ✅ 조금 짙은 형광 */
+  border-color: #8ac51d;
+}
