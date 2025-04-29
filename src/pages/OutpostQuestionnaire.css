@@ -1,3 +1,4 @@
+
 /* src/pages/OutpostQuestionnaire.css */
 .outpost-questionnaire-container {
   height: auto;
@@ -36,4 +37,15 @@
 
 .outpost-questionnaire-buttons button:hover {
   background-color: #2d6140;
+}
+
+@media (max-width: 768px) {
+  .outpost-background-wrapper {
+    flex-direction: column;
+  }
+
+  .outpost-background-wrapper > div {
+    width: 100%;
+    height: 50%;
+  }
 }

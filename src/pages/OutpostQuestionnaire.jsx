@@ -16,44 +16,88 @@ export default function OutpostQuestionnaire() {
   };
 
   return (
-    <div className="outpost-questionnaire-container" style={{
-      minHeight: "100vh",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      background: "linear-gradient(to bottom, #ffffff, #f9fff9)",
-      fontFamily: "Pretendard, sans-serif",
-      padding: "20px",
-    }}>
-      <h1 style={{ fontSize: "32px", fontWeight: "bold", marginBottom: "20px", color: "#3C8050", textAlign: "center" }}>
-        당신의 샐러드시티 OUTPOST를<br />어떻게 시작하고 싶으신가요?
-      </h1>
+ <div
+  style={{
+    display: "flex",
+    width: "100vw",
+    overflow: "hidden",
+    top: 0,
+    left: 0,
+    zIndex: -2,
+  }}
+>
+      {/* ✅ 두 이미지 배경 - 좌우 분할 */}
+      <div
+        style={{
+      flex: 1,
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "50%",
+    height: "100%",
+          backgroundImage:
+            "url('https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/outpost/outpost001.webp')",
+          backgroundSize: "cover",
+        backgroundPosition: "right",
+        }}
+      />
+      <div
+        style={{
+      flex: 1,
+          position: "absolute",
+          top: 0,
+          left: "50%",
+          width: "50%",
+      height: "100%",
+          backgroundImage:
+            "url('https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/outpost/outpost002.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "left",
 
-      <p style={{ fontSize: "18px", color: "#666", marginBottom: "40px", textAlign: "center" }}>
-        혼자만의 건강한 시작? <br /> 함께하는 특별한 경험?
-      </p>
+        }}
+      />
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "100%", maxWidth: "400px" }}>
-        
-        {/* 🏢 단체 버튼 (형광연두) */}
-        <button
-          onClick={() => handleSelect("group")}
-          className="cta-subscribe-button"
-          style={{ width: "100%", fontSize: "17px", whiteSpace: "nowrap" }}
-        >
-          🏢 함께하는 OUTPOST 만들기 (15인 이상)
-        </button>
+      {/* ✅ 선택창 콘텐츠 */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          width: "100%",
+          height: "100%",
+          minHeight: "50vh",
 
-        {/* 🌿 개인 버튼 (표준 초록) */}
-        <button
-          onClick={() => handleSelect("single")}
-          className="brand-button"
-          style={{ width: "100%", fontSize: "17px", whiteSpace: "nowrap" }}
-        >
-          🌿 나만의 OUTPOST 시작하기 (1인)
-        </button>
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "20px",
+          backgroundColor: "rgba(255,255,255,0.85)",
+        }}
+      >
+        <h1 style={{ fontSize: "32px", fontWeight: "bold", color: "#3C8050", marginBottom: "20px" }}>
+          당신의 샐러드시티 OUTPOST를<br />어떻게 시작하고 싶으신가요?
+        </h1>
 
+        <p style={{ fontSize: "18px", color: "#666", marginBottom: "40px" }}>
+          혼자만의 건강한 시작? <br /> 함께하는 특별한 경험?
+        </p>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px", maxWidth: "400px", width: "100%" }}>
+          <button
+            onClick={() => handleSelect("group")}
+            className="cta-subscribe-button"
+            style={{ width: "100%", fontSize: "17px", whiteSpace: "nowrap" }}
+          >
+            🏢 함께하는 OUTPOST 만들기 (15인 이상)
+          </button>
+          <button
+            onClick={() => handleSelect("single")}
+            className="brand-button"
+            style={{ width: "100%", fontSize: "17px", whiteSpace: "nowrap" }}
+          >
+            🌿 나만의 OUTPOST 시작하기 (1인)
+          </button>
+        </div>
       </div>
     </div>
   );

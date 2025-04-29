@@ -52,7 +52,7 @@ export default function OutpostGroupFlow() {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
         background: "linear-gradient(to bottom, #ffffff, #f9fff9)",
         fontFamily: "Pretendard, sans-serif",
