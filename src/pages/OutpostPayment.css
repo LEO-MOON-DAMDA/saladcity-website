@@ -1,6 +1,6 @@
 /* OutpostPayment.css */
 .outpost-payment-container {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

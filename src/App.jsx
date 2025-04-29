@@ -1,4 +1,3 @@
-// App.jsx 수정 버전
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import LoadingSpinner from "./components/LoadingSpinner";
@@ -6,6 +5,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import Layout from "./components/Layout";
 import SaladcityHome from "./SaladcityHome";
 import MenuPage from "./components/MenuPage";
+import ScrollToTop from "./components/ScrollToTop"; // ✅ 추가
 
 const Reviews = lazy(() => import("./pages/Reviews"));
 const MissionPage = lazy(() => import("./pages/MissionPage"));
@@ -21,10 +21,10 @@ const AddGoods = lazy(() => import("./pages/AddGoods"));
 const MarketGoodsAdmin = lazy(() => import("./pages/MarketGoodsAdmin"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
-const OutpostStart = lazy(() => import("./pages/OutpostStart"));        // ✅
+const OutpostStart = lazy(() => import("./pages/OutpostStart"));
 const OutpostSingleFlow = lazy(() => import("./pages/OutpostSingleFlow"));
 const OutpostGroupFlow = lazy(() => import("./pages/OutpostGroupFlow"));
-const OutpostJoin = lazy(() => import("./pages/OutpostJoin"));          // ✅
+const OutpostJoin = lazy(() => import("./pages/OutpostJoin"));
 const OutpostSummary = lazy(() => import("./pages/OutpostSummary"));
 const OutpostPayment = lazy(() => import("./pages/OutpostPayment"));
 const OutpostComplete = lazy(() => import("./pages/OutpostComplete"));
@@ -40,6 +40,7 @@ const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 export default function App() {
   return (
     <Router>
+      <ScrollToTop /> {/* ✅ Router 바로 안에 삽입 */}
       <ErrorBoundary>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
@@ -54,11 +55,11 @@ export default function App() {
               <Route path="/shop" element={<Shop />} />
               <Route path="/cart" element={<Cart />} />
 
-              <Route path="/outpost" element={<OutpostStart />} /> {/* ✅ 수정 완료 */}
-              <Route path="/outpost/start" element={<OutpostStart />} /> {/* (start도 예외로 허용 가능) */}
-              <Route path="/outpost/single" element={<OutpostSingleFlow />} /> {/* ✅ 수정 완료 */}
+              <Route path="/outpost" element={<OutpostStart />} />
+              <Route path="/outpost/start" element={<OutpostStart />} />
+              <Route path="/outpost/single" element={<OutpostSingleFlow />} />
               <Route path="/outpost/group-flow" element={<OutpostGroupFlow />} />
-              <Route path="/outpost/join" element={<OutpostJoin />} /> {/* ✅ 추가 완료 */}
+              <Route path="/outpost/join" element={<OutpostJoin />} />
               <Route path="/outpost/summary" element={<OutpostSummary />} />
               <Route path="/outpost/payment" element={<OutpostPayment />} />
               <Route path="/outpost/complete" element={<OutpostComplete />} />
