@@ -18,17 +18,42 @@ export default function Reviews() {
     fetch("/data/review_with_emotion_random.json")
       .then((res) => res.json())
       .then((data) => {
+        const bannedWords = ["사장님 댓글 등록하기", "사장님 댓글 추가하기", "머리카락", "이물질", "최악"];
+        const isValidDate = (str) => /^\d{4}-\d{2}-\d{2}$/.test(str);
+
         const clean = data.filter((r) => {
           const text = r.review?.toLowerCase();
           const score = r.rating || 0;
-          const bannedWords = ["사장님 댓글 등록하기", "사장님 댓글 추가하기", "머리카락", "이물질", "최악"];
-          const containsBannedWord = bannedWords.some((word) => text?.includes(word));
-          return text && !containsBannedWord && (r.emotion || score >= 4);
+          const dateValid = isValidDate(r.date);
+          const banned = bannedWords.some((w) => text?.includes(w));
+          return text && dateValid && !banned && (r.emotion || score >= 4);
         });
-        setReviews(clean || []);
+
+        const sorted = clean.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        const grouped = sorted.reduce((acc, cur) => {
+          const date = cur.date;
+          if (!acc[date]) acc[date] = [];
+          acc[date].push(cur);
+          return acc;
+        }, {});
+
+        const shuffled = Object.values(grouped)
+          .map(group => group.sort(() => Math.random() - 0.5))
+          .flat();
+
+        setReviews(shuffled);
       })
       .catch((err) => console.error("리뷰 JSON 로딩 오류:", err));
   }, []);
+
+const getStoreBadgeClass = (store) => {
+  if (!store) return "";
+  if (store.includes("역삼")) return "badge-yeoksam";
+  if (store.includes("강동")) return "badge-gangdong";
+  if (store.includes("구디")) return "badge-gudi";
+  return "";
+};
 
   const renderReviewCard = (r, idx) => {
     const hasImage = typeof r.image === "string" && r.image.startsWith("http");
@@ -51,7 +76,7 @@ export default function Reviews() {
             </span>
           </div>
           <div className="review-badges">
-            <span className="badge store-badge large">{r.store}</span>
+            <span className={`badge store-badge large ${getStoreBadgeClass(r.store)}`}>{r.store}</span>
             <span className="divider"> | </span>
             <span className="badge platform-badge large">{r.platform}</span>
           </div>
@@ -63,7 +88,7 @@ export default function Reviews() {
           <img
             src={hasImage ? r.image : fallback}
             alt="리뷰 이미지"
-            loading="lazy"  // ✅ lazy loading 적용
+            loading="lazy"
           />
         </div>
       </div>
@@ -126,9 +151,8 @@ export default function Reviews() {
           Everyday SALCY, your new lifestyle — not just a meal.
         </p>
         <a href="/outpost/start" className="cta-subscribe-button">
-	  정기배송 시작하기 →
-         </a>
-
+          정기배송 시작하기 →
+        </a>
       </div>
 
       <div className="review-grid with-image">

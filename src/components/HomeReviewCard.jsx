@@ -1,7 +1,7 @@
 import React from "react";
 import "./HomeReviewCard.css";
 
-export default function HomeReviewCard({ review, idx, isMoreButton, onClick }) {
+export default function HomeReviewCard({ review, idx, isMoreButton, onClick, storeClass }) {
   if (!review && !isMoreButton) return null;
 
   if (isMoreButton) {
@@ -28,7 +28,9 @@ export default function HomeReviewCard({ review, idx, isMoreButton, onClick }) {
       <div className="home-meta-top">
         <span className="home-nickname">{review.nickname || "익명"}</span>
         {review.store && (
-          <span className="home-store"> | {formatStore(review.store)}</span>
+          <span className={`badge store-badge small ${storeClass}`}>
+            {formatStore(review.store)}
+          </span>
         )}
         {review.date && (
           <span className="home-date"> | {formatDate(review.date)}</span>

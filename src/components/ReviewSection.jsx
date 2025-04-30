@@ -13,20 +13,44 @@ export default function ReviewSection() {
     fetch("/data/review_with_emotion_random.json")
       .then((res) => res.json())
       .then((data) => {
+        const isValidDate = (str) => /^\d{4}-\d{2}-\d{2}$/.test(str);
+
         const filtered = data.filter(
           (r) =>
             r.image &&
             typeof r.image === "string" &&
             r.image.startsWith("http") &&
-            !r.emotion
+            !r.emotion &&
+            isValidDate(r.date)
         );
+
         const sorted = filtered.sort(
           (a, b) => new Date(b.date) - new Date(a.date)
         );
-        setReviews(sorted.slice(0, 8));
+
+        const grouped = sorted.reduce((acc, cur) => {
+          const date = cur.date;
+          if (!acc[date]) acc[date] = [];
+          acc[date].push(cur);
+          return acc;
+        }, {});
+
+        const shuffled = Object.values(grouped)
+          .map(group => group.sort(() => Math.random() - 0.5))
+          .flat();
+
+        setReviews(shuffled.slice(0, 8));
       })
       .catch((err) => console.error("홈화면 리뷰 로딩 실패:", err));
   }, []);
+
+  const getStoreBadgeClass = (store) => {
+    if (!store) return "";
+    if (store.includes("역삼")) return "badge-yeoksam";
+    if (store.includes("강동")) return "badge-gangdong";
+    if (store.includes("구디")) return "badge-gudi";
+    return "";
+  };
 
   return (
     <section className="review-section">
@@ -45,6 +69,7 @@ export default function ReviewSection() {
               review={r}
               idx={idx}
               onClick={() => setSelectedReview(r)}
+              storeClass={getStoreBadgeClass(r.store)} // ✅ 이 줄도 필요
             />
           ))}
           <HomeReviewCard isMoreButton={true} />
