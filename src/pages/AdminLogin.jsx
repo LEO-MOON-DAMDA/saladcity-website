@@ -26,7 +26,11 @@ export default function AdminLogin() {
       alert("로그인 실패: " + error.message);
     } else {
       alert("✅ 로그인 성공");
-      navigate("/admin");
+
+      // ✅ navigate 전에 session 확인 및 살짝 대기
+      setTimeout(() => {
+        navigate("/admin");
+      }, 200);
     }
   };
 
