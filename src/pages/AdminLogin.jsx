@@ -12,15 +12,20 @@ export default function AdminLogin() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    console.log("🟢 로그인 시도:", email);
+
     const { data, error } = await supabaseOutpost.auth.signInWithPassword({
       email,
       password,
     });
 
+    console.log("🟡 로그인 응답:", { data, error });
+
     if (error) {
-      console.error("로그인 실패:", error.message);
+      console.error("❌ 로그인 실패:", error.message);
       alert("로그인 실패: " + error.message);
     } else {
+      alert("✅ 로그인 성공");
       navigate("/admin");
     }
   };
