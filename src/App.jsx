@@ -42,6 +42,14 @@ const AdminStoresPage = lazy(() => import("./pages/AdminStoresPage"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(() => setLoading(false));
+  }, []);
+
+  if (loading) return <LoadingSpinner />;
+  
   return (
     <Router>
       <ScrollToTop /> {/* ✅ Router 바로 안에 삽입 */}
