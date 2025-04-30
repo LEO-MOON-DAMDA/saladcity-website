@@ -1,57 +1,56 @@
 import React, { useEffect, useState } from "react";
 import SectionTitle from "./SectionTitle";
 import SubTitle from "./SubTitle";
-import BrandButton from "./BrandButton";
 import HomeReviewCard from "./HomeReviewCard";
-import ReviewModal from "./ReviewModal"; // ✅ 추가
+import ReviewModal from "./ReviewModal";
 import "./ReviewSection.css";
 
 export default function ReviewSection() {
   const [reviews, setReviews] = useState([]);
-  const [selectedReview, setSelectedReview] = useState(null); // ✅ 추가
+  const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
-    fetch("/data/review_preview.json")
+    fetch("/data/review_with_emotion_random.json")
       .then((res) => res.json())
-      .then((data) => setReviews(data || []))
-      .catch((err) => console.error("리뷰 preview JSON 로딩 오류:", err));
+      .then((data) => {
+        const filtered = data.filter(
+          (r) =>
+            r.image &&
+            typeof r.image === "string" &&
+            r.image.startsWith("http") &&
+            !r.emotion
+        );
+        const sorted = filtered.sort(
+          (a, b) => new Date(b.date) - new Date(a.date)
+        );
+        setReviews(sorted.slice(0, 8));
+      })
+      .catch((err) => console.error("홈화면 리뷰 로딩 실패:", err));
   }, []);
-
-  const withImage = reviews.filter((r) => r.image);
 
   return (
     <section className="review-section">
-      <SectionTitle style={{ marginTop: "80px", textAlign: "center", lineHeight: "1.0" }}>
+      <SectionTitle style={{ marginTop: "80px", textAlign: "center" }}>
         SALCY CREW's Interview
       </SectionTitle>
-      <SubTitle style={{
-        padding: "0 16px",
-        marginBottom: "-20px",
-        fontSize: "16px",
-        color: "#444",
-        textAlign: "left",
-        width: "100%",
-        display: "block"
-      }}>
-        최근 리뷰
+      <SubTitle style={{ textAlign: "center", marginBottom: "20px" }}>
+        고객님들이 실제 남겨주신 리뷰예요
       </SubTitle>
 
       <div className="review-slider-wrapper">
         <div className="review-slider">
-          {withImage.slice(0, 17).map((r, idx) => (
+          {reviews.map((r, idx) => (
             <HomeReviewCard
               key={idx}
               review={r}
               idx={idx}
-              onClick={() => setSelectedReview(r)} // ✅ 클릭시 모달 열기
+              onClick={() => setSelectedReview(r)}
             />
           ))}
-          {/* 전체 리뷰 보기 버튼 */}
           <HomeReviewCard isMoreButton={true} />
         </div>
       </div>
 
-      {/* ✅ 모달 추가 */}
       <ReviewModal
         review={selectedReview}
         onClose={() => setSelectedReview(null)}

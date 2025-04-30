@@ -1,10 +1,10 @@
-import { supabase } from "../lib/supabase";
+import { supabaseMenu } from "../utils/supabaseMenuClient";
 
 export async function loadGoodsFromSupabase() {
-  const { data, error } = await supabase
-    .from("market_goods") // ✅ 테이블명 수정
+  const { data, error } = await supabaseMenu
+    .from("market_goods")
     .select("*")
-    .eq("is_deleted", false) // ✅ 숨긴 상품 제외
+    .eq("is_deleted", false)
     .order("created_at", { ascending: false });
 
   if (error) {

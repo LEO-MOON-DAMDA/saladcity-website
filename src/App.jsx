@@ -7,8 +7,8 @@ import SaladcityHome from "./SaladcityHome";
 import MenuPage from "./components/MenuPage";
 import ScrollToTop from "./components/ScrollToTop"; // ✅ 추가
 import { useState, useEffect } from "react";
-import { supabase } from "./utils/supabaseClient"; // 기존 구조와 충돌 없다면 유지
-
+import { supabaseMenu } from './utils/supabaseMenuClient';
+import { supabaseOutpost } from './utils/supabaseOutpostClient';
 
 
 const Reviews = lazy(() => import("./pages/Reviews"));
@@ -44,9 +44,13 @@ const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 export default function App() {
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    supabase.auth.getSession().then(() => setLoading(false));
-  }, []);
+useEffect(() => {
+  supabaseOutpost.auth.getSession()
+    .then(() => setLoading(false))
+    .catch(() => setLoading(false));
+}, []);
+
+
 
   if (loading) return <LoadingSpinner />;
   
