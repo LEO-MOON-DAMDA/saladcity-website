@@ -11,7 +11,8 @@ export default function AdminLogin() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const { error } = await supabaseOutpost.auth.signIn({
+
+    const { data, error } = await supabaseOutpost.auth.signInWithPassword({
       email,
       password,
     });
