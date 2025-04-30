@@ -6,6 +6,10 @@ import Layout from "./components/Layout";
 import SaladcityHome from "./SaladcityHome";
 import MenuPage from "./components/MenuPage";
 import ScrollToTop from "./components/ScrollToTop"; // ✅ 추가
+import { useState, useEffect } from "react";
+import { supabase } from "./utils/supabaseClient"; // 기존 구조와 충돌 없다면 유지
+
+
 
 const Reviews = lazy(() => import("./pages/Reviews"));
 const MissionPage = lazy(() => import("./pages/MissionPage"));
