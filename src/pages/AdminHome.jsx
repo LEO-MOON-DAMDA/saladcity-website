@@ -7,12 +7,17 @@ import "./AdminOutpostApplications.css";
 export default function AdminHome() {
   const navigate = useNavigate();
 
-  // ✅ v1용 세션 체크
+  // ✅ Supabase v2용 세션 체크 방식
   useEffect(() => {
-    const session = supabaseOutpost.auth.session();
-    if (!session) {
-      navigate("/admin/login");
-    }
+    const checkSession = async () => {
+      const {
+        data: { session },
+      } = await supabaseOutpost.auth.getSession();
+      if (!session) {
+        navigate("/admin/login");
+      }
+    };
+    checkSession();
   }, [navigate]);
 
   const handleLogout = async () => {
@@ -37,7 +42,6 @@ export default function AdminHome() {
         fontFamily: "Pretendard, sans-serif"
       }}
     >
-      {/* ✅ OUTPOST 관리 허브 타이틀 */}
       <h1
         style={{
           fontSize: "32px",
@@ -49,7 +53,6 @@ export default function AdminHome() {
         OUTPOST 관리 시스템
       </h1>
 
-      {/* ✅ 메뉴 버튼 4개 (로그아웃 포함) */}
       <div
         style={{
           display: "flex",
