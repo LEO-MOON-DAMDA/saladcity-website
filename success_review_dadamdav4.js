@@ -16,6 +16,8 @@ const STORES = [
 ];
 
 function convertDate(text) {
+  if (typeof text !== "string" || !text.trim()) return "날짜없음";
+
   const now = new Date();
   if (text.includes("분 전") || text.includes("방금 전")) return now.toISOString().split("T")[0];
   if (text.includes("시간 전")) return now.toISOString().split("T")[0];
@@ -36,6 +38,8 @@ function convertDate(text) {
   }
   return now.toISOString().split("T")[0];
 }
+
+
 
 (async () => {
   const allReviews = [];
