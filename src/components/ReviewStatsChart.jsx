@@ -5,7 +5,7 @@ import {
   LineChart, Line, CartesianGrid
 } from "recharts";
 
-const COLORS = ["#4CAF50", "#C8E6C9"]; // 연한 초록 톤
+const COLORS = ["#4CAF50", "#C8E6C9"]; // 연한 초록톤
 
 export default function ReviewStatsChart({ reviews }) {
   const ratingData = useMemo(() => {

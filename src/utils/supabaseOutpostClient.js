@@ -1,8 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.REACT_APP_SUPABASE_OUTPOST_URL;
-const supabaseKey = process.env.REACT_APP_SUPABASE_OUTPOST_KEY;
+// ✅ Outpost 관리자 인증용 Supabase 연결
+const SUPABASE_URL = process.env.REACT_APP_SUPABASE_OUTPOST_URL;
+const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_OUTPOST_KEY;
 
-export const supabaseOutpost = createClient(supabaseUrl, supabaseKey, {
+export const supabaseOutpost = createClient(SUPABASE_URL, SUPABASE_KEY, {
   auth: { persistSession: false, autoRefreshToken: false },
 });

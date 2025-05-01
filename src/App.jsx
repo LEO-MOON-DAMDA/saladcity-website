@@ -9,7 +9,10 @@ import ScrollToTop from "./components/ScrollToTop"; // ✅ 추가
 import { useState, useEffect } from "react";
 import { supabaseMenu } from './utils/supabaseMenuClient';
 import { supabaseOutpost } from './utils/supabaseOutpostClient';
-
+import ReviewTools from "./pages/admin/ReviewTools_v5"; // 👉 수집/업로드 도구
+import DashboardReviews from "./pages/admin/DashboardReviews";
+import ReviewStatsPage from "./pages/admin/ReviewStatsPage"; // 👉 통계 페이지
+import MissingResponsePage from "./pages/admin/MissingResponsePage"; // 👉 답변 없는 리뷰 전용
 
 const Reviews = lazy(() => import("./pages/Reviews"));
 const MissionPage = lazy(() => import("./pages/MissionPage"));
@@ -20,7 +23,6 @@ const Shop = lazy(() => import("./pages/Shop"));
 const Cart = lazy(() => import("./pages/Cart"));
 const SuccessPage = lazy(() => import("./pages/SuccessPage"));
 const CancelPage = lazy(() => import("./pages/CancelPage"));
-const DashboardReviews = lazy(() => import("./pages/DashboardReviews"));
 const AddGoods = lazy(() => import("./pages/AddGoods"));
 const MarketGoodsAdmin = lazy(() => import("./pages/MarketGoodsAdmin"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
@@ -50,8 +52,6 @@ useEffect(() => {
     .catch(() => setLoading(false));
 }, []);
 
-
-
   if (loading) return <LoadingSpinner />;
   
   return (
@@ -60,7 +60,8 @@ useEffect(() => {
       <ErrorBoundary>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
-            <Route element={<Layout />}>
+              
+              <Route element={<Layout />}>
               <Route path="/" element={<SaladcityHome />} />
               <Route path="/menu" element={<MenuPage />} />
               <Route path="/reviews" element={<Reviews />} />
@@ -81,20 +82,27 @@ useEffect(() => {
               <Route path="/outpost/complete" element={<OutpostComplete />} />
               <Route path="/outpost/success" element={<OutpostSuccessPage />} />
               <Route path="/outpost/questionnaire" element={<OutpostQuestionnaire />} />
-
-              <Route path="/admin/login" element={<AdminLogin />} />
+	
+	  <Route path="*" element={<NotFoundPage />} />
+              <Route path="/success" element={<SuccessPage />} />
+              <Route path="/cancel" element={<CancelPage />} />
+              <Route path="/dashboard/reviews" element={<DashboardReviews />} />
+              
               <Route path="/admin" element={<AdminHome />} />
+	  <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin/outpost-applications" element={<AdminOutpostApplications />} />
               <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
-              <Route path="/admin/stores" element={<AdminStoresPage />} />
-            </Route>
 
-            <Route path="/success" element={<SuccessPage />} />
-            <Route path="/cancel" element={<CancelPage />} />
-            <Route path="/dashboard/reviews" element={<DashboardReviews />} />
-            <Route path="/admin/add-goods" element={<AddGoods />} />
-            <Route path="/admin/market-goods" element={<MarketGoodsAdmin />} />
-            <Route path="*" element={<NotFoundPage />} />
+              <Route path="/admin/stores" element={<AdminStoresPage />} />
+              <Route path="/admin/add-goods" element={<AddGoods />} />
+              <Route path="/admin/market-goods" element={<MarketGoodsAdmin />} />
+	  <Route path="/admin/tools" element={<ReviewTools />} />
+              <Route path="/admin/reviews/dashboard" element={<DashboardReviews />} />  {/* 정상등록 */}
+	  <Route path="/admin/reviews/stats" element={<ReviewStatsPage />} />
+              <Route path="/admin/reviews/missing-responses" element={<MissingResponsePage />} />
+   
+        </Route> 
+
           </Routes>
         </Suspense>
       </ErrorBoundary>

@@ -1,4 +1,4 @@
-// src/pages/AdminHome.jsx
+// 관리자 홈 - 통합 관리 시스템 (아웃포스트 + 리뷰 + 메뉴)
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabaseOutpost } from "../utils/supabaseOutpostClient";
@@ -7,7 +7,6 @@ import "./AdminOutpostApplications.css";
 export default function AdminHome() {
   const navigate = useNavigate();
 
-  // ✅ Supabase v2용 세션 체크 방식
   useEffect(() => {
     const checkSession = async () => {
       const {
@@ -50,7 +49,7 @@ export default function AdminHome() {
           color: "#3C8050",
         }}
       >
-        OUTPOST 관리 시스템
+        샐러드시티 통합 관리자 시스템
       </h1>
 
       <div
@@ -64,60 +63,14 @@ export default function AdminHome() {
           margin: "0 auto",
         }}
       >
-        <button
-          className="download-button"
-          style={{
-            padding: "16px 28px",
-            fontSize: "18px",
-            borderRadius: "12px",
-            width: "100%",
-          }}
-          onClick={() => navigate("/admin/outpost-applications")}
-        >
-          📋 신청 관리
-        </button>
-
-        <button
-          className="download-button"
-          style={{
-            padding: "16px 28px",
-            fontSize: "18px",
-            borderRadius: "12px",
-            width: "100%",
-          }}
-          onClick={() => navigate("/admin/dashboard")}
-        >
-          📊 OUTPOST 대시보드
-        </button>
-
-        <button
-          className="download-button"
-          style={{
-            padding: "16px 28px",
-            fontSize: "18px",
-            borderRadius: "12px",
-            width: "100%",
-          }}
-          onClick={() => navigate("/admin/stores")}
-        >
-          🏢 매장 관리
-        </button>
-
-        <button
-          className="download-button"
-          style={{
-            padding: "16px 28px",
-            fontSize: "18px",
-            borderRadius: "12px",
-            width: "100%",
-            backgroundColor: "#3C8050",
-            color: "#fff",
-            border: "none",
-          }}
-          onClick={handleLogout}
-        >
-          🔓 로그아웃
-        </button>
+        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/outpost-applications")}>📥 아웃포스트 관리</button>
+        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/dashboard")}>📊 OUTPOST 대시보드</button>
+        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/stores")}>🏢 매장 관리</button>
+        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/reviews/dashboard")}>📊 리뷰 대시보드</button>
+        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/tools")}>⚙️ 리뷰 실행 도구</button>
+        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/reviews/stats")}>📈 리뷰 통계 보기</button>
+        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/reviews/missing-responses")}>⏳ 응답 누락 리뷰</button>
+        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%", backgroundColor: "#3C8050", color: "#fff", border: "none" }} onClick={handleLogout}>🔒 로그아웃</button>
       </div>
     </div>
   );
