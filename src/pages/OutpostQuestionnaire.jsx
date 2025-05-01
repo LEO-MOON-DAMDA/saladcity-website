@@ -29,18 +29,23 @@ export default function OutpostQuestionnaire() {
       {/* ✅ 두 이미지 배경 - 좌우 분할 */}
       <div
         style={{
-      flex: 1,
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "50%",
-    height: "100%",
+                flex: 1,
+      	    position: "absolute",
+        	    top: 0,
+        	    left: 0,
+        	    width: "50%",
+   	    height: "80%",
           backgroundImage:
-            "url('https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/outpost/outpost001.webp')",
-          backgroundSize: "cover",
-        backgroundPosition: "right",
-        }}
-      />
+            "url('https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/outpost/outpost003.webp')",
+		backgroundSize: "cover",         // 📌 꽉 채움 (잘릴 수 있음)
+		backgroundPosition: "center",    // 📌 중앙 정렬
+		backgroundRepeat: "no-repeat",
+		width: "50%",
+		minHeight: "100vh",              // 📌 최소 높이
+		maxHeight: "140vh",              // 📌 너무 커지는 거 방지
+		padding: "20px",
+ 	       }}
+  	    />
       <div
         style={{
       flex: 1,
@@ -48,12 +53,16 @@ export default function OutpostQuestionnaire() {
           top: 0,
           left: "50%",
           width: "50%",
-      height: "100%",
+          height: "80%",
           backgroundImage:
-            "url('https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/outpost/outpost002.webp')",
-          backgroundSize: "cover",
-          backgroundPosition: "left",
-
+            "url('https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/outpost/outpost004.webp')",
+      		backgroundSize: "cover",         // 📌 꽉 채움 (잘릴 수 있음)
+		  backgroundPosition: "30% center", // ✅ 여기만 변경
+		backgroundRepeat: "no-repeat",
+		width: "50%",
+		minHeight: "100vh",              // 📌 최소 높이
+		maxHeight: "140vh",              // 📌 너무 커지는 거 방지
+		padding: "20px",
         }}
       />
 
@@ -71,7 +80,8 @@ export default function OutpostQuestionnaire() {
           justifyContent: "center",
           alignItems: "center",
           padding: "20px",
-          backgroundColor: "rgba(255,255,255,0.85)",
+          paddingBottom: "40px", // ✅ 밑 공간 더 추가
+          backgroundColor: "rgba(255,255,255,0.6)",
         }}
       >
         <h1 style={{ fontSize: "32px", fontWeight: "bold", color: "#3C8050", marginBottom: "20px" }}>

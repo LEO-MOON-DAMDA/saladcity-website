@@ -17,17 +17,51 @@ export default function OutpostStart() {
   };
 
   return (
-    <div className="outpost-start-container">
-      <h1 style={{ fontSize: "30px", fontWeight: "bold", marginBottom: "20px", color: "#3C8050", textAlign: "center" }}>
+<div
+  style={{
+                flex: 1,
+      	    position: "absolute",
+        	    top: 0,
+        	    left: 0,
+        	    width: "50%",
+   	    height: "80%",
+    backgroundImage: "url('https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/outpost/outpost005.webp')",
+		backgroundSize: "cover",         // 📌 꽉 채움 (잘릴 수 있음)
+		backgroundPosition: "center",    // 📌 중앙 정렬
+		backgroundRepeat: "no-repeat",
+		width: "100%",
+		minHeight: "100vh",              // 📌 최소 높이
+		maxHeight: "140vh",              // 📌 너무 커지는 거 방지
+		padding: "20px",
+  }}
+>
+<div
+  style={{
+ position: "relative",
+          zIndex: 1,
+          width: "100%",
+          height: "100%",
+          minHeight: "50vh",
+
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "0px",
+          paddingBottom: "40px", // ✅ 밑 공간 더 추가
+          backgroundColor: "rgba(255,255,255,0.85)",
+        }}
+>
+<h1 style={{ fontSize: "32px", fontWeight: "bold", color: "#3C8050", marginBottom: "20px" }}>
         프리미엄 샐러드 커뮤니티에<br />참여할 준비가 되셨나요?
       </h1>
 
-      <p style={{ fontSize: "18px", color: "#555", marginBottom: "40px", textAlign: "center", lineHeight: "1.6" }}>
+      <p style={{ fontSize: "18px", color: "#666", marginBottom: "40px"  }}>
         매일 아침, 신선함을 담아<br />
         당신만의 OUTPOST로 전해드립니다.
       </p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "20px", width: "100%", maxWidth: "320px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px", maxWidth: "400px", width: "100%" }}>
         <button
   onClick={handleApply}
   className="cta-subscribe-button"
@@ -51,6 +85,10 @@ export default function OutpostStart() {
 >
   🌿 샐러드시티 크루 가입하기
 </button>
+</div>
+
+
+      
 
       </div>
     </div>
