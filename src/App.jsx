@@ -45,12 +45,25 @@ const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  const [session, setSession] = useState(null);
 
 useEffect(() => {
-  supabaseOutpost.auth.getSession()
-    .then(() => setLoading(false))
-    .catch(() => setLoading(false));
-}, []);
+    const restoreSession = async () => {
+      const { data, error } = await supabaseOutpost.auth.getSession();
+      setSession(data?.session ?? null);
+      setLoading(false);
+    };
+
+    restoreSession();
+
+    const { data: listener } = supabaseOutpost.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => {
+      listener.subscription.unsubscribe();
+    };
+  }, []);
 
   if (loading) return <LoadingSpinner />;
   
