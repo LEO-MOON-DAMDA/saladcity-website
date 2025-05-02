@@ -1,0 +1,46 @@
+.admin-leads-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.admin-leads-container h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #3C8050;
+  margin-bottom: 24px;
+}
+
+.admin-leads-search {
+  width: 100%;
+  max-width: 320px;
+  padding: 10px;
+  margin-bottom: 24px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.admin-leads-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-leads-table th,
+.admin-leads-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.admin-leads-table th {
+  background-color: #f6f9f6;
+  color: #3C8050;
+  font-weight: 600;
+}
+
+.admin-leads-table tr:hover {
+  background-color: #f0f7f0;
+}

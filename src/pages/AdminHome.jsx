@@ -1,4 +1,3 @@
-// 관리자 홈 - 통합 관리 시스템 (아웃포스트 + 리뷰 + 메뉴)
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabaseOutpost } from "../utils/supabaseOutpostClient";
@@ -38,7 +37,7 @@ export default function AdminHome() {
         textAlign: "center",
         minHeight: "100vh",
         background: "linear-gradient(to bottom, #ffffff, #f9fff9)",
-        fontFamily: "Pretendard, sans-serif"
+        fontFamily: "Pretendard, sans-serif",
       }}
     >
       <h1
@@ -56,21 +55,51 @@ export default function AdminHome() {
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "24px",
+          gap: "12px",
           alignItems: "center",
           justifyContent: "center",
-          maxWidth: "400px",
+          maxWidth: "480px",
           margin: "0 auto",
         }}
       >
-        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/outpost-applications")}>📥 아웃포스트 관리</button>
-        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/dashboard")}>📊 OUTPOST 대시보드</button>
-        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/stores")}>🏢 매장 관리</button>
-        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/reviews/dashboard")}>📊 리뷰 대시보드</button>
-        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/tools")}>⚙️ 리뷰 실행 도구</button>
-        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/reviews/stats")}>📈 리뷰 통계 보기</button>
-        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%" }} onClick={() => navigate("/admin/reviews/missing-responses")}>⏳ 응답 누락 리뷰</button>
-        <button className="download-button" style={{ padding: "16px 28px", fontSize: "18px", borderRadius: "12px", width: "100%", backgroundColor: "#3C8050", color: "#fff", border: "none" }} onClick={handleLogout}>🔒 로그아웃</button>
+        <h2 style={{ color: "#3C8050", fontSize: "20px", marginTop: "24px" }}>📦 OUTPOST 관리</h2>
+        <button className="download-button" onClick={() => navigate("/admin/outpost-applications")}>
+          아웃포스트 신청 관리
+        </button>
+        <button className="download-button" onClick={() => navigate("/admin/dashboard")}>
+          OUTPOST 대시보드
+        </button>
+        <button className="download-button" onClick={() => navigate("/admin/stores")}>
+          매장 관리
+        </button>
+        <button className="download-button" onClick={() => navigate("/admin/leads")}>
+          리드 수집 관리
+        </button>
+        <button className="download-button" onClick={() => navigate("/admin/coverage")}>
+          배송 커버리지 설정
+        </button>
+
+        <h2 style={{ color: "#3C8050", fontSize: "20px", marginTop: "36px" }}>📝 리뷰 관리</h2>
+        <button className="download-button" onClick={() => navigate("/admin/reviews/dashboard")}>
+          리뷰 대시보드
+        </button>
+        <button className="download-button" onClick={() => navigate("/admin/reviews/stats")}>
+          리뷰 통계 보기
+        </button>
+        <button className="download-button" onClick={() => navigate("/admin/reviews/missing-responses")}>
+          응답 누락 리뷰
+        </button>
+        <button className="download-button" onClick={() => navigate("/admin/tools")}>
+          리뷰 실행 도구
+        </button>
+
+        <button
+          className="download-button"
+          onClick={handleLogout}
+          style={{ marginTop: "40px", backgroundColor: "#3C8050", color: "#fff", border: "none" }}
+        >
+          🔒 로그아웃
+        </button>
       </div>
     </div>
   );

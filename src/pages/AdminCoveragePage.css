@@ -1,0 +1,81 @@
+.coverage-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Pretendard', sans-serif;
+  background: #ffffff;
+}
+
+.coverage-container h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #3C8050;
+  margin-bottom: 24px;
+}
+
+.coverage-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.coverage-form input[type="text"],
+.coverage-form input[type="number"] {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.coverage-form label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+}
+
+.coverage-form button {
+  padding: 8px 16px;
+  background-color: #b4e59c;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.coverage-form button:hover {
+  background-color: #99cc7d;
+  transform: scale(1.05);
+}
+
+.coverage-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.coverage-table th,
+.coverage-table td {
+  border-bottom: 1px solid #ddd;
+  padding: 12px 10px;
+  text-align: left;
+}
+
+.coverage-table th {
+  background-color: #f7f9f7;
+  color: #3C8050;
+  font-weight: 600;
+}
+
+.coverage-table tr:hover {
+  background-color: #f1f7f1;
+}
+
+.coverage-table button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}

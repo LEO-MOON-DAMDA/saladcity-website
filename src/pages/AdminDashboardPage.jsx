@@ -1,8 +1,8 @@
-// src/pages/AdminDashboardPage.jsx
 import React, { useState, useEffect } from "react";
 import { supabaseOutpost } from "../utils/supabaseOutpostClient";
 import { useNavigate } from "react-router-dom";
 import "./AdminDashboardPage.css";
+import "./AdminCoveragePage.css";
 
 export default function AdminDashboardPage() {
   const navigate = useNavigate();
@@ -11,23 +11,35 @@ export default function AdminDashboardPage() {
     approved: 0,
     rejected: 0,
     pending: 0,
+    leads: 0,
+    coverage: 0,
+    stores: 0,
   });
 
   const loadStats = async () => {
     try {
-      const { data, error } = await supabaseOutpost
-        .from("outpost_applications")
-        .select("status");
+      const [{ data: apps = [] }, { data: leads = [] }, { data: coverage = [] }, { data: stores = [] }] =
+        await Promise.all([
+          supabaseOutpost.from("outpost_applications").select("status"),
+          supabaseOutpost.from("outpost_leads").select("*"),
+          supabaseOutpost.from("delivery_coverage").select("*"),
+          supabaseOutpost.from("outpost_stores").select("*"),
+        ]);
 
-      if (error) {
-        console.error("❌ 통계 데이터 불러오기 실패", error.message);
-      } else {
-        const total = data.length;
-        const approved = data.filter((item) => item.status === "승인").length;
-        const rejected = data.filter((item) => item.status === "거절").length;
-        const pending = data.filter((item) => item.status === "대기").length;
-        setStats({ total, approved, rejected, pending });
-      }
+      const total = apps.length;
+      const approved = apps.filter((item) => item.status === "승인").length;
+      const rejected = apps.filter((item) => item.status === "거절").length;
+      const pending = apps.filter((item) => item.status === "대기").length;
+
+      setStats({
+        total,
+        approved,
+        rejected,
+        pending,
+        leads: leads.length,
+        coverage: coverage.length,
+        stores: stores.length,
+      });
     } catch (error) {
       console.error("❌ 통계 데이터 처리 오류", error.message);
     }
@@ -57,6 +69,18 @@ export default function AdminDashboardPage() {
         <div className="stat-card pending">
           <h2>🕐 대기</h2>
           <p>{stats.pending}</p>
+        </div>
+        <div className="stat-card">
+          <h2>📨 리드 수</h2>
+          <p>{stats.leads}</p>
+        </div>
+        <div className="stat-card">
+          <h2>📍 커버리지 지역</h2>
+          <p>{stats.coverage}</p>
+        </div>
+        <div className="stat-card">
+          <h2>🏬 등록 매장 수</h2>
+          <p>{stats.stores}</p>
         </div>
       </div>
 

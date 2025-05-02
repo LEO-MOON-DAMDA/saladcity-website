@@ -1,0 +1,28 @@
+.coverage-map-container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto 40px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.coverage-map-img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+.map-label {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #3C8050;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  min-width: 100px;
+}

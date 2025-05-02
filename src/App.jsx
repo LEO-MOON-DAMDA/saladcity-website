@@ -13,6 +13,7 @@ import ReviewTools from "./pages/admin/ReviewTools_v5"; // 👉 수집/업로드
 import DashboardReviews from "./pages/admin/DashboardReviews";
 import ReviewStatsPage from "./pages/admin/ReviewStatsPage"; // 👉 통계 페이지
 import MissingResponsePage from "./pages/admin/MissingResponsePage"; // 👉 답변 없는 리뷰 전용
+import AdminRoutes from "./routes/AdminRoutes"; // 🔼 상단 import 추가
 
 const Reviews = lazy(() => import("./pages/Reviews"));
 const MissionPage = lazy(() => import("./pages/MissionPage"));
@@ -113,6 +114,9 @@ useEffect(() => {
               <Route path="/admin/reviews/dashboard" element={<DashboardReviews />} />  {/* 정상등록 */}
 	  <Route path="/admin/reviews/stats" element={<ReviewStatsPage />} />
               <Route path="/admin/reviews/missing-responses" element={<MissingResponsePage />} />
+<Route path="/admin/*" element={<AdminRoutes />} />  // 🔽 추가
+<Route path="*" element={<NotFoundPage />} />
+
    
         </Route> 
 
