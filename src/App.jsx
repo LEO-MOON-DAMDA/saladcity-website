@@ -14,10 +14,7 @@ import DashboardReviews from "./pages/admin/DashboardReviews";
 import ReviewStatsPage from "./pages/admin/ReviewStatsPage"; // 👉 통계 페이지
 import MissingResponsePage from "./pages/admin/MissingResponsePage"; // 👉 답변 없는 리뷰 전용
 import AdminRoutes from "./routes/AdminRoutes"; // 🔼 상단 import 추가
-<<<<<<< HEAD
-=======
 import OutpostGroupSummary from "./pages/OutpostGroupSummary";
->>>>>>> 9cf97b99 (Fix: QA 파일 및 App 라우트 정리, 배포 안정화)
 import OutpostQuestionnaire_QA from "./pages/OutpostQuestionnaire_QA";
 import OutpostGroupFlow_QA from "./pages/OutpostGroupFlow_QA";
 
@@ -103,15 +100,11 @@ useEffect(() => {
               <Route path="/outpost/complete" element={<OutpostComplete />} />
               <Route path="/outpost/success" element={<OutpostSuccessPage />} />
               <Route path="/outpost/questionnaire" element={<OutpostQuestionnaire />} />
-<<<<<<< HEAD
-  <Route path="/outpost/questionnaire-qa" element={<OutpostQuestionnaire_QA />} />
+  	  <Route path="/outpost/questionnaire-qa" element={<OutpostQuestionnaire_QA />} />
 	  <Route path="/outpost/groupflow-qa" element={<OutpostGroupFlow_QA />} />	
-=======
 	  <Route path="/outpost/group-summary" element={<OutpostGroupSummary />} />
-	  <Route path="/outpost/questionnaire-qa" element={<OutpostQuestionnaire_QA />} />
-	  <Route path="/outpost/groupflow-qa" element={<OutpostGroupFlow_QA />} />
 
->>>>>>> 9cf97b99 (Fix: QA 파일 및 App 라우트 정리, 배포 안정화)
+
 	  <Route path="*" element={<NotFoundPage />} />
               <Route path="/success" element={<SuccessPage />} />
               <Route path="/cancel" element={<CancelPage />} />
