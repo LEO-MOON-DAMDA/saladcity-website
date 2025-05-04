@@ -79,3 +79,37 @@
   cursor: pointer;
   font-size: 16px;
 }
+
+/* 기존 CSS 아래에 추가 */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+}
+
+.badge-green {
+  background-color: #38a169;
+}
+
+.badge-yellow {
+  background-color: #ecc94b;
+  color: #333;
+}
+
+.badge-gray {
+  background-color: #a0aec0;
+}
+.nowrap {
+  white-space: nowrap;
+}
+
+.nowrap-inline {
+  display: flex;
+  gap: 6px;
+  white-space: nowrap;
+  align-items: center;
+}

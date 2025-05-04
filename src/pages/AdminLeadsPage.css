@@ -1,5 +1,6 @@
 .admin-leads-container {
-  max-width: 960px;
+   width: 100%;
+  max-width: none;
   margin: 0 auto;
   padding: 40px 20px;
   font-family: 'Pretendard', sans-serif;
@@ -24,6 +25,7 @@
 
 .admin-leads-table {
   width: 100%;
+table-layout: auto;
   border-collapse: collapse;
   font-size: 14px;
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { supabaseOutpost } from "../utils/supabaseOutpostClient";
+import { supabaseMenu } from "../utils/supabaseMenuClient";
 import "./AdminLeadsPage.css";
 
 const AdminLeadsPage = () => {
@@ -7,7 +7,7 @@ const AdminLeadsPage = () => {
   const [search, setSearch] = useState("");
 
   const fetchLeads = async () => {
-    const { data, error } = await supabaseOutpost
+    const { data, error } = await supabaseMenu
       .from("outpost_leads")
       .select("*")
       .order("created_at", { ascending: false });
@@ -20,7 +20,7 @@ const AdminLeadsPage = () => {
   }, []);
 
   const handleStatusChange = async (id, value) => {
-    await supabaseOutpost
+    await supabaseMenu
       .from("outpost_leads")
       .update({ status: value })
       .eq("id", id);
@@ -28,7 +28,7 @@ const AdminLeadsPage = () => {
   };
 
   const handleMemoChange = async (id, value) => {
-    await supabaseOutpost
+    await supabaseMenu
       .from("outpost_leads")
       .update({ memo: value })
       .eq("id", id);
@@ -36,16 +36,17 @@ const AdminLeadsPage = () => {
   };
 
   const handleResponseToggle = async (id, current) => {
-    await supabaseOutpost
+    await supabaseMenu
       .from("outpost_leads")
       .update({ responded: !current })
       .eq("id", id);
     fetchLeads();
   };
 
-  const filteredLeads = leads.filter((lead) =>
-    lead.region?.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredLeads = leads.filter((lead) => {
+    const regionText = `${lead.region_city || ""} ${lead.region_gu || ""} ${lead.region_dong || ""}`;
+    return regionText.toLowerCase().includes(search.toLowerCase());
+  });
 
   return (
     <div className="admin-leads-container">
@@ -59,52 +60,66 @@ const AdminLeadsPage = () => {
         className="admin-leads-search"
       />
 
-      <table className="admin-leads-table">
+      <table className="admin-leads-table"  style={{ width: "100%", tableLayout: "auto", borderCollapse: "collapse" }}>
         <thead>
-          <tr>
-            <th>지역</th>
-            <th>식수</th>
-            <th>작성일</th>
-            <th>상태</th>
-            <th>응답</th>
-            <th>메모</th>
-          </tr>
-        </thead>
+  <tr>
+    <th>지역</th>
+    <th>식수</th>
+    <th>요일</th>
+    <th>기간</th>
+    <th>시간대</th>
+    <th>이메일</th>
+    <th>전화번호</th>
+    <th>작성일</th>
+    <th>상황</th>
+    <th>응답</th>
+    <th>메모</th>
+  </tr>
+</thead>
         <tbody>
-          {filteredLeads.map((lead) => (
-            <tr key={lead.id}>
-              <td>{lead.region}</td>
-              <td>{lead.meals}</td>
-              <td>{new Date(lead.created_at).toLocaleString("ko-KR")}</td>
-              <td>
-                <select
-                  value={lead.status || ""}
-                  onChange={(e) => handleStatusChange(lead.id, e.target.value)}
-                >
-                  <option value="">-</option>
-                  <option value="보류">보류</option>
-                  <option value="진행 중">진행 중</option>
-                  <option value="완료">완료</option>
-                </select>
-              </td>
-              <td>
-                <input
-                  type="checkbox"
-                  checked={lead.responded || false}
-                  onChange={() => handleResponseToggle(lead.id, lead.responded)}
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={lead.memo || ""}
-                  onChange={(e) => handleMemoChange(lead.id, e.target.value)}
-                  style={{ width: "100%" }}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
+  {filteredLeads.map((lead) => (
+    <tr key={lead.id}>
+      <td>{`${lead.region_city || ""} ${lead.region_gu || ""} ${lead.region_dong || ""}`.trim()}</td>
+      <td>{lead.meals}</td>
+      <td>{lead.weekday}</td>
+      <td>{lead.duration}</td>
+      <td>{lead.timeslot}</td>
+      <td style={{ maxWidth: "200px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+  {lead.email}
+</td>
+
+      <td>{lead.phone}</td>
+      <td>{new Date(lead.created_at).toLocaleString("ko-KR")}</td>
+      <td>
+        <select
+          value={lead.status || ""}
+          onChange={(e) => handleStatusChange(lead.id, e.target.value)}
+        >
+          <option value="">-</option>
+          <option value="보률">보률</option>
+          <option value="진행 중">진행 중</option>
+          <option value="완료">완료</option>
+        </select>
+      </td>
+      <td>
+        <input
+          type="checkbox"
+          checked={lead.responded || false}
+          onChange={() => handleResponseToggle(lead.id, lead.responded)}
+        />
+      </td>
+      <td>
+        <input
+          type="text"
+          value={lead.memo || ""}
+          onChange={(e) => handleMemoChange(lead.id, e.target.value)}
+          style={{ width: "100%" }}
+        />
+      </td>
+    </tr>
+  ))}
+</tbody>
+
       </table>
     </div>
   );
