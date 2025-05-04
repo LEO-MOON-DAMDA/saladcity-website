@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { saveOutpostApplication } from "../apis/saveApplication";
 import "../components/cta-subscribe-button.css";
+import "./OutpostGroupFlow_QA.css";
+
 
 export default function OutpostGroupFlow() {
   const navigate = useNavigate();
