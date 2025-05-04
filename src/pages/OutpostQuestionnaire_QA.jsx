@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../components/cta-subscribe-button.css";
 import "../components/BrandButton.css";
-import "./OutpostQuestionnaire.css";
+import "./OutpostQuestionnaire_QA.css";
 
 import OutpostCoverageMap from "../components/OutpostCoverageMap";
 import OutpostLeadForm from "../components/OutpostLeadForm";
