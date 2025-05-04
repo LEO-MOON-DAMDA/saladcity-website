@@ -14,6 +14,8 @@ import DashboardReviews from "./pages/admin/DashboardReviews";
 import ReviewStatsPage from "./pages/admin/ReviewStatsPage"; // 👉 통계 페이지
 import MissingResponsePage from "./pages/admin/MissingResponsePage"; // 👉 답변 없는 리뷰 전용
 import AdminRoutes from "./routes/AdminRoutes"; // 🔼 상단 import 추가
+import OutpostQuestionnaire_QA from "./pages/OutpostQuestionnaire_QA";
+import OutpostGroupFlow_QA from "./pages/OutpostGroupFlow_QA";
 
 const Reviews = lazy(() => import("./pages/Reviews"));
 const MissionPage = lazy(() => import("./pages/MissionPage"));
@@ -37,6 +39,7 @@ const OutpostPayment = lazy(() => import("./pages/OutpostPayment"));
 const OutpostComplete = lazy(() => import("./pages/OutpostComplete"));
 const OutpostSuccessPage = lazy(() => import("./pages/OutpostSuccessPage"));
 const OutpostQuestionnaire = lazy(() => import("./pages/OutpostQuestionnaire"));
+
 
 const AdminHome = lazy(() => import("./pages/AdminHome"));
 const AdminOutpostApplications = lazy(() => import("./pages/AdminOutpostApplications"));
@@ -96,7 +99,8 @@ useEffect(() => {
               <Route path="/outpost/complete" element={<OutpostComplete />} />
               <Route path="/outpost/success" element={<OutpostSuccessPage />} />
               <Route path="/outpost/questionnaire" element={<OutpostQuestionnaire />} />
-	
+  <Route path="/outpost/questionnaire-qa" element={<OutpostQuestionnaire_QA />} />
+	  <Route path="/outpost/groupflow-qa" element={<OutpostGroupFlow_QA />} />	
 	  <Route path="*" element={<NotFoundPage />} />
               <Route path="/success" element={<SuccessPage />} />
               <Route path="/cancel" element={<CancelPage />} />
