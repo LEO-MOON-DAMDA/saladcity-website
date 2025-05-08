@@ -1,4 +1,4 @@
- {
+{
   "buildCommand": "npm run build",
   "outputDirectory": "build",
   "cleanUrls": true,
@@ -15,6 +15,17 @@
     }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
   ]
 }
