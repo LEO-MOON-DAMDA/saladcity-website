@@ -110,9 +110,8 @@ useEffect(() => {
               <Route path="/cancel" element={<CancelPage />} />
               <Route path="/dashboard/reviews" element={<DashboardReviews />} />
               
-             
-<Route path="/admin/*" element={<AdminRoutes />} />  // 🔽 추가
-<Route path="*" element={<NotFoundPage />} />
+             <Route path="/admin/*" element={<AdminRoutes />} />  // 🔽 추가
+	
 
    
         </Route> 
