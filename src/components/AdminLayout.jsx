@@ -18,13 +18,13 @@ export default function AdminLayout() {
   if (loading) return null;
 
   const isLoginPage = location.pathname === "/admin/login";
-  
+
   // ✅ 세션 없고 로그인 페이지가 아니면 → 로그인으로
   if (!session && !isLoginPage) {
     return <Navigate to="/admin/login" replace />;
   }
 
-  // ✅ 세션 있는데 로그인 페이지면 → /admin으로 리다이렉트
+  // ✅ 세션 있는데 로그인 페이지면 → 관리자 홈으로
   if (session && isLoginPage) {
     return <Navigate to="/admin" replace />;
   }
