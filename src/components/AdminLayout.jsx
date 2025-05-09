@@ -1,7 +1,27 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useLocation, Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { supabaseOutpost } from "../utils/supabaseOutpostClient";
 import "../styles/AdminLayout.css";
 
 export default function AdminLayout() {
+  const location = useLocation();
+  const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabaseOutpost.auth.getSession().then(({ data }) => {
+      setSession(data.session);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) return null;
+
+  const isLoginPage = location.pathname === "/admin/login";
+  if (!session && !isLoginPage) {
+    return <Navigate to="/admin/login" replace />;
+  }
+
   return (
     <div className="admin-layout">
       <aside className="admin-sidebar">
