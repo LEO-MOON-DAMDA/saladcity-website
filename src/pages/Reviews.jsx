@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
 import ReviewModal from "../components/ReviewModal";
 import ReviewScrollingBanner from "../components/ReviewScrollingBanner";
 import "./Reviews.css";
 import "../components/cta-subscribe-button.css";
+
+const supabase = createClient(
+  process.env.REACT_APP_SUPABASE_MENU_URL,
+  process.env.REACT_APP_SUPABASE_MENU_KEY
+);
 
 const fallbackImages = [
   "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample01.webp",
@@ -10,50 +16,91 @@ const fallbackImages = [
   "https://bjcetaznlmqgjvozeeen.supabase.co/storage/v1/object/public/images/review-sample03.webp",
 ];
 
+
+
+
+
+
+
 export default function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [selectedReview, setSelectedReview] = useState(null);
+  const [emotionReviews, setEmotionReviews] = useState([]);
 
   useEffect(() => {
-    fetch("/data/review_with_emotion_random.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const bannedWords = ["사장님 댓글 등록하기", "사장님 댓글 추가하기", "머리카락", "이물질", "최악"];
-        const isValidDate = (str) => /^\d{4}-\d{2}-\d{2}$/.test(str);
+    const loadReviews = async () => {
+      const pageSize = 1000;
+      let all = [];
+      let page = 0;
+      let done = false;
 
-        const clean = data.filter((r) => {
-          const text = r.review?.toLowerCase();
-          const score = r.rating || 0;
-          const dateValid = isValidDate(r.date);
-          const banned = bannedWords.some((w) => text?.includes(w));
-          return text && dateValid && !banned && (r.emotion || score >= 4);
-        });
+      while (!done) {
+        const { data, error } = await supabase
+          .from("reviews")
+          .select("*")
+          .order("date", { ascending: false })
+          .range(page * pageSize, (page + 1) * pageSize - 1);
 
-        const sorted = clean.sort((a, b) => new Date(b.date) - new Date(a.date));
+        if (error) {
+          console.error("❌ Supabase 오류:", error.message);
+          return;
+        }
 
-        const grouped = sorted.reduce((acc, cur) => {
-          const date = cur.date;
-          if (!acc[date]) acc[date] = [];
-          acc[date].push(cur);
-          return acc;
-        }, {});
+        if (!data || data.length === 0) {
+          done = true;
+        } else {
+          all = [...all, ...data];
+          page++;
+        }
+      }
 
-        const shuffled = Object.values(grouped)
-          .map(group => group.sort(() => Math.random() - 0.5))
-          .flat();
+      const bannedWords = ["사장님 댓글 등록하기", "사장님 댓글 추가하기", "머리카락", "이물질", "최악"];
+      const isValidDate = (str) => /^\d{4}-\d{2}-\d{2}$/.test(str);
 
-        setReviews(shuffled);
-      })
-      .catch((err) => console.error("리뷰 JSON 로딩 오류:", err));
+      const clean = all.filter((r) => {
+        const text = r.review?.toLowerCase();
+        const score = r.rating || 0;
+        const dateValid = isValidDate(r.date);
+        const banned = bannedWords.some((w) => text?.includes(w));
+        return text && dateValid && !banned && (r.emotion || score >= 4);
+      });
+
+      const groupedByDate = clean.reduce((acc, cur) => {
+        const date = cur.date;
+        if (!acc[date]) acc[date] = [];
+        acc[date].push(cur);
+        return acc;
+      }, {});
+
+      const sorted = Object.entries(groupedByDate)
+        .sort(([a, b]) => new Date(b) - new Date(a))
+        .flatMap(([_, group]) => group.sort(() => Math.random() - 0.5));
+
+      setReviews(sorted);
+
+const { data: emotionData, error: emotionError } = await supabase
+        .from("emotion_reviews")
+        .select("*")
+        .eq("active", true);
+
+      if (emotionError) {
+        console.error("❌ 감성 문구 로딩 실패:", emotionError.message);
+      } else if (emotionData) {
+        const picked = [...emotionData].sort(() => Math.random() - 0.5).slice(0, 3);
+        setEmotionReviews(picked);
+      }
+    };
+
+    loadReviews();
   }, []);
 
-const getStoreBadgeClass = (store) => {
-  if (!store) return "";
-  if (store.includes("역삼")) return "badge-yeoksam";
-  if (store.includes("강동")) return "badge-gangdong";
-  if (store.includes("구디")) return "badge-gudi";
-  return "";
-};
+  const getStoreBadgeClass = (store) => {
+    if (!store) return "";
+    if (store.includes("역삼")) return "badge-yeoksam";
+    if (store.includes("강동")) return "badge-gangdong";
+    if (store.includes("구디")) return "badge-gudi";
+    return "";
+  };
 
   const renderReviewCard = (r, idx) => {
     const hasImage = typeof r.image === "string" && r.image.startsWith("http");
@@ -110,7 +157,7 @@ const getStoreBadgeClass = (store) => {
     return avg.toFixed(2);
   };
 
-  const emotionReviews = reviews.filter((r) => r.emotion);
+ 
   const withImageReviews = reviews.filter(
     (r) => !r.emotion && typeof r.image === "string" && r.image.startsWith("http")
   );

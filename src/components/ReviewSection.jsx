@@ -1,47 +1,59 @@
 import React, { useEffect, useState } from "react";
+import { createClient } from "@supabase/supabase-js";
 import SectionTitle from "./SectionTitle";
 import SubTitle from "./SubTitle";
 import HomeReviewCard from "./HomeReviewCard";
 import ReviewModal from "./ReviewModal";
 import "./ReviewSection.css";
 
+const supabase = createClient(
+  process.env.REACT_APP_SUPABASE_MENU_URL,
+  process.env.REACT_APP_SUPABASE_MENU_KEY
+);
+
 export default function ReviewSection() {
   const [reviews, setReviews] = useState([]);
   const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
-    fetch("/data/review_with_emotion_random.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const isValidDate = (str) => /^\d{4}-\d{2}-\d{2}$/.test(str);
+    const loadReviews = async () => {
+      const { data, error } = await supabase
+        .from("reviews")
+        .select("*")
+        .order("date", { ascending: false })
+        .limit(1000);
 
-        const filtered = data.filter(
-          (r) =>
-            r.image &&
-            typeof r.image === "string" &&
-            r.image.startsWith("http") &&
-            !r.emotion &&
-            isValidDate(r.date)
-        );
+      if (error) {
+        console.error("홈화면 Supabase 리뷰 로딩 실패:", error.message);
+        return;
+      }
 
-        const sorted = filtered.sort(
-          (a, b) => new Date(b.date) - new Date(a.date)
-        );
+      const isValidDate = (str) => /^\d{4}-\d{2}-\d{2}$/.test(str);
 
-        const grouped = sorted.reduce((acc, cur) => {
-          const date = cur.date;
-          if (!acc[date]) acc[date] = [];
-          acc[date].push(cur);
-          return acc;
-        }, {});
+      const filtered = data.filter(
+        (r) =>
+          r.image &&
+          typeof r.image === "string" &&
+          r.image.startsWith("http") &&
+          !r.emotion &&
+          isValidDate(r.date)
+      );
 
-        const shuffled = Object.values(grouped)
-          .map(group => group.sort(() => Math.random() - 0.5))
-          .flat();
+      const grouped = filtered.reduce((acc, cur) => {
+        const date = cur.date;
+        if (!acc[date]) acc[date] = [];
+        acc[date].push(cur);
+        return acc;
+      }, {});
 
-        setReviews(shuffled.slice(0, 8));
-      })
-      .catch((err) => console.error("홈화면 리뷰 로딩 실패:", err));
+      const shuffled = Object.entries(grouped)
+        .sort(([a, b]) => new Date(b) - new Date(a)) // 날짜 최신 순
+        .flatMap(([_, group]) => group.sort(() => Math.random() - 0.5));
+
+      setReviews(shuffled.slice(0, 8));
+    };
+
+    loadReviews();
   }, []);
 
   const getStoreBadgeClass = (store) => {
@@ -69,7 +81,7 @@ export default function ReviewSection() {
               review={r}
               idx={idx}
               onClick={() => setSelectedReview(r)}
-              storeClass={getStoreBadgeClass(r.store)} // ✅ 이 줄도 필요
+              storeClass={getStoreBadgeClass(r.store)}
             />
           ))}
           <HomeReviewCard isMoreButton={true} />
