@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ArrowRight, Loader, CheckCircle, AlertTriangle } from "lucide-react";
 import ReviewSyncStatus from "./ReviewSyncStatus";
 
@@ -8,6 +8,8 @@ export default function ReviewTools() {
   const [platform, setPlatform] = useState("baemin");
   const [mode, setMode] = useState("daily");
   const [store, setStore] = useState("all");
+
+  const LOCAL_API = "http://localhost:7777";
 
   async function handle(endpoint, label) {
     setStatus("loading");
@@ -61,13 +63,13 @@ export default function ReviewTools() {
       </div>
 
       <div style={{ display: "flex", gap: "12px", marginBottom: "24px" }}>
-        <button onClick={() => handle("/api/collect-reviews", "리뷰 수집")} className="admin-button">
+        <button onClick={() => handle(`${LOCAL_API}/collect`, "리뷰 수집")} className="admin-button">
           <ArrowRight size={14} style={{ marginRight: "6px" }} /> 수집만 실행
         </button>
-        <button onClick={() => handle("/api/upload-reviews", "Supabase 업로드")} className="admin-button">
+        <button onClick={() => handle(`${LOCAL_API}/upload`, "Supabase 업로드")} className="admin-button">
           <ArrowRight size={14} style={{ marginRight: "6px" }} /> 업로드만 실행
         </button>
-        <button onClick={() => handle("/api/collect-and-upload", "전체 실행")} className="admin-button" style={{
+        <button onClick={() => handle(`${LOCAL_API}/all`, "전체 실행")} className="admin-button" style={{
           background: "linear-gradient(135deg, #43a047, #66bb6a)",
           color: "#fff"
         }}>
