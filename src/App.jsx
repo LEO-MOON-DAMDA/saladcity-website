@@ -109,8 +109,8 @@ useEffect(() => {
               <Route path="/success" element={<SuccessPage />} />
               <Route path="/cancel" element={<CancelPage />} />
               <Route path="/dashboard/reviews" element={<DashboardReviews />} />
-              
-             <Route path="/admin/*" element={<AdminRoutes />} />  // 🔽 추가
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin/*" element={<AdminRoutes />} />  // 🔽 추가
 	
 
    
